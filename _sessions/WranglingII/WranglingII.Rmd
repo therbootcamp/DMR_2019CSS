@@ -1,0 +1,744 @@
+---
+title: "Wrangling II"
+author: "Data Mining mit R<br>
+  <a href='https://therbootcamp.github.io'>
+    Basel R Bootcamp
+  </a>
+  <br>
+  <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "Dezember 2019"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+       Data Mining mit R | Dezember 2019
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+  
+```{r, eval = FALSE, echo = FALSE, message=FALSE}
+# Code to knit slides
+xaringan::inf_mr('_sessions/D1S2_Wrangling/Wrangling.Rmd')
+
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(width=110)
+options(digits = 4)
+library(tidyverse)
+library(basel)
+basel <- read_csv("https://raw.githubusercontent.com/therbootcamp/basel/master/inst/extdata/basel.txt")
+studie <- tibble(id = c(1, 2),
+                 medikament = c("medikament", "plazebo"),
+                 baseline = c(3, 4),
+                 t1 = c(8, 6))
+
+
+```
+
+# Inhalte
+
+.pull-left45[
+<br>
+
+<font size = 5><high>Datenformat transformieren</high></font>
+
+- Wide &#8594; Long Format
+- Long &#8594; Wide Format
+
+<font size = 5><high>Gruppen erstellen</high></font>
+
+Daten nach gewissen Variablen gruppieren
+
+- Bsp: Nach Geschlecht und Bildung
+
+<font size = 5><high>Deskriptive Statistiken erstellen</high></font>
+
+- Bsp: Berechnen des mittleren Alters (`mean(alter)`)
+
+]
+
+
+.pull-right45[
+
+<br>
+
+<p align="center">
+<img src="image/data_wrangler.png" height=240px><br>
+<font style="font-size:10px">from <a href="https://www.codeastar.com/data-wrangling/">codeastar</a></font></p>
+
+]
+
+---
+
+# Long und Wide Format
+
+.pull-left4[
+<br>
+Je nach Funktion werden Daten im Wide-Format (breites oder ungestapeltes Format), oder Daten im Long-Format (langes oder gestapeltes Format) benötigt.
+
+Benutze <high>`pivot_longer()`</high> und <high>`pivot_wider()`</high> aus dem `tidyr` Paket um Daten zu transformieren 
+
+<br>
+
+| Funktion | Resultat |
+|:----------|:-------|
+|`pivot_longer()`|<high>Wide &#8594; Long</high> Format|
+|`pivot_wider()`|<high>Long &#8594; Wide</high> Format|
+
+]
+
+.pull-right55[
+
+<p align="center">
+<img src="image/tidyr-spread-gather.gif" height=420px><br>
+<font style="font-size:10px">adapted from <a href="https://github.com/gadenbuie/tidyexplain">tidyexplain</a></font></p>
+
+]
+
+
+---
+
+# `pivot_longer()`
+
+.pull-left45[
+
+<br>
+
+```{r}
+# Original Daten (wide)
+studie
+```
+
+]
+
+.pull-right45[
+
+<br>
+
+```{r eval = FALSE}
+# wide zu long
+data %>% 
+  pivot_longer(cols = Spaltenauswahl,
+               names_to = "Gruppe",
+               values_to = "Werte")
+```
+
+]
+---
+
+# `pivot_longer()`
+
+.pull-left45[
+
+<br>
+
+```{r}
+# Original Daten (wide)
+studie
+```
+
+]
+
+.pull-right45[
+
+<br>
+
+```{r}
+# wide zu long
+studie %>% 
+  pivot_longer(cols = c("baseline", "t1"),
+               names_to = "zeitpunkt",
+               values_to = "rating")
+
+```
+
+]
+---
+
+
+# `pivot_wider()`
+
+.pull-left45[
+
+<br>
+
+```{r echo = FALSE}
+studie_long <- studie %>% 
+  pivot_longer(cols = c("baseline", "t1"),
+               names_to = "zeitpunkt",
+               values_to = "rating")
+
+```
+
+
+```{r}
+# Original Daten (wide)
+studie_long
+```
+
+]
+
+.pull-right45[
+
+<br>
+
+```{r eval = FALSE}
+# long zu wide
+data %>% 
+  pivot_wider(names_from = "Gruppe",
+               values_from = "Werte")
+```
+
+]
+
+---
+
+
+# `pivot_wider()`
+
+.pull-left45[
+
+<br>
+
+```{r}
+# Original Daten (wide)
+studie_long
+```
+
+]
+
+.pull-right45[
+
+<br>
+
+```{r}
+# wide zu long
+studie_long %>% 
+  pivot_wider(names_from = "zeitpunkt",
+               values_from = "rating")
+```
+
+]
+
+---
+
+.pull-left45[
+
+# `dplyr`
+
+Wir verwenden `dplyr` zur Berechnung gruppierter deskriptiver Statistiken.
+
+<br>
+```{r, echo= TRUE, eval = FALSE}
+# Paket einzeln laden
+
+# install.packages('dplyr')
+
+library(dplyr)
+
+# Oder einfacher; das tidyverse Paket laden
+
+# install.packages('tidyverse')
+
+library(tidyverse)
+```
+
+]
+ 
+.pull-right5[
+
+<br><br><br>
+```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png")
+```
+
+]
+
+---
+
+# Die Pipe!  <high>`%>%`</high>
+
+.pull-left4[
+
+`dplyr` macht intensiven Gebrauch eines neuen Operator genannt "Pipe" <high>`%>%`</high><br>
+
+Die "Pipe" <high>`%>%`</high> lesen wir als "und dann..."
+
+<br>
+
+```{r, eval = FALSE, echo = TRUE}
+# Start mit data
+data %>% # und dann...
+  
+AKTION_1 %>% # und dann...
+  
+AKTION_2 %>% # und dann...
+  
+AKTION_3 %>% # und dann...
+
+```
+
+]
+
+.pull-right55[
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"><br>
+  (aber %>% ist eine!); <font style="font-size:10px"> <a href="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg">wikipedia</a></font>
+</p>
+
+]
+
+
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Benutze `summarise()` um neue Spalten mit <high>deskriptiven Statistiken</high> zu erstellen
+
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
+
+Das Resultat von `summarise()` ist ein tibble!
+
+]
+
+.pull-right5[
+
+```{r}
+# Berechne deskriptive Statistiken
+basel %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    groesse_median = median(groesse)
+  )
+```
+
+
+]
+
+---
+
+# Gruppierte Aggregation
+
+<p align="center">
+  <img src="image/summarsed_data_diagram.png" height="470px">
+</p> 
+
+
+---
+
+# `group_by()`, `summarise()`
+
+.pull-left45[
+
+Benutze `group_by()` zum <high>gruppieren</high> von Daten über eine oder mehrere Variablen
+
+Nach dem Gruppieren, benutze `summarise()` zur <high>Berechnung deskriptiver Statistiken</high> über Gruppen von Daten
+
+]
+
+.pull-right5[
+
+```{r}
+# Gruppiere über Variable geschlecht
+# Berechne deskriptive Statistiken
+basel %>%
+  group_by(geschlecht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    groesse_median = median(groesse)
+  )
+```
+
+]
+
+---
+
+# Kombiniere Funktionen
+
+.pull-left4[
+<br><br>
+Wrangling Funktionen (z.B. `filter()`, `slice()`, `rename()`) mit Gruppierung und Berechnung deskriptiver Statistiken verbinden. 
+
+Benutze dafür die Pipe <high>%>%</high>
+
+
+]
+
+.pull-right55[
+
+```{r}
+basel %>%
+  filter(geschlecht == "m" & kinder > 0) %>% 
+  group_by(bildung) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_median = median(einkommen,
+                              na.rm = TRUE)
+  )
+```
+
+]
+
+---
+
+# Quiz 1
+
+.pull-left45[
+
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = FALSE}
+basel %>%
+  group_by(fasnacht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+]
+
+
+---
+
+# Quiz 1
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = TRUE}
+basel %>%
+  group_by(fasnacht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+]
+
+
+---
+
+# Quiz 2
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = FALSE}
+basel %>%
+  group_by(fasnacht, geschlecht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+]
+
+
+
+---
+
+# Quiz 2
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = TRUE}
+basel %>%
+  group_by(fasnacht, geschlecht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+]
+
+
+---
+
+# Quiz 3
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = FALSE}
+basel %>%
+  filter(geschlecht == "m") %>%
+  group_by(fasnacht, geschlecht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+]
+
+
+
+
+---
+
+# Quiz 3
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = TRUE}
+basel %>%
+  filter(geschlecht == "m") %>%
+  group_by(fasnacht, geschlecht) %>%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+]
+
+
+---
+
+# Quiz 4
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = FALSE}
+basel %>%
+  group_by(bildung) %>%
+  summarise(
+    N = n(),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  ) %>%
+  arrange(desc(einkommen_mean))
+```
+
+
+]
+
+
+
+
+---
+
+# Quiz 4
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+```{r}
+basel %>%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %>%
+  slice(1:5)
+```
+
+
+]
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+```{r, echo = TRUE}
+basel %>%
+  group_by(bildung) %>%
+  summarise(
+    N = n(),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  ) %>%
+  arrange(desc(einkommen_mean))
+```
+
+
+]
+
+
+
+---
+
+
+
+class: middle, center
+
+<h1><a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Analysing/Analysing_practical.html">Practical</a></h1>

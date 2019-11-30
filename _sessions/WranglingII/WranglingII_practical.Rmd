@@ -1,0 +1,631 @@
+---
+title: "Wrangling II"
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  <tr style='border:none'>
+    <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      <font style='font-style:normal'>R for Data Science</font><br>
+      <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
+        <i class='fas fa-clock' style='font-size:.9em;' ></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:.9em;'></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io'>
+        <font style='font-style:normal'>Basel R Bootcamp</font>
+      </a>
+    </td>
+    <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+    </td>
+  </tr></table>"
+output:
+  html_document:
+    css: practical.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE, message=F, warning=F}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(tidyverse)
+kc_house <- read_csv("../../1_Data/kc_house.csv")
+bev <- read_csv("../../1_Data/bevoelkerung.csv")
+basel <- read_csv("../../1_Data/basel.txt")
+```
+
+<p align="center">
+<img width="100%" src="image/forsale.png" margin=0><br>
+<font style="font-size:10px">adapted from [trueloveproperty.co.uk](http://www.trueloveproperty.co.uk/houses-sale-ingham/)</font>
+</p>
+
+# {.tabset}
+
+## Overview
+
+In diesem Practical wirst du das Transformieren, Gruppieren und Analysieren von Daten mit `dplyr` üben.
+
+Am Ende des Practicals wirst du wissen wie man:
+
+1. Daten transformiert
+2. Daten gruppiert und deskriptive Statistiken berechnen kann
+
+## Tasks
+
+### A - Setup
+
+1. Öffne dein `BaselRBootcamp` R project. Es sollte bereits die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle  Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+
+2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Wrangling II Practical" als Kommentare an den Anfang des Skripts.
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATUM
+## Wrangling II Practical
+```
+
+3. Speichere es das neue Skript unter dem Namen `wrangling_II_practical.R` in den `2_Code` Ordner.
+
+4. Lade das `tidyverse` Paket.
+
+```{r, eval = FALSE, echo = TRUE}
+# Pakete laden
+library(tidyverse)     
+```
+
+```{r}
+library(tidyverse)
+```
+
+### B - Transformation zwischen *Long* und *Wide* Format 
+
+5. In diesem Practical verwenden wir zunächst den `bevoelkerung.csv` Datensatz. Er enthält die Einwohnerzahlen verschiedener schweizer Städte von 1930 bis 2011. Im `Datensätze` Tab findest du eine Auflistung und eine kurze Beschreibung der im Datensatz enthaltenen Variablen. Lese den Datensatz mit der `read_csv()` Funktion in R ein und speichere ihn unter dem Namen `bev`.
+
+
+```{r eval = FALSE}
+bev <- read_csv(file = "1_Data/bevoelkerung.csv")
+```
+
+
+6. Mache dich mit dem Datensatz vertraut in dem du die ersten paar Zeilen und die Vriablennamen anschaust.
+
+7. Im Moment sind die Daten so angeordnet, dass jedes Jahr eine einzelne Spalte hat, also im *Wide* Format. Diese Anordnung ist praktisch zum Eingeben von Daten und um die Daten als Tabelle anzuschauen. Für viele Anwendungen, wie gewisse statistische Analysen oder Plotting, brauchen wir die Daten aber im *Long* format. Für diese Transformation verwenden wir `pivot_longer()`.
+
+Zur Rekapitulation, `pivot_longer()` in der einfachsten "Version" braucht drei Argumente: i) den Datensatz, ii) die Spaltennamen als Spezifikation, welche Spalten vom Wide ins Long Format transformiert werden sollen, und iii) den Spaltennamen der neuen Gruppierungsvariable.
+
+Unter Verwendung nur dieser drei Argumente, Transformiere die `st_wbev_2011` und `st_wbev_2001` Variablen aus `bev` vom Wide ins Long Format und speichere es als neues Objekt ab.
+
+```{r eval = FALSE, echo = TRUE}
+# Transofmation vom Wide ins Long Format
+bev_long <- bev %>%
+  pivot_longer(c("XXX", "XXX"), names_to = "jahr")
+```
+
+```{r}
+# Transofmation vom Wide ins Long Format
+bev_long <- bev %>%
+  pivot_longer(c("st_wbev_2011", "st_wbev_2001"), names_to = "jahr")
+
+```
+
+8. Schaue dir das Resultat, also den neu erstellten Datensatz an. Versuche nachzuvollziehen was genau gemacht wurde, welche Variablen sich verändert haben und welche nicht. Frage nach, falls du etwas nicht nachvollziehen kannst.
+
+9. Nun da wir die basics haben, wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen ins Long Format bringen. Schaue dir dazu nochmals die Namen der Variablen an.
+
+```{r}
+names(bev)
+```
+
+10. Wie du siehst, hat jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXXX`. Dieser Umstand ist hilfreich, da wir dadurch nicht jede Variable explizit auflisten müssen, sondern die `starts_with()` Funktion verwenden können. Schaue dir dazu die help page der Funktion an.
+
+```{r}
+?starts_with
+```
+
+
+11. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
+
+```{r}
+bev_long <- bev %>%
+  pivot_longer(starts_with("st_"), names_to = "jahr")
+```
+
+12. Schaue dir das Resultat an.
+
+13. Die Einwohnerzahl ist im neuen Datensatz in der Spalte `value` enthalten. Dieser Name wird per default gewählt, ist aber nicht informativ. Wir können einen eigenen Namen wählen, in dem wir in `pivot_longer()` zusätzlich das `values_to` Argument spezifizieren. Wiederhole den Code von Aufgabe 11, und ändere diesen so, dass die Spalte mit den Einwohnerzhlen neu `einwohner` statt `value` heisst.
+
+```{r}
+bev_long <- bev %>%
+  pivot_longer(starts_with("st_"), names_to = "jahr", values_to = "einwohner")
+```
+
+
+14. Schaue dir das Resultat an. Als letzten Schritt wollen wir noch die Werte der Variable `jahr` so anpassen, dass wir nur die Jahreszahl haben. Eine Möglichkeit wäre, das jetzige Resultat zu nehmen, und mit `mutate()` und `case_when()`, die wir im letzten Practical genauer angeschaut haben, die Variable abzuändern. `pivot_longer()` bietet mit dem `names_prefix` Argument eine Möglichkeit, alles in einem Schritt durchzuführen. Dazu spezifizieren wir einfach in Anführungszeichen, welcher Teil gelöscht werden soll. Füge zum Code der vorherigen Aufgabe das `names_prefix` Argument hinzu, sodass die `jahr` Variable nur noch die Jahreszahl enthält.
+
+
+```{r}
+bev_long <- bev %>%
+  pivot_longer(starts_with("st_"), names_to = "jahr", values_to = "einwohner",
+               names_prefix = "st_wbev_")
+```
+
+15. Nun können wir mit dem neu erstellten Datensatz arbeiten und, zum Beispiel, einen Plot erstellen. Plotting werden wir zu einem späteren Zeitpunkt behandeln, daher unten nur ein kleines Code Beispiels eines Plots.
+
+
+```{r eval = FALSE, echo = TRUE}
+# generiere ein leeres Plot fenster mit den spezifizierten Variablen auf den Achsen
+ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
+                     # gruppiere gemäss der Stadtname variable; nötig um separate 
+                     # Linien pro Stadt zu erhalten
+                     group = Stadtname)) +
+  # füge die Datenpunkte hinzu
+  geom_point(alpha = .6) +
+  # verbinde die Datenpunkte pro Stadt
+  geom_line(alpha = .3) +
+  # sopezifiziere die Achsenbeschriftungen 
+  labs(x = "Jahr", y = expression("log"[10]*"(Einwohner)")) + 
+  scale_x_continuous(breaks = c(1930, 1970, 1980, 1990, 2000, 2001, 2011)) +
+  # spezifiziere Plot layout
+  theme_classic() +
+  theme(axis.text.x = element_text(angle=45, size = 12, hjust = 1),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14))
+  
+```
+
+```{r echo = FALSE}
+# generiere ein leeres Plot fenster mit den spezifizierten Variablen auf den Achsen
+ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
+                     # gruppiere gemäss der Stadtname variable; nötig um separate 
+                     # Linien pro Stadt zu erhalten
+                     group = Stadtname)) +
+  # füge die Datenpunkte hinzu
+  geom_point(alpha = .6) +
+  # verbinde die Datenpunkte pro Stadt
+  geom_line(alpha = .3) +
+  # sopezifiziere die Achsenbeschriftungen 
+  labs(x = "Jahr", y = expression("log"[10]*"(Einwohner)")) + 
+  scale_x_continuous(breaks = c(1930, 1970, 1980, 1990, 2000, 2001, 2011)) +
+  # spezifiziere Plot layout
+  theme_classic() +
+  theme(axis.text.x = element_text(angle=45, size = 12, hjust = 1),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14))
+  
+```
+
+16. Wie bereits geschildert, ist das Long Format für viele Analysen und Visualisierungen besser geeignet. Es gibt jedoch auch Situationen in denen das Wide Format praktischer ist, zum Beispiel, wenn wir die Verändererung der Einwohnerzahlen zwischen 1930 und 2011 berechnen wollen. Lass uns für diese Übung so tun, als ob wir die Daten nur im Long Format (`bev_long`) hätten und sie daher zuerst ins Wide Format umwandeln müssten. Dazu verwenden wir `pivot_wider()` und spezifizieren die Argumente `names_from`, `values_from` und `names_prefix`. Speichere das Ergebnis unter `bev_wide` ab und vergleiche `bev_wide` mit `bev` um sicherzustellen, dass die Transformation korrekt funktioniert hat.
+
+```{r}
+bev_wide <- bev_long %>%
+  pivot_wider(names_from = jahr, values_from = einwohner,
+              names_prefix = "st_wbev_")
+```
+
+
+### B - Wiederholung Wrangling I
+
+
+
+1. Für den Rest des Practicals verwenden wir den `kc_house.csv` Datensatz. Er enthält Verkaufspreise von Häusern in King County, Washington. Aufgelistet sind Häuser, welche zwischen Mai 2014 und Mai 2015 verkauft wurden. Nebst den Verkaufspreisen enthält der Datensatz Spezifikationen der Häuser, z.B. die Anzahl Zimmer eines Hauses. Lese den Datensatz mit der `read_csv()` Funktion in R ein und speichere ihn unter dem Namen `kc_house`.
+
+
+```{r, eval = FALSE}
+kc_house <- read_csv(file = "1_Data/kc_house.csv")
+```
+
+2. Exploriere den Datensatz um einen Eindruck über dessen Struktur zu erhalten.
+
+```{r}
+kc_house
+summary(kc_house)
+```
+
+
+3. Schaue dir mit der `names()` Funktion die Variablennamen an.
+
+```{r}
+names(kc_house)
+```
+
+
+4. Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als "rest of the world" sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen `living_sqm`, `above_sqm` und `basement_sqm`, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).
+
+
+```{r, eval = TRUE}
+kc_house <- kc_house %>%
+  mutate(living_sqm = sqft_living * 0.093,
+         above_sqm = sqft_above * 0.093,
+         basement_sqm  = sqft_basement * 0.093)
+```
+
+5. Kreiere eine neue Spalte `total_sqm`, welche die Summer aus `living_sqm`, `above_sqm` und `basement_sqm` darstellt.
+
+```{r, eval = TRUE}
+kc_house <- kc_house %>%
+  mutate(total_sqm = living_sqm + above_sqm + basement_sqm)
+```
+
+6. Füge eine neue Variable `mansion` hinzu, welche den Wert "yes" annimmt, wenn `total_sqm` grösses als 750 ist und "no", wenn `total_sqm` kleiner oder gleich 750 ist.
+
+```{r, eval = TRUE}
+kc_house <- kc_house %>%
+                mutate(mansion = case_when(
+                              total_sqm > 750 ~ "yes",
+                              total_sqm <= 750~ "no"))
+```
+
+
+### C - Einfache deskriptive Statistiken
+
+1. Unter Verwendung der base-R `data$col` Notation, berechne den Mittelwert über alle Hauspreise.
+
+```{r}
+mean(kc_house$price)
+```
+
+2. Wiederhole die vorherige Aufgabe, diesmal unter Verwendung der `summarise()` Funktion. Worin besteht der Unterschied der Resultate dieser und der vorherigen Aufgabe?
+
+```{r}
+kc_house %>%
+  summarise(
+    price_mean = mean(price)
+  )
+```
+
+3. Wie hoch ist der *Median*preis aller Häuser? Benutze dazu die `median()` Funktion. Worin besteht der Unterschied zwischen dem Mittelwert und dem Median?
+
+```{r}
+kc_house %>%
+  summarise(
+    price_median = median(price)
+  )
+```
+
+4. Wie hoch ist der höchste Verkaufspreis? Tipp: das Maximum eines Vektors findest du mit der `max()` Funktion.
+
+```{r}
+kc_house %>%
+  summarise(
+    price_max = max(price)
+  )
+```
+
+5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es Funktioniert hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
+
+
+```{r}
+kc_house <- kc_house %>%
+  arrange(desc(price))
+
+kc_house
+```
+
+6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
+
+```{r}
+kc_house %>%
+  summarise(mil_p = mean(price > 1000000))
+```
+
+7. Berechne die mittlere Anzahl Stockwerke (`floors`) und Badezimmer (`bathrooms`) von Villen (`mansion`).
+
+
+```{r}
+kc_house %>%
+  filter(mansion == "Yes") %>%
+  summarise(
+    floors_mean = mean(floors),
+    bathrooms_mean = mean(bathrooms)
+  )
+```
+
+### D - Einfache gruppierte deskriptive Statistiken 
+
+1. Erstelle eine Tabelle, welche dir anzeigt, wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`mansion`) und `n()` zur Berechnung der jeweiligen Anzahl.
+
+```{r}
+kc_house %>%
+  group_by(mansion) %>%
+  summarise(N = n())
+```
+
+2. Wie hoch ist der mittlere Verkaufspreis von Villen und normalen Häusern (nicht-Villen)?
+
+
+```{r}
+kc_house %>%
+  group_by(mansion) %>%
+  summarise(N = n(),
+            price_mean = mean(price))
+```
+
+3. Verwende `group_by()` und `summarise()` um die untenstehende Tabelle zu erhalten.
+
+```{r, echo = FALSE, eval = TRUE, results = 'asis'}
+kc_house %>%
+  group_by(mansion) %>%
+  summarise(N = n(),
+            price_min = min(price),
+            price_mean = mean(price),
+            price_median = median(price),
+            price_max = max(price)) %>%
+  knitr::kable()
+```
+
+4. Haben Häuser, welche später gebaut wurden eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach `yr_built` und berechne dann die mittlere Wohnfläche.
+
+```{r}
+kc_house %>%
+  group_by(yr_built) %>%
+  summarise(N = n(),
+            living = mean(living_sqm))
+```
+
+5. Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable `built_decade`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.
+
+
+```{r}
+kc_house %>%
+  mutate(built_decade = floor(yr_built / 10)) %>%
+  group_by(built_decade) %>%
+  summarise(N = n(),
+            living = mean(living_sqm))
+```
+
+### E - Mehrere Gruppen
+
+1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`zipcode`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur Häiuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
+
+```{r}
+theodorus <- kc_house %>%
+  filter(zipcode %in% c(98001, 98109, 98117, 98199))
+```
+
+2. Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.
+
+```{r}
+theodorus %>%
+  group_by(zipcode) %>%
+  summarise(price_mean = mean(price),
+            price_median = median(price),
+            floors_min = min(floors),
+            floors_max = max(floors),
+            N = n())
+```
+
+
+### X - Challenges
+
+1. Welche Postleitzahl hat den höchsten Anteil Häuser, welche am Wasser gebaut sind (`waterfront`)? Printe nur diese Zeile des Datensatzes.
+
+```{r}
+kc_house %>%
+  group_by(zipcode) %>%
+  summarise(waterfront_p = mean(waterfront)) %>%
+  arrange(desc(waterfront_p)) %>%
+  slice(1)
+```
+
+2. Welches Haus hat das schlechteste Preis-Wohnraumgrösse Verhältnis? Printe nur diese Zeile des Datensatzes.
+
+```{r}
+kc_house %>%
+  mutate(price_to_living = price / living_sqm) %>%
+  arrange(desc(price_to_living)) %>%
+  slice(1)
+```
+
+3. Welche 10 Postleitzahlen haben im Schnitt die höchsten Hauspreise? Printe nur diese 10 Zeilen.
+
+```{r}
+kc_house %>%
+  group_by(zipcode) %>%
+  summarise(price_mean = mean(price)) %>%
+  arrange(desc(price_mean)) %>%
+  slice(1:10)
+```
+
+4. Kreiere den folgenden Datensatz *genau* wie er unten steht.
+
+```{r, eval = FALSE, echo = FALSE}
+kc_house %>%
+  filter(yr_built >= 1990 & yr_built < 1999) %>%
+  group_by(yr_built) %>%
+  summarise(N = n(),
+            price_mean = mean(price),
+            price_max = max(price),
+            living_sqm_mean = mean(living_sqm)) %>%
+  knitr::kable(digits = 0)
+```
+
+| yr_built|   N| price_mean| price_max| living_sqm_mean|
+|--------:|---:|----------:|---------:|---------------:|
+|     1990| 320|     563966|   3640900|             234|
+|     1991| 224|     630441|   5300000|             244|
+|     1992| 198|     548169|   2480000|             223|
+|     1993| 202|     556612|   3120000|             226|
+|     1994| 249|     486834|   2880500|             209|
+|     1995| 169|     577771|   3200000|             224|
+|     1996| 195|     639534|   3100000|             240|
+|     1997| 177|     606058|   3800000|             234|
+|     1998| 239|     594159|   1960000|             241|
+
+```{r}
+kc_house %>%
+  filter(yr_built >= 1990 & yr_built < 1999) %>%
+  group_by(yr_built) %>%
+  summarise(N = n(),
+            price_mean = mean(price),
+            price_max = max(price),
+            living_sqm_mean = mean(living_sqm)) %>%
+  knitr::kable(digits = 0)
+```
+
+
+## Beispiele
+
+```{r, eval = FALSE, echo = TRUE}
+# Wrangling II mit dplyr and tidyr ---------------------------
+
+library(tidyverse)    # Lade tidyverse für dplyr
+
+# Lese den basel Datensatz ein
+basel <- read_csv("1_Data/basel.txt")
+
+# Keine Gruppierungsvariable
+bas <- basel %>%
+  summarise(
+    alter_m = mean(alter, na.rm = TRUE),
+    einkommen_median = median(einkommen, na.rm = TRUE),
+    N = n()
+  )
+
+bas
+
+# Eine Gruppierungsvariable
+bas_ges <- basel %>%
+  group_by(geschlecht) %>%
+  summarise(
+    alter_m = mean(alter, na.rm = TRUE),
+    einkommen_median = median(einkommen, na.rm = TRUE),
+    N = n()
+  )
+
+bas_ges
+
+# Zwei Gruppierungsvariablen
+bas_ges_bil <- basel %>%
+  group_by(geschlecht, bildung) %>%
+  summarise(
+    alter_m = mean(alter, na.rm = TRUE),
+    einkommen_median = median(einkommen, na.rm = TRUE),
+    N = n()
+  )
+
+bas_ges_bil
+
+# Gruppiere nach Geschlecht und Bildung und berechne den Mittelwert aller 
+# Variablen des Typs numeric
+basel %>%
+  group_by(geschlecht, bildung) %>%
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+
+```
+
+## Datensätze
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[kc_house.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv) | 21613 | 19|Verkaufspreise von Häusern in King County zwischen Mai 2014 und Mai 2015. |
+|[bevoelkerung.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv) | 161 | 10|Einwohnerzahlen schweizer Städte von 1930 bis 2011. |
+
+#### kc_house.csv
+
+*Erste 5 Zeilen und 5 Spalten von kc_house.csv*
+
+```{r, eval = TRUE, echo = FALSE}
+knitr::kable(kc_house[1:5, 1:5])
+```
+
+|Variable | Description |
+|:--------|:-----------------------------|
+|id  |Identifizierungsvariable|
+|date  |Datum|
+|price  | Preis in $| 
+|bedrooms    | Anzahl Schlafzimmer|
+|bathrooms   | Anzahl Badezimmer|
+|sqft_living | Wohnraumfläche in Quadratfuss|
+|sqft_lot | Parzellengrösse in Quadratfuss|    
+|floors   |Anzahl Stöcke|
+|waterfront | Ist das Haus am Wasser gebaut (1) oder nicht (0)|
+|view | Rating der Aussicht|
+|condition | Rating des Zustands|
+|grade | Gesamtrating|
+|sqft_above | Dachstockfläche in Quadratfuss|
+|sqft_basement | Kellerfläche in Quadratfuss|
+|yr_built | Baujahr|
+|yr_renovated | Jahr letzte Renovation|
+|zipcode | Postleitzahl|
+|lat | Lattitude|
+|long | Longitude|
+
+
+#### bevoelkerung.csv
+
+*Erste 5 Zeilen und 5 Spalten von bevoelkerung.csv*
+
+```{r, eval = TRUE, echo = FALSE}
+knitr::kable(bev[1:5, 1:5])
+```
+
+|Variable | Description |
+|:--------|:-----------------------------|
+|Stadtname  |Name der Stadt|
+|st_wbev_2011  |Wohnbevölkerung im Jahr 2011|
+|st_wbev_2001  | Wohnbevölkerung im Jahr 2001| 
+|proz_ver-2001–2011    | Veränderung der Einwohnerzahl in Prozent zwischen 2001 und 2011|
+|bevdichte   | Bevölkerungsdichte|
+|st_wbev_1930 | Wohnbevölkerung im Jahr 1930|
+|st_wbev_1970 | Wohnbevölkerung im Jahr 1970|    
+|st_wbev_1980   |Wohnbevölkerung im Jahr 1980|
+|st_wbev_1990 | Wohnbevölkerung im Jahr 1990|
+|st_wbev_2000 | Wohnbevölkerung im Jahr 2000|
+
+
+## Funktionen
+
+### Pakete
+
+|Paket| Installation|Beschreibung|
+|:------|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|Ein Metapaket für Data Science, einschliesslich `dplyr`, `ggplot2` und weitere Pakete|
+
+### Functions
+
+*Wrangling*
+
+| Funktion| Paket | Beschreibung |
+|:---|:------|:---------------------------------------------|
+|     `rename()`|`dplyr`|    Umbenennen von Spalten| 
+|     `select()`|`dplyr`|    Auswahl von Spalten basierend auf Name oder Index| 
+|     `filter()`|`dplyr`|    Auswahl von Zeilen basieren auf einem logischen Ausdruck| 
+|     `arrange()`|`dplyr`|    Sortiere Zeilen| 
+|     `mutate()`|`dplyr`|    Hinzufügen von Spalten|
+|     `case_when()`|`dplyr`|    Recodieren von Spalten| 
+|     `group_by(), summarise()`|`dplyr`|   Gruppierung von Daten zur Berechnung deskriptiver Statistiken|
+|     `pivot_longer()`|`tidyr`|   Transormation vom Wide ins Long Format|
+|     `pivot_wider()`|`tidyr`|   Transormation vom Long ins Wide Format|
+
+
+
+## Ressourcen
+
+### `dplyr` Vignette
+
+Hier geht es zu [dplyr Vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html).
+
+Hier geht es zu [tidyr Vignette](https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/).
+
+
+### Cheatsheets
+
+<p align="center" width="100%">
+<a href="https://github.com/rstudio/cheatsheets/raw/master/translations/german/data-wrangling-german.pdf">
+  <img src="https://github.com/rstudio/cheatsheets/raw/master/translations/german/data-wrangling-german.pdf" style="width:70%"></a>
+  <br>
+  <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
+</p>

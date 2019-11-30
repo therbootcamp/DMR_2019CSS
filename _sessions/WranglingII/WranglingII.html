@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Wrangling II</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Data Mining mit R   Basel R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Wrangling II
+### Data Mining mit R<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/DMR_2019CSS/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Dezember 2019
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Data Mining mit R | Dezember 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+  
+
+
+
+
+# Inhalte
+
+.pull-left45[
+&lt;br&gt;
+
+&lt;font size = 5&gt;&lt;high&gt;Datenformat transformieren&lt;/high&gt;&lt;/font&gt;
+
+- Wide &amp;#8594; Long Format
+- Long &amp;#8594; Wide Format
+
+&lt;font size = 5&gt;&lt;high&gt;Gruppen erstellen&lt;/high&gt;&lt;/font&gt;
+
+Daten nach gewissen Variablen gruppieren
+
+- Bsp: Nach Geschlecht und Bildung
+
+&lt;font size = 5&gt;&lt;high&gt;Deskriptive Statistiken erstellen&lt;/high&gt;&lt;/font&gt;
+
+- Bsp: Berechnen des mittleren Alters (`mean(alter)`)
+
+]
+
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="image/data_wrangler.png" height=240px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.codeastar.com/data-wrangling/"&gt;codeastar&lt;/a&gt;&lt;/font&gt;&lt;/p&gt;
+
+]
+
+---
+
+# Long und Wide Format
+
+.pull-left4[
+&lt;br&gt;
+Je nach Funktion werden Daten im Wide-Format (breites oder ungestapeltes Format), oder Daten im Long-Format (langes oder gestapeltes Format) benötigt.
+
+Benutze &lt;high&gt;`pivot_longer()`&lt;/high&gt; und &lt;high&gt;`pivot_wider()`&lt;/high&gt; aus dem `tidyr` Paket um Daten zu transformieren 
+
+&lt;br&gt;
+
+| Funktion | Resultat |
+|:----------|:-------|
+|`pivot_longer()`|&lt;high&gt;Wide &amp;#8594; Long&lt;/high&gt; Format|
+|`pivot_wider()`|&lt;high&gt;Long &amp;#8594; Wide&lt;/high&gt; Format|
+
+]
+
+.pull-right55[
+
+&lt;p align="center"&gt;
+&lt;img src="image/tidyr-spread-gather.gif" height=420px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;adapted from &lt;a href="https://github.com/gadenbuie/tidyexplain"&gt;tidyexplain&lt;/a&gt;&lt;/font&gt;&lt;/p&gt;
+
+]
+
+
+---
+
+# `pivot_longer()`
+
+.pull-left45[
+
+&lt;br&gt;
+
+
+```r
+# Original Daten (wide)
+studie
+```
+
+```
+## # A tibble: 2 x 4
+##      id medikament baseline    t1
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+## 1     1 medikament        3     8
+## 2     2 plazebo           4     6
+```
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+
+```r
+# wide zu long
+data %&gt;% 
+  pivot_longer(cols = Spaltenauswahl,
+               names_to = "Gruppe",
+               values_to = "Werte")
+```
+
+]
+---
+
+# `pivot_longer()`
+
+.pull-left45[
+
+&lt;br&gt;
+
+
+```r
+# Original Daten (wide)
+studie
+```
+
+```
+## # A tibble: 2 x 4
+##      id medikament baseline    t1
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+## 1     1 medikament        3     8
+## 2     2 plazebo           4     6
+```
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+
+```r
+# wide zu long
+studie %&gt;% 
+  pivot_longer(cols = c("baseline", "t1"),
+               names_to = "zeitpunkt",
+               values_to = "rating")
+```
+
+```
+## # A tibble: 4 x 4
+##      id medikament zeitpunkt rating
+##   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;
+## 1     1 medikament baseline       3
+## 2     1 medikament t1             8
+## 3     2 plazebo    baseline       4
+## 4     2 plazebo    t1             6
+```
+
+]
+---
+
+
+# `pivot_wider()`
+
+.pull-left45[
+
+&lt;br&gt;
+
+
+
+
+
+```r
+# Original Daten (wide)
+studie_long
+```
+
+```
+## # A tibble: 4 x 4
+##      id medikament zeitpunkt rating
+##   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;
+## 1     1 medikament baseline       3
+## 2     1 medikament t1             8
+## 3     2 plazebo    baseline       4
+## 4     2 plazebo    t1             6
+```
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+
+```r
+# long zu wide
+data %&gt;% 
+  pivot_wider(names_from = "Gruppe",
+               values_from = "Werte")
+```
+
+]
+
+---
+
+
+# `pivot_wider()`
+
+.pull-left45[
+
+&lt;br&gt;
+
+
+```r
+# Original Daten (wide)
+studie_long
+```
+
+```
+## # A tibble: 4 x 4
+##      id medikament zeitpunkt rating
+##   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;
+## 1     1 medikament baseline       3
+## 2     1 medikament t1             8
+## 3     2 plazebo    baseline       4
+## 4     2 plazebo    t1             6
+```
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+
+```r
+# wide zu long
+studie_long %&gt;% 
+  pivot_wider(names_from = "zeitpunkt",
+               values_from = "rating")
+```
+
+```
+## # A tibble: 2 x 4
+##      id medikament baseline    t1
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+## 1     1 medikament        3     8
+## 2     2 plazebo           4     6
+```
+
+]
+
+---
+
+.pull-left45[
+
+# `dplyr`
+
+Wir verwenden `dplyr` zur Berechnung gruppierter deskriptiver Statistiken.
+
+&lt;br&gt;
+
+```r
+# Paket einzeln laden
+
+# install.packages('dplyr')
+
+library(dplyr)
+
+# Oder einfacher; das tidyverse Paket laden
+
+# install.packages('tidyverse')
+
+library(tidyverse)
+```
+
+]
+ 
+.pull-right5[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Die Pipe!  &lt;high&gt;`%&gt;%`&lt;/high&gt;
+
+.pull-left4[
+
+`dplyr` macht intensiven Gebrauch eines neuen Operator genannt "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt;&lt;br&gt;
+
+Die "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt; lesen wir als "und dann..."
+
+&lt;br&gt;
+
+
+```r
+# Start mit data
+data %&gt;% # und dann...
+  
+AKTION_1 %&gt;% # und dann...
+  
+AKTION_2 %&gt;% # und dann...
+  
+AKTION_3 %&gt;% # und dann...
+```
+
+]
+
+.pull-right55[
+
+&lt;p align="center"&gt;
+  &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"&gt;&lt;br&gt;
+  (aber %&gt;% ist eine!); &lt;font style="font-size:10px"&gt; &lt;a href="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg"&gt;wikipedia&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+
+
+---
+
+# `summarise()`
+
+.pull-left45[
+
+Benutze `summarise()` um neue Spalten mit &lt;high&gt;deskriptiven Statistiken&lt;/high&gt; zu erstellen
+
+
+```r
+data %&gt;%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
+
+Das Resultat von `summarise()` ist ein tibble!
+
+]
+
+.pull-right5[
+
+
+```r
+# Berechne deskriptive Statistiken
+basel %&gt;%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    groesse_median = median(groesse)
+  )
+```
+
+```
+## # A tibble: 1 x 3
+##       N alter_mean groesse_median
+##   &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 10000       49.4           171.
+```
+
+
+]
+
+---
+
+# Gruppierte Aggregation
+
+&lt;p align="center"&gt;
+  &lt;img src="image/summarsed_data_diagram.png" height="470px"&gt;
+&lt;/p&gt; 
+
+
+---
+
+# `group_by()`, `summarise()`
+
+.pull-left45[
+
+Benutze `group_by()` zum &lt;high&gt;gruppieren&lt;/high&gt; von Daten über eine oder mehrere Variablen
+
+Nach dem Gruppieren, benutze `summarise()` zur &lt;high&gt;Berechnung deskriptiver Statistiken&lt;/high&gt; über Gruppen von Daten
+
+]
+
+.pull-right5[
+
+
+```r
+# Gruppiere über Variable geschlecht
+# Berechne deskriptive Statistiken
+basel %&gt;%
+  group_by(geschlecht) %&gt;%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    groesse_median = median(groesse)
+  )
+```
+
+```
+## # A tibble: 2 x 4
+##   geschlecht     N alter_mean groesse_median
+##   &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 f           5000       49.8           164 
+## 2 m           5000       49.1           178.
+```
+
+]
+
+---
+
+# Kombiniere Funktionen
+
+.pull-left4[
+&lt;br&gt;&lt;br&gt;
+Wrangling Funktionen (z.B. `filter()`, `slice()`, `rename()`) mit Gruppierung und Berechnung deskriptiver Statistiken verbinden. 
+
+Benutze dafür die Pipe &lt;high&gt;%&gt;%&lt;/high&gt;
+
+
+]
+
+.pull-right55[
+
+
+```r
+basel %&gt;%
+  filter(geschlecht == "m" &amp; kinder &gt; 0) %&gt;% 
+  group_by(bildung) %&gt;%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_median = median(einkommen,
+                              na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 4 x 4
+##   bildung           N alter_mean einkommen_median
+##   &lt;chr&gt;         &lt;int&gt;      &lt;dbl&gt;            &lt;dbl&gt;
+## 1 lehre          1651       49.4             8200
+## 2 obligatorisch   485       47.8             7900
+## 3 sek II          251       50.3             8150
+## 4 sek III        2169       49.0             8000
+```
+
+]
+
+---
+
+# Quiz 1
+
+.pull-left45[
+
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```
+## # A tibble: 2 x 4
+##   fasnacht     N alter_mean einkommen_mean
+##   &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 ja         294       49.7          8421.
+## 2 nein      9706       49.4          8353.
+```
+
+]
+
+
+---
+
+# Quiz 1
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```r
+basel %&gt;%
+  group_by(fasnacht) %&gt;%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 2 x 4
+##   fasnacht     N alter_mean einkommen_mean
+##   &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 ja         294       49.7          8421.
+## 2 nein      9706       49.4          8353.
+```
+
+]
+
+
+---
+
+# Quiz 2
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```
+## # A tibble: 4 x 5
+## # Groups:   fasnacht [2]
+##   fasnacht geschlecht     N alter_mean einkommen_mean
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 ja       f            114       50.8          8657.
+## 2 ja       m            180       49.0          8273.
+## 3 nein     f           4886       49.8          8424.
+## 4 nein     m           4820       49.1          8280.
+```
+
+]
+
+
+
+---
+
+# Quiz 2
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```r
+basel %&gt;%
+  group_by(fasnacht, geschlecht) %&gt;%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 4 x 5
+## # Groups:   fasnacht [2]
+##   fasnacht geschlecht     N alter_mean einkommen_mean
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 ja       f            114       50.8          8657.
+## 2 ja       m            180       49.0          8273.
+## 3 nein     f           4886       49.8          8424.
+## 4 nein     m           4820       49.1          8280.
+```
+
+]
+
+
+---
+
+# Quiz 3
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```
+## # A tibble: 2 x 5
+## # Groups:   fasnacht [2]
+##   fasnacht geschlecht     N alter_mean einkommen_mean
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 ja       m            180       49.0          8273.
+## 2 nein     m           4820       49.1          8280.
+```
+
+]
+
+
+
+
+---
+
+# Quiz 3
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```r
+basel %&gt;%
+  filter(geschlecht == "m") %&gt;%
+  group_by(fasnacht, geschlecht) %&gt;%
+  summarise(
+    N = n(),
+    alter_mean = mean(alter),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  )
+```
+
+```
+## # A tibble: 2 x 5
+## # Groups:   fasnacht [2]
+##   fasnacht geschlecht     N alter_mean einkommen_mean
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
+## 1 ja       m            180       49.0          8273.
+## 2 nein     m           4820       49.1          8280.
+```
+
+]
+
+
+---
+
+# Quiz 4
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```
+## # A tibble: 4 x 3
+##   bildung           N einkommen_mean
+##   &lt;chr&gt;         &lt;int&gt;          &lt;dbl&gt;
+## 1 lehre          3986          8374.
+## 2 obligatorisch  1239          8347.
+## 3 sek III        4034          8345.
+## 4 sek II          741          8320.
+```
+
+
+]
+
+
+
+
+---
+
+# Quiz 4
+
+.pull-left45[
+
+Hier ist ein Teil des `basel` Datensatzes
+
+
+```r
+basel %&gt;%
+  select(geschlecht, fasnacht, alter,
+         einkommen) %&gt;%
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 x 4
+##   geschlecht fasnacht alter einkommen
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 f          nein        87        NA
+## 2 m          nein        54      7500
+## 3 f          nein        34      5500
+## 4 m          nein        31        NA
+## 5 m          nein        24      3800
+```
+
+
+]
+
+.pull-right5[
+
+Welcher Code erstellt die folgende Tabelle?
+
+
+```r
+basel %&gt;%
+  group_by(bildung) %&gt;%
+  summarise(
+    N = n(),
+    einkommen_mean = mean(einkommen,
+                          na.rm = TRUE)
+  ) %&gt;%
+  arrange(desc(einkommen_mean))
+```
+
+```
+## # A tibble: 4 x 3
+##   bildung           N einkommen_mean
+##   &lt;chr&gt;         &lt;int&gt;          &lt;dbl&gt;
+## 1 lehre          3986          8374.
+## 2 obligatorisch  1239          8347.
+## 3 sek III        4034          8345.
+## 4 sek II          741          8320.
+```
+
+
+]
+
+
+
+---
+
+
+
+class: middle, center
+
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Analysing/Analysing_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
