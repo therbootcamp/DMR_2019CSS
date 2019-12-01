@@ -3,7 +3,7 @@ title: "Wrangling II"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>R for Data Science</font><br>
+      <font style='font-style:normal'>Data Mining mit R</font><br>
       <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -35,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE)
 
 options(digits = 3)
@@ -100,13 +100,19 @@ bev <- read_csv(file = "1_Data/bevoelkerung.csv")
 ```
 
 
-6. Mache dich mit dem Datensatz vertraut in dem du die ersten paar Zeilen und die Vriablennamen anschaust.
+6. Mache dich mit dem Datensatz vertraut in dem du die ersten paar Zeilen und die Variablennamen anschaust.
+
+```{r}
+names(bev)
+bev
+```
+
 
 7. Im Moment sind die Daten so angeordnet, dass jedes Jahr eine einzelne Spalte hat, also im *Wide* Format. Diese Anordnung ist praktisch zum Eingeben von Daten und um die Daten als Tabelle anzuschauen. Für viele Anwendungen, wie gewisse statistische Analysen oder Plotting, brauchen wir die Daten aber im *Long* format. Für diese Transformation verwenden wir `pivot_longer()`.
 
 Zur Rekapitulation, `pivot_longer()` in der einfachsten "Version" braucht drei Argumente: i) den Datensatz, ii) die Spaltennamen als Spezifikation, welche Spalten vom Wide ins Long Format transformiert werden sollen, und iii) den Spaltennamen der neuen Gruppierungsvariable.
 
-Unter Verwendung nur dieser drei Argumente, Transformiere die `st_wbev_2011` und `st_wbev_2001` Variablen aus `bev` vom Wide ins Long Format und speichere es als neues Objekt ab.
+Unter Verwendung nur dieser drei Argumente, transformiere die `st_wbev_2011` und `st_wbev_2001` Variablen aus `bev` vom Wide ins Long Format und speichere das Resultat als neues Objekt `bev_long` ab.
 
 ```{r eval = FALSE, echo = TRUE}
 # Transofmation vom Wide ins Long Format
@@ -121,18 +127,18 @@ bev_long <- bev %>%
 
 ```
 
-8. Schaue dir das Resultat, also den neu erstellten Datensatz an. Versuche nachzuvollziehen was genau gemacht wurde, welche Variablen sich verändert haben und welche nicht. Frage nach, falls du etwas nicht nachvollziehen kannst.
+8. Schaue dir den neu erstellten Datensatz an. Versuche nachzuvollziehen was genau gemacht wurde, welche Variablen sich verändert haben und welche nicht. Frage nach, falls du etwas nicht nachvollziehen kannst.
 
-9. Nun da wir die basics haben, wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen ins Long Format bringen. Schaue dir dazu nochmals die Namen der Variablen an.
+9. Nun da wir die basics verstehen, wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir dazu erst nochmals die Namen der Variablen an.
 
 ```{r}
 names(bev)
 ```
 
-10. Wie du siehst, hat jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXXX`. Dieser Umstand ist hilfreich, da wir dadurch nicht jede Variable explizit auflisten müssen, sondern die `starts_with()` Funktion verwenden können. Schaue dir dazu die help page der Funktion an.
+10. Wie du siehst, hat jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXXX`. Dieser Umstand ist hilfreich, da wir dadurch nicht jede Variable explizit auflisten müssen, sondern die `starts_with()` Funktion verwenden können. Diese wählt alle Variablen aus, welche mit dem spezifizierten character (z.B. "st_wbev") beginnen. Schaue dir für eine Auflistung dieser und ähnlicher Funktione die help page der `starts_with()` Funktion an.
 
 ```{r}
-?starts_with
+?tidyselect::starts_with
 ```
 
 
@@ -145,7 +151,7 @@ bev_long <- bev %>%
 
 12. Schaue dir das Resultat an.
 
-13. Die Einwohnerzahl ist im neuen Datensatz in der Spalte `value` enthalten. Dieser Name wird per default gewählt, ist aber nicht informativ. Wir können einen eigenen Namen wählen, in dem wir in `pivot_longer()` zusätzlich das `values_to` Argument spezifizieren. Wiederhole den Code von Aufgabe 11, und ändere diesen so, dass die Spalte mit den Einwohnerzhlen neu `einwohner` statt `value` heisst.
+13. Die Einwohnerzahl ist im neuen Datensatz in der Spalte `value` enthalten. Dieser Name wird standardmässig gewählt, gibt aber keine Informationen darüber um was für Werte es sich handelt. Wir können einen eigenen Namen wählen, in dem wir in `pivot_longer()` zusätzlich das `values_to` Argument spezifizieren. Wiederhole den Code von Aufgabe 11, und ändere diesen so, dass die Spalte mit den Einwohnerzahlen neu `einwohner` statt `value` heisst.
 
 ```{r}
 bev_long <- bev %>%
@@ -153,7 +159,7 @@ bev_long <- bev %>%
 ```
 
 
-14. Schaue dir das Resultat an. Als letzten Schritt wollen wir noch die Werte der Variable `jahr` so anpassen, dass wir nur die Jahreszahl haben. Eine Möglichkeit wäre, das jetzige Resultat zu nehmen, und mit `mutate()` und `case_when()`, die wir im letzten Practical genauer angeschaut haben, die Variable abzuändern. `pivot_longer()` bietet mit dem `names_prefix` Argument eine Möglichkeit, alles in einem Schritt durchzuführen. Dazu spezifizieren wir einfach in Anführungszeichen, welcher Teil gelöscht werden soll. Füge zum Code der vorherigen Aufgabe das `names_prefix` Argument hinzu, sodass die `jahr` Variable nur noch die Jahreszahl enthält.
+14. Schaue dir das Resultat an. Als letzten Schritt wollen wir noch die Werte der Variable `jahr` so anpassen, dass wir nur die Jahreszahl ohne Präfix haben. Eine Möglichkeit wäre, das jetzige Resultat zu nehmen, und mit `mutate()` und `case_when()`, die wir im letzten Practical genauer angeschaut haben, die Variable abzuändern. `pivot_longer()` bietet mit dem `names_prefix` Argument eine Möglichkeit, alles in einem Schritt durchzuführen. Dazu spezifizieren wir einfach in Anführungszeichen welcher Teil gelöscht werden soll. Füge zum Code der vorherigen Aufgabe das `names_prefix` Argument hinzu, sodass die `jahr` Variable nur noch die Jahreszahl enthält.
 
 
 ```{r}
@@ -162,7 +168,7 @@ bev_long <- bev %>%
                names_prefix = "st_wbev_")
 ```
 
-15. Nun können wir mit dem neu erstellten Datensatz arbeiten und, zum Beispiel, einen Plot erstellen. Plotting werden wir zu einem späteren Zeitpunkt behandeln, daher unten nur ein kleines Code Beispiels eines Plots.
+15. Nun können wir mit dem neu erstellten Datensatz arbeiten und, zum Beispiel, einen Plot erstellen. Plotting werden wir zu einem späteren Zeitpunkt behandeln, daher unten nur ein kleines Codebeispiel zur Generierung eines Plots.
 
 
 ```{r eval = FALSE, echo = TRUE}
@@ -186,7 +192,7 @@ ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
   
 ```
 
-```{r echo = FALSE}
+```{r echo = FALSE, fig.width=12}
 # generiere ein leeres Plot fenster mit den spezifizierten Variablen auf den Achsen
 ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
                      # gruppiere gemäss der Stadtname variable; nötig um separate 
@@ -207,7 +213,7 @@ ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
   
 ```
 
-16. Wie bereits geschildert, ist das Long Format für viele Analysen und Visualisierungen besser geeignet. Es gibt jedoch auch Situationen in denen das Wide Format praktischer ist, zum Beispiel, wenn wir die Verändererung der Einwohnerzahlen zwischen 1930 und 2011 berechnen wollen. Lass uns für diese Übung so tun, als ob wir die Daten nur im Long Format (`bev_long`) hätten und sie daher zuerst ins Wide Format umwandeln müssten. Dazu verwenden wir `pivot_wider()` und spezifizieren die Argumente `names_from`, `values_from` und `names_prefix`. Speichere das Ergebnis unter `bev_wide` ab und vergleiche `bev_wide` mit `bev` um sicherzustellen, dass die Transformation korrekt funktioniert hat.
+16. Wie bereits geschildert, ist das Long Format für viele Analysen und Visualisierungen besser geeignet. Es gibt jedoch auch Situationen, in denen das Wide Format praktischer ist; zum Beispiel, wenn wir die Veränderung der Einwohnerzahlen zwischen 1930 und 2011 berechnen wollen. Lass uns für diese Übung so tun, als ob wir die Daten nur im Long Format (`bev_long`) hätten und sie daher zuerst ins Wide Format umwandeln müssten. Dazu verwenden wir `pivot_wider()` und spezifizieren die Argumente `names_from`, `values_from` und `names_prefix`. Speichere das Ergebnis unter `bev_wide` ab und vergleiche `bev_wide` mit `bev` um sicherzustellen, dass die Transformation korrekt funktioniert hat.
 
 ```{r}
 bev_wide <- bev_long %>%
@@ -252,14 +258,14 @@ kc_house <- kc_house %>%
          basement_sqm  = sqft_basement * 0.093)
 ```
 
-5. Kreiere eine neue Spalte `total_sqm`, welche die Summer aus `living_sqm`, `above_sqm` und `basement_sqm` darstellt.
+5. Kreiere eine neue Spalte `total_sqm`, welche die Summe aus `living_sqm`, `above_sqm` und `basement_sqm` darstellt.
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
   mutate(total_sqm = living_sqm + above_sqm + basement_sqm)
 ```
 
-6. Füge eine neue Variable `mansion` hinzu, welche den Wert "yes" annimmt, wenn `total_sqm` grösses als 750 ist und "no", wenn `total_sqm` kleiner oder gleich 750 ist.
+6. Füge eine neue Variable `mansion` hinzu, welche den Wert "yes" annimmt, wenn `total_sqm` grösser als 750 ist und "no", wenn `total_sqm` kleiner oder gleich 750 ist.
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
@@ -284,6 +290,10 @@ kc_house %>%
   summarise(
     price_mean = mean(price)
   )
+
+# In der ersten Aufgabe war das Ergebnis eine einzelne Zahl, also ein Vektor mit nur
+# einem Element. In der zweiten Aufgabe war das Ergebnis ein tibble mit nur einem
+# Eintrag.
 ```
 
 3. Wie hoch ist der *Median*preis aller Häuser? Benutze dazu die `median()` Funktion. Worin besteht der Unterschied zwischen dem Mittelwert und dem Median?
@@ -293,6 +303,12 @@ kc_house %>%
   summarise(
     price_median = median(price)
   )
+
+# Der Mittelwert gibt den Durschnittspreis an, also die Summe aller Preise geteilt durch die
+# Anzahl berücksichtigter Preise. Der Median gibt das 50. Perzentil der Preise an, also 
+# den Preis, der, wenn wir die Preise aufsteigend sortieren, an der Position steht, an der 
+# sowohl nach oben als auch nach unten gleich viele Preise stehen. Dadurch ist der Median
+
 ```
 
 4. Wie hoch ist der höchste Verkaufspreis? Tipp: das Maximum eines Vektors findest du mit der `max()` Funktion.
@@ -304,7 +320,7 @@ kc_house %>%
   )
 ```
 
-5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es Funktioniert hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
+5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
 
 
 ```{r}
@@ -314,7 +330,7 @@ kc_house <- kc_house %>%
 kc_house
 ```
 
-6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
+6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil `TRUE`s (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
 
 ```{r}
 kc_house %>%
@@ -326,7 +342,7 @@ kc_house %>%
 
 ```{r}
 kc_house %>%
-  filter(mansion == "Yes") %>%
+  filter(mansion == "yes") %>%
   summarise(
     floors_mean = mean(floors),
     bathrooms_mean = mean(bathrooms)
@@ -335,7 +351,7 @@ kc_house %>%
 
 ### D - Einfache gruppierte deskriptive Statistiken 
 
-1. Erstelle eine Tabelle, welche dir anzeigt, wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`mansion`) und `n()` zur Berechnung der jeweiligen Anzahl.
+1. Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`mansion`) und `n()` zur Berechnung der jeweiligen Anzahl.
 
 ```{r}
 kc_house %>%
@@ -366,7 +382,18 @@ kc_house %>%
   knitr::kable()
 ```
 
-4. Haben Häuser, welche später gebaut wurden eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach `yr_built` und berechne dann die mittlere Wohnfläche.
+
+```{r}
+kc_house %>%
+  group_by(mansion) %>%
+  summarise(N = n(),
+            price_min = min(price),
+            price_mean = mean(price),
+            price_median = median(price),
+            price_max = max(price))
+```
+
+4. Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach `yr_built` und berechne dann die mittlere Wohnfläche (`living_sqm`).
 
 ```{r}
 kc_house %>%
@@ -388,7 +415,7 @@ kc_house %>%
 
 ### E - Mehrere Gruppen
 
-1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`zipcode`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur Häiuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
+1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`zipcode`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
 
 ```{r}
 theodorus <- kc_house %>%
@@ -399,7 +426,7 @@ theodorus <- kc_house %>%
 
 ```{r}
 theodorus %>%
-  group_by(zipcode) %>%
+  group_by(zipcode, mansion) %>%
   summarise(price_mean = mean(price),
             price_median = median(price),
             floors_min = min(floors),
@@ -541,11 +568,11 @@ basel %>%
 knitr::kable(kc_house[1:5, 1:5])
 ```
 
-|Variable | Description |
+|Variable | Beschreibung |
 |:--------|:-----------------------------|
 |id  |Identifizierungsvariable|
 |date  |Datum|
-|price  | Preis in $| 
+|price  | Preis in USD| 
 |bedrooms    | Anzahl Schlafzimmer|
 |bathrooms   | Anzahl Badezimmer|
 |sqft_living | Wohnraumfläche in Quadratfuss|
@@ -572,7 +599,7 @@ knitr::kable(kc_house[1:5, 1:5])
 knitr::kable(bev[1:5, 1:5])
 ```
 
-|Variable | Description |
+|Variable | Beschreibung |
 |:--------|:-----------------------------|
 |Stadtname  |Name der Stadt|
 |st_wbev_2011  |Wohnbevölkerung im Jahr 2011|
@@ -594,7 +621,7 @@ knitr::kable(bev[1:5, 1:5])
 |:------|:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|Ein Metapaket für Data Science, einschliesslich `dplyr`, `ggplot2` und weitere Pakete|
 
-### Functions
+### Funktionen
 
 *Wrangling*
 
@@ -616,16 +643,16 @@ knitr::kable(bev[1:5, 1:5])
 
 ### `dplyr` Vignette
 
-Hier geht es zu [dplyr Vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html).
+Hier geht es zur [dplyr Vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html).
 
-Hier geht es zu [tidyr Vignette](https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/).
+Hier geht es zur [tidyr Vignette](https://www.tidyverse.org/blog/2019/09/tidyr-1-0-0/).
 
 
 ### Cheatsheets
 
 <p align="center" width="100%">
 <a href="https://github.com/rstudio/cheatsheets/raw/master/translations/german/data-wrangling-german.pdf">
-  <img src="https://github.com/rstudio/cheatsheets/raw/master/translations/german/data-wrangling-german.pdf" style="width:70%"></a>
+  <img src="image/wrangling_german.png" style="width:70%"></a>
   <br>
-  <font style="font-size:10px">from <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
+  <font style="font-size:10px">von <a href="https://www.rstudio.com/resources/cheatsheets/">R Studio</a></font>
 </p>
