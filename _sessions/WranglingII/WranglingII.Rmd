@@ -1,6 +1,6 @@
 ---
 title: "Wrangling II"
-author: "Data Mining mit R<br>
+author: "Explorative Datenanalyse mit R<br>
   <a href='https://therbootcamp.github.io'>
     Basel R Bootcamp
   </a>
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Data Mining mit R | Dezember 2019
+       Explorative Datenanalyse mit R | Dezember 2019
       </font>
     </a>
     </span>
@@ -65,7 +65,7 @@ options(width=110)
 options(digits = 4)
 library(tidyverse)
 library(basel)
-basel <- read_csv("https://raw.githubusercontent.com/therbootcamp/basel/master/inst/extdata/basel.txt")
+basel <- read_csv("../../1_Data/basel.txt")
 studie <- tibble(id = c(1, 2),
                  medikament = c("medikament", "plazebo"),
                  baseline = c(3, 4),
@@ -741,4 +741,4 @@ basel %>%
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Analysing/Analysing_practical.html">Practical</a></h1>
+<h1><a href="https://therbootcamp.github.io/DMR_2019CSS/_sessions/WranglingII/WranglingII_practical.html">Practical</a></h1>

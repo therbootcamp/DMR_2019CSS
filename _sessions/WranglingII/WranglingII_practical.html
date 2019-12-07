@@ -183,7 +183,7 @@ summary {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Data Mining mit R</font><br> <a href='https://therbootcamp.github.io/DMR_2019CSS/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
+<font style='font-style:normal'>Explorative Datenanalyse mit R</font><br> <a href='https://therbootcamp.github.io/DMR_2019CSS/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>Basel R Bootcamp</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -275,9 +275,9 @@ ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
 <li><p>Für den Rest des Practicals verwenden wir den <code>kc_house.csv</code> Datensatz. Er enthält Verkaufspreise von Häusern in King County, Washington. Aufgelistet sind Häuser, welche zwischen Mai 2014 und Mai 2015 verkauft wurden. Nebst den Verkaufspreisen enthält der Datensatz Spezifikationen der Häuser, z.B. die Anzahl Zimmer eines Hauses. Lese den Datensatz mit der <code>read_csv()</code> Funktion in R ein und speichere ihn unter dem Namen <code>kc_house</code>.</p></li>
 <li><p>Exploriere den Datensatz um einen Eindruck über dessen Struktur zu erhalten.</p></li>
 <li><p>Schaue dir mit der <code>names()</code> Funktion die Variablennamen an.</p></li>
-<li><p>Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als “rest of the world” sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen <code>living_sqm</code>, <code>above_sqm</code> und <code>basement_sqm</code>, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).</p></li>
-<li><p>Kreiere eine neue Spalte <code>total_sqm</code>, welche die Summe aus <code>living_sqm</code>, <code>above_sqm</code> und <code>basement_sqm</code> darstellt.</p></li>
-<li><p>Füge eine neue Variable <code>mansion</code> hinzu, welche den Wert “yes” annimmt, wenn <code>total_sqm</code> grösser als 750 ist und “no”, wenn <code>total_sqm</code> kleiner oder gleich 750 ist.</p></li>
+<li><p>Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als “rest of the world” sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code>, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).</p></li>
+<li><p>Kreiere eine neue Spalte <code>qm_total</code>, welche die Summe aus <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code> darstellt.</p></li>
+<li><p>Füge eine neue Variable <code>villa</code> hinzu, welche den Wert “ja” annimmt, wenn <code>qm_total</code> grösser als 750 ist und “nein”, wenn <code>qm_total</code> kleiner oder gleich 750 ist.</p></li>
 </ol>
 </div>
 <div id="c---einfache-deskriptive-statistiken" class="section level3">
@@ -289,62 +289,62 @@ ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
 <li><p>Wie hoch ist der höchste Verkaufspreis? Tipp: das Maximum eines Vektors findest du mit der <code>max()</code> Funktion.</p></li>
 <li><p>Sortiere mittels der <code>arrange()</code> und der <code>desc()</code> Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.</p></li>
 <li><p>Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: <code>TRUE</code> und <code>FALSE</code> werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit <code>TRUE</code> und <code>FALSE</code> berechnen, erhalten wir den Anteil <code>TRUE</code>s (Beispiel: <code>mean(c(TRUE, TRUE, FALSE, TRUE))</code> ergibt 0.75).</p></li>
-<li><p>Berechne die mittlere Anzahl Stockwerke (<code>floors</code>) und Badezimmer (<code>bathrooms</code>) von Villen (<code>mansion</code>).</p></li>
+<li><p>Berechne die mittlere Anzahl Stockwerke (<code>stoecke</code>) und Badezimmer (<code>badezimmer</code>) von Villen (<code>villa</code>).</p></li>
 </ol>
 </div>
 <div id="d---einfache-gruppierte-deskriptive-statistiken" class="section level3">
 <h3>D - Einfache gruppierte deskriptive Statistiken</h3>
 <ol style="list-style-type: decimal">
-<li><p>Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu <code>group_by()</code> zur Gruppierung nach Villen (<code>mansion</code>) und <code>n()</code> zur Berechnung der jeweiligen Anzahl.</p></li>
+<li><p>Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu <code>group_by()</code> zur Gruppierung nach Villen (<code>villa</code>) und <code>n()</code> zur Berechnung der jeweiligen Anzahl.</p></li>
 <li><p>Wie hoch ist der mittlere Verkaufspreis von Villen und normalen Häusern (nicht-Villen)?</p></li>
 <li><p>Verwende <code>group_by()</code> und <code>summarise()</code> um die untenstehende Tabelle zu erhalten.</p></li>
 </ol>
 <table>
 <thead>
 <tr class="header">
-<th align="left">mansion</th>
+<th align="left">villa</th>
 <th align="right">N</th>
-<th align="right">price_min</th>
-<th align="right">price_mean</th>
-<th align="right">price_median</th>
-<th align="right">price_max</th>
+<th align="right">preis_min</th>
+<th align="right">preis_mean</th>
+<th align="right">preis_median</th>
+<th align="right">preis_max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">no</td>
-<td align="right">20862</td>
-<td align="right">75000</td>
-<td align="right">504024</td>
-<td align="right">441000</td>
-<td align="right">3100000</td>
-</tr>
-<tr class="even">
-<td align="left">yes</td>
+<td align="left">ja</td>
 <td align="right">751</td>
 <td align="right">404000</td>
 <td align="right">1541915</td>
 <td align="right">1300000</td>
 <td align="right">7700000</td>
 </tr>
+<tr class="even">
+<td align="left">nein</td>
+<td align="right">20862</td>
+<td align="right">75000</td>
+<td align="right">504024</td>
+<td align="right">441000</td>
+<td align="right">3100000</td>
+</tr>
 </tbody>
 </table>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach <code>yr_built</code> und berechne dann die mittlere Wohnfläche (<code>living_sqm</code>).</p></li>
-<li><p>Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable <code>built_decade</code>, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die <code>floor()</code> Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.</p></li>
+<li><p>Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach <code>baujahr</code> und berechne dann die mittlere Wohnfläche (<code>qm_wohnraum</code>).</p></li>
+<li><p>Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable <code>baujahrzehnt</code>, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die <code>floor()</code> Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.</p></li>
 </ol>
 </div>
 <div id="e---mehrere-gruppen" class="section level3">
 <h3>E - Mehrere Gruppen</h3>
 <ol style="list-style-type: decimal">
-<li><p>Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (<code>zipcode</code>) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz <code>theodorus</code> zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der <code>%in%</code> Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.</p></li>
+<li><p>Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (<code>postleitzahl</code>) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz <code>theodorus</code> zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der <code>%in%</code> Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.</p></li>
 <li><p>Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.</p></li>
 </ol>
 </div>
 <div id="x---challenges" class="section level3">
 <h3>X - Challenges</h3>
 <ol style="list-style-type: decimal">
-<li><p>Welche Postleitzahl hat den höchsten Anteil Häuser, welche am Wasser gebaut sind (<code>waterfront</code>)? Printe nur diese Zeile des Datensatzes.</p></li>
+<li><p>Welche Postleitzahl hat den höchsten Anteil Häuser, welche am Ufer gebaut sind (<code>ufer</code>)? Printe nur diese Zeile des Datensatzes.</p></li>
 <li><p>Welches Haus hat das schlechteste Preis-Wohnraumgrösse Verhältnis? Printe nur diese Zeile des Datensatzes.</p></li>
 <li><p>Welche 10 Postleitzahlen haben im Schnitt die höchsten Hauspreise? Printe nur diese 10 Zeilen.</p></li>
 <li><p>Kreiere den folgenden Datensatz <em>genau</em> wie er unten steht.</p></li>
@@ -352,11 +352,11 @@ ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
 <table>
 <thead>
 <tr class="header">
-<th align="right">yr_built</th>
+<th align="right">baujahr</th>
 <th align="right">N</th>
-<th align="right">price_mean</th>
-<th align="right">price_max</th>
-<th align="right">living_sqm_mean</th>
+<th align="right">preis_mean</th>
+<th align="right">preis_max</th>
+<th align="right">qm_wohnraum_mean</th>
 </tr>
 </thead>
 <tbody>
@@ -486,16 +486,16 @@ basel %&gt;%
 <thead>
 <tr class="header">
 <th align="left">File</th>
-<th align="left">Rows</th>
-<th align="left">Columns</th>
-<th align="left">Description</th>
+<th align="left">Zeilen</th>
+<th align="left">Spalten</th>
+<th align="left">Beschreibung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv">kc_house.csv</a></td>
 <td align="left">21613</td>
-<td align="left">19</td>
+<td align="left">11</td>
 <td align="left">Verkaufspreise von Häusern in King County zwischen Mai 2014 und Mai 2015.</td>
 </tr>
 <tr class="even">
@@ -512,48 +512,48 @@ basel %&gt;%
 <table>
 <thead>
 <tr class="header">
-<th align="left">id</th>
-<th align="left">date</th>
-<th align="right">price</th>
-<th align="right">bedrooms</th>
-<th align="right">bathrooms</th>
+<th align="right">preis</th>
+<th align="right">schlafzimmer</th>
+<th align="right">badezimmer</th>
+<th align="right">qf_wohnraum</th>
+<th align="right">qf_parzelle</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">7129300520</td>
-<td align="left">2014-10-13</td>
 <td align="right">221900</td>
 <td align="right">3</td>
 <td align="right">1.00</td>
+<td align="right">1180</td>
+<td align="right">5650</td>
 </tr>
 <tr class="even">
-<td align="left">6414100192</td>
-<td align="left">2014-12-09</td>
 <td align="right">538000</td>
 <td align="right">3</td>
 <td align="right">2.25</td>
+<td align="right">2570</td>
+<td align="right">7242</td>
 </tr>
 <tr class="odd">
-<td align="left">5631500400</td>
-<td align="left">2015-02-25</td>
 <td align="right">180000</td>
 <td align="right">2</td>
 <td align="right">1.00</td>
+<td align="right">770</td>
+<td align="right">10000</td>
 </tr>
 <tr class="even">
-<td align="left">2487200875</td>
-<td align="left">2014-12-09</td>
 <td align="right">604000</td>
 <td align="right">4</td>
 <td align="right">3.00</td>
+<td align="right">1960</td>
+<td align="right">5000</td>
 </tr>
 <tr class="odd">
-<td align="left">1954400510</td>
-<td align="left">2015-02-18</td>
 <td align="right">510000</td>
 <td align="right">3</td>
 <td align="right">2.00</td>
+<td align="right">1680</td>
+<td align="right">8080</td>
 </tr>
 </tbody>
 </table>
@@ -566,80 +566,48 @@ basel %&gt;%
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">id</td>
-<td align="left">Identifizierungsvariable</td>
-</tr>
-<tr class="even">
-<td align="left">date</td>
-<td align="left">Datum</td>
-</tr>
-<tr class="odd">
-<td align="left">price</td>
+<td align="left">preis</td>
 <td align="left">Preis in USD</td>
 </tr>
 <tr class="even">
-<td align="left">bedrooms</td>
+<td align="left">schlafzimmer</td>
 <td align="left">Anzahl Schlafzimmer</td>
 </tr>
 <tr class="odd">
-<td align="left">bathrooms</td>
+<td align="left">badezimmer</td>
 <td align="left">Anzahl Badezimmer</td>
 </tr>
 <tr class="even">
-<td align="left">sqft_living</td>
+<td align="left">qf_wohnraum</td>
 <td align="left">Wohnraumfläche in Quadratfuss</td>
 </tr>
 <tr class="odd">
-<td align="left">sqft_lot</td>
+<td align="left">qf_parzelle</td>
 <td align="left">Parzellengrösse in Quadratfuss</td>
 </tr>
 <tr class="even">
-<td align="left">floors</td>
+<td align="left">stoecke</td>
 <td align="left">Anzahl Stöcke</td>
 </tr>
 <tr class="odd">
-<td align="left">waterfront</td>
-<td align="left">Ist das Haus am Wasser gebaut (1) oder nicht (0)</td>
+<td align="left">ufer</td>
+<td align="left">Ist das Haus am Ufer gebaut (1) oder nicht (0)</td>
 </tr>
 <tr class="even">
-<td align="left">view</td>
-<td align="left">Rating der Aussicht</td>
-</tr>
-<tr class="odd">
-<td align="left">condition</td>
-<td align="left">Rating des Zustands</td>
-</tr>
-<tr class="even">
-<td align="left">grade</td>
-<td align="left">Gesamtrating</td>
-</tr>
-<tr class="odd">
-<td align="left">sqft_above</td>
+<td align="left">qf_dachstock</td>
 <td align="left">Dachstockfläche in Quadratfuss</td>
 </tr>
-<tr class="even">
-<td align="left">sqft_basement</td>
+<tr class="odd">
+<td align="left">qf_keller</td>
 <td align="left">Kellerfläche in Quadratfuss</td>
 </tr>
-<tr class="odd">
-<td align="left">yr_built</td>
+<tr class="even">
+<td align="left">baujahr</td>
 <td align="left">Baujahr</td>
 </tr>
-<tr class="even">
-<td align="left">yr_renovated</td>
-<td align="left">Jahr letzte Renovation</td>
-</tr>
 <tr class="odd">
-<td align="left">zipcode</td>
+<td align="left">postleitzahl</td>
 <td align="left">Postleitzahl</td>
-</tr>
-<tr class="even">
-<td align="left">lat</td>
-<td align="left">Lattitude</td>
-</tr>
-<tr class="odd">
-<td align="left">long</td>
-<td align="left">Longitude</td>
 </tr>
 </tbody>
 </table>
