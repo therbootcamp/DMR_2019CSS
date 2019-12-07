@@ -1,11 +1,9 @@
 ---
-title: "Intro to R"
+title: "Einführung in R(Studio)"
 author: "R for Data Science<br>
-  <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
-  </a>
+  <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>
-  <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+  <a href='https://therbootcamp.github.io/EDA_2019Feb/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +15,7 @@ author: "R for Data Science<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "Dezember 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,13 +43,14 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       R For Data Science | February 2019
+       Explorative Datenanalyse mit R @ CSS | Dezember 2019
       </font>
     </a>
     </span>
   </div> 
 
 ---
+
 
 ```{r, eval = TRUE, echo = FALSE, warning=F,message=F}
 # Code to knit slides
@@ -88,25 +87,19 @@ GPL guarantees end users the freedom to run, study, share and modify the softwar
 
 # R is a programming language
 
-From [Wikipedia](https://en.wikipedia.org/wiki/Statistical_model) (emphasis added):
-
-> A programming language is a **formal language** that specifies a set of instructions that can be used to produce various kinds of output. Programming languages generally consist of **instructions for a computer**. Programming languages can be used to create programs that **implement specific algorithms**.
+Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktionen für verschiedenste Ziele spezifiziert. Programmiersprachen bestehen aus **instruktionen für einen Computer** und werden genutzt um **Algorithmen zu implementieren**.
 
 .pull-left4[
-### Algorithm
-1. Load data
-2. Extract variables
-3. Run analysis
-4. Print result
+### Algorithmus in Worten
+1. Lade Daten
+2. Extrahiere Variablen
+3. Führe Analyse durch
+4. Zeige Resultate
 ]
 
 .pull-right6[
 ### Implementation in R
-```{r,echo=F}
-link = 'https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/my_data.txt'
-```
-
-```{r, results='hide'}
+```{r, eval=F}
 data <- read.table(link)
 variables <- data[,c('group','variable')]
 analysis <- lm(variable ~ group, data = variables)
@@ -116,381 +109,617 @@ summary(analysis)
 
 ---
 
-# Why R?
+# Warum R?
 
-.pull-left3[
-R steadily **grows in popularity**. 
+.pull-left45[
 
-Today, R is one of the **most popular languages for data science** and overall. 
-
-In terms of the number of data science jobs, **R beats SAS and Matlab**, and is on par with Python.
-
-In many sciences it becomes the de factor **lingua franca** for statistics.
-
-<p style="font-size:10px;float:bottom">
-  Image source: http://r4stats.com/blog/
-<p>
-
+<p align = "center">
+  <img src="image/indeed2019.png" height = 400px><br>
+  <font style="font-size:10px">from <a href="http://r4stats.com/articles/popularity/">r4stats.com</a></font>
+</p>
 
 ]
 
-.pull-right6[
-<p align="center">
-  <img src="https://i0.wp.com/r4stats.com/wp-content/uploads/2017/02/Fig-1a-IndeedJobs-2017.png" height="450">
+.pull-right45[
+<p align = "center">
+  <img src="image/indeed2019change.png" height = 400px><br>
+  <font style="font-size:10px">from <a href="http://r4stats.com/articles/popularity/">r4stats.com</a></font>
 </p>
+
 ]
 
 ---
 
-# R is so popular because
+# R wird relevant bleiben
 
-There are many good reasons to prefer R over superficially more user friendly software such as **Excel** or **SPSS** or more complex programming languages like **C++** or **Python**. 
+R ist de facto die **lingua franca** für Statistik und Datenanalyse. 
 
 .pull-left45[
 ### Pro
-1. **It's free**
-2. Relatively **easy**
-3. **Extensibility** ([CRAN](https://cran.r-project.org/), packages)
-4. **User base** (e.g., [stackoverflow](https://stackoverflow.com/))
-5. [**Tidyverse**](https://www.tidyverse.org/) (`dplyr`, `ggplot2`, etc.)
-6. [**RStudio**](https://www.rstudio.com/)
-7. **Productivity** options: [Latex](https://www.latex-project.org/), [Markdown](https://daringfireball.net/projects/markdown/), [GitHub](https://github.com/)
+1. **Open-source** und umsonst.
+2. **Community** (e.g., [stackoverflow](https://stackoverflow.com/))
+3. **Erweiterbarkeit** ([CRAN](https://cran.r-project.org/))
+4. [**Tidyverse**](https://www.tidyverse.org/)
+5. [**RStudio**](https://www.rstudio.com/)
+6. **Produktivität**: [Latex](https://www.latex-project.org/), [Markdown](https://daringfireball.net/projects/markdown/), [GitHub](https://github.com/)
 ]
 
 .pull-right45[
-### Con
-Some consider it slow and convuluted, but... 
+### Ehemals Contra
+1. **Unschön**e Sprache wird überarbeitet ([Tidyverse](https://www.tidyverse.org/))
+2. **Langsam**e Elemente werden ersetzt ([Rcpp](http://www.rcpp.org/))
+3. **Brücken** zu externen Tools/Sprachen ([rPython](http://rpython.r-forge.r-project.org/), [tensorflow](https://tensorflow.rstudio.com/))
 
-[Tidyverse](https://www.tidyverse.org/)
-[Rcpp](http://www.rcpp.org/), [BH](https://cran.r-project.org/web/packages/BH/index.html): Links R to C++ and high-performance C++ libraries<br>
-[rPython](http://rpython.r-forge.r-project.org/): Links R to Python<br>
-[RHadoop](https://github.com/RevolutionAnalytics/RHadoop/wiki): Links R to Hadoop for big data applications.<br>
 ]
 
 ---
 
-# The almighty `tidyverse`
+# Komponenten von R
+<br>
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none;" width="95%">
+<col width="25%">
+<col width="35%">
+<col width="25%">
+<tr valign="top">
+  <td style="padding:20px">
+  <p align = "center">
+  <font style="font-size:28px"><i>R</i></font><br><br>
+  <img src="image/R.png" height = 130px><br>
+  <font style="font-size:10px">adapted from <a href="https://cei.org/file/internet-server-farm">cei.org</a></font>
+  </p>
+  </td>
+  <td style="padding:20px">
+  <p align = "center">
+  <font style="font-size:28px"><i>RStudio</i></font><br><br>
+  <img src="image/rstudio2.png" height = 130px><br>
+  <font style="font-size:10px">adapted from <a href="https://rstudio.com/">rstudio.com</a></font>
+</p>
+  </td>
+  <td style="padding:20px">
+  <p align = "center">
+  <font style="font-size:28px"><i>R Packages</i></font><br><br>
+  <img src="image/packages_many.png" height = 130px><br>
+  <font style="font-size:10px">adapted from <a href="https://towardsdatascience.com/ten-random-useful-things-in-r-that-you-might-not-know-about-54b2044a3868">towardsdatascience.com</a></font>
+</p>
+  </td>
+</tr>
+</table>
 
-Among its many packages, R newly contains a collection of high-performance, user-friendly packages (libraries)  known as the [tidyverse](https://www.tidyverse.org/). The tidyverse includes:
-1. `ggplot2` -- creating graphics.
-2. `dplyr` -- data manipulation.
-3. `tidyr` -- tidying data.
-4. `readr` -- read wild data.
-5. `purrr` -- functional programming.
-6. `tibble` -- modern data frame.
+---
+
+# Das mächtige `tidyverse`
+
+Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-performanter, nutzerfreundlicher Pakete, die speziell für eine effizientere Datenanalyse entwickelt wurden. 
+1. `ggplot2` für Grafiken.
+2. `dplyr` für Datenverarbeitung.
+3. `tidyr` für Datenverarbeitung.
+4. `readr` für Daten I/O.
+5. `purrr` für funktionales Programmieren.
+6. `tibble` für moderne `data.frame`s.
 <br><br>
 
-```{r, out.height = "200px", echo = F}
-knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png")
-knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png")
-knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
-knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png")
-knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/9221ddead578362bd17bafae5b85935334984429/37a68/images/hex-purrr.png")
-knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/f55c43407ae8944b985e2547fe868e5e2b3f9621/720bb/images/hex-tibble.png")
-```
 
-
----
-
-# Packages
-
-.pull-left35[
-
-  R features a vast and cutting-edge collection of **packages** provided on [**CRAN**](https://cran.r-project.org/) and [**Git/GitHub**](https://github.com/hadley) by R's large and highly active user base and the work of .         
-
-```{r, eval = F}
-# To install a package
-install.packages('package_name')
-
-# load a package
-library(package_name)
-require(package_name)
-
-
-#Note: 
-# Don't forget that packages 
-# must also be loaded.
-```
-
-]
-
-.pull-right55[
-
-<iframe src="https://www.rdocumentation.org/trends?page1=1&sort1=total&page2=1&sort2=total&page3=1&page4=1" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0" zoom="0.5"></iframe>
-
-<font size=2>
-  <a href="https://www.rdocumentation.org/trends">
-  www.rdocumentation.org/trends
-  </a>
-</font>
-]
-
-
----
-
-# Packages
-
-.pull-left35[
-
-  R features a vast and cutting-edge collection of **packages** provided on [**CRAN**](https://cran.r-project.org/) and [**Git/GitHub**](https://github.com/hadley) by R's large and highly active user base and the work of .         
-
-```{r, eval = F}
-# To install a package
-install.packages('package_name')
-
-# load a package
-library(package_name)
-require(package_name)
-
-
-#Note: 
-# Don't forget that packages 
-# must also be loaded.
-```
-
-]
-
-.pull-right45[
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/packages.png" height="350"></img>
-
-]
+<table style="cellspacing:0; cellpadding:0; border:none;">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <tr>
+    <td bgcolor="white">
+    <img src="image/hex-ggplot2.png" height=160px></img>
+    </td>
+        <td bgcolor="white">
+    <img src="image/hex-dplyr.png"height=160px></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-tidyr.png"height=160px></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-readr.png"height=160px></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-purrr.png"height=160px></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-tibble.png"height=160px></img>
+    </td>
+  </tr>
+</table>
 
 ---
 
 <div class="center_text">
   <span>
-  12 basic R lessons
+  10 grundlegende R lessons
   </span>
 </div> 
 
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. <high>Der Assignment Operator <mono><-</mono></high>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+
+<p align="center">
+  <img src="image/assignment.png">
+</p>
+
+
+]
+
 
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. <high>Everything is an object</high>
-2. <high>Use <mono> <- </mono> to create/change objects</high>
-3. <high>Name objects using <mono>_</mono></high>
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <high><mono><-</mono> kreiert/verändert Objekte</high>
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
 
 
 .pull-right5[
 ```{r}
-# an object called some_name
-some_name <- c(1, 2, 3)
+# ein Objekt namens eins_zwei_drei
+eins_zwei_drei <- c(1, 2, 3)
 
-# add 2 to the object's numbers
-some_name + 2
+# Printe das Objekt
+print(eins_zwei_drei)
 
-# print object
-some_name
+# Printe das Objekt
+eins_zwei_drei
 
-# make change permanent
-some_name <- some_name + 2
-
-# print object
-some_name
 ```
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. <high>Objects have classes</high>
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <high><mono><-</mono> kreiert/verändert Objekte</high>
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
-
-
-
-.pull-right5[
-```{r, echo=F,message=F,warning=F}
-require(tibble)
-library(baselers)
-
-```
-
-```{r}
-# What is the class of some_name
-class(some_name)
-
-# an object called some_name
-class(list())
-
-# an object called some_name
-class(baselers)
-```
-]
-
----
-
-# Essentials: 12 basic R lessons
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. <high>Everything happens through functions</high>
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
-]
-
 
 
 .pull-right5[
 ```{r}
-# function c()
-some_name <- c(1, 2, 3)
+# ein Objekt namens eins_zwei_drei
+eins_zwei_drei <- c(1, 2, 3)
 
-# function `+`()
-some_name + 2
+# Berechne den Mittelwert
+mean(eins_zwei_drei)
+```
 
-# function print()
-some_name
+]
 
-# function class()
-class(x = some_name)
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <high><mono><-</mono> kreiert/verändert Objekte</high>
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# ein Objekt namens eins_zwei_drei
+eins_zwei_drei <- c(1, 2, 3)
+
+# Berechne den Mittelwert
+ergebnis <- mean(eins_zwei_drei)
+
+# Benutze Ergebnis
+ergebnis * 10
+```
+
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <high><mono><-</mono> kreiert/verändert Objekte</high>
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# ein Objekt namens eins_zwei_drei
+eins_zwei_drei <- c(1, 2, 3)
+
+# Printe das Objekt
+eins_zwei_drei
+
+# Printe das Objekt
+eins_zwei_drei + 100
+
+# Printe das Objekt
+eins_zwei_drei
+
+```
+
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <high><mono><-</mono> kreiert/verändert Objekte</high>
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# ein Objekt namens eins_zwei_drei
+eins_zwei_drei <- c(1, 2, 3)
+
+# Printe das Objekt
+eins_zwei_drei
+
+# Printe das Objekt
+eins_zwei_drei <- eins_zwei_drei + 100
+
+# Printe das Objekt
+eins_zwei_drei
+
+```
+
+]
+
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <high><mono><-</mono> kreiert/verändert Objekte</high>
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# ein Objekt namens eins_zwei_drei
+eins_zwei_drei <- c(1, 2, 3)
+
+# Ergänze um weitere Zahl
+und_vier <- c(eins_zwei_drei, 4)
+
+# Printe das Objekt
+und_vier
+
+```
+
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. <high>Alles passiert durch Funktionen</high>
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+<p align="center"><img src="image/input_output.png" height="300"></p>
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. <high>Alles passiert durch Funktionen</high>
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# Funktion c()
+eins_zwei_drei <- c(1, 2, 3)
+
+# Funktion `+`()
+eins_zwei_drei + 100
+
+# Funktion print()
+eins_zwei_drei
+
+# Funktion mean()
+mean(x = eins_zwei_drei)
 
 ```
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. <high>Functions have (default) arguments</high>
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. <high>Funktionen haben (Default) Argumente</high>
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
 
 
 .pull-right5[
 ```{r, error=TRUE,tidy=T}
-# no argument
+# Kein Argument
 mean()
 
-# required argument
+# Ein (notwendiges) Argument
 mean(c(1, 2, 3))
 
-# introducing NA
+# Hinzufügen eines fehlenden Werts (NA)
 mean(c(1, 2, 3, NA))
 
-# changing default to handle NA
+```
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. <high>Funktionen haben (Default) Argumente</high>
+5. Argumente erwarten Klassen 
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r, error=TRUE,tidy=T}
+# Kein Argument
+mean()
+
+# Ein (notwendiges) Argument
+mean(c(1, 2, 3))
+
+# Ändere den Default zur Entfernung des NAs
 mean(c(1, 2, 3, NA), na.rm = TRUE)
 
 ```
 ]
 
+
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. <high>Functions expect certain object classes</high>
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. <high>Argumente erwarten Klassen</high>
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
 
 
 .pull-right5[
-```{r, error=TRUE,warning=F}
-# mean works also for logical
-mean(c(TRUE, FALSE, TRUE))
+```{r, error=TRUE,tidy=T}
+# Berechne Mittelwert von c(1, 2, 3)
+mean(c(1, 2, 3))
 
-# but not for character
-mean(c("a", "b", "c"))
-
-# classes relevant for all arg's
-mean(c(1, 2, 3), na.rm = "test")
+# Berechne Mittelwert von c("1", "2", "3")
+mean(c("1", "2", "3"))
 ```
 ]
 
+---
 
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. <high>Argumente erwarten Klassen</high>
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r, error=TRUE,tidy=T}
+# Klasse von c(1, 2, 3)
+class(c(1, 2, 3))
+
+# Klasse von c("1", "2", "3")
+class(c("1", "2", "3"))
+```
+]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. <high>View help files using `?`</high>
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
 
 
@@ -498,405 +727,536 @@ mean(c(1, 2, 3), na.rm = "test")
 ```{r}
 ?mean
 ```
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help.png" width="500"></p>
+<p align="center"><img src="image/help_mean.png" width="500"></p>
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. <high>View help files using `?`</high>
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
+
 
 .pull-right5[
 ```{r}
-?cor
+?mean
 ```
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"></p>
+<p align="center"><img src="image/help_usage.png" width="500"></p>
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. <high>Study errors and warnings</high>
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# Mittelwet von c(1, 2, 3)
+mean(c(1, 2, 3))
+
+# Mittelwet von c(TRUE, FALSE, TRUE)
+mean(c(TRUE, FALSE, TRUE))
+
+# Mittelwet von c("1", "2", "3")
+mean(c("1", "2", "3"))
+```
+
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+?mean
+```
+<p align="center"><img src="image/help_usage.png" width="500"></p>
+]
+
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r, error = T}
+# Mittelwet von c(1, 2, 3, NA)
+mean(c(1, 2, 3, NA), na.rm = TRUE)
+
+# Mittelwet von c(1, 2, 3, NA)
+mean(c(1, 2, 3, NA), na.rm = "TRUE")
+
+# Mittelwet von c(1, 2, 3, NA)
+mean(c(1, 2, 3, NA), na.rm = "ABCD")
+```
+
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# Klasse von TRUE
+class(TRUE)
+
+# Klasse von "TRUE"
+class("TRUE")
+
+# Klasse von "ABCD"
+class("ABCD")
+```
+
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. <high>Findet Hilfe mit <mono>?</mono></high>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+```{r}
+# Wandle "TRUE" in logical um
+as.logical("TRUE")
+
+# Wandle "ABCD" in logical um
+as.logical("ABCD")
+```
+
+]
+
+
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. <high>Funktionen leben in Paketen</high>
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+<p align="center"><br><br><br><br><br><font style="font-size:48px"><i>Kurze<br>Pause?</i></font></p>
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. <high>Funktionen leben in Paketen</high>
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+<p align="center"><img src="image/pakete.png" height="400"></p>
+]
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. <high>Funktionen leben in Paketen</high>
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+
+<iframe src="https://www.rdocumentation.org/trends?page1=1&sort1=total&page2=1&sort2=total&page3=1&page4=1" width="500" height="400" frameborder="0" marginheight="0" marginwidth="0" zoom="0.5"></iframe>
+
+<p align="center">
+<font style="font-size:10px">siehe <a href="https://www.rdocumentation.org/trends">www.rdocumentation.org/trends
+  </a></font>
+</p>
+
+]
+
+
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. <high>Funktionen leben in Paketen</high>
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
+]
+
+
+.pull-right5[
+
+<high>Installiere</high> Pakete <high>einmal</high> mit `install.packages()`
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+<br2>
+<high>Lade</high> existierende Pakete <high>jedes mal</high> mit `library()`
+
+```{r, eval = FALSE}
+library(tidyverse)
+```
+
+<p align="left"><img src="image/tidyverse.png" height="180"></p>
+]
+
+
+
+---
+
+# 10 grundlegende R lessons
+
+.pull-left4[
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. <high>Lernt von Fehlern und Warnungen</high>
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
 
 .pull-right5[
 
 ```{r, eval=F}
-# message - attend
+# Message: Interessant
 basel <- type_convert(baselers)
 ```
 
 ```{r, echo=F, error=T}
-# message - attend
+# Message: interessant
 basel <- type_convert(baselers[1:6])
 ```
 
 ```{r, error=T}
-# warning - attend closely
+# Warning: Wichtig
 result <- mean('NA')
 
-# error - fix
+# Error: Beheben
 lenth(x = 1)
 
 ```
-
-
 
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. <high>Study errors and warnings</high>
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. <high>Lernt von Fehlern und Warnungen</high>
+9. Benutzt R in RStudio   
+10. Benutzt Projekte in Rstudio
 ]
 
 .pull-right5[
 
-```{r, error=T}
-lenth(x = 1)
-```
+<p style="top:250px"> </p>
 
-| Error | Description|
+| Fehler | Beschreibung |
 |:------|:--------------------------------------------|
-|     `'could not find function'`| Typo or package not loaded|
-|     `'error in eval'`| An object is used in function that does not exist.|
-| `'cannot open()'`| Typo or missing path.|
-| `'no applicable method'`| Function inapplicable for type |
-| package errors | Unable to install, compile, or load package. |
+|     `'could not find function'`| Typo oder Paket nicht geladen|
+|     `'error in eval'`| Ein Objekt wird verwendet, dass nicht existiert.|
+| `'cannot open()'`| Typo oder fehlende Ordner im Pfad.|
+| `'no applicable method'`| Funktion erwartet andere Klassen. |
+| package errors | Fehler im installieren, kompilieren, oder laden von Paketen. |
 
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. <high>Use RStudio and projects</high>
-11. Use editor and auto-complete
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. <high>Benutzt R in RStudio</high>
+10. Benutzt Projekte in Rstudio
 ]
 
 .pull-right5[
-### Projects help ... USE projects!
-save workspace and history &#9679; set project specific options &#9679; access files &#9679; version control &#9679; etc.
-<p align="left"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/projects_1.png" width="360"></p>
-]
 
----
-
-# Essentials: 12 basic R lessons
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. <high>Use RStudio and projects</high>
-11. Use editor and auto-complete
-12. Comment and format for readability
-]
-
-.pull-right5[
-### Folder structure
-Complement projects by a <high>folder structure</high> appropriate for your project.
-<br><br>
-<p align="left">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/folder_structure.png">
+<p align = "center">
+  <img src="image/rstudio.png" height = 350px>
 </p>
 
 ]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. <high>Use editor and auto-complete</high>
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. <high>Benutzt R in RStudio</high>
+10. Benutzt Projekte in Rstudio
 ]
 
 .pull-right5[
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/editor_edit.png"></img>
+<p align = "left">
+  <img src="image/editor_edit.png">
 <br><br><br>
-Shortcut to <high>send to console</high>:<br><br2><font size = 6>&#8984;/ctrl + &#9166;</font><br><br2><br2>
-Shortcut to <high>rerun chunk</high>:<br><br2><font size = 6>  &#8984;/ctrl + &#8679; + p</font>
-]
+Shortcut für <high>schicke Code zur Console</high>:<br><br2><font size = 6>&#8984;/ctrl + &#9166;</font><br><br2><br2>
+Shortcut für <high>führe Chunk wiederholt aus</high>:<br><br2><font size = 6>  &#8984;/ctrl + &#8679; + p</font>
+</p>
 
+]
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. <high>Use editor and auto-complete</high>
-12. Comment and format for readability
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
+
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. <high>Benutzt R in RStudio</high>
+10. Benutzt Projekte in Rstudio
 ]
 
 .pull-right5[
 
-```{r, eval=F}
-# import packages
-library(tidyverse)
-library(yarrr)
-library(lme4)
+<p align = "center">
+  <img src="image/auto_complete_1.png">
+</p>
 
-# import data
-baselers <- read_delim(file = "baselers.txt",
-                       delim = '\t')
-
-```
-<br>
-### The goal is...
-... to create self-contained scripts that run uninterrupted from  beginning to end.
 ]
+
 
 ---
 
-# Essentials: 12 basic R lessons
+# 10 grundlegende R lessons
 
 .pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. <high>Use editor and auto-complete</high>
-12. Comment and format for readability
-]
+<u>Syntax</u>
+1. Der Assignment Operator <mono><-</mono>
+2. <mono><-</mono> kreiert/verändert Objekte
+3. Alles passiert durch Funktionen
+4. Funktionen haben (Default) Argumente
+5. Argumente erwarten Klassen
+6. Findet Hilfe mit <mono>?</mono>
 
-.pull-right55[
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_1.png"></img>
-
-]
-
----
-
-# Essentials: 12 basic R lessons
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. <high>Use editor and auto-complete</high>
-12. Comment and format for readability
-]
-
-.pull-right55[
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_2.png"></img>
-
-]
-
----
-
-# Essentials: 12 basic R lessons
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. <high>Use editor and auto-complete</high>
-12. Comment and format for readability
-]
-
-
-.pull-right55[
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_3.png"></img>
-
-]
-
----
-
-# Essentials: 12 basic R lessons
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. <high>Comment and format for readability</high>
-]
-
-
-.pull-right5[
-## Bad
-```{r, eval=F}
-mean(subset((tibble(c('a','b'),runif(1000,
-0,1))),c..a....b..=='a')[,'runif.1000..0..1.'])
-```
-
-## Good
-```{r, eval=F}
-# create my data.frame
-my_data <- tibble('group' = c('a','b'), 
-                  'value' = runif(1000, 0, 1))
-
-# subset data to group a
-# and compute average value
-my_data %>% 
-  filter(group == 'a') %>%
-  summarize(mean(value))
-```
-
-]
-
----
-
-# Essentials: 12 basic R lessons
-
-.pull-left4[
-1. Everything is an object
-2. Use `<-` to create/change objects
-3. Name objects using `_`
-4. Objects have classes
-5. Everything happens through functions
-6. Functions have (default) arguments
-7. Functions expect certain object classes
-8. View help files using `?`
-9. Study errors and warnings
-10. Use RStudio and projects
-11. Use editor and auto-complete
-12. <high>Comment and format for readability</high>
+<u>Produktivität</u>
+7. Funktionen leben in Paketen
+8. Lernt von Fehlern und Warnungen
+9. Benutzt R in RStudio
+10. <high>Benutzt Projekte in Rstudio</high>
 ]
 
 .pull-right5[
-### Short style guide
 
-```{r, eval=F}
-# Choose appropriate names
-analyze_baselers.R
-trial_id
+<b>Projects helfen bei...</b><br>
+workspace und history speichern &#9679; projektspezifische Optionen setzen &#9679; Dateien finden &#9679; Versionskontrolle &#9679; etc.
+<br><br>
+<p align = "left">
+  <img src="image/folder_structure.png">
+</p>
 
-# Leave spaces around operators
-var_rt <- var(rt, na.rm = TRUE)
 
-# indent code
-if (var_rt < 2){
-  print('small variance')
-} else {
-  print('large variance')
-}
-
-# Data wrangling section ---------
-```
-See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
 ]
-
 
 ---
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/R4DS_2019Feb/1_Data/BaselRBootcamp.zip">Downloads</a></h1>
+<h1><a href="https://therbootcamp.github.io/EDA_2019CSS/1_Data/TheRBootcampAtCSS.zip">Downloads</a></h1>
 
 ---
 
 class: middle, center
 
 <h1><a>Interactive</a></h1>
-<h2>Open RStudio</h2>
 
 

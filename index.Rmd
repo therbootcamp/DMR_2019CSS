@@ -1,11 +1,11 @@
 ---
-title: "R for Data Science"
+title: "Explorative Datenanalyse mit R"
 subtitle: ""
 author: "
       <a href='https://therbootcamp.github.io'>
         <i class='fas fa-home' style='font-size:1em;'></i>
       </a>
-      <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+      <a href='https://therbootcamp.github.io/EDA_2019CSS/'>
         <i class='fas fa-clock' style='font-size:1em;' ></i>
       </a>
       <a href='mailto:therbootcamp@gmail.com'>
@@ -14,11 +14,11 @@ author: "
       <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
         <i class='fab fa-linkedin' style='font-size: 1em;'></i>
       </a>
-      <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal;font-size:20px;padding-left:5px'>Basel R Bootcamp</font>
+      <a href='https://therbootcamp.github.io/EDA_2019CSS/'>
+        <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp @ CSS Versicherung</font>
       </a>
       <br>
-      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>February 2019</font>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>December 2019</font>
       "
 output:
   html_document:
@@ -29,9 +29,7 @@ output:
 <br>
 
 
-### Links
 
-##### [Wifi](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wifi_instruct.png) 
 ##### [Data sets](https://raw.githubusercontent.com/therbootcamp/R4DS_2019Feb/master/1_Data/BaselRBootcamp_data.zip)
 ##### [PDFs](https://github.com/therbootcamp/R4DS_2019Feb/raw/master/_sessions/_pdf/R4DS_2019Feb_pdfs.zip)
 <!--- <font style="font-size:12px">(made available later)</font>--->

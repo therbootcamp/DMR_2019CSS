@@ -1,11 +1,9 @@
 ---
-title: "Welcome!"
+title: "Willkommen!"
 author: "R for Data Science<br>
-  <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
-  </a>
+  <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>
-  <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+  <a href='https://therbootcamp.github.io/EDA_2019Feb/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +15,7 @@ author: "R for Data Science<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "Dezember 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +43,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       R For Data Science | February 2019
+       Explorative Datenanalyse mit R @ CSS | Dezember 2019
       </font>
     </a>
     </span>
@@ -62,19 +60,6 @@ options(digits = 4)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
-.pull-left4[
-<br><br><br><br><br><br>
-# Welcome to the<br><high>Basel R Bootcamp!</high>
-
-]
-
-.pull-right6[
-<br><br>
-<p align="center"><img src="https://img.myswitzerland.com/mys/n64497/images/buehne/basel_winter.jpg" width="500"  height="400"><br>
-<font style="font-size:10px">from <a href="">Wikipedia</a></font>
-</p>
-]
----
 
 
 .pull-left45[
@@ -95,21 +80,6 @@ Click the "Bootcamp running" link on our homepage!
 ]
 
 
----
-
-.pull-left25[
-
-# What is Data Science?
-
-]
-
-.pull-right75[
-<br>
-<p align = "center">
-<img src="http://sudeep.co/images/post_images/2018-02-09-Understanding-the-Data-Science-Lifecycle/chart.png" height="540"><br>
-<font style="font-size:10px">from <a href="http://sudeep.co/">http://sudeep.co/</a></font>
-</p>
-]
 
 ---
 
@@ -119,11 +89,10 @@ Click the "Bootcamp running" link on our homepage!
 
 <br><br><br>
 
+# Ziel
 
-# Aim
 
-
->###The aim of this workshop is enable you to thoughtfully and actively use R. You will learn the fundamentals of the R language, as well as cutting-edge packages for wrangling, analyzing, and communicating statistical data.  
+>###Das Ziel dieses Kurses ist Euch die Grundlagen der Programmiersprache R und den kompetenten Einsatz von R für die Aufbereitung, Exploration, und Visualisierung von Daten zu vermitteln. 
 
 ]
 
@@ -134,66 +103,62 @@ Click the "Bootcamp running" link on our homepage!
 
 ]
 
+
 ---
-<br><br>
-.pull-left6[
-# Schedule 
 
-We have an <high>ambitious schedule</high>!
+.pull-left3[
 
->2 days, 3 sessions per day, 2 hours per session, on a variety of topics.
+# Der Data Science Kreislauf
 
->Each session contains a slide-based <high>introduction</high> and a hands-on <high>programming practical</high>
+]
+
+.pull-right7[
+<br>
+<p align = "center">
+<img src="http://sudeep.co/images/post_images/2018-02-09-Understanding-the-Data-Science-Lifecycle/chart.png" height="540"><br>
+<font style="font-size:10px">from <a href="http://sudeep.co/">http://sudeep.co/</a></font>
+</p>
+]
+
+---
+
+.pull-left4[
 
 <br>
+# Agenda 
+
+Der Workshop beinhaltet eine Einführung in R und 5 <high>2-2.5h Blöcke</high> zu explorativen Datenanalyse. 
+
+Jeder Block beginnt mit einer folien-basierten <high>Einführung (30-45min)</high> und schliesst mit einer interaktiven <high>Übung (1.5-2h)</high> ab. 
 
 
 ]
 
-.pull-right4[
-
-<img src="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Welcome/image/schedule.png" height="550" align="center">
-
+.pull-right45[
+<br><br>
+<img src="image/schedule.png" height="525" align="center">
 
 ]
 
 ---
 
+
+# Einführung
+
 .pull-left45[
+<br2>
+<high>30 - 45 min folien-basierte Einführung</high> um Euch die zentralen Konzepte zu vermitteln.
 
-# Introduction
+<high>Alle Materialien sind online verfügbar</high>. Später teilen wir mit Euch noch PDFs.
 
-<high>15 - 45 minutes</high> slide based introduction to help you understand the basic concepts, including:
-<br><br>
-&emsp;&emsp;1 - Theory<br>
-&emsp;&emsp;2 - Code examples<br>
-&emsp;&emsp;3 - Live demonstrations<br> 
-<br><br>
-
-
-
-<high>All available online</high>. Follow along, and don't worry about memorizing
-
-<br><br>
-<a href="https://therbootcamp.github.io/R4DS_2019Feb/">This is a Link to our materials</a>.
-<br><br>
-
-<high>Be interactive! Ask questions!</high>
+<a href="https://therbootcamp.github.io/EDA_2019CSS/">Dies ist ein Link zu Euren Materialien</a>.
 
 ]
 
 .pull-right55[
 
-<br>
-
 <p align="center">
-<img src="https://img.freepik.com/free-vector/business-presentation_23-2147511785.jpg?size=338&ext=jpg" style="width:250px">
-<br>
-<font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
-</p>
-
-<p align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DZ7eRkgxeFuEMEtuVC9YHz2v0STxeQ9YJyW2T3PbXGIci_2Lig" style="width:250px">
+<img src="image/present.jpg" style="width:350px">
 <br>
 <font style="font-size:10px">from <a href="www.Freepik.com">Freepik.com</a></font>
 </p>
@@ -205,19 +170,17 @@ We have an <high>ambitious schedule</high>!
 
 .pull-left45[
 
-# Practicals
+# Übungen
 
-<high>Write your own R scripts!</high>
+<high>Schreibt Eure eigenen R Skripte!</high>
 
-1 - Anywhere from 10 ~ 30 programming tasks.
+1 - 20 - 50 Aufgaben.
 
-2 - Starts easy, gets progressively more challenging
+2 - Fangen einfach an und werden zunehmend schwieriger. 
 
-3 - Struggle, work together, ask questions and challenge yourself!
+3 - Folgt Eurem eigenen Tempo und löst so viele Ihr könnt.
 
-4 - Go at your own pace and finish as much as you can.
-
-5 - We'll give you all the answers later
+4 - Wir geben Euch später die Antworten. 
 
 ]
 
@@ -227,71 +190,41 @@ We have an <high>ambitious schedule</high>!
 .pull-right5[
 <br>
 
-  <iframe src="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="https://therbootcamp.github.io/EDA_2019CSS/_sessions/Daten/Daten_practical.html" height="480px" width = "500px"></iframe>
 
-  Example practical:<a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Data/Data_practical.html"> Data </a>
+  Beispiel:<a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Daten/Daten_practical.html"> Daten </a>
 
 ]
 
 ---
 
-.pull-left45[
-<br>
-# 1-1 Coaching
-
-Learning a computer language is <high>hard</high>.
-
-<high>Take breaks when you need them</high>, and don't get discouraged!
-
-Sometimes, you may find yourself in need of some <high>intensive help</high>. That's ok! We're here to help!
-
-At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching session. We'll grab a coffee and work through it together.
-
-
-]
- 
-
-.pull-right5[
-
-
-<br><br>
-
-<p align="center">
-<img src="image/yesterdayitworked.jpg" height="500px">
-<br>
-<font style="font-size:10px">from <a href="www.geek-and-poke.com">geek-and-poke.com</a></font>
-</p>
-]
-
-
----
 # Cheatsheets
 
 <table width="100%" style="cellspacing:0; cellpadding:0; border:none">
   <tr>    
   <td>
   <p align = 'center'>RStudio<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/rstudio_cheat_ss.png?raw=true" height="180"></a></p>
+  <a href="image/rstudio-ide.pdf"><img border="0" alt="W3Schools" src="image/rstudio.png" height="180"></a></p>
   </td>
  
   <td>
    <p align = 'center'>Base R<br><br>
-  <a href="http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/baser_cheat_ss.png?raw=true" height="180"></a></p>
+  <a href="image/base-r.pdf"><img border="0" alt="W3Schools" src="image/baser.png" height="180"></a></p>
   </td>  
   
   <td> 
    <p align = 'center'>Data Import<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/dataimport_cheat_ss.png?raw=true" height="180"></a></p>
+  <a href="image/data-import.pdf" download><img border="0" alt="W3Schools" src="image/import.png" height="180"></a></p>
   </td>
   
   <td>
   <p align = 'center'>Data Wrangling<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/datatransform_cheat_ss.png?raw=true" height="180"></a></p>
+  <a href="image/data-transformation.pdf"><img border="0" alt="W3Schools" src="image/wrangling.png" height="180"></a></p>
   </td>
 
   <td>
   <p align = 'center'>Data Visualization<br><br>
-  <a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/datavis_cheat_ss.png?raw=true" height="180" ></a></p>
+  <a href="image/data-visualization-2.1.pdf"><img border="0" alt="W3Schools" src="image/plotting.png" height="180" ></a></p>
   </td>
   
 
@@ -300,84 +233,30 @@ At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching ses
 <br>
 
 
-
 ---
 
-.pull-left4[
+# Vorstellung
 
-<br><br>
-# Breaks
+.pull-left5[
 
-1 - Feel free to take breaks when you need them!
+1. Wie heisst Du?
 
-2 - Help yourself to refreshments
+2. Hast du Programmiererfahrung mit R oder anderen Programmiersprachen?
 
-3 - Lunch on your own or together at Tibits
+3. Wieso möchtest Du R lernen?
 
-]
+4. Kaffee oder Tee?
 
+5. Bier oder Wein?
 
-.pull-right6[
-
-<p align='center'><br><br><br><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"><br>
-<font style="font-size:10px">from <a href="https://www.tibits.ch/de/restaurants.html#tibits-basel">Tibits.ch</a></font>
-</p>
+6. Berlin oder Paris?
 
 ]
 
+.pull-right45[
 
-
----
-
-# Photography
-
-.pull-left7[
-<p align="center"><img src="https://amp.businessinsider.com/images/5af9eea4965f4c30008b4acb-750-375.jpg" width="700"><br>
-<font style="font-size:10px">from <a href="https://amp.businessinsider.com/images/5af9eea4965f4c30008b4acb-750-375.jpg">businessinsider.com</a></font>
-</p>
-
-]
-
-.pull-right25[
-
-<br><br><br>
-
-<font style="font-size:32px"> <high>Let us know, personally or via mail, if you don't want be published.</high></font>
-
-]
-
----
-
-.pull-left45[
-# Introductions
-
-1. What is your name?
-
-2. Where are you from?
-
-3. What is your current profession?
-
-4. What is your programming experience?
-
-5. Have you used R in the past?
-
-6. What would you most like to do with R?
-
-7. Coffee or tea?
-
-8. Pizza or pasta?
-
-9. Beer or wine?
-
-10. Berlin or Paris?
-
-]
-
-.pull-right50[
-
-<p align="center"><br><br><br><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" style="width:500px">
+<p align="center">
+<img src="image/vorstellung.jpg" height="360px">
 <br>
 <font style="font-size:10px">from <a href="www.artofmanliness.com">artofmanliness.com</a></font>
 </p>
@@ -385,22 +264,6 @@ At any time, you can <high>request a 15 minute 1-1 intensive</high> coaching ses
 ]
 
 ---
+class: middle, center
 
-.pull-left35[
-<br><br><br><br><br><br><br><br><br>
-
-<p align="center">
-  <font size=8><hfont><high>Questions?</high></hfont></font><br>
-  <font size = 4><a href = "https://therbootcamp.github.io/R4DS_2019Feb/">Link to schedule</a></font>
-</p>
-
-]
-
-
-.pull-right6[
-
-<img src="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Welcome/image/schedule.png" height="580" align="center">
-
-
-]
-
+<h1><a href=https://therbootcamp.github.io/EDA_2019CSS/index.html>Agenda</a></h1>
