@@ -2,7 +2,7 @@
 title: "Wrangling II"
 author: "Explorative Datenanalyse mit R<br>
   <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+    The R Bootcamp @ CSS
   </a>
   <br>
   <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Explorative Datenanalyse mit R | Dezember 2019
+       Explorative Datenanalyse mit R @ CSS | Dezember 2019
       </font>
     </a>
     </span>
