@@ -3,7 +3,7 @@ title: "Wrangling II"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Data Mining mit R</font><br>
+      <font style='font-style:normal'>Explorative Datenanalyse mit R @ CSS</font><br>
       <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
@@ -44,7 +44,7 @@ options(digits = 3)
 library(tidyverse)
 kc_house <- read_csv("../../1_Data/kc_house.csv")
 bev <- read_csv("../../1_Data/bevoelkerung.csv")
-basel <- read_csv("../../1_Data/basel.txt")
+basel <- read_csv("../../1_Data/basel.csv")
 ```
 
 <p align="center">
@@ -248,30 +248,30 @@ names(kc_house)
 ```
 
 
-4. Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als "rest of the world" sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen `living_sqm`, `above_sqm` und `basement_sqm`, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).
+4. Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als "rest of the world" sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen `qm_wohnraum`, `qm_dachstock` und `qm_keller`, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).
 
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
-  mutate(living_sqm = sqft_living * 0.093,
-         above_sqm = sqft_above * 0.093,
-         basement_sqm  = sqft_basement * 0.093)
+  mutate(qm_wohnraum = qf_wohnraum * 0.093,
+         qm_dachstock = qf_dachstock * 0.093,
+         qm_keller  = qf_keller * 0.093)
 ```
 
-5. Kreiere eine neue Spalte `total_sqm`, welche die Summe aus `living_sqm`, `above_sqm` und `basement_sqm` darstellt.
+5. Kreiere eine neue Spalte `qm_total`, welche die Summe aus `qm_wohnraum`, `qm_dachstock` und `qm_keller` darstellt.
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
-  mutate(total_sqm = living_sqm + above_sqm + basement_sqm)
+  mutate(qm_total = qm_wohnraum + qm_dachstock + qm_keller)
 ```
 
-6. Füge eine neue Variable `mansion` hinzu, welche den Wert "yes" annimmt, wenn `total_sqm` grösser als 750 ist und "no", wenn `total_sqm` kleiner oder gleich 750 ist.
+6. Füge eine neue Variable `villa` hinzu, welche den Wert "ja" annimmt, wenn `qm_total` grösser als 750 ist und "nein", wenn `qm_total` kleiner oder gleich 750 ist.
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
-                mutate(mansion = case_when(
-                              total_sqm > 750 ~ "yes",
-                              total_sqm <= 750~ "no"))
+                mutate(villa = case_when(
+                              qm_total > 750 ~ "ja",
+                              qm_total <= 750~ "nein"))
 ```
 
 
@@ -280,7 +280,7 @@ kc_house <- kc_house %>%
 1. Unter Verwendung der base-R `data$col` Notation, berechne den Mittelwert über alle Hauspreise.
 
 ```{r}
-mean(kc_house$price)
+mean(kc_house$preis)
 ```
 
 2. Wiederhole die vorherige Aufgabe, diesmal unter Verwendung der `summarise()` Funktion. Worin besteht der Unterschied der Resultate dieser und der vorherigen Aufgabe?
@@ -288,7 +288,7 @@ mean(kc_house$price)
 ```{r}
 kc_house %>%
   summarise(
-    price_mean = mean(price)
+    preis_mean = mean(preis)
   )
 
 # In der ersten Aufgabe war das Ergebnis eine einzelne Zahl, also ein Vektor mit nur
@@ -301,13 +301,14 @@ kc_house %>%
 ```{r}
 kc_house %>%
   summarise(
-    price_median = median(price)
+    preis_median = median(preis)
   )
 
 # Der Mittelwert gibt den Durschnittspreis an, also die Summe aller Preise geteilt durch die
 # Anzahl berücksichtigter Preise. Der Median gibt das 50. Perzentil der Preise an, also 
 # den Preis, der, wenn wir die Preise aufsteigend sortieren, an der Position steht, an der 
 # sowohl nach oben als auch nach unten gleich viele Preise stehen. Dadurch ist der Median
+# robuster gegenüber ausreissern.
 
 ```
 
@@ -316,7 +317,7 @@ kc_house %>%
 ```{r}
 kc_house %>%
   summarise(
-    price_max = max(price)
+    preis_max = max(preis)
   )
 ```
 
@@ -325,7 +326,7 @@ kc_house %>%
 
 ```{r}
 kc_house <- kc_house %>%
-  arrange(desc(price))
+  arrange(desc(preis))
 
 kc_house
 ```
@@ -334,28 +335,28 @@ kc_house
 
 ```{r}
 kc_house %>%
-  summarise(mil_p = mean(price > 1000000))
+  summarise(mil_p = mean(preis > 1000000))
 ```
 
-7. Berechne die mittlere Anzahl Stockwerke (`floors`) und Badezimmer (`bathrooms`) von Villen (`mansion`).
+7. Berechne die mittlere Anzahl Stockwerke (`stoecke`) und Badezimmer (`badezimmer`) von Villen (`villa`).
 
 
 ```{r}
 kc_house %>%
-  filter(mansion == "yes") %>%
+  filter(villa == "ja") %>%
   summarise(
-    floors_mean = mean(floors),
-    bathrooms_mean = mean(bathrooms)
+    stoecke_mean = mean(stoecke),
+    badezimmer_mean = mean(badezimmer)
   )
 ```
 
 ### D - Einfache gruppierte deskriptive Statistiken 
 
-1. Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`mansion`) und `n()` zur Berechnung der jeweiligen Anzahl.
+1. Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`villa`) und `n()` zur Berechnung der jeweiligen Anzahl.
 
 ```{r}
 kc_house %>%
-  group_by(mansion) %>%
+  group_by(villa) %>%
   summarise(N = n())
 ```
 
@@ -364,86 +365,86 @@ kc_house %>%
 
 ```{r}
 kc_house %>%
-  group_by(mansion) %>%
+  group_by(villa) %>%
   summarise(N = n(),
-            price_mean = mean(price))
+            preis_mean = mean(preis))
 ```
 
 3. Verwende `group_by()` und `summarise()` um die untenstehende Tabelle zu erhalten.
 
 ```{r, echo = FALSE, eval = TRUE, results = 'asis'}
 kc_house %>%
-  group_by(mansion) %>%
+  group_by(villa) %>%
   summarise(N = n(),
-            price_min = min(price),
-            price_mean = mean(price),
-            price_median = median(price),
-            price_max = max(price)) %>%
+            preis_min = min(preis),
+            preis_mean = mean(preis),
+            preis_median = median(preis),
+            preis_max = max(preis)) %>%
   knitr::kable()
 ```
 
 
 ```{r}
 kc_house %>%
-  group_by(mansion) %>%
+  group_by(villa) %>%
   summarise(N = n(),
-            price_min = min(price),
-            price_mean = mean(price),
-            price_median = median(price),
-            price_max = max(price))
+            preis_min = min(preis),
+            preis_mean = mean(preis),
+            preis_median = median(preis),
+            preis_max = max(preis))
 ```
 
-4. Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach `yr_built` und berechne dann die mittlere Wohnfläche (`living_sqm`).
+4. Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach `baujahr` und berechne dann die mittlere Wohnfläche (`qm_wohnraum`).
 
 ```{r}
 kc_house %>%
-  group_by(yr_built) %>%
+  group_by(baujahr) %>%
   summarise(N = n(),
-            living = mean(living_sqm))
+            living = mean(qm_wohnraum))
 ```
 
-5. Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable `built_decade`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.
+5. Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable `baujahrzehnt`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.
 
 
 ```{r}
 kc_house %>%
-  mutate(built_decade = floor(yr_built / 10)) %>%
-  group_by(built_decade) %>%
+  mutate(baujahrzehnt = floor(baujahr / 10)) %>%
+  group_by(baujahrzehnt) %>%
   summarise(N = n(),
-            living = mean(living_sqm))
+            wohnraum = mean(qm_wohnraum))
 ```
 
 ### E - Mehrere Gruppen
 
-1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`zipcode`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
+1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`postleitzahl`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
 
 ```{r}
 theodorus <- kc_house %>%
-  filter(zipcode %in% c(98001, 98109, 98117, 98199))
+  filter(postleitzahl %in% c(98001, 98109, 98117, 98199))
 ```
 
 2. Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.
 
 ```{r}
 theodorus %>%
-  group_by(zipcode, mansion) %>%
-  summarise(price_mean = mean(price),
-            price_median = median(price),
-            floors_min = min(floors),
-            floors_max = max(floors),
+  group_by(postleitzahl, villa) %>%
+  summarise(preis_mean = mean(preis),
+            preis_median = median(preis),
+            stoecke_min = min(stoecke),
+            stoecke_max = max(stoecke),
             N = n())
 ```
 
 
 ### X - Challenges
 
-1. Welche Postleitzahl hat den höchsten Anteil Häuser, welche am Wasser gebaut sind (`waterfront`)? Printe nur diese Zeile des Datensatzes.
+1. Welche Postleitzahl hat den höchsten Anteil Häuser, welche am Ufer gebaut sind (`ufer`)? Printe nur diese Zeile des Datensatzes.
 
 ```{r}
 kc_house %>%
-  group_by(zipcode) %>%
-  summarise(waterfront_p = mean(waterfront)) %>%
-  arrange(desc(waterfront_p)) %>%
+  group_by(postleitzahl) %>%
+  summarise(ufer_p = mean(ufer)) %>%
+  arrange(desc(ufer_p)) %>%
   slice(1)
 ```
 
@@ -451,8 +452,8 @@ kc_house %>%
 
 ```{r}
 kc_house %>%
-  mutate(price_to_living = price / living_sqm) %>%
-  arrange(desc(price_to_living)) %>%
+  mutate(preis_zu_flaeche = preis / qm_wohnraum) %>%
+  arrange(desc(preis_zu_flaeche)) %>%
   slice(1)
 ```
 
@@ -460,9 +461,9 @@ kc_house %>%
 
 ```{r}
 kc_house %>%
-  group_by(zipcode) %>%
-  summarise(price_mean = mean(price)) %>%
-  arrange(desc(price_mean)) %>%
+  group_by(postleitzahl) %>%
+  summarise(preis_mean = mean(preis)) %>%
+  arrange(desc(preis_mean)) %>%
   slice(1:10)
 ```
 
@@ -470,16 +471,16 @@ kc_house %>%
 
 ```{r, eval = FALSE, echo = FALSE}
 kc_house %>%
-  filter(yr_built >= 1990 & yr_built < 1999) %>%
-  group_by(yr_built) %>%
+  filter(baujahr >= 1990 & baujahr < 1999) %>%
+  group_by(baujahr) %>%
   summarise(N = n(),
-            price_mean = mean(price),
-            price_max = max(price),
-            living_sqm_mean = mean(living_sqm)) %>%
+            preis_mean = mean(preis),
+            preis_max = max(preis),
+            qm_wohnraum_mean = mean(qm_wohnraum)) %>%
   knitr::kable(digits = 0)
 ```
 
-| yr_built|   N| price_mean| price_max| living_sqm_mean|
+| baujahr|   N| preis_mean| preis_max| qm_wohnraum_mean|
 |--------:|---:|----------:|---------:|---------------:|
 |     1990| 320|     563966|   3640900|             234|
 |     1991| 224|     630441|   5300000|             244|
@@ -493,12 +494,12 @@ kc_house %>%
 
 ```{r}
 kc_house %>%
-  filter(yr_built >= 1990 & yr_built < 1999) %>%
-  group_by(yr_built) %>%
+  filter(baujahr >= 1990 & baujahr < 1999) %>%
+  group_by(baujahr) %>%
   summarise(N = n(),
-            price_mean = mean(price),
-            price_max = max(price),
-            living_sqm_mean = mean(living_sqm)) %>%
+            preis_mean = mean(preis),
+            preis_max = max(preis),
+            qm_wohnraum_mean = mean(qm_wohnraum)) %>%
   knitr::kable(digits = 0)
 ```
 
@@ -555,9 +556,9 @@ basel %>%
 
 ## Datensätze
 
-|File | Rows | Columns | Description |
+|File | Zeilen | Spalten | Beschreibung |
 |:----|:-----|:------|:-----------------------------------------|
-|[kc_house.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv) | 21613 | 19|Verkaufspreise von Häusern in King County zwischen Mai 2014 und Mai 2015. |
+|[kc_house.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv) | 21613 | 11|Verkaufspreise von Häusern in King County zwischen Mai 2014 und Mai 2015. |
 |[bevoelkerung.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/kc_house.csv) | 161 | 10|Einwohnerzahlen schweizer Städte von 1930 bis 2011. |
 
 #### kc_house.csv
@@ -570,25 +571,17 @@ knitr::kable(kc_house[1:5, 1:5])
 
 |Variable | Beschreibung |
 |:--------|:-----------------------------|
-|id  |Identifizierungsvariable|
-|date  |Datum|
-|price  | Preis in USD| 
-|bedrooms    | Anzahl Schlafzimmer|
-|bathrooms   | Anzahl Badezimmer|
-|sqft_living | Wohnraumfläche in Quadratfuss|
-|sqft_lot | Parzellengrösse in Quadratfuss|    
-|floors   |Anzahl Stöcke|
-|waterfront | Ist das Haus am Wasser gebaut (1) oder nicht (0)|
-|view | Rating der Aussicht|
-|condition | Rating des Zustands|
-|grade | Gesamtrating|
-|sqft_above | Dachstockfläche in Quadratfuss|
-|sqft_basement | Kellerfläche in Quadratfuss|
-|yr_built | Baujahr|
-|yr_renovated | Jahr letzte Renovation|
-|zipcode | Postleitzahl|
-|lat | Lattitude|
-|long | Longitude|
+|preis  | Preis in USD| 
+|schlafzimmer    | Anzahl Schlafzimmer|
+|badezimmer   | Anzahl Badezimmer|
+|qf_wohnraum | Wohnraumfläche in Quadratfuss|
+|qf_parzelle | Parzellengrösse in Quadratfuss|    
+|stoecke   |Anzahl Stöcke|
+|ufer | Ist das Haus am Ufer gebaut (1) oder nicht (0)|
+|qf_dachstock | Dachstockfläche in Quadratfuss|
+|qf_keller | Kellerfläche in Quadratfuss|
+|baujahr | Baujahr|
+|postleitzahl | Postleitzahl|
 
 
 #### bevoelkerung.csv
