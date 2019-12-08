@@ -1,11 +1,9 @@
 ---
-title: "Data"
-author: "R for Data Science<br>
-  <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
-  </a>
+title: "Daten"
+author: "Explorative Datenanalyse mit R<br>
+  <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>
-  <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+  <a href='https://therbootcamp.github.io/EDA_2019Feb/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +15,7 @@ author: "R for Data Science<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "February 2019"
+date: "Dezember 2019"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +43,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       R For Data Science | February 2019
+       Explorative Datenanalyse mit R @ CSS | Dezember 2019
       </font>
     </a>
     </span>
@@ -63,129 +61,58 @@ options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
 require(tidyverse)
-baselers = readr::read_csv('../_data/baselers.csv')
+basel = readr::read_csv('../../1_data/basel.csv')
 ```
 
 
-# Data
-
 .pull-left45[
-<br2>
-<font size=5>
-In this session you will get to know...
+
+# `Tidy` Daten
+
 <ul>
-  <li> R's 3 main <high>data types</high> </li><br2>
-  <li> a little more about <high>functions</high> </li><br2>
-  <li> R's <high>Import/Export</high> functions </li><br2>
-</font>
+  <li class="m1"><span>Jede Spalte ist eine Variable.</span></li>
+  <li class="m2"><span>Jede Zeile ist eine Beobachtung.</span></li>
+  <li class="m3"><span>Jede Zelle beinhaltet nur einen Wert.</span></li>
+</ul>
+
+<font style="font-size:16px">...nach <a href="https://github.com/tidyverse/tidyr">Hadley Wickham</a></font>
 
 ]
 
 .pull-right45[
-
-<p align = "center">
-<img src="image/bigdata.jpg" height=440px><br>
-<font style="font-size:10px">from <a href="https://cloudtweaks.com/">cloudtweaks.com</a></font>
-</p>
-
+  <br><br><br>
+  <img src="image/data_frame.png"></img>
 ]
+
+
+
 ---
 
 # 3 Object types for data
 
 .pull-left4[
 
-R has 3 main data objects...
+Es gibt 3 wesentliche Objekte...
 
-<high>`list`</high> - R's multi-purpose container
-- Can carry any data, incl. lists
-- Often used for function outputs
+<high>`list`</high> - R's Mehrzweck-Container
+- <span>Kann alle Daten beinhalten, inkl. `list`s</span>
+- <span>Nützlich für komplexe Funktionsoutputs</span>
 
-<high>`data_frame`</high> - R's spreadsheet
-- Specific type of `list`
-- Typical data format
-- For multi-variable data sets
+<high>`data_frame`</high> - R's Tabelle
+- <span>Spezialfall einer `list`</span>
+- <span>R's `Tidy`-Format für Daten
 
-<high>`vectors`</high> - R's data container
-- Actually carries the data
-- Contain data of 1 of many types
+<high>`vector`</high> - R's data container
+- <span>Primärer Daten-Container</span>
+- <span>Beinhaltet daten von genau einem Klasse</span>
 
 ]
 
 .pull-right55[
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/main_objects.png"></img>
+<img src="image/main_objects.png"></img>
 ]
 
 
----
-
-# `list`
-
-.pull-left45[
-<br><br><br>
-1 - Can <high>carry any data</high>, incl. `list`s, `data_frame`s, `vector`s, etc.
-<br><br>
-2 - Are often used for <high>function outputs</high>
-<br><br>
-3 - Have <high>named elements</high>.
-<br><br>
-4 - Elements can be <high>inspect</high>ed via `names()` or `str()`.
-<br><br>
-5 - Elements are (typically) <high>select</high>ed by `$`.
-
-]
-
-.pull-right5[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/list.png"></img>
-  ]
-
----
-
-# `list`: Select element using <high>`$`</high>
-
-.pull-left45[
-
-```{r, echo = F}
-options(width=40, max.print=20)
-```
-
-```{r, eval = F}
-# regression
-reg_model <- lm(height ~ sex + age,
-               data = baselers)
-reg_results <- summary(reg_model)
-
-# get element names
-names(reg_results)
-```
-
-```{r, echo = F}
-# regression
-reg_model <- lm(height ~ sex + age,
-               data = baselers)
-reg_results <- summary(reg_model)
-
-# get element names
-names(reg_results)[1:8]
-
-```
-
-```{r, eval = F}
-# select element using $
-reg_results$coefficients
-```
-
-```{r, echo = F}
-# select element using $
-reg_results$coefficients[,c(1,3)]
-
-```
-
-]
-
-.pull-right5[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/list.png"></img>
-  ]
 
 ---
 
@@ -193,31 +120,24 @@ reg_results$coefficients[,c(1,3)]
 
 # `data_frame`
 
-<br><br>
-1 - Are `list`s containing <high>`vector`s of equal length</high> representing the variables.
-<br><br>
-2 - Contain `vector`s of different types: `numeric`, `character`, etc.
-<br><br>
-3 - Have named elements.
-<br><br>
-4 - Elements can be <high>inspect</high>ed via `names()`, `str()`, `print()`, `View()`, or `skimr::skim()`.
-<br><br>
-5 - Elements are (typically) <high>select</high>ed by `$`.
-<br><br>
-6 - Come in different flavors: `data.frame()`, `data.table()`, `tibble()`.
+<ul>
+  <li class="m1"><span>Eine <mono>list</mono>e bestehend aus <high><mono>vector</mono>en gleicher Länge</high>.</span></li>
+  <li class="m2"><span>Die <mono>vector</mono>en haben verschiedene <high>Klassen</high>: <mono>numeric</mono>, <mono>character</mono>, etc.</span></li>
+  <li class="m3"><span>Verschiedene Varianten: <mono>data.frame</mono>, <mono>data.table</mono>, <highm>tibble</highm>.</span></li>
+</ul>
 
 ]
 
 .pull-right45[
   <br><br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
+  <img src="image/data_frame.png"></img>
   ]
 
 ---
 
 .pull-left45[
 
-# Inspect content
+# Inhalt ansehen
 
 ```{r, echo = F, message=F}
 require(tibble)
@@ -226,568 +146,651 @@ options(tibble.width = 45, tibble.max_extra_cols = 0, tibble.print_max = 5,
 ```
 
 ```{r, eval = T}
-# inspect baselers via print
-baselers
+# printe basel
+basel
 ```
 ]
 
 .pull-right45[
   <br><br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
+  <img src="image/data_frame.png"></img>
   ]
 
 ---
 
 .pull-left45[
 
-# Inspect content
+# Inhalt ansehen
 
 ```{r, eval = F}
-# View dataframe in a new window
-View(baselers)
+# Zeige den data frame in neuem tab
+View(basel)
 ```
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/view.png"></img>
+<img src="image/view.png"></img>
 ]
 
 .pull-right45[
   <br><br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
+  <img src="image/data_frame.png"></img>
   ]
 
 ---
 
 .pull-left45[
 
-# Select via <high>`$`</high>
-
-```{r, eval = F}
-# Access age column from baselers
-baselers$age
-```
+# Zugriff mit <high>`$`</high>
 
 ```{r, echo = F}
-# Access age column from baselers
-baselers$age[1:20]
-```
-
-```{r, eval = F}
-# Access education column from baselers
-baselers$education
-```
-
-```{r, echo = F}
-# Access education column from baselers
-baselers$education[1:10]
-```
-
-]
-
-.pull-right45[
-  <br><br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
-  ]
-
----
-
-.pull-left45[
-
-# Change/Add via <high>`$`</high>
-
-```{r, eval = T}
-# Divide income by 1000
-baselers$income <- baselers$income / 1000
-
-# inspect baselers
-baselers
-```
-
-]
-
-.pull-right45[
-  <br><br><br>
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
-  ]
-
----
-
-# `vector`
-
-.pull-left45[
-
-1 - R's <high>basic and, in a way, only data container</high>. 
-<br><br>
-2 - Can contain only a <high>single type of data</high> and missing values. 
-<br><br>
-3 - Data types
-
-&emsp; <high>`numeric`</high> - All numbers<br>
-&emsp; <high>`character`</high> - All characters (e.g., names)<br>
-&emsp; <high>`logical`</high> - `TRUE` or `FALSE`<br>
-&emsp; ...<br>
-&emsp; <high>`NA`</high> - missing values<br>
-
-]
-
-.pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector.png"></img>
-  ]
-
-
----
-
-# Select/Change/(Add) via `[ ]`
-
-.pull-left45[
-
-```{r, eval = F}
-# extract vector containing age
-age <- baselers$age
-age
-```
-
-```{r, echo = F}
-# extract vector containing age
-age <- baselers$age
-age[1:9]
-```
-
-```{r, eval = T}
-# select value
-age[2]
-```
-
-```{r, eval = F}
-# change value
-age[2] <- 100
-age
-```
-
-```{r, echo = F}
-# change value
-age[2] <- 100
-age[1:9]
-```
-
-<br>
-Find more info on indexing [here](http://rspatial.org/intr/rst/4-indexing.html).
-
-]
-
-.pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector.png"></img>
-  ]
-
-
----
-
-# Data types: `numeric`
-
-.pull-left45[
-
-`numeric` vectors are used to store numbers and only numbers.
-
-```{r, eval = F}
-baselers$age
-```
-
-```{r, echo = F}
-# extract a numeric vectors
-baselers$age[1:9]
+# Access age column from basel
+options(max.print=14,width = 40,tibble.print_max = 3,tibble.width=40)
 ```
 
 ```{r}
-# evaluate class
-class(baselers$age)
+# Extrahiere die Variable Alter
+basel$alter
 
-# is age numeric?
-is.numeric(baselers$age)
+# Extrahiere die Variable Bildung
+basel$bildung
 ```
 
 ]
 
+.pull-right45[
+  <br><br><br>
+  <img src="image/data_frame.png"></img>
+  ]
+
+---
+
+.pull-left45[
+
+# Verändern mit <high>`$`</high>
+
+```{r, eval = T}
+# Teile die Variable einkommen durch 1000
+basel$einkommen <- basel$einkommen / 1000
+
+# zeige data frame
+basel
+```
+
+]
+
+.pull-right45[
+  <br><br><br>
+  <img src="image/data_frame.png"></img>
+  ]
+
+---
+
+.pull-left45[
+
+# `vector`
+
+<ul>
+  <li class="m1"><span>R's <high>primärer Daten-Container</high></span></li>
+  <li class="m2"><span>Kann nur eine einzelne <high>Daten-Klasse</high> beinhalten (und fehlende Werte).</span></li>
+  <li class="m3"><span>Daten-Klassen<br><br>
+  <ul class="level">
+    <li><span><highm>numeric</highm> - Alle Zahlen</span></li>
+    <li><span><highm>character</highm> - Alle Zeichen (e.g., Namen)</span></li>
+    <li><span><highm>logical</highm> - <mono>TRUE</mono> oder <mono>FALSE</mono></span></li>
+    <li><span>...</span></li>
+    <li><span><highm>NA`</highm> - fehlende Werte</span></li>
+  </ul>
+  </span></li>
+</ul>
+
+
+
+]
+
 .pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
+
+  <br><br><br>
+
+  <img src="image/vector.png"></img>
   ]
 
 
 ---
 
-# Data types: `character`
+.pull-left45[
+
+# Zugriff / Ändern via `[ ]`
+
+```{r, eval = F}
+# Extrahiere die Variable Alter
+alter <- basel$alter
+alter
+```
+
+```{r, echo = F}
+# Extrahiere die Variable Alter
+alter <- basel$alter[1:10]
+alter
+```
+
+```{r, eval = T}
+# Extrahiere zweiten Wert
+alter[2]
+```
+
+```{r, eval = F}
+# Ändere zweiten Wert
+alter[2] <- 100
+alter
+```
+
+Merh info [hier](http://rspatial.org/intr/rst/4-indexing.html).
+
+]
+
+.pull-right4[
+
+  <br><br><br>
+
+  <img src="image/vector.png"></img>
+  ]
+
+
+---
+
+# Datentyp: `numeric`
 
 .pull-left45[
 
-`character` vectors are used to store data represented by <high>letters and symbols, and all other data</high>. 
-
-You can always recognise character vectors by <high>quotation marks " "</high> 
+<highm>numeric</highm> Vektoren <high>beinhalten Zahlen</high> und nur Zahlen.
 
 ```{r, eval = F}
-baselers$sex
+# Extrahiere die Variable Alter
+basel$alter
 ```
 
 ```{r, echo = F}
 # extract a numeric vectors
-baselers$sex[1:8]
+basel$alter[1:10]
+```
+
+```{r}
+# Zeige die Klasse von Alter
+class(basel$alter)
+
+# Ist Alter numeric
+is.numeric(basel$alter)
+```
+
+]
+
+.pull-right4[
+  <img src="image/vector_types_numeric.png"></img>
+  ]
+
+
+---
+
+# Datentyp: `character`
+
+.pull-left45[
+
+<highm>character</highm> Vektoren <high>beinhalten alle Zeichen</high> um die herum <high>Anführungszeichen</high> stehen.
+
+```{r, eval = F}
+# Extrahiere die Variable Geschlecht
+basel$geschlecht
+```
+
+```{r, echo = F}
+# Extrahiere die Variable Geschlecht
+basel$geschlecht[1:8]
 ```
 
 ```{r, eval = F}
-baselers$education
+# Extrahiere die Variable Bildung
+basel$bildung
 ```
 
 ```{r, echo = F}
 # extract a numeric vectors
-baselers$education[1:4]
+basel$bildung[1:8]
 ```
 
 
 ]
 
 .pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
+  <img src="image/vector_types_character.png"></img>
   ]
+
 
 
 ---
 
-# Data types: `character`
+# Datentyp: `character`
 
 .pull-left45[
 
-`character` vectors are used to store data represented by <high>letters and symbols, and all other data</high>. 
-
-You can always recognise character vectors by <high>quotation marks " "</high> 
+<highm>character</highm> Vektoren <high>beinhalten alle Zeichen</high> um die herum <high>Anführungszeichen</high> stehen.
 
 ```{r, eval = F}
-baselers$age
+# Extrahiere die Variable Alter
+basel$alter
 ```
 
 ```{r, echo = F}
 # extract a numeric vectors
-baselers$age[1:8]
+basel$alter[1:10]
 ```
 
 ```{r, eval = F}
-# convert age to character
-as.character(baselers$age)
+# Wangle Alter in character um
+as.character(basel$alter)
 ```
 
 ```{r, echo = F}
-# convert age to character
-as.character(baselers$age[1:9])
+# Wangle Alter in character um
+as.character(basel$alter[1:10])
 ```
 
 ]
 
 .pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
+  <img src="image/vector_types_character.png"></img>
   ]
 
 
 ---
 
-# Data types: `logical`
+# Datentyp: `logical`
 
 .pull-left45[
 
-`logical` vector are used to <high>*slice* data</high> aka to select elements or rows. `logical` are typically created from other vectors via <high>logical comparisons</high>. 
+<highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
 
 ```{r, eval = F}
-# which sex values are male?
-baselers$sex == "male"
+# Welche Werte in Geschlecht sind M
+basel$geschlecht == "M"
 ```
 
 ```{r, echo = F}
-# which sex values are male?
-baselers$sex[1:8] == "male"
+# Welche Werte in Geschlecht sind M
+basel$geschlecht[1:10] == "M"
 ```
 
 ```{r, eval = F}
+# Welche Werte in Alteer sind kleiner 30
+basel$alter < 30
+```
+
+```{r, echo = F}
 # which ages are less than 30?
-baselers$age < 30
-```
-
-```{r, echo = F}
-# which ages are less than 30?
-baselers$age[1:9] < 30
+basel$alter[1:10] < 30
 ```
 
 ]
 
 .pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
+  <img src="image/vector_types_logical.png"></img>
   ]
+
 
 ---
 
-# Data types: `logical`
+# Datentyp: `logical`
 
 .pull-left45[
 
-`logical` vector are used to <high>*slice* data</high> aka to select elements or rows. `logical` are typically created from other vectors via <high>logical comparisons</high>. 
+<highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
 
-<u>Logical operators</u>
+<u>Logische Operatoren</u>
 
-<high>`==`</high> - is equal to<br>
-<high>`<`</high>, <high>`>`</high> - smaller/greater than<br>
-<high>`<=`</high>, <high>`>=`</high> - smaller/greater than or equal<br>
-<high>`&`</high>, <high>`&&`</high> - logical AND<br>
-<high>`|`</high>, <high>`||`</high> - logical OR<br>
+<high>`==`</high> - ist gleich<br>
+<high>`<`</high>, <high>`>`</high> - kleiner/grösser als<br>
+<high>`<=`</high>, <high>`>=`</high> - kleiner/grösser als oder gleich<br>
+<high>`&`</high>, <high>`&&`</high> - logisches UND<br>
+<high>`|`</high>, <high>`||`</high> - logisches ODER<br>
 
 ]
 
 .pull-right4[
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
+  <img src="image/vector_types_logical.png"></img>
   ]
 
 ---
 
 <div class="center_text">
   <span>
-  Data I/O
+  Input/Ouput
   </span>
 </div> 
 
 
 ---
 
-# Raw (structured) Data
+# Datentypen ausserhalb von R
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none;" width="95%">
+<col width=30%>
+<col width=30%>
+<col width=30%>
+<tr>
+  <td bgcolor = 'white' style='vertical-align:top'>
+    <ul>
+      <li class="m1"><span><high>Strukturierte Daten</high>
+        <ul class="level">
+        <li><span>Delimiter getrennt: <mono>.csv</mono>, <mono>.txt</mono>, etc.</span></li>
+        <li><span>Relationale Datenbanken: <mono>SQL</mono></span></li>
+        </ul>
+        <br><img src="image/structured.png" height=250px>
+        </span></li>
+      </ul>
+    </td>
+  <td bgcolor = 'white' style='vertical-align:top'>
+    <ul>
+      <li class="m2"><span><high>Semi-strukturierte Daten</high>
+        <ul class="level">
+        <li><span>Markup: <mono>.xml</mono>, <mono>.xls</mono>, <mono>.html</mono> etc.</span></li>
+        <li><span>Non markup: <mono>JSON</mono>, <mono>MongoDB</mono></span></li>
+        </ul>
+        <br><img src="image/html.png" height=250px>
+        </span></li>
+      </ul>
+    </td>
+  <td bgcolor = 'white' style='vertical-align:top'>
+    <ul>
+      <li class="m3"><span><high>Unstrukturierte Daten</high>
+        <ul class="level">
+        <li><span>z.B. Text</span></li>
+        </ul>
+        <br><br><br><br><br2><img src="image/text.png" height=250px>
+        </span></li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+---
+
+# Delimiter getrennte Daten 
 
 .pull-left45[
 
-<high>delim-separated data</high>
-*.csv, .txt, etc.*
+<ul>
+  <li class="m1"><span><high>Delimiter</high> separieren die Spalten.</span></li>
+  <li class="m1"><span>Meist als <high>lokale Textdatei</high> vorliegend.</span></li>
+  <li class="m1"><span><high>Datenklassen</high> werden inferiert.</span></li>
+</ul>
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+<br>
+<p align="center">
+  <img src="image/readr.png" height=200>
+</p>
 
 ]
 
 .pull-right45[
 
-<high>markup data</high>
-*.xml, .xls, .html, (.json), etc.*
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbootcamp_raw.png">
+<p align="center">
+  <img src="image/structured.png" height=400>
+</p>
 
 ]
 
 ---
 
-# Delim-separated data 
+# Delimiter getrennte Daten 
 
 .pull-left45[
 
-1 - Most typical file format.
-
-2 - Requires <high>delimiter</high> to separate entries. 
+<ul>
+  <li class="m1"><span><high>Delimiter</high> separieren die Spalten.</span></li>
+  <li class="m2"><span>Meist als <high>lokale Textdatei</high> vorliegend.</span></li>
+  <li class="m3"><span><high>Datenklassen</high> werden inferiert.</span></li>
+</ul>
 
 <br>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/PNG/readr.png" height=200>
+  <img src="image/readr.png" height=200>
 </p>
 
 ]
 
 .pull-right45[
 
-<high>delim-separated data</high>
-*.csv, .txt, etc.*
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
-
-]
-
----
-
-# `readr`
-
-`readr` is a `tidyverse` package that provides convenient functions to **read in** *flat* (non-nested) data files into data frames (`tibble`s to be precise):
-
-.pull-left3[
-<br>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/PNG/readr.png" height=200>
-</p>
-] 
-
-.pull-right65[
-<br>
-```{r, eval=F}
-# Importing data from a file
-
-data <- read_csv(file, ...)   # comma-delimited
-data <- read_csv2(file, ...)  # semicolon-delimeted
-data <- read_delim(file, ...) # arbitrary-delimited
-
-# Writing a data frame to a file
-
-write_csv(data_object, path, ...)    # comma-delimited
-write_delim(data_object, path, ...)  # arbitrary-delimited
+```{r, echo = F, message=F}
+require(tibble)
+options(tibble.width = 35, tibble.max_extra_cols = 0, tibble.print_max = 3,
+        tibble.print_min = 5)
 ```
+
+
+```{r, message = F}
+# Lese Basel Datensatz ein
+basel <- read_csv("1_Data/basel.csv")
+
+# Benutze expliziten Delimiter
+basel <- read_delim("1_Data/basel.csv",
+                   delim = ",")
+basel
+
+```
+
 ]
 
 ---
 
-# Finding the file path
+# Den Filepath finden
 
-.pull-left4[
+.pull-left45[
 
-1 - Identify the file path using the <high>auto-complete</high>.  
-
-2 - Initiate auto-complete and browse through the folder structure by placing the cursor between two quotation marks and using the <high>tab key</high>.
+<ul>
+  <li class="m1"><span>Finde den Filepath mittels RStudio's <high>Auto-Complete</high>.</span></li>
+  <li class="m2"><span>Setze den Cursor zwischen Anführungszeichen und drücke <highm>Tab</highm>.</span></li>
+</ul>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tab.png" height="80px"></img>
+  <img src="image/tab.png" height="150px"></img>
 </p>
-
-3 - Auto-complete begins with the project folder - <high>place your data inside your project folder!</high>
 
 ] 
 
-.pull-right55[
+.pull-right45[
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/load_baselers_ss.jpg"></img>
+<p align="center">
+  <img src="image/auto_complete_1.png"></img>
+</p>
 
 ]
 
 ---
 
-# Identifying the delimiter
+# Den Filepath finden
 
-.pull-left5[
+.pull-left45[
 
-1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
+<ul>
+  <li class="m1"><span>Finde den Filepath mittels RStudio's <high>Auto-Complete</high>.</span></li>
+  <li class="m2"><span>Setze den Cursor zwischen Anführungszeichen und drücke <highm>Tab</highm>.</span></li>
+</ul>
 
-2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWrangler* (Mac), *WordPad* (Windows).
-<br><br><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/find_data.png">
+<p align="center">
+  <img src="image/tab.png" height="150px"></img>
+</p>
 
-]
+] 
 
 .pull-right45[
 
-<center>`baselers.csv`
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
-
-]
-
----
-
-# Identifying the delimiter
-
-.pull-left5[
-
-1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
-
-2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
-<br><br><br>
-```{r, eval=F}
-# Read with explicit column names
-baselers <-read_delim(file = ".../baselers.csv",
-                      delim = c(","))
-```
-
-]
-
-.pull-right45[
-
-<center>`baselers.csv`
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
-
-]
-
-
----
-
-# Handling headers
-
-.pull-left5[
-
-1 - `readr`- functions typically expect the <high>column names</high> in the first line.
-
-2 - If no column names are available, use the <high>`col_names`-argument</high> to provide them.
-<br><br><br>
-```{r, eval=F}
-# Read with explicit column names
-baselers <- read_csv(file = ".../baselers.csv",
-                     col_names = c("id",
-                                  "age",
-                                   ...))
-```
-
-]
-
-.pull-right45[
-
-<center>`baselers.csv`
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+<p align="center">
+  <img src="image/auto_complete_2.png"></img>
+</p>
 
 ]
 
 ---
 
-# Handling data types
+# Inferierte Datentypen 
 
-.pull-left5[
+.pull-left45[
 
-Reading in data, <high> `readr` infers the type of data </high> for each column. 
 
 ```{r}
-# Read baselers
-read_csv(file = "1_Data/baselers.csv")
+# Lese Basel Datensatz ein
+basel <- read_csv("1_Data/basel.csv")
 ```
 
 ]
 
 .pull-right45[
 
-<center>`baselers.csv`
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+<img src="image/structured.png"></image>
 
 ]
 
 ---
 
-# Handling data types
-
-.pull-left5[
-
-Incorrect data types can be fixed. Typically this involves:
-
-1 - <high>removing character elements</high> from otherwise numeric variables.<br><br2>
-2 - Setting <high>explicit `NA` strings</high> using the `na`-argument.<br><br2>
-3 - Re-running <high>`type_convert`</high>.<br><br>
-
-```{r, eval = F}
-# Read baselers
-baseslers <- read_csv(file = ".../baselers.csv",
-                      na = c('NA'))
-
-# Try to fix incorrect data types
-baselers <- type_convert(baselers)
-```
-
-]
-
-.pull-right45[
-
-<center> `baselers.csv`
-
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
-
-]
-
----
-
-# Other data
-
-R provides <high>read and write functions</high> for practically all data file formats. See [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+# Inferierte Datentypen 
 
 .pull-left45[
-### `readr` <img src="http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png" width="50", align="right"> 
+
+Manchmal ist es nötig `readr` etwas auf die Sprünge zu helfen, damit <high>Datentypen korrekt inferiert</high> werden. 
+
+```{r, eval = F}
+# Setze Symbol für fehlende Werte
+basel <- read_csv("1_Data/basel.csv",
+                  na = c('NA'))
+
+# Re-inferiere Datentypen
+basel <- type_convert(basel)
+```
+]
+
+.pull-right45[
+
+<img src="image/structured.png"></image>
+
+]
+
+---
+
+# Relationale Datenbanken <font style="font-size: 16px">siehe <a href="https://db.rstudio.com/">db.rstudio.com</a></font>
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>R kann direkt <high>auf Datenbanken arbeiten</high>: <mono>MySQL</mono>, <mono>MariaDB</mono>, <mono>BigQuery</mono>, <mono>Redshift</mono>, etc.<br><font style="font-size:16px">Siehe <a href="https://db.rstudio.com/databases">hier</a>.</font></span></li>
+  <li class="m2"><span><mono>dplyr</mono> wird in z.B. <high>automatisch übersetzt.</high></span></li>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r}
+# Verbinge mit MySQL Datenbank
+con <- DBI::dbConnect(
+  RMySQL::MySQL(), 
+  dbname = "sql7314906",
+  host = "sql7.freesqldatabase.com",
+  user = "sql7314906",
+  password = "eB5nBtSKRz")
+
+# Zeige Tabellen
+DBI::dbListTables(con)
+
+```
+
+]
+
+
+---
+
+# Relationale Datenbanken <font style="font-size: 16px">siehe <a href="https://db.rstudio.com/">db.rstudio.com</a></font>
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>R kann direkt <high>auf Datenbanken arbeiten</high>: <mono>MySQL</mono>, <mono>MariaDB</mono>, <mono>BigQuery</mono>, <mono>Redshift</mono>, etc.<br><font style="font-size:16px">Siehe <a href="https://db.rstudio.com/databases">hier</a>.</font></span></li>
+  <li class="m2"><span><mono>dplyr</mono> wird in z.B. <high>automatisch übersetzt.</high></span></li>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F, message=F}
+require(tibble)
+options(tibble.width = 40, tibble.max_extra_cols = 0, tibble.print_max = 3,
+        tibble.print_min = 5)
+```
+
+```{r}
+# Extrahiere Tabelle Customers
+kunden <- tbl(con, "customers")
+kunden
+
+```
+
+]
+
+---
+
+# Relationale Datenbanken <font style="font-size: 16px">siehe <a href="https://db.rstudio.com/">db.rstudio.com</a></font>
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>R kann direkt <high>auf Datenbanken arbeiten</high>: <mono>MySQL</mono>, <mono>MariaDB</mono>, <mono>BigQuery</mono>, <mono>Redshift</mono>, etc.<br><font style="font-size:16px">Siehe <a href="https://db.rstudio.com/databases">hier</a>.</font></span></li>
+  <li class="m2"><span><mono>dplyr</mono> wird in z.B. <high>automatisch übersetzt.</high></span></li>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F, message=F}
+require(tibble)
+options(tibble.width = 40, tibble.max_extra_cols = 0, tibble.print_max = 3, max.print=10)
+```
+
+```{r, warning=F}
+# Extrahiere Tabelle Customers
+kunden <- tbl(con, "customers")
+
+# Extrahiere CompanyNamer Variable
+kunden %>% pull(CompanyName)
+
+```
+
+]
+
+
+---
+
+# Semi-strukturierte Daten <font style="font-size: 16px">mit <a href="https://github.com/r-lib/xml2"><mono>xml2</mono></a> und <a href="https://github.com/hadley/rvest"><mono>rvest</mono></a></font> 
+
+```{r, echo = F, message=F}
+library(xml2) ; library(rvest) ; library(tibble)
+options(max.print=100, width=220,tibble.width = 90,tibble.print_min = 10)
+```
+
+```{r, message=F}
+# Tabelle laden von Wikipedia (mit xml2 und rvest)
+read_html("https://en.wikipedia.org/wiki/R_(programming_language)") %>%
+  html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>%
+  html_table() %>% as_tibble()
+```
+
+
+---
+
+# Other data <font style="font-size: 16px">siehe <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">rio</a></font>
+
+.pull-left45[
+### `readr` <img src="image/readr.png" width="50", align="right"> 
 ```{r, eval = F}
 # read fixed width files (can be fast)
 data <- read_fwf(file, ...)
@@ -797,7 +800,7 @@ data <- read_log(file, ...)
 
 ```
 
-### `haven` <img src="http://haven.tidyverse.org/logo.png" width="50" align="right">
+### `haven` <img src="image/haven.png" width="50" align="right">
 ```{r, eval = F}
 # read SAS's .sas7bat and sas7bcat files
 data <- read_sas(file, ...)
@@ -810,7 +813,7 @@ data <- read_sav(file, ...)
 ]
 
 .pull-right45[
-### `readxl` <img src="https://www.rstudio.com/wp-content/uploads/2017/05/readxl-259x300.png" width="50" align="right">
+### `readxl` <img src="image/readxl.png" width="50" align="right">
 ```{r, eval = F}
 # read Excel's .xls and xlsx files
 data <- read_excel(file, ...)
@@ -834,6 +837,6 @@ data <- jsonlite::read_json(file, ...)
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Data/Data_practical.html">Practical</a></h1>
+<h1><a href="https://therbootcamp.github.io/EDA_2019CSS/_sessions/Data/Data_practical.html">Practical</a></h1>
 
 
