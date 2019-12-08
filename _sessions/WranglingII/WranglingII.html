@@ -207,7 +207,7 @@ studie %&gt;%
 
 
 ```r
-# Original Daten (wide)
+# Original Daten (long)
 studie_long
 ```
 
@@ -248,7 +248,7 @@ data %&gt;%
 
 
 ```r
-# Original Daten (wide)
+# Original Daten (long)
 studie_long
 ```
 
@@ -270,7 +270,7 @@ studie_long
 
 
 ```r
-# wide zu long
+# long zu wide
 studie_long %&gt;% 
   pivot_wider(names_from = "zeitpunkt",
                values_from = "rating")
@@ -321,43 +321,6 @@ library(tidyverse)
 
 ---
 
-# Die Pipe!  &lt;high&gt;`%&gt;%`&lt;/high&gt;
-
-.pull-left4[
-
-`dplyr` macht intensiven Gebrauch eines neuen Operator genannt "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt;&lt;br&gt;
-
-Die "Pipe" &lt;high&gt;`%&gt;%`&lt;/high&gt; lesen wir als "und dann..."
-
-&lt;br&gt;
-
-
-```r
-# Start mit data
-data %&gt;% # und dann...
-  
-AKTION_1 %&gt;% # und dann...
-  
-AKTION_2 %&gt;% # und dann...
-  
-AKTION_3 %&gt;% # und dann...
-```
-
-]
-
-.pull-right55[
-
-&lt;p align="center"&gt;
-  &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"&gt;&lt;br&gt;
-  (aber %&gt;% ist eine!); &lt;font style="font-size:10px"&gt; &lt;a href="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg"&gt;wikipedia&lt;/a&gt;&lt;/font&gt;
-&lt;/p&gt;
-
-]
-
-
-
-
----
 
 # `summarise()`
 
