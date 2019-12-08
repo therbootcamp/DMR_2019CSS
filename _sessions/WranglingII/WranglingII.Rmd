@@ -65,7 +65,7 @@ options(width=110)
 options(digits = 4)
 library(tidyverse)
 library(basel)
-basel <- read_csv("../../1_Data/basel.txt")
+basel <- read_csv("../../1_Data/basel.csv")
 studie <- tibble(id = c(1, 2),
                  medikament = c("medikament", "plazebo"),
                  baseline = c(3, 4),
@@ -211,7 +211,7 @@ studie_long <- studie %>%
 
 
 ```{r}
-# Original Daten (wide)
+# Original Daten (long)
 studie_long
 ```
 
@@ -240,7 +240,7 @@ data %>%
 <br>
 
 ```{r}
-# Original Daten (wide)
+# Original Daten (long)
 studie_long
 ```
 
@@ -251,7 +251,7 @@ studie_long
 <br>
 
 ```{r}
-# wide zu long
+# long zu wide
 studie_long %>% 
   pivot_wider(names_from = "zeitpunkt",
                values_from = "rating")
@@ -295,43 +295,6 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 ---
 
-# Die Pipe!  <high>`%>%`</high>
-
-.pull-left4[
-
-`dplyr` macht intensiven Gebrauch eines neuen Operator genannt "Pipe" <high>`%>%`</high><br>
-
-Die "Pipe" <high>`%>%`</high> lesen wir als "und dann..."
-
-<br>
-
-```{r, eval = FALSE, echo = TRUE}
-# Start mit data
-data %>% # und dann...
-  
-AKTION_1 %>% # und dann...
-  
-AKTION_2 %>% # und dann...
-  
-AKTION_3 %>% # und dann...
-
-```
-
-]
-
-.pull-right55[
-
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"><br>
-  (aber %>% ist eine!); <font style="font-size:10px"> <a href="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg">wikipedia</a></font>
-</p>
-
-]
-
-
-
-
----
 
 # `summarise()`
 

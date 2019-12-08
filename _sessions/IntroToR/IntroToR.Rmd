@@ -85,7 +85,7 @@ GPL guarantees end users the freedom to run, study, share and modify the softwar
 --->
 
 
-# R is a programming language
+# R ist eine Programmiersprache
 
 Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktionen für verschiedenste Ziele spezifiziert. Programmiersprachen bestehen aus **instruktionen für einen Computer** und werden genutzt um **Algorithmen zu implementieren**.
 
@@ -101,8 +101,8 @@ Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktione
 ### Implementation in R
 ```{r, eval=F}
 data <- read.table(link)
-variables <- data[,c('group','variable')]
-analysis <- lm(variable ~ group, data = variables)
+variables <- data[,c('gruppe','variable')]
+analysis <- lm(variable ~ gruppe, data = variables)
 summary(analysis)
 ```
 ]
@@ -232,14 +232,14 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 <div class="center_text">
   <span>
-  10 grundlegende R lessons
+  10 grundlegende R Lektionen
   </span>
 </div> 
 
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -259,7 +259,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -291,7 +291,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -326,7 +326,7 @@ eins_zwei_drei
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -358,7 +358,7 @@ mean(eins_zwei_drei)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -393,7 +393,7 @@ ergebnis * 10
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -432,7 +432,7 @@ eins_zwei_drei
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -472,7 +472,7 @@ eins_zwei_drei
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -508,7 +508,7 @@ und_vier
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -533,7 +533,7 @@ und_vier
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -571,7 +571,7 @@ mean(x = eins_zwei_drei)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -606,7 +606,7 @@ mean(c(1, 2, 3, NA))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -642,7 +642,7 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -673,7 +673,7 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -704,7 +704,7 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -732,7 +732,7 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -760,7 +760,7 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -795,7 +795,7 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -824,7 +824,7 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -859,7 +859,7 @@ mean(c(1, 2, 3, NA), na.rm = "ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -894,7 +894,7 @@ class("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -928,7 +928,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -953,7 +953,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -978,7 +978,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1012,7 +1012,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1052,7 +1052,7 @@ library(tidyverse)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1095,7 +1095,7 @@ lenth(x = 1)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1129,7 +1129,7 @@ lenth(x = 1)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1157,7 +1157,7 @@ lenth(x = 1)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1188,7 +1188,7 @@ Shortcut für <high>führe Chunk wiederholt aus</high>:<br><br2><font size = 6> 
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>
@@ -1217,7 +1217,7 @@ Shortcut für <high>führe Chunk wiederholt aus</high>:<br><br2><font size = 6> 
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 <u>Syntax</u>

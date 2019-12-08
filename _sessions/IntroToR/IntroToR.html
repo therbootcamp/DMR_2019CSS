@@ -3,7 +3,7 @@
   <head>
     <title>Einführung in R(Studio)</title>
     <meta charset="utf-8" />
-    <meta name="author" content="R for Data Science  The R Bootcamp @ CSS" />
+    <meta name="author" content="Explorative Datenanalyse mit R  The R Bootcamp @ CSS" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Einführung in R(Studio)
-### R for Data Science<br> <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a> <br> <a href='https://therbootcamp.github.io/EDA_2019Feb/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### Explorative Datenanalyse mit R<br> <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a> <br> <a href='https://therbootcamp.github.io/EDA_2019Feb/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
 ### Dezember 2019
 
 ---
@@ -62,7 +62,7 @@ GPL guarantees end users the freedom to run, study, share and modify the softwar
 ---&gt;
 
 
-# R is a programming language
+# R ist eine Programmiersprache
 
 Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktionen für verschiedenste Ziele spezifiziert. Programmiersprachen bestehen aus **instruktionen für einen Computer** und werden genutzt um **Algorithmen zu implementieren**.
 
@@ -79,8 +79,8 @@ Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktione
 
 ```r
 data &lt;- read.table(link)
-variables &lt;- data[,c('group','variable')]
-analysis &lt;- lm(variable ~ group, data = variables)
+variables &lt;- data[,c('gruppe','variable')]
+analysis &lt;- lm(variable ~ gruppe, data = variables)
 summary(analysis)
 ```
 ]
@@ -210,14 +210,14 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 &lt;div class="center_text"&gt;
   &lt;span&gt;
-  10 grundlegende R lessons
+  10 grundlegende R Lektionen
   &lt;/span&gt;
 &lt;/div&gt; 
 
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -237,7 +237,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -269,7 +269,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -314,7 +314,7 @@ eins_zwei_drei
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -351,7 +351,7 @@ mean(eins_zwei_drei)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -391,7 +391,7 @@ ergebnis * 10
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -446,7 +446,7 @@ eins_zwei_drei
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -496,7 +496,7 @@ eins_zwei_drei
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -536,7 +536,7 @@ und_vier
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -561,7 +561,7 @@ und_vier
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -615,7 +615,7 @@ mean(x = eins_zwei_drei)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -642,7 +642,7 @@ mean()
 ```
 
 ```
-## Error in mean.default(): argument "x" is missing, with no default
+## Error in mean.default(): Argument "x" fehlt (ohne Standardwert)
 ```
 
 ```r
@@ -666,7 +666,7 @@ mean(c(1, 2, 3, NA))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -693,7 +693,7 @@ mean()
 ```
 
 ```
-## Error in mean.default(): argument "x" is missing, with no default
+## Error in mean.default(): Argument "x" fehlt (ohne Standardwert)
 ```
 
 ```r
@@ -718,7 +718,7 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -764,7 +764,7 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -806,7 +806,7 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -835,7 +835,7 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -864,7 +864,7 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -920,7 +920,7 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -950,7 +950,7 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -995,14 +995,14 @@ mean(c(1, 2, 3, NA), na.rm = "ABCD")
 ```
 
 ```
-## Error in if (na.rm) x &lt;- x[!is.na(x)]: argument is not interpretable as logical
+## Error in if (na.rm) x &lt;- x[!is.na(x)]: Argument kann nicht als logischer Wert interpretiert werden
 ```
 
 ]
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1054,7 +1054,7 @@ class("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1099,7 +1099,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1124,7 +1124,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1149,7 +1149,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1183,7 +1183,7 @@ as.logical("ABCD")
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1225,7 +1225,7 @@ library(tidyverse)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1275,14 +1275,14 @@ lenth(x = 1)
 ```
 
 ```
-## Error in lenth(x = 1): could not find function "lenth"
+## Error in lenth(x = 1): konnte Funktion "lenth" nicht finden
 ```
 
 ]
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1316,7 +1316,7 @@ lenth(x = 1)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1344,7 +1344,7 @@ lenth(x = 1)
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1375,7 +1375,7 @@ Shortcut für &lt;high&gt;führe Chunk wiederholt aus&lt;/high&gt;:&lt;br&gt;&lt
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1404,7 +1404,7 @@ Shortcut für &lt;high&gt;führe Chunk wiederholt aus&lt;/high&gt;:&lt;br&gt;&lt
 
 ---
 
-# 10 grundlegende R lessons
+# 10 grundlegende R Lektionen
 
 .pull-left4[
 &lt;u&gt;Syntax&lt;/u&gt;
@@ -1492,7 +1492,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
