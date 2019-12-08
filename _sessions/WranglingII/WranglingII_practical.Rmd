@@ -54,7 +54,7 @@ basel <- read_csv("../../1_Data/basel.csv")
 
 # {.tabset}
 
-## Overview
+## Überblick
 
 In diesem Practical wirst du das Transformieren, Gruppieren und Analysieren von Daten mit `dplyr` üben.
 
@@ -63,7 +63,7 @@ Am Ende des Practicals wirst du wissen wie man:
 1. Daten transformiert
 2. Daten gruppiert und deskriptive Statistiken berechnen kann
 
-## Tasks
+## Aufgaben
 
 ### A - Setup
 
@@ -77,7 +77,7 @@ Am Ende des Practicals wirst du wissen wie man:
 ## Wrangling II Practical
 ```
 
-3. Speichere es das neue Skript unter dem Namen `wrangling_II_practical.R` in den `2_Code` Ordner.
+3. Speichere das neue Skript unter dem Namen `wrangling_II_practical.R` im `2_Code` Ordner.
 
 4. Lade das `tidyverse` Paket.
 

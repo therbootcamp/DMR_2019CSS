@@ -1,11 +1,10 @@
 ---
 title: "Data"
-subtitle: ""
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>R for Data Science</font><br>
-      <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+      <font style='font-style:normal'>Explorative Datenanalyse mit R @ CSS</font><br>
+      <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -29,22 +28,26 @@ output:
   html_document:
     css: practical.css
     self_contained: no
+
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      eval = TRUE,
-                      message = FALSE,
-                      warning = FALSE,
-                      error = FALSE)
+```{r setup, echo = FALSE, message=F, warning=F}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
 
 options(digits = 3)
-#devtools::install_github("therbootcamp/baselers")
-library(baselers)
+
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(readxl)
+
+basel <- read_csv("../../1_Data/basel.csv")
 ```
 
 <p align="center" width="100%">
@@ -55,387 +58,393 @@ library(readxl)
 
 # {.tabset .tabset-fade}
 
-## Overview
+## Überblick
 
-In this practical you'll learn how to work with basic data objects and functions. By the end of this practical you will know how to:
+In diesem Practical wirst du das Transformieren, Gruppieren und Analysieren von Daten mit `dplyr` üben.
 
-1. Create vectors of different types using `c()`
-2. Understand the three main vector classes numeric, character, and logical using `class()` 
-3. Calculate basic descriptive statistics using `mean()`, `median()`, `table()` (and more!)
-4. Read and write data of various data formats using `read_csv()` and others 
-5. Access and change vectors from data frames using `$`
-6. Create `data.frames` and `tibbles` using `data.frame()` and `tibble()`
+Am Ende des Practicals wirst du wissen wie man:
 
-## Tasks
+1. Daten transformiert
+2. Daten gruppiert und deskriptive Statistiken berechnen kann
+
+## Aufgaben
 
 ### A - Getting setup
 
-1. Open your `BaselRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that each of the datasets listed in the Datasets section above lie in your `1_Data` folder.
+1. Öffne dein `TheRBootcamp` R project. Es sollte die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
 
-2. Open a new R script and save it as a new file called `data_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. 
+2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Daten Practical" als Kommentare an den Anfang des Skripts.
 
-3. Load the following package(s) with `library()`. If you don't have any installed on your computer, look at the Functions section above for installation instructions.
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATUM
+## Daten Practical
+```
 
-```{r, eval = TRUE, echo = TRUE}
-# Load packages
+3. Speichere das neue Skript unter dem Namen `daten_practical.R` im `2_Code` Ordner.
+
+4. Lade die `tidyverse`, `haven`, und `readxl` Pakete.
+
+```{r, eval = FALSE, echo = TRUE}
+# Pakete laden
+library(tidyverse)     
+```
+
+```{r}
 library(tidyverse)
-library(haven)
-library(readxl)
 ```
 
 
-### B - Creating vectors
+### B - Kreiere Vektoren
 
-The table below shows results from a (fictional) survey of 5 Baselers. In the first part of this practical, you will convert this table to R objects and then analyse them!
+Die folgende Tabelle zeigt die Daten von fünf hypothetischenn Baselern. Im ersten Teil dieses Practicals ist es deine Aufgabe diese Tabelle nachzubauen und anschliessend zu analysieren. Wann immmer du `XX` siehst, bedeutet das, dass etwas an dessen Stelle eintragen sollst. 
 
-*5 Baselers Table*
+*5 Baseler*
 
 ```{r, echo = FALSE, eval = TRUE}
-data <- baselers[1:5, c("id", "sex", "age", "height", "weight")] %>%
+data <- basel[1:5, c("id", "geschlecht", "alter", "groesse", "gewicht")] %>%
   mutate_if(is.numeric, round, 0) %>%
-  mutate(sex = case_when(sex == "male" ~'m',
-                         sex == "female" ~ 'f'))
+  mutate(sex = case_when(geschlecht == "m" ~ 'M',
+                         geschlecht == "f" ~ 'F'))
 
 data %>% mutate_all(replace_na, " ") %>% 
   knitr::kable(format = "markdown", caption = "Data from 5 baselers")
 ```
 
-1. Create a numeric vector called `id` that shows the id values from the 5 Baselers table. When you finish, print the vector object to see it!
+1. Erstelle einen numerischen Vektor genannt `id`, der die `id` Werte der 5 Baseler Tabelle enthält. Wenn du ihn erstellt hast, printe das Vektor-Objekt. 
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a vector id
-XX <- c(XX, XX, ...)
+# Erstelle Vektor namens id
+XX <- c(XX, XX, XX, XX, XX)
 
-# Print the vector id
+# Printe den Vektor
 XX
 ```
 
 ```{r}
-# Create an id vector 
-id <- 1:5 # shortcut to creating the sequence from 1 to 5
+# Erstelle Vektor namens id
+id <- 1:5 
 
-# Print the vector
+# Printe den Vektor
 id
 ```
 
-2. Using the `class()` function, check the class of your `id` vector. Is it `"numeric"`?
+2. Verwende die Funktion `class()`, um zu überprüfen welche Klasse der `id` Vektor hat. Ist er `numeric`? 
 
 ```{r, eval = FALSE, echo = TRUE}
-# Show the class of an object XX
+# Zeige die Klasse von id
 class(XX)
 ```
 
 ```{r}
-# Show the class of the id vector
+# Zeige die Klasse von id
 class(id)
 ```
 
-3. Using the `length()` function, find out the length of your `id` vector. Does it have length 5? If not, make sure you defined it correctly!
+3. Verwende die `length()` Funktion, um die länge von `id` zu bestimmen. Hat es die Länge 5? Wenn nicht, stelle sicher, dass du den Vektor korrekt definiert hast.
 
 ```{r, eval = FALSE, echo = TRUE}
-# Show the length of the id vector
+# Zeige die Länge des Vektors
 length(XX)
 ```
 
 ```{r}
-# Show the length of the id vector
+# Zeige die Länge des Vektors
 length(id)
 ```
 
-4. Create a character vector called `sex` that shows the sex values from the 5 Baselers table. Make sure to use quotation marks "" to enclose each element to tell R that the data are of type `"character"`! When you finish, print the object to see it!
+4. Kreiere einen Vektor `geschlecht`, der die entsprechenden Werte aus der 5 Baseler Tabelle enthält. Stelle sicher, dass du Anführungszeichen `""` um die einzelnen Elemente setzt, damit R weiss, dass es sich um `character` Werte handelt. Wenn du fertig bist, lasse dir den Vektor anzeigen
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a character vector sex
-XX <- c("XX", "XX", "...")
+# Kreiere Vektor geschlecht 
+XX <- c("XX", "XX", "XX", "XX", "XX")
 ```
 
 ```{r}
-# Create a sex vector 
-sex <- c("m", "m", "f", "m", "m")
+# Kreiere Vektor geschlecht 
+geschlecht <- c("m", "m", "f", "m", "m")
 
-# Print the vector
-sex
+# Zeige den Vektor
+geschlecht
 ```
 
-5. Using the `class()` function, check the class of your `sex` vector. Is it `"character"`?
+5. Verwende wiederum die Funktionen `class()` und `length()`, um zu die Klasse (`character`) und die Länge (5) zu überprüfen? 
 
 ```{r}
-# Show the class of the sex vector
-class(sex)
+# Zeige die Klasse und die Länge von geschlecht
+class(geschlecht)
+length(geschlecht)
 ```
 
-6. Using the `length()` function, find out the length of your `sex` object. Does it have length 5? If not, make sure you defined it correctly!
+6. Führe die selben schritte nun für die Spalten `alter` und `groesse` aus. 
 
 ```{r}
-# Show the length of the sex vector
-length(sex)
+# Kreiere Vektor alter
+alter <- c(44, 65, 31, 27, 24)
+
+# Zeige Vektor alter
+alter
+
+# Zeige Klasse von Vektor alter
+class(alter)
+
+# Zeige Länge von Vektor alter
+length(alter)
+
+# Kreiere Vektor groesse
+groesse <- c(174, 180, 168, 209, 177)
+
+# Zeige Vektor groesse
+groesse
+
+# Zeige Klasse von Vektor groesse
+class(groesse)
+
+# Zeige Länge von Vektor groesse
+length(groesse)
 ```
 
-7. Using the same steps as before, create `age` and `height` vectors from the 5 Baselers table.
+7. Schaue dir die Spalte `gewicht` an. Du wirst sehen, dass sie einen fehlenden Wert beinhaltet. Kreiere einen Vektor `gewicht` mit den selben Schritten wie zuvor. Stelle sicher, dass du den fehlenden Wert als `NA` spezifizierst - ohne Anführungszeichen.
 
 ```{r}
-# Create a age vector 
-age <- c(44, 65, 31, 27, 24)
+# Kreiere Vektor gewicht
+gewicht <- c(113, 75, 56, 934, NA)
 
-# Print the age vector
-age
+# Zeige Vektor gewicht
+gewicht
 
-# Show the class of the age vector
-class(age)
+# Zeige Klasse von Vektor gewicht
+class(gewicht)
 
-# Show the length of the age vector
-length(age)
-
-# Create a height vector 
-height <- c(174, 180, 168, 209, 177)
-
-# Print the height vector
-height
-
-# Show the class of the height vector
-class(height)
-
-# Show the length of the height vector
-length(height)
+# Zeige Länge von Vektor gewicht
+length(gewicht)
 ```
 
-8. Look at the weight column in the 5 Baselers table, you'll notice it contains an missing value. Create a vector called `weight` containing these data, following the same steps as before, making sure to specify the missing value as `NA` (no quotation marks). 
+### C - Kreiere `tibbles`
+
+1. Verwende die Funktion `tibble()`, um einen data frame names `basel` zu erstellen, der die Vektoren enthält, die du gerade erstellt hast: `id`, `alter`, `geschlecht`, `groesse`, und `gewicht`. 
+
+```{r, eval = FALSE, echo = TRUE}
+# Kreiere data frame aus den Vektoren
+XX <- tibble(XX, XX, XX, XX, XX, XX) 
+```
 
 ```{r}
-# Create a weight vector 
-weight <- c(113, 75, 56, 934, NA)
-
-# Print the weight vector
-weight
-
-# Show the class of the weight vector
-class(weight)
-
-# Show the length of the weight vector
-length(weight)
+# Kreiere data frame aus den Vektoren
+basel <- data.frame(id, alter, geschlecht, groesse, gewicht) 
 ```
 
-### C - Functions
-
-1. Using the `table()` function, find out how many males and females are in your `sex` object. You should find `r sum(data$sex == "m")` males and `r sum(data$sex == "f")` females!
+2. Printe den data frame. Enthält er alle Vektoren? Welche Ausmasse (Zeilen, Spalten) hat der data frame?
 
 ```{r}
-# Count types in sex
-table(sex)
+# Print basel
+basel
 ```
 
-2. Using the `mean()` function, calculate the mean `age`. It should be `r mean(data$age)`!
+3. Verwende die Funktion `summary()` um deskriptive Statistiken für die Variablen in `basel` zu erstellen. 
 
 ```{r}
-# Compute mean of age
-mean(age)
+# Zeige deskriptive Statistiken
+summary(basel)
 ```
 
-3. Try calculating the mean value of `sex`. What happens? Why?
+4. Verwende den `$`-Operator, um allein die Variable `alter` zu printen. 
 
-```{r}
-# Compute mean of sex
-mean(sex)
+```{r, eval = F}
+# Printe alter
+basel$XX
 ```
 
-4. Try calculating the mean `weight`. You should get an `NA` value. Why?
-
-```{r}
-# Compute mean of sex
-mean(weight)
+```{r, eval = F}
+# Printe alter
+basel$alter
 ```
 
-5. Look at the help menu for the `mean()` function (using `?mean`) to look for an argument that will help you with your problem.
+5. Verwende die Funktionen `mean()`, `max`, `min`, und `median` umd deskriptive Statistiken direkt für die Variable `alter` zu berechnen
 
-```{r}
-# Inspect help for mean
-?mean
+```{r, eval = F}
+# Deskriptive Statistiken für alter
+mean(basel$alter)
+median(basel$alter)
+max(basel$alter)
+min(basel$alter)
 ```
 
-6. Using the correct argument for the mean function, calculate the mean weight ignoring `NA` values. It should be `r round(mean(data$weight, na.rm = TRUE), 2)`!
 
-```{r}
-# Compute mean weight, ignoring NAs 
-mean(weight, na.rm = TRUE)
-```
+### D - Lesen und Schreiben von Delimiter-separierten Dateien
 
-### D - Read & write delim-separated text files
+In diesem Abschnitt wirst du den bekannten `diamonds` Datensatz einlesen und bearbeiten. 
 
-In this section, you will read in a subset of the well known diamonds data set and prepare it for data analysis. 
 
-1. Identify the file path to the `diamonds.csv` dataset using the `""` (quotation marks) auto-complete trick. Place the cursor between two quotation marks, hit &#8677; (tab-key), and browse through the folders. Save the file path, for now, in an object called `diamonds_path`.
+1. Finde den Filepath zum `diomands.csv` Datensatz. Setze hierzu den Cursor zwischen zwei Anführungszeichen `""` und drücke &#8677; (tab). Speichere den Filepath in einem Objekt names `diamonds_path`. 
 
 ```{r, eval = F, echo =T}
-# place cursor in-between "" and hit tab
+# Setze den Cursor zwischen "" und drücke tab
 diamonds_path <- ""
 ```
 
 ```{r}
-# place cursor in-between and hit tab
+# Setze den Cursor zwischen "" und drücke tab
 diamonds_path <- "1_Data/diamonds.csv"
 ```
 
-2. Now use the Using `diamonds_path` inside the `read_csv()` function to read in the `diamonds.csv` dataset. Store it as a new object called `diamonds`.
+2. Jetzt, verwende das Objekt `diamonds_path` in der Funktion `read_csv()`, um den Datensatz einzulesen und als neues Objekt `diamonds` zu speichern. (Der Umweg über das Objekt `diamonds_path` ist natürlich nicht zwingend nötig. Man den Filepath auch direkt als Argument einsetzen.)
 
 ```{r, eval = F, echo = T}
-# read diamonds data
+# Lese den diamonds Datensatz ein
 diamonds <- read_csv(file = XX)
 ```
 
 ```{r}
-# read diamonds data
+# Lese den diamonds Datensatz ein
 diamonds <- read_csv(file = diamonds_path)
 ```
 
-3. Print the `diamonds` data and inspect the column names in the header line. Something's wrong!
+3. Printe den `diamonds` Datensatz. Inspeziere insbesondere die Variablennamen. Etwas stimmt nicht.
 
 ```{r}
-# print diamonds
+# Print diamonds
 diamonds
 ```
 
-4. Fix the header by reading in the data again using the `col_names`-argument. Assign to `col_names` a character vector containing the correct column names: `carat`, `cut`, `color`, `clarity`, `depth`, `table`, `price`.
+4. Du kannst das Problem lösen, indem du direkt einen `character` Vektor durch das `col_names`-Argument übergibts. Der Vektor soll folgende Namen enthalteh: `karat`, `cut`, `farbe`, `klarheit`, `tiefe`, `tabelle`, `preis`.
 
 ```{r, eval = F, echo = T}
-# read diamonds data with specified col_names
+# lese dimaonds nochmal ein, diesmal mit expliziten Spaltennamen
 diamonds <- read_csv(file = "XX", 
-                     col_names = c('name_1','name_2','...'))  # Vector of column names
+                     col_names = c('name_1','name_2','...'))  
 ```
 
 ```{r}
-# read diamonds data with specified col_names
+# lese dimaonds nochmal ein, diesmal mit expliziten Spaltennamen
 diamonds <- read_csv(file = diamonds_path,
-                     col_names = c("carat", "cut", "color", "clarity", "depth", "table", "price"))
+                     col_names = c("karat", "cut", "farbe", "klarheit", "tiefe", "tabelle", "preis"))
 ```
 
-5. Re-inspect the header by printing the data. Has the header been fixed?
+5. Re-inspeziere den Datensatz. Sie die Spaltennamen nun korrekt?
 
 ```{r}
 # print diamonds
 diamonds
 ```
 
-6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric`, right?
+6. Richte nun diene Aufmerksamkeit zu den Klassen der Variablen. Wurden die Klassen aller Variablen richtig interpretiert?
 
-7. Let's see what went wrong. Select and print the `carat` variable to identify the one entry that caused the variable to become a `character` vector (Hint: look for a comma between entry 10 and 20). 
+7. Finde heraus was passiert ist. Wähle die `karat` Variable aus und schaue dir die Werte genau an. Zwischen dem 10. und 20. Eintrag solltest du eine Irregularität erkennen, die dafür verantwortlich ist, dass die Variable als `character` erkannt wurde.   
 
 ```{r}
-# print the carat column
-diamonds$carat
+# Zeige die Variable Karat
+diamonds$karat
 ```
 
-8. Change the incorrectly formatted entry in `carat` by replacing `XX` with the index of the incorrect value (i.e., the correct number between 10 and 20) and `YY` with the correct entry with a period (`.`) instead of a comma (`,`) in the code below.  
+8. Ersetze den falsch formatierten Wert in `karat` indem du unten im Code `XX` durch die Position (Zahl zwischen 10 und 20) des falschen Wertes ersetzt und `YY` mit dem korrekten Wert mit `.` anstatt `,`.  
+
 
 ```{r, eval = F, echo = T}
-# Change the value at position XX to YY
-diamonds$carat[XX] <- YY
+# Ersetze den falschen Wert
+diamonds$karat[XX] <- YY
 ```
 
 ```{r}
-# Change the value at position XX to YY
-diamonds$carat[17] <- 0.37
+# Ersetze den falschen Wert
+diamonds$karat[17] <- 0.37
 ```
 
-9. Ok you fixed the value but `carat` is still `character`. We can fix it with the `type_convert()` function. Apply the `type_convert()` function to the `diamonds` data to have R fix all the data types. Make sure to assign the result back to `diamonds` so that you change the object!
+9. Jetzt hast du den Wert ausgebessert, aber `karat` ist immer noch vom Typ `character`. Verwende die Funktion `type_convert()` um dies zu beheben. Siehe unten.
 
 ```{r, echo = T}
 # re-infer data types
 diamonds <- type_convert(diamonds)
 ```
 
-10. Print the `diamonds` object and look at the column types. Has the type of `carat` changed to `double`?
+10. Printe `diamonds`, um sicher zu stellen, dass `karat` jetzt `numeric` ist, bzw. `dbl` (ein Typ von `numeric`).
 
 ```{r}
-# print diamonds data set
+# Zeige diamonds
 diamonds
 ```
 
-11. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
+11. Nachdem du nun die Spaltennamen und die Klassen behoben hast, schreibe den Datensatz wieder auf die Festplatte unter `diamonds_sauber.csv` mit der Funktion `read_csv()`. 
 
 ```{r, eval = F, echo = T}
-# write clean diamonds data to disc
-write_csv(x = XX, path = "XX")
+# Schreibe den sauberen diamonds Datensatz 
+write_csv(x = XX, path = "XX/XX.csv")
 ```
 
 ```{r, eval = FALSE}
-# write clean diamonds data to disc
-write_csv(x = diamonds, "1_Data/diamonds_clean.csv")
+# Schreibe den sauberen diamonds Datensatz 
+write_csv(x = diamonds, "1_Data/diamonds_sauber.csv")
 ```
 
-12. Read `diamonds_clean.csv` back into R as a new object called `diamonds_clean`. Then, print the object and verify that this time the types have been correctly identified from the start.
+12. Um sicherzustellen, dass nicht wieder die selben Probleme auftreten, lesen `diamonds_clean.csv` wieder ein und schaue dir die Spaltennamen und die Spaltentypen an. Alles in Ordnung?
 
 ```{r, eval = FALSE}
-# read clean diamonds data from disc
-diamonds_clean <- read_csv(file = "1_Data/diamonds_clean.csv")
+# Lese den sauberen diamonds Datensatz ein
+diamonds_clean <- read_csv(file = "1_Data/diamonds_sauber.csv")
 ```
 
-13. The data is now ready for analysis. Explore it a bit by calculating a few statistics. For instance, what is the average `carat` or `price` (use `mean()`)? What  `cut` and `clarity` levels exist and how often do they occur (use `table()` on both variables)? You can learn more about the variable values from the help file `?diamonds`.
+13. Jetzt wäre der Datensatz fertig für die Analyse. Exploriere ein wenig. Berechne deskriptive Statistiken für die verschiedenen Variablen. Du kannst mehr über die Variablen erfahren über `?diamonds`. (Namen sind aus dem Englischen übersetzt.)
 
 ```{r}
-# simple stats of diamonds
-mean(diamonds$carat)
-mean(diamonds$price)
+# Deskriptive Statistiken
+mean(diamonds$karat)
+mean(diamonds$preis)
 table(diamonds$cut)
-table(diamonds$clarity)
+table(diamonds$klarheit)
 ```
 
 
-### E - Logical Vectors and `$`
+### E - Logische Vektoren
 
-1. Logical vectors contain as values only `TRUE` and `FALSE` (and `NA`s). Create a new logical vector called `expensive` indicating which diamonds are more expensive than \$10,000. To do this, select the `price` variable from the data frame using `$` use the `>` (greater than) operator á la `vector > value`.  
+1. Logische Vektoren enthalten nur die Werte `TRUE` und `FALSE` (und `NA`s). Kreiere einen logischen Vektor names `teuer`, welcher `TRUE` enthält, wenn der der `preis` des Diamanten teurer als \$10,000 ist, und `FALSE`, wenn er günstiger ist. Siehe Code. 
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a logical vector expensive indicating
-# which dimaonds cost more than 10,000
-
+# Kreiere Vektor teuer
 ZZ <- diamonds$XX > YY
 ```
 
 ```{r}
-# Create a logical vector expensive indicating
-# which dimaonds cost more than 10,000
-
-expensive <- diamonds$price > 10000
+# Kreiere Vektor teuer
+expensive <- diamonds$preis > 10000
 ```
 
-2. Print your `expensive` vector to the console. Do you see only TRUE and FALSE values? If so, do the first few values match those in the `price` variable?
+2. Printe den `teuer` Vektor. Er sollte nur `TRUE` und `FALSE` enthalten. Falls ja, decken sich die ersten Werte in `preis` mit den Werten in `teuer`?
 
 ```{r}
-# print expensive
+# Print teuer
 expensive
 ```
 
-3. Add your `expensive` vector to the diamonds data frame using `data_frame$variable_name <- variable`. See below?
+3. Ergänze den Datensatz um die neue Variable `teuer`. Sie Code.
 
 ```{r, eval = FALSE, echo = TRUE}
-# add vector to data frame
+# Ergänze Vektor
 XX$YY <- ZZ
 ```
 
 ```{r}
-# add vector to data frame
-diamonds$expensive <- expensive
+# Ergänze Vektor
+diamonds$teuer <- teuer
 ```
 
-4. Using the `table()` function, create a table showing how many of the diamonds are expensive how many are not. Select the variable directly from the data frame using `$`.
+4. Verwende die Funktion `table()`, um auszuzählen wie viele Diamanten teuer sind. Benutze hierzu den `$`-Operator.   
 
 ```{r}
-# count expensive diamonds
-table(diamonds$expensive)
+# Zähle die teuren Diamanten
+table(diamonds$teuer)
 ```
 
-5. Using the `mean()` function, determine the percentage of the diamonds that are expensive, i.e., `mean(expensive)`. Should this have worked?
-
+5. Verwende die `mean()` Funktion, um auszuzählen welcher Anteil teuer ist. Erinnere `mean()` funktioniert auch mit logischen Vektoren. 
 ```{r}
 # percentage of expensive diamonds
-mean(diamonds$expensive)
+mean(diamonds$teuer)
 ```
 
-6. What percent diamonds weigh more than 1 `carat` (i.e., more than .2 gram)?
+6. Verwende sowohl einen logischen Vergleich, `>` oder `<`, als auch die `mean()` Funktion, um zu bestimmen welcher Anteil Diamanten mehr als 1 Karat besitzt. 
 
 ```{r}
-# percentage of diamonds heavier than 1 carat
-mean(diamonds$carat > 1)
+# Anteil Diamanten mit karat > 1
+mean(diamonds$karat > 1)
 ```
 
 ### F - Read other file formats
@@ -446,42 +455,56 @@ mean(diamonds$carat > 1)
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png")
 ```
 
-1. Using `read_excel()`, read in the `titanic.xls` dataset as a new object called `titanic` (Make sure you have already loaded the `readxl` package at the beginning of your script).
+In diesem Unterabschnitt liest du den ebenfalls altbekannten `titanic` Datensatz aus einem Excel Format und speicherst die Daten als `.csv`.
+
+1. Verwende die `read_excel()` Funktion, um den Datensatz `titanic.xls` als ein neues Objekt `titanic` einzulesen. 
 
 ```{r, eval = F, echo = T}
+# Lese titanic.xls
 titanic <- read_excel(path = "XX")
 ```
 
 ```{r}
-# Read titanic data
+# Lese titanic.xls
 titanic <- read_excel("1_Data/titanic.xls")
 ```
 
-2. Print `titanic` and evaluate its dimensions using `dim()`.
+2. Printe `titanic` und evaluiere die Ausmasse des Datensatzes mit `dim()`.
 
 ```{r}
-# print and show dimenisons
+# Printe und evaluiere Ausmasse
 titanic
 dim(titanic)
 ```
 
-3. Using `table()`, how many people survived (variable `survived`) in each cabin class (variable `pclass`)?
+3. Verwende `table()` um auszuzählen wie viele Leute den Unfall der Titanic überlebt haben (Spalte `survived`). 
 
 ```{r, eval = F, echo = T}
-# determine survival rate by cabin class
-table(titanic$XX, 
-      titanic$XX)
+# Wie viele haben überlebt?
+table(titanic$XX)
 ```
 
 ```{r}
-# determine survival rate by cabin class
+# Wie viele haben überlebt?
+table(titanic$XX)
+```
+
+4. Verwende nochmals `table()` um auszuzählen wie viele Leute in jeder der einzlenen Passagierklassen (Spalte `pclass`) den Unfall der Titanic überlebt haben. 
+
+```{r, eval = F, echo = T}
+# Wie viele haben pro Passagierklasse überlebt?
+table(titanic$XX, titanic$XX)
+```
+
+```{r}
+# Wie viele haben pro Passagierklasse überlebt?
 table(titanic$pclass, titanic$survived)
 ```
 
-4. Using `write_csv()`, write the `titanic` dataframe as a new comma separated text file called `titanic.csv` in your `1_Data`  folder. Now you have the data saved as a text file any software can use!
+5. Verwende `write_csv()` um den Datensatz `titanic` als `.csv` auf in deinen `1_Data` Ordner zu schreiben. 
 
 ```{r, eval = FALSE}
-# write data to .csv
+# Schreiben Daten als .csv
 write_csv(x = titanic, 
           path = "1_Data/titanic.csv")
 ```
@@ -492,271 +515,152 @@ write_csv(x = titanic,
 knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg")
 ```
 
-5. Using `read_spss()` read in the sleep data set `sleep.sav` of staff at he University of Melbourne as a new object called `sleep`. (Make sure that you have first loaded the `haven` package).
+In diesem Unterabschnitt liest du den `sleep` Datensatz, welcher Daten über das Schlafverhalten der Mitarbeiter der Univeristät Melbourne enthält, aus einem SPSS format ein und speicherst die Daten als `.csv`.
+
+1. Verwende die `read_spss()` Funktion, um den Datensatz `sleep.sav` als ein neues Objekt `sleep` einzulesen. 
 
 ```{r, eval = F, echo = T}
 XX <- read_spss(file = "XX")
 ```
 
 ```{r}
-# Read sleep data
+# Lese sleep Daten
 sleep <- read_spss(file = "1_Data/sleep.sav")
 ```
 
-6. Print your `sleep` object and evaluate its dimensions using `dim()`.
+2. Printe `sleep` und evaluiere die Ausmasse des Datensatzes mit `dim()`. Du wirst sehen, R war so clever die Labels der Variablen mit zu übernehmen. 
 
 ```{r}
-# print and show dimensions
+# Printe und evaluiere Ausmass
 sleep
 dim(sleep)
 ```
 
-7. How many drinks do staff at the University of Melbourne consumer per day (variable `alcohol`). To do this, use the `mean()` function, while taking care of missing values using the `na.rm` argument. 
+3. Verwende die `mean()` Funktion um auszuzählen wie viele alkoholische Getränke die  Mitarbeiter im Durchschnitt pro Tag zu sich nehmen (Spalte `alchohol`). Achte auf etwaige fehlende Werte!
 
 ```{r}
-# compute mean number of drinks
-mean(x = sleep, na.rm = TRUE)
+# Berechne die mittlere Anzahl drinks
+mean(x = sleep$alchohol, na.rm = TRUE)
 ```
 
-8. Using the `write_csv()` function, write the `sleep` data to a new file called `sleep.csv` in your `1_Data` folder. Now you have the `sleep` data stored as a text file any software can use!
+5. Verwende `write_csv()` um den Datensatz `sleep` als `.csv` auf in deinen `1_Data` Ordner zu schreiben. 
 
 ```{r, eval = FALSE}
-# write data to .csv
+# Schreibe Daten als .csv
 write_csv(x = sleep, 
           path = "1_Data/sleep.csv")
 ```
 
-
-#### SAS
-
-```{r, out.width = "8%", fig.align = 'left', eval = TRUE, echo = FALSE}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg")
-```
-
-9. Using `read_sas()`, read in `airbnb_zuerich.sas7bdat` containing AirBnB listings in Zürich, Switzerland and call the object `airbnb_zuerich`.
-
-```{r, eval = F, echo = T}
-# read sas data
-XX <- read_sas(data_file = "XX")
-```
-
-```{r}
-# read airbnb_zuerich.sas7bdat
-airbnb_zuerich <- read_sas(data_file = "1_Data/airbnb_zuerich.sas7bdat")
-```
-
-10. Print `airbnb_zuerich` and then evaluate its dimensions using `dim()`.
-
-```{r}
-# print and show dimenisons
-airbnb_zuerich
-dim(airbnb_zuerich)
-```
-
-11. How many AirBnB listings were there of each `room_type` in Zürich? (Hint: use `table()`)
-
-```{r}
-# table room type
-table(airbnb_zuerich$room_type)
-```
-
-12. Using `write_csv()` write your `airbnb_zuerich` data frame to as new comma-separated text file called `airbnb_zuerich.csv` in your `1_Data` folder.
-
-```{r, eval = FALSE}
-# write data to .csv
-write_csv(x = airbnb_zuerich, 
-          path = "1_Data/airbnb_zuerich.csv")
-```
-
-### G - Creating data frames
-
-1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of the vectors you just created: `id`, `age`, `sex`, `height`, `weight`.
-
-```{r, eval = FALSE, echo = TRUE}
-# Create data frame ten_df containing vectors id, age, sex, height, and weight.
-XX <- data.frame(XX, XX, XX, XX, XX, XX) 
-```
-
-```{r}
-# Create ten_df data frame from vectors
-ten_df <- data.frame(id, age, sex, height, weight) 
-```
-
-2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
-
-```{r}
-# Print ten_df
-ten_df
-```
-
-3. Using the `dim()` function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?
-
-```{r}
-# Inspect dimensions
-dim(ten_df)
-```
-
-4. What is the class of your `ten_df` object? Use the `class()` function to find out!
-
-```{r}
-# Inspect class
-class(ten_df)
-```
-
-5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
-
-```{r}
-# Inspect class
-summary(ten_df)
-```
-
-6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
-
-```{r}
-# Inspect age
-ten_df$age
-```
-
-7. Calculate the maximum `age` value from the `ten_df` data frame using `max()`. Do you get the same result from when you calculated it from the original vector `age`?
-
-```{r}
-# Get max
-max(ten_df$age)
-```
-
-8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`. You can use the exact same arguments you used before.
-
-```{r}
-# create tibble
-ten_tibble = tibble(id, age, sex, height, weight)
-```
-
-9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
-
-```{r}
-# print tibble
-ten_tibble
-max(ten_tibble$age) == max(ten_df$age)
-```
-
 ### X - Challenges
 
-1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten Baselers are male while using the is-equal-to operator `==`.
+1. Verwende `sum()` und `==` um auszuzählen wie viele Uni Melbourne Mitarbeiter mehr als 10 Drinks pro Tag zu sich nehmen. 
+
+```{r}
+# Mehr als 10 Drinks
+sum(sleep$alchohol > 10, na.rm=T)
+```
+
+2. Indentifiziere den Index der Person in der Variable mit `which()`. 
 
 ```{r, eval = FALSE, echo = TRUE}
-# Determine the frequency of a case in a vector
-sum(XX == XX)
+# Index von alchohol > 10
+which(sleep$alchohol > 10)
 ```
+
+3. Nutze den Index der Person um dir, deren Geschlecht (`sex`) und Beziehungsstatus (`marital`) anzeigen zu lassen. Nutze hier die Klammern `[]`.
 
 ```{r}
-# Determine the frequency of a case in a vector
-sum(ten_tibble$sex == "male")
+# Geschlecht und Alter der Person
+sleep$marital[which(sleep$alchohol > 10)]
+sleep$sex[which(sleep$alchohol > 10)]
 ```
 
-2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of Baselers who are younger than 30:
-
-```{r, eval = FALSE, echo = TRUE}
-# Create a logical vector indicating which baselers are younger than 30
-young_30 <- XX$XX < 30
-
-# Print the ids of baselers younger than 30
-XX$XX[young_30]
-```
+4. Verwende `mean()` und `>` um das mittlere Alter derjenigen zu berechnen, die mehr als einen Drink pro Tag zu sich nehmen.    
 
 ```{r}
-# Create a logical vector indicating which baselers are younger than 30
-young_30 <- ten_tibble$age < 30
-
-# Print the ids of baselers younger than 30
-ten_tibble$id[young_30]
+# Mittleres Alter für > 1 Drink
+mean(sleep$age[which(sleep$alchohol > 1)], na.rm=T)
 ```
 
-3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of Baselers who are heavier than 80kg?"
+5. Verwende nun den Code der letzten Aufgabe und `!`um das mittlere Alter derjenigen zu berechnen, die <i>nicht</i> mehr als einen Drink pro Tag zu sich nehmen. Wo gehört das `!` hin?    
 
 ```{r}
-# Mean age of baselers heavier than 80kg
-mean(ten_tibble$age[ten_tibble$weight > 80])
+# Mittleres Alter für > 1 Drink
+mean(sleep$age[which(sleep$alchohol > 1)], na.rm=T)
 ```
 
-4. What are the id values of Baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
 
-```{r}
-# Mean age of baselers heavier than 80kg
-ten_tibble$id[ten_tibble$sex == "male" & ten_tibble$height < 165]
-```
-
-## Examples
+## Beispiele
 
 ```{r, eval = FALSE, echo = TRUE}
 library(tidyverse)
 library(readxl)
 library(haven)
 
-# Create vectors of (fake) stock data
+# Kreiere Vektoren für (falsche) Aktiendaten
 name      <- c("apple", "microsoft", "dell", "google", "twitter")
-yesterday <- c(100, 89, 65, 54, 89)
-today     <- c(102, 85, 72, 60, 95)
+gestern <- c(100, 89, 65, 54, 89)
+heute     <- c(102, 85, 72, 60, 95)
 
-# Summary statistics
-mean(today)
-mean(yesterday)
+# Deskriptive Statistiken
+mean(heute)
+mean(gestern)
 
-# Show classes
+# Zeige Klassen
 class(name)
-class(yesterday)
+class(gestern)
 
-# Operations of vectors
-change <- today - yesterday
+# Rechne mit Vektoren
+change <- heute - gestern
 change # Print result
 
-# Create a logical vector from two numerics
-increase <- today > yesterday
+# Verwende einen logischen Vektor
+increase <- heute > gestern
 increase # Print result
 
-# Create a tibble combining multiple vectors
-stocks <- tibble(name, yesterday, today, change, increase)
+# Kreiere einen tibble aus den Vektoren
+stocks <- tibble(name, gestern, heute, change, increase)
 
-# Get column names
+# Zeige Spaltennamen
 names(stocks)
 
-# Access columns by name
+# Wähle Variablen aus
 stocks$name
 stocks$today
 
-# Calculate descriptives on columns
+# Berechne deskriptive Werte
 mean(stocks$yesterday)
 median(stocks$today)
 table(stocks$increase)
 max(stocks$increase)
 
 
-# read/write delim-separated -------------------
+# Lese/Schreibe Delimiter-separierte Werte -------------------
 
-# read chickens data
+# lese chickens Daten
 chickens <- read_csv(file = "1_Data/chickens.csv")
 
-# fix header of chickens_nohead.csv with known column names
+# Korrigiere die Spaltennamen
 chickens <- read_csv(file = "1_Data/chickens_nohead.csv",
                      col_names = c("weight", "time", "chick", "diet"))
 
-# fix NA values of chickens_na.csv
+# Korrigiere NA Werte beim einlesen
 chickens <- read_csv(file = "1_Data/chickens_na.csv",
                      na = c('NA', 'NULL'))
 
-# write clean data to disc
+# Schreibe saubere Daten 
 write_csv(x = chickens, 
-          path = "1_Data/chickens_clean.csv")
+          path = "1_Data/chickens_sauber.csv")
 
-# fix types -------------------
-# Note: the survey data is fictional!
+# Korrogiere einzelne Werte -------------------
 
 # remove character from rating
-survey$rating[survey$rating == "2,1"] <- 2.1
+survey$beurteilung[survey$beurteilung == "2,1"] <- 2.1
 
-# rerun type convert
+# Re-inferiere die Datentypen
 survey <- type_convert(survey)
 
-# other formats -------------------
+# Andere Formate -------------------
 
 # .xlsx (Excel)
 chickens <- read_excel("1_Data/chickens.xlsx")
@@ -764,13 +668,10 @@ chickens <- read_excel("1_Data/chickens.xlsx")
 # .sav (SPSS)
 chickens <- read_spss("1_Data/chickens.sav")
 
-# .sad7bdata (SAS)
-chickens <- read_sas("1_Data/chickens.sas7bdat")
-
 ```
 
 
-## Datasets
+## Datensätze
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -778,75 +679,68 @@ library(readxl)
 library(haven)
 ```
 
-|File | Rows | Columns | Description |
+|Datei | Zeilen | Spalten | Beschreibung |
 |:----|:-----|:------|:-----------------------------------------|
-|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
-|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
-|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
-|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
+|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Bestandteil aus dem bekannten `diamonds` Datensatz, welcher die Eigenschaften und Preise einer grossen Anzeil Diamanten enthält. 
+|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Daten über die Überlebenden und Verstorbenen des Titanic Unglücks. |
+|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey über das Schlafverhalten der Mitarbeiter der Universität Melbourne. 
 
+## Funktionen
 
+### Pakete
 
-
-## Functions
-
-### Packages
-
-|Package| Installation|
+|Paket| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`haven`|`install.packages("haven")`|
 |`readxl`|`install.packages("readxl")`|
 
-### Functions
+### Funktionen
 
-*Creating vectors*
+*Kreiere Vektoren*
 
-| Function| Description|
+| Funktion| Beschreibung|
 |:------|:--------|
-| `c("a", "b", "c")` |Create a character vector|
-| `c(1, 2, 3)`| Create a numeric vector|
-| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
+| `c("a", "b", "c")` |Kreiere `character` Vektor|
+| `c(1, 2, 3)`| Kreiere `numeric` Vektor|
+| `c(TRUE, FALSE, TRUE)`| Kreiere `logical` Vektor|
 
-*Vector functions*
+*Vektor Funktionen*
 
-| Function| Description|
+| Funktion| Beschreibung|
 |:------|:--------|
-| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
+| `mean(x), median(x), sd(x), sum(x)` | Mittelwert,Median, Standardabweichung, Summe|
 | `max(x), min(x)`                    | Maximum, minimum|
-| `table(x)`                          | Table of frequency counts|
-| `round(x, digits)`                  | Round a numeric vector x to `digits`|
+| `table(x)`                          | Höufigkeitstabelle|
 
-*Accessing vectors from data frames*
+*Zugriff auf Variablen in Data Frames*
 
-| Function| Description|
+| Funktion| Beschreibung|
 |:------|:--------|
-| `df$name` |Access vector `name` from a data frame `df`|
+| `df$name` |Greife auf Variable (Vektor) `name` aus dem data frame `df` zu|
 
-*Reading/writing text data*
+*Lese/Schreibe Textdateien*
 
-| Extension | File Type |Read | Write |
+| Dateiendung | Dateityp |Lesen | Schreiben |
 |:------|:------|:--------------------------|:-----------------------------|
-| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
-| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
-| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
+| `.csv` | Komma-separierte Textdatei |`read_csv(file)` | `write_csv(x, file)` |
+| `.csv` | Semi-colon separierte Textdatei |`read_csv2(file)` | *not available* |
+| `.txt` | Andere Textdatei | `read_delim(file)` |`write_delim(x, file)` | 
 
-*Reading/writing other data formats*
+*Lese/Schreibe andere Formate*
 
-|Extension| File Type | Read | Write|
+| Dateiendung | Dateityp |Lesen | Schreiben |
 |:--------|:-----|:--------------------------|:-----------------------------|
 |`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
 |`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
-|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
 
-*Creating data frames from vectors*
+*Kreiere data frames*
 
 | Function| Description|
 |:------|:--------|
-| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
-| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
+| `tibble(a, b, c)`     | Kreiere `tibble` data frame mit den Vektoren a, b, c|
 
-## Resources
+## Resourcen
 
-- For more information on the fundamentals of object and functions in R see the R Core team's [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) and for even more advanced object and function-related topics Hadley Wickham's [Advanced R](http://adv-r.had.co.nz/).
-- For more information on reading and writing (and everything else) see Grolemund`s and Wickham's [R for Data Science](http://r4ds.had.co.nz/data-import.html).
+- Für eiene formale Einführung zu den Grundlagen schaut euch [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) an.
+- Für alles zu `tibble`s, Daten Lesen und Schreiben schaut euch Grolemund`s und Wickham's [R for Data Science](http://r4ds.had.co.nz/data-import.html) an.
