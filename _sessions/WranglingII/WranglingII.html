@@ -779,7 +779,7 @@ basel %&gt;%
 
 ---
 
-# Auswahlfunktionen
+# `summarise()` Helferfunktionen
 
 .pull-left35[
 
@@ -803,16 +803,16 @@ basel %&gt;%
     N = n(),
     bildung_first = first(bildung),
     bildung_last = last(bildung),
-    bildung_150 = nth(einkommen, 150)
+    bildung_150 = nth(bildung, 150)
   )
 ```
 
 ```
 ## # A tibble: 2 x 5
-##   geschlecht     N bildung_first bildung_last  bildung_150
-##   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;               &lt;dbl&gt;
-## 1 f           5000 sek III       obligatorisch       13600
-## 2 m           5000 lehre         sek II              13500
+##   geschlecht     N bildung_first bildung_last  bildung_150  
+##   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;        
+## 1 f           5000 sek III       obligatorisch sek III      
+## 2 m           5000 lehre         sek II        obligatorisch
 ```
 
 ]
