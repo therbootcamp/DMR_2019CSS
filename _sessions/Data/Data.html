@@ -68,11 +68,9 @@ layout: true
 
 ---
 
-# 3 Object types for data
+# 3 Klassen von Datenobjekten
 
 .pull-left4[
-
-Es gibt 3 wesentliche Objekte...
 
 &lt;high&gt;`list`&lt;/high&gt; - R's Mehrzweck-Container
 - &lt;span&gt;Kann alle Daten beinhalten, inkl. `list`s&lt;/span&gt;
@@ -82,9 +80,9 @@ Es gibt 3 wesentliche Objekte...
 - &lt;span&gt;Spezialfall einer `list`&lt;/span&gt;
 - &lt;span&gt;R's `Tidy`-Format für Daten
 
-&lt;high&gt;`vector`&lt;/high&gt; - R's data container
+&lt;high&gt;`vector`&lt;/high&gt; - R's Daten-Container
 - &lt;span&gt;Primärer Daten-Container&lt;/span&gt;
-- &lt;span&gt;Beinhaltet daten von genau einem Klasse&lt;/span&gt;
+- &lt;span&gt;Beinhaltet Daten genau einer Klasse&lt;/span&gt;
 
 ]
 
@@ -259,7 +257,7 @@ basel
     &lt;li&gt;&lt;span&gt;&lt;highm&gt;character&lt;/highm&gt; - Alle Zeichen (e.g., Namen)&lt;/span&gt;&lt;/li&gt;
     &lt;li&gt;&lt;span&gt;&lt;highm&gt;logical&lt;/highm&gt; - &lt;mono&gt;TRUE&lt;/mono&gt; oder &lt;mono&gt;FALSE&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
     &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;&lt;highm&gt;NA`&lt;/highm&gt; - fehlende Werte&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;highm&gt;NA&lt;/highm&gt; - fehlende Werte&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -311,7 +309,7 @@ alter[2] &lt;- 100
 alter
 ```
 
-Merh info [hier](http://rspatial.org/intr/rst/4-indexing.html).
+Mehr Info [hier](http://rspatial.org/intr/rst/4-indexing.html).
 
 ]
 
@@ -431,7 +429,7 @@ basel$alter
 
 
 ```r
-# Wangle Alter in character um
+# Wandle Alter in character um
 as.character(basel$alter)
 ```
 
@@ -454,7 +452,7 @@ as.character(basel$alter)
 
 .pull-left45[
 
-&lt;highm&gt;logical&lt;/highm&gt; Vektoren werden typischerweise durch &lt;high&gt;logische Vergleiche&lt;/high&gt; in Data Frames oder Vektoren bestimmte &lt;high&gt;Fälle auszuwählen&lt;/high&gt;. 
+&lt;highm&gt;logical&lt;/highm&gt; Vektoren werden typischerweise durch &lt;high&gt;logische Vergleiche&lt;/high&gt; erstellt und benutzt um in Data Frames oder Vektoren bestimmte &lt;high&gt;Fälle auszuwählen&lt;/high&gt;. 
 
 
 ```r
@@ -493,7 +491,7 @@ basel$alter &lt; 30
 
 .pull-left45[
 
-&lt;highm&gt;logical&lt;/highm&gt; Vektoren werden typischerweise durch &lt;high&gt;logische Vergleiche&lt;/high&gt; in Data Frames oder Vektoren bestimmte &lt;high&gt;Fälle auszuwählen&lt;/high&gt;. 
+&lt;highm&gt;logical&lt;/highm&gt; Vektoren werden typischerweise durch &lt;high&gt;logische Vergleiche&lt;/high&gt; erstellt und benutzt um in Data Frames oder Vektoren bestimmte &lt;high&gt;Fälle auszuwählen&lt;/high&gt;. 
 
 &lt;u&gt;Logische Operatoren&lt;/u&gt;
 
@@ -572,8 +570,8 @@ basel$alter &lt; 30
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Delimiter&lt;/high&gt; separieren die Spalten.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Meist als &lt;high&gt;lokale Textdatei&lt;/high&gt; vorliegend.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Datenklassen&lt;/high&gt; werden inferiert.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Meist als &lt;high&gt;lokale Textdatei&lt;/high&gt; vorliegend.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Datenklassen&lt;/high&gt; werden inferiert.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -1011,7 +1009,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

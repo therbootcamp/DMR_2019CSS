@@ -49,18 +49,18 @@ layout: true
 # Inhalte
 
 .pull-left45[
-&lt;br&gt;
+
+&lt;font size = 5&gt;&lt;high&gt;Organisation, Transformation und Variablenauswahl&lt;/high&gt;&lt;/font&gt;
+
+- Bsp: Alle Variablen, die mit "xyz_" anfangen
 
 &lt;font size = 5&gt;&lt;high&gt;Datenformat transformieren&lt;/high&gt;&lt;/font&gt;
 
-- Wide &amp;#8594; Long Format
-- Long &amp;#8594; Wide Format
+- Bsp: Wide &amp;#8594; Long Format
 
 &lt;font size = 5&gt;&lt;high&gt;Gruppen erstellen&lt;/high&gt;&lt;/font&gt;
 
-Daten nach gewissen Variablen gruppieren
-
-- Bsp: Nach Geschlecht und Bildung
+- Bsp: Nach Geschlecht und Bildung gruppieren
 
 &lt;font size = 5&gt;&lt;high&gt;Deskriptive Statistiken erstellen&lt;/high&gt;&lt;/font&gt;
 
@@ -76,6 +76,362 @@ Daten nach gewissen Variablen gruppieren
 &lt;p align="center"&gt;
 &lt;img src="image/data_wrangler.png" height=240px&gt;&lt;br&gt;
 &lt;font style="font-size:10px"&gt;from &lt;a href="https://www.codeastar.com/data-wrangling/"&gt;codeastar&lt;/a&gt;&lt;/font&gt;&lt;/p&gt;
+
+]
+
+---
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse
+```
+
+```
+## # A tibble: 5 x 6
+##      id alter bedingung bed_label    t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37         1 placebo      123   135
+## 2     2    65         2 medikament   143   140
+## 3     3    57         2 medikament    NA    NA
+## 4     4    34         1 placebo      100   105
+## 5     5    45         2 medikament    NA    NA
+```
+
+
+]
+
+---
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- &lt;high&gt;drop_na()&lt;/high&gt;
+- &lt;high&gt;replace_na()&lt;/high&gt;
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse %&gt;%
+  mutate(t_1 = replace_na(t_1, 110))
+```
+
+```
+## # A tibble: 5 x 6
+##      id alter bedingung bed_label    t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37         1 placebo      123   135
+## 2     2    65         2 medikament   143   140
+## 3     3    57         2 medikament   110    NA
+## 4     4    34         1 placebo      100   105
+## 5     5    45         2 medikament   110    NA
+```
+
+```r
+patienten_ergebnisse %&gt;%
+  drop_na()
+```
+
+```
+## # A tibble: 3 x 6
+##      id alter bedingung bed_label    t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37         1 placebo      123   135
+## 2     2    65         2 medikament   143   140
+## 3     4    34         1 placebo      100   105
+```
+
+
+]
+
+---
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- &lt;high&gt;pull()&lt;/high&gt;
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse %&gt;%
+  select(alter) %&gt;%
+  pull()
+```
+
+```
+## [1] 37 65 57 34 45
+```
+
+```r
+patienten_ergebnisse %&gt;%
+  select(alter) %&gt;%
+   pull() %&gt;%
+  class()
+```
+
+```
+## [1] "numeric"
+```
+
+
+]
+
+
+---
+
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- &lt;high&gt;mutate_if()&lt;/high&gt;
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse %&gt;%
+  mutate_if(is.character, factor)
+```
+
+```
+## # A tibble: 5 x 6
+##      id alter bedingung bed_label    t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37         1 placebo      123   135
+## 2     2    65         2 medikament   143   140
+## 3     3    57         2 medikament    NA    NA
+## 4     4    34         1 placebo      100   105
+## 5     5    45         2 medikament    NA    NA
+```
+
+
+]
+
+---
+
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- &lt;high&gt;starts_with()&lt;/high&gt;
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse %&gt;%
+  select(starts_with("t"))
+```
+
+```
+## # A tibble: 5 x 2
+##     t_1   t_2
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1   123   135
+## 2   143   140
+## 3    NA    NA
+## 4   100   105
+## 5    NA    NA
+```
+
+
+]
+
+---
+
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- &lt;high&gt;contains()&lt;/high&gt;
+- `:`
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse %&gt;%
+  select(contains("_"))
+```
+
+```
+## # A tibble: 5 x 3
+##   bed_label    t_1   t_2
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 placebo      123   135
+## 2 medikament   143   140
+## 3 medikament    NA    NA
+## 4 placebo      100   105
+## 5 medikament    NA    NA
+```
+
+
+]
+
+---
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- &lt;high&gt;:&lt;/high&gt;
+
+
+]
+
+.pull-right55[
+
+
+```r
+patienten_ergebnisse %&gt;%
+  select(alter:t_1)
+```
+
+```
+## # A tibble: 5 x 4
+##   alter bedingung bed_label    t_1
+##   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+## 1    37         1 placebo      123
+## 2    65         2 medikament   143
+## 3    57         2 medikament    NA
+## 4    34         1 placebo      100
+## 5    45         2 medikament    NA
+```
+
 
 ]
 
@@ -288,45 +644,12 @@ studie_long %&gt;%
 
 ---
 
-.pull-left45[
-
-# `dplyr`
-
-Wir verwenden `dplyr` zur Berechnung gruppierter deskriptiver Statistiken.
-
-&lt;br&gt;
-
-```r
-# Paket einzeln laden
-
-# install.packages('dplyr')
-
-library(dplyr)
-
-# Oder einfacher; das tidyverse Paket laden
-
-# install.packages('tidyverse')
-
-library(tidyverse)
-```
-
-]
- 
-.pull-right5[
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
 
 
 # `summarise()`
 
 .pull-left45[
 
-Benutze `summarise()` um neue Spalten mit &lt;high&gt;deskriptiven Statistiken&lt;/high&gt; zu erstellen
 
 
 ```r
@@ -337,7 +660,6 @@ data %&gt;%
   )
 ```
 
-Das Resultat von `summarise()` ist ein tibble!
 
 ]
 
@@ -359,6 +681,51 @@ basel %&gt;%
 ##       N alter_mean groesse_median
 ##   &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
 ## 1 10000       49.4           171.
+```
+
+
+]
+
+---
+
+
+# `summarise_if()`
+
+.pull-left45[
+
+
+
+```r
+data %&gt;%
+  summarise_if(
+    classification,
+    SUMMARY_FUN,
+    Arguments
+  )
+```
+
+
+]
+
+.pull-right5[
+
+
+```r
+# Berechne deskriptive Statistiken
+basel %&gt;%
+  select(1:5) %&gt;%
+  summarise_if(
+    is.numeric,
+    mean,
+    na.rm = TRUE
+  )
+```
+
+```
+## # A tibble: 1 x 4
+##      id alter groesse gewicht
+##   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 5000.  49.4    171.    74.5
 ```
 
 
@@ -412,6 +779,46 @@ basel %&gt;%
 
 ---
 
+# `summarise()` Helferfunktionen
+
+.pull-left35[
+
+- &lt;high&gt;n()&lt;/high&gt;
+- &lt;high&gt;first()&lt;/high&gt;
+- &lt;high&gt;last()&lt;/high&gt;
+- &lt;high&gt;nth()&lt;/high&gt;
+
+]
+
+.pull-right65[
+
+
+```r
+# Gruppiere über Variable geschlecht
+# Berechne deskriptive Statistiken
+basel %&gt;%
+  group_by(geschlecht) %&gt;%
+  arrange(desc(einkommen)) %&gt;%
+  summarise(
+    N = n(),
+    bildung_first = first(bildung),
+    bildung_last = last(bildung),
+    bildung_150 = nth(bildung, 150)
+  )
+```
+
+```
+## # A tibble: 2 x 5
+##   geschlecht     N bildung_first bildung_last  bildung_150  
+##   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;        
+## 1 f           5000 sek III       obligatorisch sek III      
+## 2 m           5000 lehre         sek II        obligatorisch
+```
+
+]
+
+---
+
 # Kombiniere Funktionen
 
 .pull-left4[
@@ -429,464 +836,28 @@ Benutze dafür die Pipe &lt;high&gt;%&gt;%&lt;/high&gt;
 ```r
 basel %&gt;%
   filter(geschlecht == "m" &amp; kinder &gt; 0) %&gt;% 
+  mutate(groesse_m = groesse / 100,
+         bmi = gewicht / groesse_m ^2) %&gt;%
   group_by(bildung) %&gt;%
   summarise(
     N = n(),
-    alter_mean = mean(alter),
-    einkommen_median = median(einkommen,
-                              na.rm = TRUE)
-  )
-```
-
-```
-## # A tibble: 4 x 4
-##   bildung           N alter_mean einkommen_median
-##   &lt;chr&gt;         &lt;int&gt;      &lt;dbl&gt;            &lt;dbl&gt;
-## 1 lehre          1651       49.4             8200
-## 2 obligatorisch   485       47.8             7900
-## 3 sek II          251       50.3             8150
-## 4 sek III        2169       49.0             8000
-```
-
-]
-
----
-
-# Quiz 1
-
-.pull-left45[
-
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```
-## # A tibble: 2 x 4
-##   fasnacht     N alter_mean einkommen_mean
-##   &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1 ja         294       49.7          8421.
-## 2 nein      9706       49.4          8353.
-```
-
-]
-
-
----
-
-# Quiz 1
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```r
-basel %&gt;%
-  group_by(fasnacht) %&gt;%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-```
-## # A tibble: 2 x 4
-##   fasnacht     N alter_mean einkommen_mean
-##   &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1 ja         294       49.7          8421.
-## 2 nein      9706       49.4          8353.
-```
-
-]
-
-
----
-
-# Quiz 2
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```
-## # A tibble: 4 x 5
-## # Groups:   fasnacht [2]
-##   fasnacht geschlecht     N alter_mean einkommen_mean
-##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1 ja       f            114       50.8          8657.
-## 2 ja       m            180       49.0          8273.
-## 3 nein     f           4886       49.8          8424.
-## 4 nein     m           4820       49.1          8280.
-```
-
-]
-
-
-
----
-
-# Quiz 2
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```r
-basel %&gt;%
-  group_by(fasnacht, geschlecht) %&gt;%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
+    bmi_mean = mean(bmi, na.rm = TRUE),
+    bmi_max = max(bmi, na.rm = TRUE),
+    bmi_min = min(bmi, na.rm = TRUE)
   )
 ```
 
 ```
 ## # A tibble: 4 x 5
-## # Groups:   fasnacht [2]
-##   fasnacht geschlecht     N alter_mean einkommen_mean
-##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1 ja       f            114       50.8          8657.
-## 2 ja       m            180       49.0          8273.
-## 3 nein     f           4886       49.8          8424.
-## 4 nein     m           4820       49.1          8280.
+##   bildung           N bmi_mean bmi_max bmi_min
+##   &lt;chr&gt;         &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 lehre          1651     27.1    44.8    14.1
+## 2 obligatorisch   485     27.0    43.6    15.9
+## 3 sek II          251     27.2    45.0    13.8
+## 4 sek III        2169     27.1    48.9    12.3
 ```
 
 ]
-
-
----
-
-# Quiz 3
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```
-## # A tibble: 2 x 5
-## # Groups:   fasnacht [2]
-##   fasnacht geschlecht     N alter_mean einkommen_mean
-##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1 ja       m            180       49.0          8273.
-## 2 nein     m           4820       49.1          8280.
-```
-
-]
-
-
-
-
----
-
-# Quiz 3
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```r
-basel %&gt;%
-  filter(geschlecht == "m") %&gt;%
-  group_by(fasnacht, geschlecht) %&gt;%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-```
-## # A tibble: 2 x 5
-## # Groups:   fasnacht [2]
-##   fasnacht geschlecht     N alter_mean einkommen_mean
-##   &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-## 1 ja       m            180       49.0          8273.
-## 2 nein     m           4820       49.1          8280.
-```
-
-]
-
-
----
-
-# Quiz 4
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```
-## # A tibble: 4 x 3
-##   bildung           N einkommen_mean
-##   &lt;chr&gt;         &lt;int&gt;          &lt;dbl&gt;
-## 1 lehre          3986          8374.
-## 2 obligatorisch  1239          8347.
-## 3 sek III        4034          8345.
-## 4 sek II          741          8320.
-```
-
-
-]
-
-
-
-
----
-
-# Quiz 4
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-
-```r
-basel %&gt;%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %&gt;%
-  slice(1:5)
-```
-
-```
-## # A tibble: 5 x 4
-##   geschlecht fasnacht alter einkommen
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1 f          nein        87        NA
-## 2 m          nein        54      7500
-## 3 f          nein        34      5500
-## 4 m          nein        31        NA
-## 5 m          nein        24      3800
-```
-
-
-]
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-
-```r
-basel %&gt;%
-  group_by(bildung) %&gt;%
-  summarise(
-    N = n(),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  ) %&gt;%
-  arrange(desc(einkommen_mean))
-```
-
-```
-## # A tibble: 4 x 3
-##   bildung           N einkommen_mean
-##   &lt;chr&gt;         &lt;int&gt;          &lt;dbl&gt;
-## 1 lehre          3986          8374.
-## 2 obligatorisch  1239          8347.
-## 3 sek III        4034          8345.
-## 4 sek II          741          8320.
-```
-
-
-]
-
-
 
 ---
 
@@ -942,7 +913,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

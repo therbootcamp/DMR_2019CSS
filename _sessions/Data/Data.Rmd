@@ -100,9 +100,9 @@ basel = readr::read_csv('../../1_data/basel.csv')
 - <span>Spezialfall einer `list`</span>
 - <span>R's `Tidy`-Format für Daten
 
-<high>`vector`</high> - R's data container
+<high>`vector`</high> - R's Daten-Container
 - <span>Primärer Daten-Container</span>
-- <span>Beinhaltet daten von genau einem Klasse</span>
+- <span>Beinhaltet Daten genau einer Klasse</span>
 
 ]
 
@@ -235,7 +235,7 @@ basel
     <li><span><highm>character</highm> - Alle Zeichen (e.g., Namen)</span></li>
     <li><span><highm>logical</highm> - <mono>TRUE</mono> oder <mono>FALSE</mono></span></li>
     <li><span>...</span></li>
-    <li><span><highm>NA`</highm> - fehlende Werte</span></li>
+    <li><span><highm>NA</highm> - fehlende Werte</span></li>
   </ul>
   </span></li>
 </ul>
@@ -281,7 +281,7 @@ alter[2] <- 100
 alter
 ```
 
-Merh info [hier](http://rspatial.org/intr/rst/4-indexing.html).
+Mehr Info [hier](http://rspatial.org/intr/rst/4-indexing.html).
 
 ]
 
@@ -382,7 +382,7 @@ basel$alter[1:10]
 ```
 
 ```{r, eval = F}
-# Wangle Alter in character um
+# Wandle Alter in character um
 as.character(basel$alter)
 ```
 
@@ -404,7 +404,7 @@ as.character(basel$alter[1:10])
 
 .pull-left45[
 
-<highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
+<highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> erstellt und benutzt um in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
 
 ```{r, eval = F}
 # Welche Werte in Geschlecht sind M
@@ -439,7 +439,7 @@ basel$alter[1:10] < 30
 
 .pull-left45[
 
-<highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
+<highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> erstellt und benutzt um in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
 
 <u>Logische Operatoren</u>
 
@@ -518,8 +518,8 @@ basel$alter[1:10] < 30
 
 <ul>
   <li class="m1"><span><high>Delimiter</high> separieren die Spalten.</span></li>
-  <li class="m1"><span>Meist als <high>lokale Textdatei</high> vorliegend.</span></li>
-  <li class="m1"><span><high>Datenklassen</high> werden inferiert.</span></li>
+  <li class="m2"><span>Meist als <high>lokale Textdatei</high> vorliegend.</span></li>
+  <li class="m3"><span><high>Datenklassen</high> werden inferiert.</span></li>
 </ul>
 
 <br>
