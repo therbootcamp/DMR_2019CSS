@@ -191,7 +191,7 @@ R ist de facto die **lingua franca** für Statistik und Datenanalyse.
 
 Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-performanter, nutzerfreundlicher Pakete, die speziell für eine effizientere Datenanalyse entwickelt wurden. 
 1. `ggplot2` für Grafiken.
-2. `dplyr` für Datenverarbeitung.
+2. `dplyr` für Datenverarbeitung</high>.
 3. `tidyr` für Datenverarbeitung.
 4. `readr` für Daten I/O.
 5. `purrr` für funktionales Programmieren.
@@ -210,7 +210,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
     <td bgcolor="white">
     <img src="image/hex-ggplot2.png" height=160px></img>
     </td>
-        <td bgcolor="white">
+    <td bgcolor="white">
     <img src="image/hex-dplyr.png"height=160px></img>
     </td>
     <td bgcolor="white">

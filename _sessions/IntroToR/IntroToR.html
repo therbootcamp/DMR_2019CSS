@@ -169,7 +169,7 @@ R ist de facto die **lingua franca** für Statistik und Datenanalyse.
 
 Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-performanter, nutzerfreundlicher Pakete, die speziell für eine effizientere Datenanalyse entwickelt wurden. 
 1. `ggplot2` für Grafiken.
-2. `dplyr` für Datenverarbeitung.
+2. `dplyr` für Datenverarbeitung&lt;/high&gt;.
 3. `tidyr` für Datenverarbeitung.
 4. `readr` für Daten I/O.
 5. `purrr` für funktionales Programmieren.
@@ -188,7 +188,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
     &lt;td bgcolor="white"&gt;
     &lt;img src="image/hex-ggplot2.png" height=160px&gt;&lt;/img&gt;
     &lt;/td&gt;
-        &lt;td bgcolor="white"&gt;
+    &lt;td bgcolor="white"&gt;
     &lt;img src="image/hex-dplyr.png"height=160px&gt;&lt;/img&gt;
     &lt;/td&gt;
     &lt;td bgcolor="white"&gt;
@@ -642,7 +642,7 @@ mean()
 ```
 
 ```
-## Error in mean.default(): Argument "x" fehlt (ohne Standardwert)
+## Error in mean.default(): argument "x" is missing, with no default
 ```
 
 ```r
@@ -693,7 +693,7 @@ mean()
 ```
 
 ```
-## Error in mean.default(): Argument "x" fehlt (ohne Standardwert)
+## Error in mean.default(): argument "x" is missing, with no default
 ```
 
 ```r
@@ -995,7 +995,7 @@ mean(c(1, 2, 3, NA), na.rm = "ABCD")
 ```
 
 ```
-## Error in if (na.rm) x &lt;- x[!is.na(x)]: Argument kann nicht als logischer Wert interpretiert werden
+## Error in if (na.rm) x &lt;- x[!is.na(x)]: argument is not interpretable as logical
 ```
 
 ]
@@ -1275,7 +1275,7 @@ lenth(x = 1)
 ```
 
 ```
-## Error in lenth(x = 1): konnte Funktion "lenth" nicht finden
+## Error in lenth(x = 1): could not find function "lenth"
 ```
 
 ]
@@ -1492,24 +1492,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {

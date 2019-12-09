@@ -64,7 +64,6 @@ options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
 library(tidyverse)
-library(basel)
 basel <- read_csv("../../1_Data/basel.csv")
 studie <- tibble(id = c(1, 2),
                  medikament = c("medikament", "plazebo"),
