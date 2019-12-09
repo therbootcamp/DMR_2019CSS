@@ -70,24 +70,39 @@ studie <- tibble(id = c(1, 2),
                  baseline = c(3, 4),
                  t1 = c(8, 6))
 
+patienten <- tibble(id = c(1, 2, 3, 4, 5),
+                    X1 = c(37, 65, 57, 34, 45),
+                    X2 = c(1, 2, 2, 1, 2))
+
+ergebnisse <- tibble(id = c(4, 92, 1, 2, 99),
+                     t_1 = c(100, 134, 123, 143, 102),
+                     t_2 = c(105, 150, 135, 140,68))
+patienten_ergebnisse = patienten %>% 
+  rename(alter = X1, bedingung = X2) %>%
+  mutate(bed_label = case_when(
+    bedingung == 1 ~ "placebo",
+    bedingung == 2 ~ "medikament")) %>%
+  # Verbinde mit ergebnisse
+  left_join(ergebnisse, by = "id")
+
 
 ```
 
 # Inhalte
 
 .pull-left45[
-<br>
+
+<font size = 5><high>Organisation, Transformation und Variablenauswahl</high></font>
+
+- Bsp: Alle Variablen, die mit "xyz_" anfangen
 
 <font size = 5><high>Datenformat transformieren</high></font>
 
-- Wide &#8594; Long Format
-- Long &#8594; Wide Format
+- Bsp: Wide &#8594; Long Format
 
 <font size = 5><high>Gruppen erstellen</high></font>
 
-Daten nach gewissen Variablen gruppieren
-
-- Bsp: Nach Geschlecht und Bildung
+- Bsp: Nach Geschlecht und Bildung gruppieren
 
 <font size = 5><high>Deskriptive Statistiken erstellen</high></font>
 
@@ -103,6 +118,269 @@ Daten nach gewissen Variablen gruppieren
 <p align="center">
 <img src="image/data_wrangler.png" height=240px><br>
 <font style="font-size:10px">from <a href="https://www.codeastar.com/data-wrangling/">codeastar</a></font></p>
+
+]
+
+---
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse
+```
+
+
+]
+
+---
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- <high>drop_na()</high>
+- <high>replace_na()</high>
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse %>%
+  mutate(t_1 = replace_na(t_1, 110))
+
+patienten_ergebnisse %>%
+  drop_na()
+```
+
+
+]
+
+---
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- <high>pull()</high>
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse %>%
+  select(alter) %>%
+  pull()
+
+patienten_ergebnisse %>%
+  select(alter) %>%
+   pull() %>%
+  class()
+```
+
+
+]
+
+
+---
+
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- <high>mutate_if()</high>
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse %>%
+  mutate_if(is.character, factor)
+
+```
+
+
+]
+
+---
+
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- <high>starts_with()</high>
+- `contains()`
+- `:`
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse %>%
+  select(starts_with("t"))
+```
+
+
+]
+
+---
+
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- <high>contains()</high>
+- `:`
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse %>%
+  select(contains("_"))
+```
+
+
+]
+
+---
+
+
+# Organisation, Transformation und Variablenauswahl
+
+.pull-left4[
+
+Organisation:
+
+- `drop_na()`
+- `replace_na()`
+- `pull()`
+
+Transformation:
+
+- `mutate_if()`
+
+Variablenauswahl
+
+- `starts_with()`
+- `contains()`
+- <high>:</high>
+
+
+]
+
+.pull-right55[
+
+```{r}
+patienten_ergebnisse %>%
+  select(alter:t_1)
+```
+
 
 ]
 
@@ -260,46 +538,12 @@ studie_long %>%
 
 ---
 
-.pull-left45[
-
-# `dplyr`
-
-Wir verwenden `dplyr` zur Berechnung gruppierter deskriptiver Statistiken.
-
-<br>
-```{r, echo= TRUE, eval = FALSE}
-# Paket einzeln laden
-
-# install.packages('dplyr')
-
-library(dplyr)
-
-# Oder einfacher; das tidyverse Paket laden
-
-# install.packages('tidyverse')
-
-library(tidyverse)
-```
-
-]
- 
-.pull-right5[
-
-<br><br><br>
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png")
-```
-
-]
-
----
 
 
 # `summarise()`
 
 .pull-left45[
 
-Benutze `summarise()` um neue Spalten mit <high>deskriptiven Statistiken</high> zu erstellen
 
 ```{r, echo = TRUE, eval = FALSE}
 data %>%
@@ -309,7 +553,6 @@ data %>%
   )
 ```
 
-Das Resultat von `summarise()` ist ein tibble!
 
 ]
 
@@ -322,6 +565,42 @@ basel %>%
     N = n(),
     alter_mean = mean(alter),
     groesse_median = median(groesse)
+  )
+```
+
+
+]
+
+---
+
+
+# `summarise_if()`
+
+.pull-left45[
+
+
+```{r, echo = TRUE, eval = FALSE}
+data %>%
+  summarise_if(
+    classification,
+    SUMMARY_FUN,
+    Arguments
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+# Berechne deskriptive Statistiken
+basel %>%
+  select(1:5) %>%
+  summarise_if(
+    is.numeric,
+    mean,
+    na.rm = TRUE
   )
 ```
 
@@ -367,6 +646,37 @@ basel %>%
 
 ---
 
+# Auswahlfunktionen
+
+.pull-left35[
+
+- <high>n()</high>
+- <high>first()</high>
+- <high>last()</high>
+- <high>nth()</high>
+
+]
+
+.pull-right65[
+
+```{r}
+# Gruppiere über Variable geschlecht
+# Berechne deskriptive Statistiken
+basel %>%
+  group_by(geschlecht) %>%
+  arrange(desc(einkommen)) %>%
+  summarise(
+    N = n(),
+    bildung_first = first(bildung),
+    bildung_last = last(bildung),
+    bildung_150 = nth(bildung, 150)
+  )
+```
+
+]
+
+---
+
 # Kombiniere Funktionen
 
 .pull-left4[
@@ -383,319 +693,18 @@ Benutze dafür die Pipe <high>%>%</high>
 ```{r}
 basel %>%
   filter(geschlecht == "m" & kinder > 0) %>% 
+  mutate(groesse_m = groesse / 100,
+         bmi = gewicht / groesse_m ^2) %>%
   group_by(bildung) %>%
   summarise(
     N = n(),
-    alter_mean = mean(alter),
-    einkommen_median = median(einkommen,
-                              na.rm = TRUE)
+    bmi_mean = mean(bmi, na.rm = TRUE),
+    bmi_max = max(bmi, na.rm = TRUE),
+    bmi_min = min(bmi, na.rm = TRUE)
   )
 ```
 
 ]
-
----
-
-# Quiz 1
-
-.pull-left45[
-
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = FALSE}
-basel %>%
-  group_by(fasnacht) %>%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-]
-
-
----
-
-# Quiz 1
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = TRUE}
-basel %>%
-  group_by(fasnacht) %>%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-]
-
-
----
-
-# Quiz 2
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = FALSE}
-basel %>%
-  group_by(fasnacht, geschlecht) %>%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-]
-
-
-
----
-
-# Quiz 2
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = TRUE}
-basel %>%
-  group_by(fasnacht, geschlecht) %>%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-]
-
-
----
-
-# Quiz 3
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = FALSE}
-basel %>%
-  filter(geschlecht == "m") %>%
-  group_by(fasnacht, geschlecht) %>%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-]
-
-
-
-
----
-
-# Quiz 3
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = TRUE}
-basel %>%
-  filter(geschlecht == "m") %>%
-  group_by(fasnacht, geschlecht) %>%
-  summarise(
-    N = n(),
-    alter_mean = mean(alter),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  )
-```
-
-]
-
-
----
-
-# Quiz 4
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = FALSE}
-basel %>%
-  group_by(bildung) %>%
-  summarise(
-    N = n(),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  ) %>%
-  arrange(desc(einkommen_mean))
-```
-
-
-]
-
-
-
-
----
-
-# Quiz 4
-
-.pull-left45[
-
-Hier ist ein Teil des `basel` Datensatzes
-
-```{r}
-basel %>%
-  select(geschlecht, fasnacht, alter,
-         einkommen) %>%
-  slice(1:5)
-```
-
-
-]
-
-.pull-right5[
-
-Welcher Code erstellt die folgende Tabelle?
-
-```{r, echo = TRUE}
-basel %>%
-  group_by(bildung) %>%
-  summarise(
-    N = n(),
-    einkommen_mean = mean(einkommen,
-                          na.rm = TRUE)
-  ) %>%
-  arrange(desc(einkommen_mean))
-```
-
-
-]
-
-
 
 ---
 
