@@ -239,17 +239,14 @@ Jeder Block beginnt mit einer folien-basierten <high>Einführung (30-45min)</hig
 
 .pull-left5[
 
-1. Wie heisst Du?
-
-2. Hast du Programmiererfahrung mit R oder anderen Programmiersprachen?
-
-3. Wieso möchtest Du R lernen?
-
-4. Kaffee oder Tee?
-
-5. Bier oder Wein?
-
-6. Berlin oder Paris?
+<ul>
+  <li class="m1"><span>Wie heisst Du?</span></li>
+  <li class="m2"><span>Hast du Programmiererfahrung mit R oder anderen Programmiersprachen?</span></li>
+  <li class="m3"><span>Wieso möchtest Du R lernen?</span></li>
+  <li class="m4"><span>Kaffee oder Tee?</span></li>
+  <li class="m5"><span>Bier oder Wein?</span></li>
+  <li class="m6"><span>Berlin oder Paris?</span></li>
+</ul>
 
 ]
 

@@ -80,18 +80,21 @@ basel = readr::read_csv('../../1_data/basel.csv')
 # Das ist Wrangling!
 
 <ul>
-  <li class="m1"><span><high>Transformieren</high>: Intuitive Spaltennamen vergeben.
+  <li class="m1"><span><high>Transformieren</high>
+  <br><br>
   <ul class="level">
     <li><span>Spaltennamen verändern</span></li>
     <li><span>Neue Variablen kreieren</span></li>
   </ul></span></li>
-  <li class="m2"><span><high>Organisieren</high>: Intuitive Spaltennamen vergeben.
+  <li class="m2"><span><high>Organisieren</high>
+  <br><br>
   <ul class="level">
     <li><span>Sortieren</span></li>
     <li><span>Datensätze zusammenführen</span></li>
     <li><span>Spalten zu Zeilen flippen</span></li>
   </ul></span></li>
-    <li class="m3"><span><high>Aggregieren</high>: Intuitive Spaltennamen vergeben.
+  <li class="m3"><span><high>Aggregieren</high>
+  <br><br>
   <ul class="level">
     <li><span>Datengruppen bilden</span></li>
     <li><span>Statistiken für Gruppen berechnen</span></li>

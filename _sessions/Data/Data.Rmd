@@ -88,11 +88,9 @@ basel = readr::read_csv('../../1_data/basel.csv')
 
 ---
 
-# 3 Object types for data
+# 3 Klassen von Datenobjekten
 
 .pull-left4[
-
-Es gibt 3 wesentliche Objekte...
 
 <high>`list`</high> - R's Mehrzweck-Container
 - <span>Kann alle Daten beinhalten, inkl. `list`s</span>

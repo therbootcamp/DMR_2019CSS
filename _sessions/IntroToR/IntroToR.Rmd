@@ -242,19 +242,25 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Syntax</b>
+<ul>
+  <li class="m1"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
+
+<b>Produktivität</b>
+<ul>
+  <li class="m7"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9"><span>Benutzt R in RStudio</span></li>
+  <li class="m10"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
+
 ]
 
 ---
@@ -262,19 +268,23 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. <high>Der Assignment Operator <mono><-</mono></high>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1"><span><high>Der Assignment Operator <mono><-</mono></high></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -294,19 +304,23 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <high><mono><-</mono> kreiert/verändert Objekte</high>
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><high><mono><-</mono> kreiert/verändert Objekte</high></span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -329,19 +343,23 @@ eins_zwei_drei
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <high><mono><-</mono> kreiert/verändert Objekte</high>
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><high><mono><-</mono> kreiert/verändert Objekte</high></span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -361,19 +379,23 @@ mean(eins_zwei_drei)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <high><mono><-</mono> kreiert/verändert Objekte</high>
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><high><mono><-</mono> kreiert/verändert Objekte</high></span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -396,19 +418,23 @@ ergebnis * 10
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <high><mono><-</mono> kreiert/verändert Objekte</high>
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><high><mono><-</mono> kreiert/verändert Objekte</high></span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -435,19 +461,23 @@ eins_zwei_drei
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <high><mono><-</mono> kreiert/verändert Objekte</high>
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><high><mono><-</mono> kreiert/verändert Objekte</high></span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -475,19 +505,23 @@ eins_zwei_drei
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <high><mono><-</mono> kreiert/verändert Objekte</high>
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2"><span><high><mono><-</mono> kreiert/verändert Objekte</high></span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -511,19 +545,23 @@ und_vier
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. <high>Alles passiert durch Funktionen</high>
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3"><span><high>Alles passiert durch Funktionen</high></span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -536,19 +574,23 @@ und_vier
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. <high>Alles passiert durch Funktionen</high>
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3"><span><high>Alles passiert durch Funktionen</high></span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -574,19 +616,23 @@ mean(x = eins_zwei_drei)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. <high>Funktionen haben (Default) Argumente</high>
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4"><span><high>Funktionen haben (Default) Argumente</high></span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -609,19 +655,23 @@ mean(c(1, 2, 3, NA))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. <high>Funktionen haben (Default) Argumente</high>
-5. Argumente erwarten Klassen 
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4"><span><high>Funktionen haben (Default) Argumente</high></span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -645,19 +695,23 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. <high>Argumente erwarten Klassen</high>
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5"><span><high>Argumente erwarten Klassen</high></span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -676,19 +730,23 @@ mean(c("1", "2", "3"))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. <high>Argumente erwarten Klassen</high>
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5"><span><high>Argumente erwarten Klassen</high></span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -707,19 +765,23 @@ class(c("1", "2", "3"))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -735,19 +797,23 @@ class(c("1", "2", "3"))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -763,19 +829,23 @@ class(c("1", "2", "3"))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -798,19 +868,23 @@ mean(c("1", "2", "3"))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -827,19 +901,23 @@ mean(c("1", "2", "3"))
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -862,19 +940,23 @@ mean(c(1, 2, 3, NA), na.rm = "ABCD")
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -897,19 +979,23 @@ class("ABCD")
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. <high>Findet Hilfe mit <mono>?</mono></high>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6"><span><high>Findet Hilfe mit <mono>?</mono></high></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -931,19 +1017,23 @@ as.logical("ABCD")
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. <high>Funktionen leben in Paketen</high>
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -956,19 +1046,23 @@ as.logical("ABCD")
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. <high>Funktionen leben in Paketen</high>
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7"><span><high>Funktionen leben in Paketen</high></span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -981,19 +1075,23 @@ as.logical("ABCD")
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. <high>Funktionen leben in Paketen</high>
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7"><span><high>Funktionen leben in Paketen</high></span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -1015,19 +1113,23 @@ as.logical("ABCD")
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. <high>Funktionen leben in Paketen</high>
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7"><span><high>Funktionen leben in Paketen</high></span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 
@@ -1055,19 +1157,23 @@ library(tidyverse)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. <high>Lernt von Fehlern und Warnungen</high>
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8"><span><high>Lernt von Fehlern und Warnungen</high></span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 .pull-right5[
@@ -1098,19 +1204,23 @@ lenth(x = 1)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. <high>Lernt von Fehlern und Warnungen</high>
-9. Benutzt R in RStudio   
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8"><span><high>Lernt von Fehlern und Warnungen</high></span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 .pull-right5[
@@ -1132,19 +1242,23 @@ lenth(x = 1)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. <high>Benutzt R in RStudio</high>
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9"><span><high>Benutzt R in RStudio</high></span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 .pull-right5[
@@ -1160,19 +1274,23 @@ lenth(x = 1)
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. <high>Benutzt R in RStudio</high>
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9"><span><high>Benutzt R in RStudio</high></span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 .pull-right5[
@@ -1191,19 +1309,23 @@ Shortcut für <high>führe Chunk wiederholt aus</high>:<br><br2><font size = 6> 
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. <high>Benutzt R in RStudio</high>
-10. Benutzt Projekte in Rstudio
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9"><span><high>Benutzt R in RStudio</high></span></li>
+  <li class="m10g"><span>Benutzt Projekte in Rstudio</span></li>
+</ul>
 ]
 
 .pull-right5[
@@ -1220,19 +1342,23 @@ Shortcut für <high>führe Chunk wiederholt aus</high>:<br><br2><font size = 6> 
 # 10 grundlegende R Lektionen
 
 .pull-left4[
-<u>Syntax</u>
-1. Der Assignment Operator <mono><-</mono>
-2. <mono><-</mono> kreiert/verändert Objekte
-3. Alles passiert durch Funktionen
-4. Funktionen haben (Default) Argumente
-5. Argumente erwarten Klassen
-6. Findet Hilfe mit <mono>?</mono>
+<b>Syntax</b>
+<ul>
+  <li class="m1g"><span>Der Assignment Operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> kreiert/verändert Objekte</span></li>
+  <li class="m3g"><span>Alles passiert durch Funktionen</span></li>
+  <li class="m4g"><span>Funktionen haben (Default) Argumente</span></li>
+  <li class="m5g"><span>Argumente erwarten Klassen</span></li>
+  <li class="m6g"><span>Findet Hilfe mit <mono>?</mono></span></li>
+</ul>
 
-<u>Produktivität</u>
-7. Funktionen leben in Paketen
-8. Lernt von Fehlern und Warnungen
-9. Benutzt R in RStudio
-10. <high>Benutzt Projekte in Rstudio</high>
+<b>Produktivität</b>
+<ul>
+  <li class="m7g"><span>Funktionen leben in Paketen</span></li>
+  <li class="m8g"><span>Lernt von Fehlern und Warnungen</span></li>
+  <li class="m9g"><span>Benutzt R in RStudio</span></li>
+  <li class="m10"><span><high>Benutzt Projekte in Rstudio</high></span></li>
+</ul>
 ]
 
 .pull-right5[
