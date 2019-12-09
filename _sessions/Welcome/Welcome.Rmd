@@ -1,6 +1,6 @@
 ---
 title: "Willkommen!"
-author: "R for Data Science<br>
+author: "Explorative Datenanalyse mit R<br>
   <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>
   <a href='https://therbootcamp.github.io/EDA_2019Feb/'>
