@@ -28,22 +28,21 @@ output:
 
 <br>
 
-
-
-##### [Data sets](https://raw.githubusercontent.com/therbootcamp/R4DS_2019Feb/master/1_Data/BaselRBootcamp_data.zip)
-##### [PDFs](https://github.com/therbootcamp/R4DS_2019Feb/raw/master/_sessions/_pdf/R4DS_2019Feb_pdfs.zip)
+##### [Data sets](https://raw.githubusercontent.com/therbootcamp/EDA_2019CSS/master/1_Data/TheRBootcamp_data.zip)
+##### PDFs (kommen später)
+<!---[PDFs](https://github.com/therbootcamp/R4DS_2019Feb/raw/master/_sessions/_pdf/EDA_2019CSS_pdfs.zip)--->
 <!--- <font style="font-size:12px">(made available later)</font>--->
 
 <br>
 
-### Materials
-|  | Day 1<br>Preparation| Day 2<br>Analysis| 
+### Materialien
+|  | Tag 1 | Tag 2 | 
 |:--|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap<br>[slides](_sessions/Recap/Recap.html)|
-|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Analysing <br>[slides](_sessions/Analysing/Analysing.html), [practical](_sessions/Analysing/Analysing_practical.html) |
-|2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Plotting<br>[slides](_sessions/Plotting/Plotting), [practical](_sessions/Plotting/Plotting_practical.html)|
-|3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) |Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)|
-||    | Next Steps<br>[slides](_sessions/NextSteps/NextSteps.html) |
+|0| Willkommen!<br>[Folien](_sessions/Welcome/Welcome.html) | Wiederholung<br>[Folien](_sessions/Recap/Recap.html)|
+|1| Einführung in R<br>[Folien](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Wrangling II <br>[Folien](_sessions/WranglingII/WranglingII.html), [Practical](_sessions/WranglingII/WranglingII_practical.html) |
+|2|  Daten <br>[Folien](_sessions/Data/Data.html), [Practical](_sessions/Data/Data_Practical.html)| Plotting<br>[Folien](_sessions/Plotting/Plotting.html), [Practical](_sessions/Plotting/Plotting_Practical_practical.html)|
+|3|   Wrangling<br>[Folien](_sessions/Wrangling/Wrangling.html), [Practical](_sessions/Wrangling/Wrangling_Practical.html) | Plotting II<br>[Folien](_sessions/PlottingII/PlottingII.html), [Practical](_sessions/PlottingII/PlottingII_Practical.html) |
+||    | Nächste Schritte<br>[Folien](_sessions/NextSteps/NextSteps.html) |
 <br>
 
 
@@ -51,19 +50,19 @@ output:
 
 |  | Day 1<br>Fundamentals| Day 2<br>Analysis| Day 3<br>Reporting| 
 |:--|:-------------|:-------------|:-------------|
-|0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap I<br>[slides](_sessions/Recap/Recap.html)| Recap II<br>[slides](_sessions/RecapII/RecapII.html)|
-|1| Intro to R<br>[slides](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Statistics I <br>[slides](_sessions/StatisticsI/StatisticsI.html), [practical](_sessions/StatisticsI/StatisticsI_practical.html) | Plotting II <br>[slides](_sessions/PlottingII/PlottingII.html), [practical](_sessions/PlottingII/PlottingII.html) |
-|2|  Data <br>[slides](_sessions/Data/Data.html), [practical](_sessions/Data/Data_practical.html)| Statistics II<br>[slides](_sessions/StatisticsII/Statistics.html), [practical](_sessions/StatisticsII/Statistics_practical.html)| Reporting<br>[slides](_sessions/Reporting/Reporting.html), [practical](_sessions/Reporting/Reporting_practical.html)|
-|3|   Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html) | Plotting I<br>[slides](_sessions/PlottingI/Plotting.html), [practical](_sessions/PlottingI/Plotting_practical.html) |Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)|
-|4| |  | Next Steps<br> [slides](_sessions/NextSteps/NextSteps.html) |
+|0| Welcome!<br>[Folien](_sessions/Welcome/Welcome.html) | Recap I<br>[Folien](_sessions/Recap/Recap.html)| Recap II<br>[Folien](_sessions/RecapII/RecapII.html)|
+|1| Intro to R<br>[Folien](_sessions/IntroToR/IntroToR.html), [source](_sessions/IntroToR/IntroToR_interactive.R) | Statistics I <br>[Folien](_sessions/StatisticsI/StatisticsI.html), [Practical](_sessions/StatisticsI/StatisticsI_Practical.html) | Plotting II <br>[Folien](_sessions/PlottingII/PlottingII.html), [Practical](_sessions/PlottingII/PlottingII.html) |
+|2|  Data <br>[Folien](_sessions/Data/Data.html), [Practical](_sessions/Data/Data_Practical.html)| Statistics II<br>[Folien](_sessions/StatisticsII/Statistics.html), [Practical](_sessions/StatisticsII/Statistics_Practical.html)| Reporting<br>[Folien](_sessions/Reporting/Reporting.html), [Practical](_sessions/Reporting/Reporting_Practical.html)|
+|3|   Wrangling<br>[Folien](_sessions/Wrangling/Wrangling.html), [Practical](_sessions/Wrangling/Wrangling_Practical.html) | Plotting I<br>[Folien](_sessions/PlottingI/Plotting.html), [Practical](_sessions/PlottingI/Plotting_Practical.html) |Case Studies<br>[Intro](_sessions/CaseStudies/CaseStudies.html)<br>[1: Clinical Trial](_sessions/CaseStudies/Clinical_Data_Case_Study.html)<br>[2: Finance ](_sessions/CaseStudies/Financial_Data_Case_Study.html)|
+|4| |  | Next Steps<br> [Folien](_sessions/NextSteps/NextSteps.html) |
 <br>
 
 --->
 
 
-### Schedule
+### Agenda
 
 
 <p align="left"><br>
-    <img border="0" alt="Feb2019Schedule" src="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Welcome/image/schedule.png" style="width:410px">
+    <img border="0" alt="Feb2019Schedule" src="https://therbootcamp.github.io/EDA_2019CSS/_sessions/Welcome/image/schedule.png" style="width:410px">
 </p>
