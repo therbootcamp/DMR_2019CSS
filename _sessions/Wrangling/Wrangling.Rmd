@@ -412,7 +412,7 @@ patienten %>%
   rename(alter = X1, 
          bedingung = X2) %>%
   
-  # Create bed_label from arm
+# Kreiere bed_label von bedingung
   mutate(bed_label = case_when(
     bedingung == 1 ~ "placebo",
     bedingung == 2 ~ "medikament"))
@@ -499,7 +499,7 @@ patienten %>%
     <li><span><mono>arrange()</mono></span></li>
   </ul>
   </span></li>
-  <li class="m5"><span><high>Filtern</high>: Relevante Fälle auswählen..
+  <li class="m5"><span><high>Filtern</high>: Relevante Fälle auswählen.
   <br><br>
   <ul class="level">
     <li><span><mono>slice()</mono></span></li>
@@ -702,7 +702,7 @@ patienten_ergebnisse %>%
 .pull-right5[
 
 ```{r}
-  # alter grösser 30 & bed_label ist drug
+# alter grösser 30 & bed_label ist medikament
 patienten_ergebnisse %>%
   filter(alter > 30,
          bed_label == "medikament")
