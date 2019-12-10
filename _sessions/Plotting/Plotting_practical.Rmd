@@ -79,7 +79,7 @@ Am Ende des Practicals wirst du wissen wie man:
 
 3. Speichere das neue Skript unter dem Namen `plotting_practical.R` im `2_Code` Ordner.
 
-4. Lade das `tidyverse` Paket.
+4. Lade `tidyverse` und `ggthemes`.
 
 ### B - Lade den Datensatz
 
@@ -479,7 +479,6 @@ ggplot(data = mpg,
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-library(plotly)
 library(ggthemes)
 mcdonalds <- read_csv("1_Data/mcdonalds.csv")
 ```
