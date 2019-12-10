@@ -466,7 +466,7 @@ patienten %&gt;%
   rename(alter = X1, 
          bedingung = X2) %&gt;%
   
-  # Create bed_label from arm
+# Kreiere bed_label von bedingung
   mutate(bed_label = case_when(
     bedingung == 1 ~ "placebo",
     bedingung == 2 ~ "medikament"))
@@ -588,7 +588,7 @@ patienten %&gt;%
     &lt;li&gt;&lt;span&gt;&lt;mono&gt;arrange()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Filtern&lt;/high&gt;: Relevante Fälle auswählen..
+  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Filtern&lt;/high&gt;: Relevante Fälle auswählen.
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;&lt;mono&gt;slice()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
@@ -857,7 +857,7 @@ patienten_ergebnisse %&gt;%
 
 
 ```r
-  # alter grösser 30 &amp; bed_label ist drug
+# alter grösser 30 &amp; bed_label ist medikament
 patienten_ergebnisse %&gt;%
   filter(alter &gt; 30,
          bed_label == "medikament")
@@ -1014,7 +1014,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
