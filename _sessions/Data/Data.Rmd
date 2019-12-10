@@ -712,7 +712,7 @@ DBI::dbListTables(con)
 
 <ul>
   <li class="m1"><span>R kann direkt <high>auf Datenbanken arbeiten</high>: <mono>MySQL</mono>, <mono>MariaDB</mono>, <mono>BigQuery</mono>, <mono>Redshift</mono>, etc.<br><font style="font-size:16px">Siehe <a href="https://db.rstudio.com/databases">hier</a>.</font></span></li>
-  <li class="m2"><span><mono>dplyr</mono> wird in z.B. <high>automatisch übersetzt.</high></span></li>
+  <li class="m2"><span><mono>dplyr</mono> wird z.B. <high>automatisch übersetzt.</high></span></li>
 </ul>
 
 ]
