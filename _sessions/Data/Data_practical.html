@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -158,18 +158,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -213,8 +201,8 @@ $(document).ready(function () {
 <h1></h1>
 <div id="uberblick" class="section level2">
 <h2>Überblick</h2>
-<p>In diesem Practical wirst R’s Datenklassen und das Einlesen und Schreiben von Daten üben.</p>
-<p>Am Ende des Practicals wirst du wissen wie man:</p>
+<p>In diesem Practical wirst du R’s Datenklassen besser kennenlernen und das Einlesen und Schreiben von Daten üben.</p>
+<p>Am Ende des Practicals wirst du wissen:</p>
 <ol style="list-style-type: decimal">
 <li>Wie man mit Data Frames und Vektoren umgeht.</li>
 <li>Wie man Daten verschiedener Formate einliest und schreibt.</li>
@@ -236,11 +224,13 @@ $(document).ready(function () {
 <li><p>Lade die <code>tidyverse</code>, <code>haven</code>, und <code>readxl</code> Pakete.</p></li>
 </ol>
 <pre class="r"><code># Pakete laden
-library(tidyverse)     </code></pre>
+library(tidyverse)
+library(haven)
+library(readxl)</code></pre>
 </div>
 <div id="b---kreiere-vektoren" class="section level3">
 <h3>B - Kreiere Vektoren</h3>
-<p>Die folgende Tabelle zeigt die Daten von fünf hypothetischenn Baselern. Im ersten Teil dieses Practicals ist es deine Aufgabe diese Tabelle nachzubauen und anschliessend zu analysieren. Wann immmer du <code>XX</code> siehst, bedeutet das, dass etwas an dessen Stelle eintragen sollst.</p>
+<p>Die folgende Tabelle zeigt die Daten von fünf hypothetischenn Baselern. Im ersten Teil dieses Practicals ist es deine Aufgabe diese Tabelle nachzubauen und anschliessend zu analysieren. Wann immmer du <code>XX</code> siehst, bedeutet das, dass du etwas an dessen Stelle eintragen sollst.</p>
 <p><em>5 Baseler</em></p>
 <table>
 <thead>
@@ -315,20 +305,20 @@ class(XX)</code></pre>
 <pre class="r"><code># Zeige die Länge des Vektors
 length(XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Kreiere einen Vektor <code>geschlecht</code>, der die entsprechenden Werte aus der 5 Baseler Tabelle enthält. Stelle sicher, dass du Anführungszeichen <code>&quot;&quot;</code> um die einzelnen Elemente setzt, damit R weiss, dass es sich um <code>character</code> Werte handelt. Wenn du fertig bist, lasse dir den Vektor anzeigen</li>
+<li>Kreiere einen Vektor <code>geschlecht</code>, der die entsprechenden Werte aus der 5 Baseler Tabelle enthält. Stelle sicher, dass du Anführungszeichen <code>&quot;&quot;</code> um die einzelnen Elemente setzt, damit R weiss, dass es sich um <code>character</code> Werte handelt. Wenn du fertig bist, lasse dir den Vektor anzeigen.</li>
 </ol>
 <pre class="r"><code># Kreiere Vektor geschlecht 
 XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Verwende wiederum die Funktionen <code>class()</code> und <code>length()</code>, um zu die Klasse (<code>character</code>) und die Länge (5) zu überprüfen?</p></li>
-<li><p>Führe die selben schritte nun für die Spalten <code>alter</code> und <code>groesse</code> aus.</p></li>
+<li><p>Führe die selben Schritte nun für die Spalten <code>alter</code> und <code>groesse</code> aus.</p></li>
 <li><p>Schaue dir die Spalte <code>gewicht</code> an. Du wirst sehen, dass sie einen fehlenden Wert beinhaltet. Kreiere einen Vektor <code>gewicht</code> mit den selben Schritten wie zuvor. Stelle sicher, dass du den fehlenden Wert als <code>NA</code> spezifizierst - ohne Anführungszeichen.</p></li>
 </ol>
 </div>
 <div id="c---kreiere-tibbles" class="section level3">
 <h3>C - Kreiere <code>tibbles</code></h3>
 <ol style="list-style-type: decimal">
-<li>Verwende die Funktion <code>tibble()</code>, um einen data frame names <code>basel</code> zu erstellen, der die Vektoren enthält, die du gerade erstellt hast: <code>id</code>, <code>alter</code>, <code>geschlecht</code>, <code>groesse</code>, und <code>gewicht</code>.</li>
+<li>Verwende die Funktion <code>tibble()</code>, um einen data frame names <code>basel</code> zu erstellen, der die eben erstellten Vektoren enthält: <code>id</code>, <code>alter</code>, <code>geschlecht</code>, <code>groesse</code>, und <code>gewicht</code>.</li>
 </ol>
 <pre class="r"><code># Kreiere data frame aus den Vektoren
 XX &lt;- tibble(XX, XX, XX, XX, XX, XX) </code></pre>
@@ -336,24 +326,24 @@ XX &lt;- tibble(XX, XX, XX, XX, XX, XX) </code></pre>
 <li><p>Printe den data frame. Enthält er alle Vektoren? Welche Ausmasse (Zeilen, Spalten) hat der data frame?</p></li>
 <li><p>Verwende die Funktion <code>summary()</code> um deskriptive Statistiken für die Variablen in <code>basel</code> zu erstellen.</p></li>
 <li><p>Verwende den <code>$</code>-Operator, um allein die Variable <code>alter</code> zu printen.</p></li>
-<li><p>Verwende die Funktionen <code>mean()</code>, <code>max</code>, <code>min</code>, und <code>median</code> umd deskriptive Statistiken direkt für die Variable <code>alter</code> zu berechnen</p></li>
+<li><p>Verwende die Funktionen <code>mean()</code>, <code>max()</code>, <code>min()</code>, und <code>median()</code> umd deskriptive Statistiken direkt für die Variable <code>alter</code> zu berechnen</p></li>
 </ol>
 </div>
 <div id="d---lesen-und-schreiben-von-delimiter-separierten-dateien" class="section level3">
 <h3>D - Lesen und Schreiben von Delimiter-separierten Dateien</h3>
 <p>In diesem Abschnitt wirst du den bekannten <code>diamonds</code> Datensatz einlesen und bearbeiten.</p>
 <ol style="list-style-type: decimal">
-<li>Finde den Filepath zum <code>diomands.csv</code> Datensatz. Setze hierzu den Cursor zwischen zwei Anführungszeichen <code>&quot;&quot;</code> und drücke ⇥ (tab). Speichere den Filepath in einem Objekt names <code>diamonds_path</code>.</li>
+<li>Finde den Filepath zum <code>diomands.csv</code> Datensatz. Setze hierzu den Cursor zwischen zwei Anführungszeichen <code>&quot;&quot;</code> und drücke ⇥ (tab). Speichere den Filepath in einem Objekt namens <code>diamonds_path</code>.</li>
 </ol>
 <pre class="r"><code># Setze den Cursor zwischen &quot;&quot; und drücke tab
 diamonds_path &lt;- &quot;&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Jetzt, verwende das Objekt <code>diamonds_path</code> in der Funktion <code>read_csv()</code>, um den Datensatz einzulesen und als neues Objekt <code>diamonds</code> zu speichern. (Der Umweg über das Objekt <code>diamonds_path</code> ist natürlich nicht zwingend nötig. Man den Filepath auch direkt als Argument einsetzen.)</li>
+<li>Jetzt, verwende das Objekt <code>diamonds_path</code> in der Funktion <code>read_csv()</code>, um den Datensatz einzulesen und als neues Objekt <code>diamonds</code> zu speichern. (Der Umweg über das Objekt <code>diamonds_path</code> ist natürlich nicht zwingend nötig. Man kann den Filepath auch direkt als Argument einsetzen.)</li>
 </ol>
 <pre class="r"><code># Lese den diamonds Datensatz ein
 diamonds &lt;- read_csv(file = XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Printe den <code>diamonds</code> Datensatz. Inspeziere insbesondere die Variablennamen. Etwas stimmt nicht.</p></li>
+<li><p>Printe den <code>diamonds</code> Datensatz. Inspiziere insbesondere die Variablennamen. Etwas stimmt nicht.</p></li>
 <li><p>Du kannst das Problem lösen, indem du direkt einen <code>character</code> Vektor durch das <code>col_names</code>-Argument übergibts. Der Vektor soll folgende Namen enthalteh: <code>karat</code>, <code>cut</code>, <code>farbe</code>, <code>klarheit</code>, <code>tiefe</code>, <code>tabelle</code>, <code>preis</code>.</p></li>
 </ol>
 <pre class="r"><code># lese dimaonds nochmal ein, diesmal mit expliziten Spaltennamen
@@ -361,7 +351,7 @@ diamonds &lt;- read_csv(file = &quot;XX&quot;,
                      col_names = c(&#39;name_1&#39;,&#39;name_2&#39;,&#39;...&#39;))  </code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Re-inspeziere den Datensatz. Sie die Spaltennamen nun korrekt?</p></li>
-<li><p>Richte nun diene Aufmerksamkeit zu den Klassen der Variablen. Wurden die Klassen aller Variablen richtig interpretiert?</p></li>
+<li><p>Richte nun deine Aufmerksamkeit auf die Klassen der Variablen. Wurden die Klassen aller Variablen richtig interpretiert?</p></li>
 <li><p>Finde heraus was passiert ist. Wähle die <code>karat</code> Variable aus und schaue dir die Werte genau an. Zwischen dem 10. und 20. Eintrag solltest du eine Irregularität erkennen, die dafür verantwortlich ist, dass die Variable als <code>character</code> erkannt wurde.</p></li>
 <li><p>Ersetze den falsch formatierten Wert in <code>karat</code> indem du unten im Code <code>XX</code> durch die Position (Zahl zwischen 10 und 20) des falschen Wertes ersetzt und <code>YY</code> mit dem korrekten Wert mit <code>.</code> anstatt <code>,</code>.</p></li>
 </ol>
@@ -370,7 +360,7 @@ diamonds$karat[XX] &lt;- YY</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li>Jetzt hast du den Wert ausgebessert, aber <code>karat</code> ist immer noch vom Typ <code>character</code>. Verwende die Funktion <code>type_convert()</code> um dies zu beheben. Siehe unten.</li>
 </ol>
-<pre class="r"><code># re-infer data types
+<pre class="r"><code># Re-inferiere Datentypen
 diamonds &lt;- type_convert(diamonds)</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li><p>Printe <code>diamonds</code>, um sicher zu stellen, dass <code>karat</code> jetzt <code>numeric</code> ist, bzw. <code>dbl</code> (ein Typ von <code>numeric</code>).</p></li>
@@ -386,24 +376,24 @@ write_csv(x = XX, path = &quot;XX/XX.csv&quot;)</code></pre>
 <div id="e---logische-vektoren" class="section level3">
 <h3>E - Logische Vektoren</h3>
 <ol style="list-style-type: decimal">
-<li>Logische Vektoren enthalten nur die Werte <code>TRUE</code> und <code>FALSE</code> (und <code>NA</code>s). Kreiere einen logischen Vektor names <code>teuer</code>, welcher <code>TRUE</code> enthält, wenn der der <code>preis</code> des Diamanten teurer als $10,000 ist, und <code>FALSE</code>, wenn er günstiger ist. Siehe Code.</li>
+<li>Logische Vektoren enthalten nur die Werte <code>TRUE</code> und <code>FALSE</code> (und <code>NA</code>s). Kreiere einen logischen Vektor names <code>teuer</code>, welcher <code>TRUE</code> enthält, wenn der <code>preis</code> des Diamanten teurer als $10,000 ist, und <code>FALSE</code>, wenn er günstiger ist. Siehe Code.</li>
 </ol>
 <pre class="r"><code># Kreiere Vektor teuer
 ZZ &lt;- diamonds$XX &gt; YY</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe den <code>teuer</code> Vektor. Er sollte nur <code>TRUE</code> und <code>FALSE</code> enthalten. Falls ja, decken sich die ersten Werte in <code>preis</code> mit den Werten in <code>teuer</code>?</p></li>
-<li><p>Ergänze den Datensatz um die neue Variable <code>teuer</code>. Sie Code.</p></li>
+<li><p>Ergänze den Datensatz um die neue Variable <code>teuer</code>. Siehe Code.</p></li>
 </ol>
 <pre class="r"><code># Ergänze Vektor
 XX$YY &lt;- ZZ</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Verwende die Funktion <code>table()</code>, um auszuzählen wie viele Diamanten teuer sind. Benutze hierzu den <code>$</code>-Operator.</p></li>
-<li><p>Verwende die <code>mean()</code> Funktion, um auszuzählen welcher Anteil teuer ist. Erinnere <code>mean()</code> funktioniert auch mit logischen Vektoren.</p></li>
+<li><p>Verwende die <code>mean()</code> Funktion, um auszuzählen welcher Anteil teuer ist. Erinnere, <code>mean()</code> funktioniert auch mit logischen Vektoren.</p></li>
 <li><p>Verwende sowohl einen logischen Vergleich, <code>&gt;</code> oder <code>&lt;</code>, als auch die <code>mean()</code> Funktion, um zu bestimmen welcher Anteil Diamanten mehr als 1 Karat besitzt.</p></li>
 </ol>
 </div>
-<div id="f---read-other-file-formats" class="section level3">
-<h3>F - Read other file formats</h3>
+<div id="f---einlesen-anderer-formate" class="section level3">
+<h3>F - Einlesen Anderer Formate</h3>
 <div id="excel" class="section level4">
 <h4>Excel</h4>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png" width="8%" style="display: block; margin: auto auto auto 0;" /></p>
@@ -431,7 +421,7 @@ table(titanic$XX, titanic$XX)</code></pre>
 <div id="spss" class="section level4">
 <h4>SPSS</h4>
 <p><img src="http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg" width="8%" style="display: block; margin: auto auto auto 0;" /></p>
-<p>In diesem Unterabschnitt liest du den <code>sleep</code> Datensatz, welcher Daten über das Schlafverhalten der Mitarbeiter der Univeristät Melbourne enthält, aus einem SPSS format ein und speicherst die Daten als <code>.csv</code>.</p>
+<p>In diesem Unterabschnitt liest du den <code>sleep</code> Datensatz, welcher Daten über das Schlafverhalten der Mitarbeiter der Universität Melbourne enthält, aus einem SPSS format ein und speicherst die Daten als <code>.csv</code>.</p>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>read_spss()</code> Funktion, um den Datensatz <code>sleep.sav</code> als ein neues Objekt <code>sleep</code> einzulesen.</li>
 </ol>
@@ -453,8 +443,8 @@ table(titanic$XX, titanic$XX)</code></pre>
 which(sleep$alchohol &gt; 10)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Nutze den Index der Person um dir, deren Geschlecht (<code>sex</code>) und Beziehungsstatus (<code>marital</code>) anzeigen zu lassen. Nutze hier die Klammern <code>[]</code>.</p></li>
-<li><p>Verwende <code>mean()</code> und <code>&gt;</code> um das mittlere Alter derjenigen zu berechnen, die mehr als einen Drink pro Tag zu sich nehmen.</p></li>
-<li><p>Verwende nun den Code der letzten Aufgabe und <code>!</code>um das mittlere Alter derjenigen zu berechnen, die <i>nicht</i> mehr als einen Drink pro Tag zu sich nehmen. Wo gehört das <code>!</code> hin?</p></li>
+<li><p>Verwende <code>mean()</code> und <code>&gt;</code> um das mittlere Alter derjenigen Personen zu berechnen, die mehr als einen Drink pro Tag zu sich nehmen.</p></li>
+<li><p>Verwende nun den Code der letzten Aufgabe und <code>!</code> um das mittlere Alter derjenigen Personen zu berechnen, die <i>nicht</i> mehr als einen Drink pro Tag zu sich nehmen. Wo gehört das <code>!</code> hin?</p></li>
 </ol>
 </div>
 </div>
@@ -479,11 +469,11 @@ class(gestern)
 
 # Rechne mit Vektoren
 change &lt;- heute - gestern
-change # Print result
+change # Printe Resultat
 
 # Verwende einen logischen Vektor
 increase &lt;- heute &gt; gestern
-increase # Print result
+increase # Printe Resultat
 
 # Kreiere einen tibble aus den Vektoren
 stocks &lt;- tibble(name, gestern, heute, change, increase)
@@ -557,7 +547,7 @@ chickens &lt;- read_spss(&quot;1_Data/chickens.sav&quot;)</code></pre>
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv">diamonds.csv</a></td>
 <td align="left">100</td>
 <td align="left">7</td>
-<td align="left">Bestandteil aus dem bekannten <code>diamonds</code> Datensatz, welcher die Eigenschaften und Preise einer grossen Anzeil Diamanten enthält.</td>
+<td align="left">Bestandteil aus dem bekannten <code>diamonds</code> Datensatz, welcher die Eigenschaften und Preise einer grossen Anzahl Diamanten enthält.</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls">titanic.xls</a></td>
@@ -767,6 +757,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
