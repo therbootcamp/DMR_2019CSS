@@ -11,7 +11,7 @@
 
 
 
-<title>PlottingII_practical.utf8</title>
+<title>Plotting II</title>
 
 <script src="PlottingII_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -189,6 +189,19 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Plotting II</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<font style='font-style:normal'>Explorative Datenanalyse mit R @ CSS</font><br> <a href='https://therbootcamp.github.io/EDA_2019CSS/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
 
 </div>
 
@@ -198,20 +211,20 @@ $(document).ready(function () {
 </p>
 <div id="section" class="section level1 tabset">
 <h1></h1>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>In this practical you’ll practice customizing plots created using the <code>ggplot2</code> package.</p>
-<p>By the end of this practical you will know how to:</p>
+<div id="uberblick" class="section level2">
+<h2>Überblick</h2>
+<p>In diesem Practical wirst du weiter üben mit <code>ggplot2</code> publikationsfertige Graphiken zu erstellen.</p>
+<p>Am Ende des Practicals wirst du wissen wie man:</p>
 <ol style="list-style-type: decimal">
-<li>Use facetting to create multiple plots.</li>
-<li>Use scaling to alter the plots dimensions.</li>
-<li>Alter and store themes to adjust a plots appearance.</li>
-<li>Create multiple plots in one using <code>grid.arrange()</code>.</li>
-<li>Create image files using <code>ggsave()</code>.</li>
+<li><code>facet</code>s benutzt.</li>
+<li><code>theme</code>s anpasst.</li>
+<li><code>scale</code>s anpasst.</li>
+<li>Bilddateien erstellst.</li>
+<li>Multiple Plots zusammenstellt.</li>
 </ol>
 </div>
-<div id="tasks" class="section level2">
-<h2>Tasks</h2>
+<div id="aufgaben" class="section level2">
+<h2>Aufgaben</h2>
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
@@ -285,10 +298,8 @@ $(document).ready(function () {
 <li>Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spielt ein wenig herum. Welche Zusammenhänge könnte ihr noch entdecken?</li>
 </ol>
 </div>
-</div>
-</div>
-<div id="d---themes" class="section level1">
-<h1>D - <code>theme</code>s</h1>
+<div id="d---themes" class="section level3">
+<h3>D - <code>theme</code>s</h3>
 <p>In diesem Abschnitt passt ihr euren Lieblingsplot aus dem letzten Abschnitt mit der <code>theme()</code> Funktion an.</p>
 <ol style="list-style-type: decimal">
 <li>Zuallererst speichert euren Plot als ein <code>gg</code> Objekt mit name <code>verbrechen_gg</code>.</li>
@@ -358,6 +369,7 @@ $(document).ready(function () {
     axis.title.y = element_text(size = XX, margin = margin(r = XX)),
     panel.spacing = unit(XX, units = XX)
     )</code></pre>
+</div>
 <div id="e---mein-theme-objekt" class="section level3">
 <h3>E - Mein <code>theme()</code> Objekt</h3>
 <ol style="list-style-type: decimal">
@@ -458,8 +470,9 @@ verbrechen_gg</code></pre>
 <li><p>Speichere deine Plot als <code>.pdf</code> mit <code>ggsave()</code>.</p></li>
 </ol>
 </div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
+</div>
+<div id="beispiele" class="section level2">
+<h2>Beispiele</h2>
 <pre class="r"><code>library(tidyverse) 
 
 # Scatterplot mit Hubraum und Meilen pro Gallone

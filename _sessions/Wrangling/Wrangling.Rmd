@@ -3,7 +3,7 @@ title: "Wrangling"
 author: "Explorative Datenanalyse mit R<br>
   <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>
-  <a href='https://therbootcamp.github.io/EDA_2019Feb/'>
+  <a href='https://therbootcamp.github.io/EDA_2019CSS/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>

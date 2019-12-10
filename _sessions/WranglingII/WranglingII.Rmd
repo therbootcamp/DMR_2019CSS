@@ -1,11 +1,9 @@
 ---
 title: "Wrangling II"
 author: "Explorative Datenanalyse mit R<br>
-  <a href='https://therbootcamp.github.io'>
-    The R Bootcamp @ CSS
-  </a>
+  <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>
-  <a href='https://therbootcamp.github.io/DMR_2019CSS/'>
+  <a href='https://therbootcamp.github.io/EDA_2019CSS/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>

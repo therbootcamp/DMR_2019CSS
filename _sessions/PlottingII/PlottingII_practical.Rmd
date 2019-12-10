@@ -1,11 +1,10 @@
 ---
 title: "Plotting II"
-author: "
-<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
-      <font style='font-style:normal'>Introduction to R</font><br>
-      <a href='https://dwulff.github.io/Intro2R_Unibe/'>
+      <font style='font-style:normal'>Explorative Datenanalyse mit R @ CSS</font><br>
+      <a href='https://therbootcamp.github.io/EDA_2019CSS/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -18,18 +17,18 @@ author: "
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
       <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>Bern R Bootcamp</font>
+        <font style='font-style:normal'>The R Bootcamp</font>
       </a>
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
     </td>
-  </tr>
-</table>"
+  </tr></table>"
 output:
   html_document:
     css: practical.css
     self_contained: no
+    
 ---
 
 ```{r setup, echo = FALSE, warning=F, message=F}
@@ -59,19 +58,19 @@ verbrechen = read_csv('1_Data/verbrechen.csv')
 
 # {.tabset}
 
-## Overview
+## Überblick
 
-In this practical you'll practice customizing plots created using the `ggplot2` package. 
+In diesem Practical wirst du weiter üben mit `ggplot2` publikationsfertige Graphiken zu erstellen. 
 
-By the end of this practical you will know how to:
+Am Ende des Practicals wirst du wissen wie man:
 
-1. Use facetting to create multiple plots.
-2. Use scaling to alter the plots dimensions.
-3. Alter and store themes to adjust a plots appearance.
-4. Create multiple plots in one using `grid.arrange()`.
-5. Create image files using `ggsave()`.
+1. `facet`s benutzt.
+2. `theme`s anpasst.
+3. `scale`s anpasst.
+4. Bilddateien erstellst.
+5. Multiple Plots zusammenstellt.
 
-## Tasks
+## Aufgaben
 
 ### A - Setup
 
@@ -228,7 +227,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
 
 7. Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spielt ein wenig herum. Welche Zusammenhänge könnte ihr noch entdecken?      
 
-# D - `theme`s
+### D - `theme`s
 
 In diesem Abschnitt passt ihr euren Lieblingsplot aus dem letzten Abschnitt mit der `theme()` Funktion an. 
 
@@ -562,7 +561,7 @@ In diesem Abschnitt lernst du mit dem `patchwork` Paket multiple Plots zusammenz
 5. Speichere deine Plot als `.pdf` mit `ggsave()`.
 
 
-## Examples
+## Beispiele
 
 ```{r, eval = FALSE, echo = TRUE}
 
