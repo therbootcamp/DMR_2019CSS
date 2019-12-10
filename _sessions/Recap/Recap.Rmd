@@ -1,5 +1,5 @@
 ---
-title: "Recap"
+title: "Wiederholung"
 author: "Explorative Datenanalyse mit R<br>
   <a href='https://therbootcamp.github.io'>The R Bootcamp <font style='font-size:30px;vertical-align:middle'>@</font> CSS</a>
   <br>

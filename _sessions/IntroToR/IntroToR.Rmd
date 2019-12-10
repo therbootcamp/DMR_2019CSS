@@ -87,9 +87,10 @@ GPL guarantees end users the freedom to run, study, share and modify the softwar
 
 # R ist eine Programmiersprache
 
-Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktionen für verschiedenste Ziele spezifiziert. Programmiersprachen bestehen aus **instruktionen für einen Computer** und werden genutzt um **Algorithmen zu implementieren**.
+Eine Programmiersprache ist eine <high>formale Sprache</high> die eine Reihe Instruktionen für alle möglichen Ziele spezifiziert. Programmiersprachen bestehen aus <high>instruktionen für einen Computer</high> und werden genutzt um <high>Algorithmen zu implementieren</high>.
 
 .pull-left4[
+<br>
 ### Algorithmus in Worten
 1. Lade Daten
 2. Extrahiere Variablen
@@ -98,6 +99,7 @@ Eine Programmiersprache ist eine **formale Sprache** die eine Reihe Instruktione
 ]
 
 .pull-right6[
+<br>
 ### Implementation in R
 ```{r, eval=F}
 data <- read.table(link)
@@ -132,9 +134,10 @@ summary(analysis)
 
 # R wird relevant bleiben
 
-R ist de facto die **lingua franca** für Statistik und Datenanalyse. 
+R ist de facto die <high>lingua franca</high> für Statistik und Datenanalyse. 
 
 .pull-left45[
+<br>
 ### Pro
 1. **Open-source** und umsonst.
 2. **Community** (e.g., [stackoverflow](https://stackoverflow.com/))
@@ -145,6 +148,7 @@ R ist de facto die **lingua franca** für Statistik und Datenanalyse.
 ]
 
 .pull-right45[
+<br>
 ### Ehemals Contra
 1. **Unschön**e Sprache wird überarbeitet ([Tidyverse](https://www.tidyverse.org/))
 2. **Langsam**e Elemente werden ersetzt ([Rcpp](http://www.rcpp.org/))
@@ -326,7 +330,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 .pull-right5[
 ```{r}
-# ein Objekt namens eins_zwei_drei
+# Ein Objekt namens eins_zwei_drei
 eins_zwei_drei <- c(1, 2, 3)
 
 # Printe das Objekt
@@ -365,7 +369,7 @@ eins_zwei_drei
 
 .pull-right5[
 ```{r}
-# ein Objekt namens eins_zwei_drei
+# Ein Objekt namens eins_zwei_drei
 eins_zwei_drei <- c(1, 2, 3)
 
 # Berechne den Mittelwert
@@ -401,7 +405,7 @@ mean(eins_zwei_drei)
 
 .pull-right5[
 ```{r}
-# ein Objekt namens eins_zwei_drei
+# Ein Objekt namens eins_zwei_drei
 eins_zwei_drei <- c(1, 2, 3)
 
 # Berechne den Mittelwert
@@ -440,13 +444,13 @@ ergebnis * 10
 
 .pull-right5[
 ```{r}
-# ein Objekt namens eins_zwei_drei
+# Ein Objekt namens eins_zwei_drei
 eins_zwei_drei <- c(1, 2, 3)
 
 # Printe das Objekt
 eins_zwei_drei
 
-# Printe das Objekt
+# Addiere 100
 eins_zwei_drei + 100
 
 # Printe das Objekt
@@ -483,13 +487,13 @@ eins_zwei_drei
 
 .pull-right5[
 ```{r}
-# ein Objekt namens eins_zwei_drei
+# Ein Objekt namens eins_zwei_drei
 eins_zwei_drei <- c(1, 2, 3)
 
 # Printe das Objekt
 eins_zwei_drei
 
-# Printe das Objekt
+# Ändere das Objekt
 eins_zwei_drei <- eins_zwei_drei + 100
 
 # Printe das Objekt
@@ -527,7 +531,7 @@ eins_zwei_drei
 
 .pull-right5[
 ```{r}
-# ein Objekt namens eins_zwei_drei
+# Ein Objekt namens eins_zwei_drei
 eins_zwei_drei <- c(1, 2, 3)
 
 # Ergänze um weitere Zahl
@@ -851,13 +855,13 @@ class(c("1", "2", "3"))
 
 .pull-right5[
 ```{r}
-# Mittelwet von c(1, 2, 3)
+# Mittelwert von c(1, 2, 3)
 mean(c(1, 2, 3))
 
-# Mittelwet von c(TRUE, FALSE, TRUE)
+# Mittelwert von c(TRUE, FALSE, TRUE)
 mean(c(TRUE, FALSE, TRUE))
 
-# Mittelwet von c("1", "2", "3")
+# Mittelwert von c("1", "2", "3")
 mean(c("1", "2", "3"))
 ```
 
@@ -923,13 +927,13 @@ mean(c("1", "2", "3"))
 
 .pull-right5[
 ```{r, error = T}
-# Mittelwet von c(1, 2, 3, NA)
+# Mittelwert von c(1, 2, 3, NA)
 mean(c(1, 2, 3, NA), na.rm = TRUE)
 
-# Mittelwet von c(1, 2, 3, NA)
+# Mittelwert von c(1, 2, 3, NA)
 mean(c(1, 2, 3, NA), na.rm = "TRUE")
 
-# Mittelwet von c(1, 2, 3, NA)
+# Mittelwert von c(1, 2, 3, NA)
 mean(c(1, 2, 3, NA), na.rm = "ABCD")
 ```
 
@@ -1229,8 +1233,8 @@ lenth(x = 1)
 
 | Fehler | Beschreibung |
 |:------|:--------------------------------------------|
-|     `'could not find function'`| Typo oder Paket nicht geladen|
-|     `'error in eval'`| Ein Objekt wird verwendet, dass nicht existiert.|
+| `'could not find function'`| Typo oder Paket nicht geladen|
+| `'error in eval'`| Ein Objekt wird verwendet, dass nicht existiert.|
 | `'cannot open()'`| Typo oder fehlende Ordner im Pfad.|
 | `'no applicable method'`| Funktion erwartet andere Klassen. |
 | package errors | Fehler im installieren, kompilieren, oder laden von Paketen. |
@@ -1363,7 +1367,7 @@ Shortcut für <high>führe Chunk wiederholt aus</high>:<br><br2><font size = 6> 
 
 .pull-right5[
 
-<b>Projects helfen bei...</b><br>
+<b>Projekte helfen bei...</b><br>
 workspace und history speichern &#9679; projektspezifische Optionen setzen &#9679; Dateien finden &#9679; Versionskontrolle &#9679; etc.
 <br><br>
 <p align = "left">
