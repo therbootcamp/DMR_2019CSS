@@ -64,18 +64,18 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 .pull-left45[
 <br><br><br><br><br>
-#  Schedule and Materials
+#  Agenda und Materialien
 
-Click the "Bootcamp running" link on our homepage!
+Finde unsere Materialien unter:
 
-<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
+<font style="font-size:24px" color="#F62D73"><a href="https://therbootcamp.github.io/EDA_2019CSS/"><b>WETEACHR.COM/EDA_2019CSS</b></a></font><br><br>
 
 ]
 
 .pull-right5[
 
 <br><br>
-<iframe src="https://therbootcamp.github.io" width="500" height="500"></iframe>
+<iframe src="https://therbootcamp.github.io/EDA_2019CSS/" width="500" height="500"></iframe>
 
 ]
 
@@ -92,7 +92,7 @@ Click the "Bootcamp running" link on our homepage!
 # Ziel
 
 
->###Das Ziel dieses Kurses ist Euch die Grundlagen der Programmiersprache R und den kompetenten Einsatz von R für die Aufbereitung, Exploration, und Visualisierung von Daten zu vermitteln. 
+>###Das Ziel dieses Kurses ist Euch die Grundlagen der Programmiersprache R und den kompetenten Umgang mit R für die Aufbereitung, Exploration, und Visualisierung von Daten zu vermitteln. 
 
 ]
 
@@ -127,10 +127,23 @@ Click the "Bootcamp running" link on our homepage!
 <br>
 # Agenda 
 
-Der Workshop beinhaltet eine Einführung in R und 5 <high>2-2.5h Blöcke</high> zu explorativen Datenanalyse. 
-
-Jeder Block beginnt mit einer folien-basierten <high>Einführung (30-45min)</high> und schliesst mit einer interaktiven <high>Übung (1.5-2h)</high> ab. 
-
+<ul>
+  <li class="m1"><span><high>Workshop</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Einführung in R</span></li>
+    <li><span>5 Blöcke zu explorativen Datenanalyse</span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Block</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Folien-basierten Einführung</span></li>
+    <li><span>Viele Übungen</span></li>
+    <li><span>Interaktiven Zusammenfassung</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
@@ -147,11 +160,23 @@ Jeder Block beginnt mit einer folien-basierten <high>Einführung (30-45min)</hig
 
 .pull-left45[
 <br2>
-<high>30 - 45 min folien-basierte Einführung</high> um Euch die zentralen Konzepte zu vermitteln.
 
-<high>Alle Materialien sind online verfügbar</high>. Später teilen wir mit Euch noch PDFs.
-
-<a href="https://therbootcamp.github.io/EDA_2019CSS/">Dies ist ein Link zu Euren Materialien</a>.
+<ul>
+  <li class="m1"><span><high>Einführung</high>
+  <br><br>
+  <ul class="level">
+    <li><span>30-45 min</span></li>
+    <li><span>Konzepte & Code Beispiele</span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Materialien</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Immer <a href="https://therbootcamp.github.io/EDA_2019CSS/">online verfügbar</a></span></li>
+    <li><span>Später gibts PDFs</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
@@ -172,15 +197,18 @@ Jeder Block beginnt mit einer folien-basierten <high>Einführung (30-45min)</hig
 
 # Übungen
 
-<high>Schreibt Eure eigenen R Skripte!</high>
 
-1 - 20 - 50 Aufgaben.
-
-2 - Fangen einfach an und werden zunehmend schwieriger. 
-
-3 - Folgt Eurem eigenen Tempo und löst so viele Ihr könnt.
-
-4 - Wir geben Euch später die Antworten. 
+<ul>
+  <li class="m1"><span><high>Selber Programmieren</high>
+  <br><br>
+  <ul class="level">
+    <li><span>20 - 50 Aufgaben</span></li>
+    <li><span>Zu Beginn einfach dann zunehmend schwieriger.</span></li>
+    <li><span>Folgt Eurem eigenen Tempo.</span></li>
+    <li><span>Antworten kommen später.</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
