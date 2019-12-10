@@ -28,7 +28,7 @@ output:
 
 <br>
 
-##### [Data sets](https://raw.githubusercontent.com/therbootcamp/EDA_2019CSS/master/1_Data/TheRBootcamp_data.zip)
+##### [Data sets](https://raw.githubusercontent.com/therbootcamp/EDA_2019CSS/master/1_Data/TheRBootcamp_EDA_2019CSS_data.zip)
 ##### PDFs (kommen später)
 <!---[PDFs](https://github.com/therbootcamp/R4DS_2019Feb/raw/master/_sessions/_pdf/EDA_2019CSS_pdfs.zip)--->
 <!--- <font style="font-size:12px">(made available later)</font>--->
