@@ -218,9 +218,9 @@ Finde unsere Materialien unter:
 .pull-right5[
 <br>
 
-  <iframe src="https://therbootcamp.github.io/EDA_2019CSS/_sessions/Daten/Daten_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="https://therbootcamp.github.io/EDA_2019CSS/_sessions/Data/Data_practical.html" height="480px" width = "500px"></iframe>
 
-  Beispiel:<a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Daten/Daten_practical.html"> Daten </a>
+  Beispiel:<a href="https://therbootcamp.github.io/EDA_2019CSS/_sessions/Data/Data_practical.html"> Daten </a>
 
 ]
 
