@@ -119,7 +119,7 @@ names(XXX)
 names(appointments)
 ```
 
-2. Eine der Spalten hat aktuell den namen `Age`. Verwende `rename()` um den Namen in `alter_jahre` zu ändern um klar zu machen, dass es sich um das Alter in Jahren handelt.   
+2. Eine der Spalten hat aktuell den namen `Age`. Verwende `rename()` um den Namen in `alter_jahre` zu ändern, so dass klar ist, dass es sich um das Alter in Jahren handelt.   
 
 ```{r, echo = TRUE, eval = FALSE}
 # Änder Age zu alter_Jahre
@@ -177,7 +177,7 @@ appointments <- appointments %>%
 
 ### D - Verändere Spalten mit `mutate()`
 
-1. Verwende `mutate()` um eine Spalte zu ergänzen, die das Alter in Monaten enthält, also `alter_jahre * 12` und  nenne die Spalte `alter_monate`.  
+1. Verwende `mutate()` um eine Spalte zu ergänzen, die das Alter in Monaten enthält, also `alter_jahre * 12` und nenne die Spalte `alter_monate`.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Alter in Monaten
@@ -191,7 +191,7 @@ appointments <- appointments %>%
   mutate(alter_monate = alter_jahre * 12)
 ```
 
-2. Verwende `mutate()` um eine Spalte `krankheitsgrad` zu ergänzen, die anzeigt wie krank der Patient ist. Addiere hierzu die Spalten `bluthochdruck`, `diabetes`, `alkoholismus`. Erinnere im Hintergrund: `TRUE = 1` und `FALSE = 0`. 
+2. Verwende `mutate()` um eine Spalte `krankheitsgrad` zu ergänzen, die anzeigt wie viele Erkrankungen der Patient hat. Addiere hierzu die Spalten `bluthochdruck`, `diabetes`, `alkoholismus`. Erinnere, dass gilt: `TRUE = 1` und `FALSE = 0`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Kreiere Krankheitsgrad
@@ -227,7 +227,7 @@ appointments <- appointments %>%
   )
 ```
 
-4. Verwende `mutate()` und `case_when()` um `M` und `F` in der Spalte `geschlecht` in `männlich` respektive `weiblich` zu verändern. Weise hierzu die entstehende Variable direkt wieder der Spalte `geschlecht` zu.
+4. Verwende `mutate()` und `case_when()` um `M` und `F` in der Spalte `geschlecht` in `männlich` und `weiblich` zu verändern. Weise hierzu die entstehende Variable direkt wieder der Spalte `geschlecht` zu.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verändere geschlecht
@@ -249,7 +249,7 @@ appointments <- appointments %>%
   )
 ```
 
-5. Verwende `mutate()` und `case_when()` um `No` und `Yes` in der Spalte `termin_eingehalten` in `0` respektive `1` zu verändern. Kreiere eine neue Spalte mit Namen `termin_eingehalten_01`.  
+5. Verwende `mutate()` und `case_when()` um `No` und `Yes` in der Spalte `termin_eingehalten` in `0` respektive `1` zu verändern. Kreiere hierzu eine neue Spalte mit Namen `termin_eingehalten_01`.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Termin eingehalten Yes = 1, No = 0
@@ -310,7 +310,7 @@ appointments_reduziert <- appointments %>%
 
 2. Printe `appointments_reduziert`. Sind die richten Spalten enthalten?
 
-3. Verwende `filter()` um Fälle auszuwählen in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline. 
+3. Verwende `filter()` um Fälle auszuwählen, in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -348,7 +348,7 @@ appointments_reduziert <- appointments %>%
 
 6. Printe `appointments_reduziert$alter_jahre`. Noch Jüngere enthalten?
 
-7. Verwende `arrange()` um den `appointments_reduziert` aufsteigend nach Alter zu ordnen. Ergänze die Pipeline. 
+7. Verwende `arrange()` um den `appointments_reduziert` Datensatz aufsteigend nach Alter zu ordnen. Ergänze die Pipeline. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -392,7 +392,7 @@ appointments_reduziert <- appointments %>%
 
 10. Printe `appointments_reduziert` und `appointments_reduziert$alter_jahre`. Alles schön sortiert?
 
-11. Verwende `arrange()` und `desc()` um `appointments_reduziert` auch absteigend (descending) nach `krankheitsgrad` zu ordnen. 
+11. Verwende `arrange()` und `desc()` um `appointments_reduziert` ebenfalls, absteigend (descending) nach `krankheitsgrad` zu ordnen. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -416,7 +416,7 @@ appointments_reduziert <- appointments %>%
 
 12. Printe `appointments_reduziert` und `appointments_reduziert$krankheitsgrad`. Alles schön sortiert?
 
-13. Ändere die Reihenfolge von `krankheitsgrad` und  `alter_jahre` um primär nach `krankheitsgrad` zu sortieren. 
+13. Ändere die Reihenfolge von `krankheitsgrad` und  `alter_jahre` in der `arrange()` Funktion um primär nach `krankheitsgrad` zu sortieren. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -438,7 +438,7 @@ appointments_reduziert <- appointments %>%
           desc(alter_jahre))
 ```
 
-14. Verwende `slice()` um die ersten zwanzig Fälle in `appointments_reduziert`. Ergänze die Pipeline.
+14. Verwende `slice()` um die ersten zwanzig Fälle in `appointments_reduziert` auszuwählen. Ergänze die Pipeline.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus

@@ -214,7 +214,7 @@ $(document).ready(function () {
 <h1></h1>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>In diesem Practical wirst du üben Daten mit <code>dplyr</code> zu transformieren.</p>
+<p>In diesem Practical wirst du üben Daten mit <code>dplyr</code> zu transformieren und zu organisieren.</p>
 <p>Am Ende des Practicals wirst du wissen wie man:</p>
 <ol style="list-style-type: decimal">
 <li>Spalten verändert, kreiert, auswählt.</li>
@@ -243,8 +243,8 @@ library(tidyverse)     </code></pre>
 <div id="b---lade-den-datensatz" class="section level3">
 <h3>B - Lade den Datensatz</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>appointments</code> als Objekt <code>appointments</code> einzulesen. Denkt an den Trick mit den Anführungszeichen.</p></li>
-<li><p>Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?</p></li>
+<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>appointments</code> als Objekt <code>appointments</code> einzulesen. Denke an den Trick mit den Anführungszeichen.</p></li>
+<li><p>Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?</p></li>
 <li><p>Verwende <code>summary()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
 </ol>
 </div>
@@ -256,7 +256,7 @@ library(tidyverse)     </code></pre>
 <pre class="r"><code># Zeige Spaltennamen
 names(XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Eine der Spalten hat aktuell den namen <code>Age</code>. Verwende <code>rename()</code> um den Namen in <code>alter_jahre</code> zu ändern um klar zu machen, dass es sich um das Alter in Jahren handelt.</li>
+<li>Eine der Spalten hat aktuell den namen <code>Age</code>. Verwende <code>rename()</code> um den Namen in <code>alter_jahre</code> zu ändern, so dass klar ist, dass es sich um das Alter in Jahren handelt.</li>
 </ol>
 <pre class="r"><code># Änder Age zu alter_Jahre
 appointments &lt;- appointments %&gt;%
@@ -291,7 +291,7 @@ appointments &lt;- appointments %&gt;%
 appointments &lt;- appointments %&gt;%
   mutate(XX = XX * 12)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Verwende <code>mutate()</code> um eine Spalte <code>krankheitsgrad</code> zu ergänzen, die anzeigt wie krank der Patient ist. Addiere hierzu die Spalten <code>bluthochdruck</code>, <code>diabetes</code>, <code>alkoholismus</code>. Erinnere im Hintergrund: <code>TRUE = 1</code> und <code>FALSE = 0</code>.</li>
+<li>Verwende <code>mutate()</code> um eine Spalte <code>krankheitsgrad</code> zu ergänzen, die anzeigt wie viele Erkrankungen der Patient hat. Addiere hierzu die Spalten <code>bluthochdruck</code>, <code>diabetes</code>, <code>alkoholismus</code>. Erinnere, dass gilt: <code>TRUE = 1</code> und <code>FALSE = 0</code>.</li>
 </ol>
 <pre class="r"><code># Kreiere Krankheitsgrad
 appointments &lt;- appointments %&gt;%
@@ -307,7 +307,7 @@ appointments &lt;- appointments %&gt;%
     )
   )</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Verwende <code>mutate()</code> und <code>case_when()</code> um <code>M</code> und <code>F</code> in der Spalte <code>geschlecht</code> in <code>männlich</code> respektive <code>weiblich</code> zu verändern. Weise hierzu die entstehende Variable direkt wieder der Spalte <code>geschlecht</code> zu.</li>
+<li>Verwende <code>mutate()</code> und <code>case_when()</code> um <code>M</code> und <code>F</code> in der Spalte <code>geschlecht</code> in <code>männlich</code> und <code>weiblich</code> zu verändern. Weise hierzu die entstehende Variable direkt wieder der Spalte <code>geschlecht</code> zu.</li>
 </ol>
 <pre class="r"><code># Verändere geschlecht
 appointments &lt;- appointments %&gt;%
@@ -317,7 +317,7 @@ appointments &lt;- appointments %&gt;%
     )
   )</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Verwende <code>mutate()</code> und <code>case_when()</code> um <code>No</code> und <code>Yes</code> in der Spalte <code>termin_eingehalten</code> in <code>0</code> respektive <code>1</code> zu verändern. Kreiere eine neue Spalte mit Namen <code>termin_eingehalten_01</code>.</li>
+<li>Verwende <code>mutate()</code> und <code>case_when()</code> um <code>No</code> und <code>Yes</code> in der Spalte <code>termin_eingehalten</code> in <code>0</code> respektive <code>1</code> zu verändern. Kreiere hierzu eine neue Spalte mit Namen <code>termin_eingehalten_01</code>.</li>
 </ol>
 <pre class="r"><code># Termin eingehalten Yes = 1, No = 0
 appointments &lt;- appointments %&gt;%
@@ -346,7 +346,7 @@ appointments_reduziert &lt;- appointments %&gt;%
   select(XX, XX, XX, XX, XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe <code>appointments_reduziert</code>. Sind die richten Spalten enthalten?</p></li>
-<li><p>Verwende <code>filter()</code> um Fälle auszuwählen in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline.</p></li>
+<li><p>Verwende <code>filter()</code> um Fälle auszuwählen, in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline.</p></li>
 </ol>
 <pre class="r"><code># Wähle Fälle aus
 appointments_reduziert &lt;- appointments %&gt;%
@@ -363,7 +363,7 @@ appointments_reduziert &lt;- appointments %&gt;%
          XX &gt; XX)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Printe <code>appointments_reduziert$alter_jahre</code>. Noch Jüngere enthalten?</p></li>
-<li><p>Verwende <code>arrange()</code> um den <code>appointments_reduziert</code> aufsteigend nach Alter zu ordnen. Ergänze die Pipeline.</p></li>
+<li><p>Verwende <code>arrange()</code> um den <code>appointments_reduziert</code> Datensatz aufsteigend nach Alter zu ordnen. Ergänze die Pipeline.</p></li>
 </ol>
 <pre class="r"><code># Wähle Fälle aus
 appointments_reduziert &lt;- appointments %&gt;%
@@ -383,7 +383,7 @@ appointments_reduziert &lt;- appointments %&gt;%
   arrange(desc(XX))</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li><p>Printe <code>appointments_reduziert</code> und <code>appointments_reduziert$alter_jahre</code>. Alles schön sortiert?</p></li>
-<li><p>Verwende <code>arrange()</code> und <code>desc()</code> um <code>appointments_reduziert</code> auch absteigend (descending) nach <code>krankheitsgrad</code> zu ordnen.</p></li>
+<li><p>Verwende <code>arrange()</code> und <code>desc()</code> um <code>appointments_reduziert</code> ebenfalls, absteigend (descending) nach <code>krankheitsgrad</code> zu ordnen.</p></li>
 </ol>
 <pre class="r"><code># Wähle Fälle aus
 appointments_reduziert &lt;- appointments %&gt;%
@@ -394,7 +394,7 @@ appointments_reduziert &lt;- appointments %&gt;%
           desc(XX))</code></pre>
 <ol start="12" style="list-style-type: decimal">
 <li><p>Printe <code>appointments_reduziert</code> und <code>appointments_reduziert$krankheitsgrad</code>. Alles schön sortiert?</p></li>
-<li><p>Ändere die Reihenfolge von <code>krankheitsgrad</code> und <code>alter_jahre</code> um primär nach <code>krankheitsgrad</code> zu sortieren.</p></li>
+<li><p>Ändere die Reihenfolge von <code>krankheitsgrad</code> und <code>alter_jahre</code> in der <code>arrange()</code> Funktion um primär nach <code>krankheitsgrad</code> zu sortieren.</p></li>
 </ol>
 <pre class="r"><code># Wähle Fälle aus
 appointments_reduziert &lt;- appointments %&gt;%
@@ -404,7 +404,7 @@ appointments_reduziert &lt;- appointments %&gt;%
   arrange(desc(XX),
           desc(XX))</code></pre>
 <ol start="14" style="list-style-type: decimal">
-<li>Verwende <code>slice()</code> um die ersten zwanzig Fälle in <code>appointments_reduziert</code>. Ergänze die Pipeline.</li>
+<li>Verwende <code>slice()</code> um die ersten zwanzig Fälle in <code>appointments_reduziert</code> auszuwählen. Ergänze die Pipeline.</li>
 </ol>
 <pre class="r"><code># Wähle Fälle aus
 appointments_reduziert &lt;- appointments %&gt;%
