@@ -676,8 +676,8 @@ patienten_ergebnisse %>%
 ```{r}
 patienten_ergebnisse %>%
   
-  # Patienten mit alter > 30
-  filter(alter > 30)
+  # Patienten mit alter > 40
+  filter(alter > 40)
 ```
 
 ]
@@ -702,9 +702,9 @@ patienten_ergebnisse %>%
 .pull-right5[
 
 ```{r}
-# alter grösser 30 & bed_label ist medikament
+# alter grösser 40 & bed_label ist medikament
 patienten_ergebnisse %>%
-  filter(alter > 30,
+  filter(alter > 40,
          bed_label == "medikament")
 ```
 

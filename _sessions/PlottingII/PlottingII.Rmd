@@ -169,7 +169,7 @@ mein_plot + geom_smooth()
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Facetting kreiert den <high>selben Plot für Gruppen</high> definiert durch dritte Variablen.</span></li>
+  <li class="m1"><span>Facetting kreiert <high>denselben Plot für Gruppen</high> definiert durch dritte Variablen.</span></li>
   <li class="m2"><span>Facet Funktionen:
   <br><br>
   <ul class="level">
@@ -208,7 +208,7 @@ ggplot(data = mpg,
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Facetting kreiert den <high>selben Plot für Gruppen</high> definiert durch dritte Variablen.</span></li>
+  <li class="m1"><span>Facetting kreiert <high>denselben Plot für Gruppen</high> definiert durch dritte Variablen.</span></li>
   <li class="m2"><span>Facet Funktionen:
   <br><br>
   <ul class="level">
@@ -223,7 +223,8 @@ ggplot(data = mpg,
 ggplot(data = mpg, 
        mapping = aes(x = displ, 
                      y = hwy)) + 
-  geom_point() + theme_bw()
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)
 ```
 
 ]
@@ -248,12 +249,12 @@ ggplot(data = mpg,
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Facetting kreiert den <high>selben Plot für Gruppen</high> definiert durch dritte Variablen.</span></li>
+  <li class="m1"><span>Facetting kreiert <high>denselben Plot für Gruppen</high> definiert durch dritte Variablen.</span></li>
   <li class="m2"><span>Facet Funktionen:
   <br><br>
   <ul class="level">
-    <li><span><mono>facer_wrap()</mono></span></li>
-    <li><span><mono>facer_grid()</mono></span></li>
+    <li><span><mono>facet_wrap()</mono></span></li>
+    <li><span><mono>facet_grid()</mono></span></li>
   </ul>
   </span></li>
 </ul>
@@ -263,7 +264,8 @@ ggplot(data = mpg,
 ggplot(data = mpg, 
        mapping = aes(x = displ, 
                      y = hwy)) + 
-  geom_point() + theme_bw()
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
 ```
 
 ]
@@ -574,7 +576,7 @@ mein_plot
 
 .pull-left45[
 
-# Weiteere Argumente <font style="font-size:16px"> (unvollständig)</font>
+# Weitere Argumente <font style="font-size:16px"> (unvollständig)</font>
 
 <u><mono>theme()</mono></u>
 
@@ -770,7 +772,7 @@ mein_plot + mein_theme
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Mit <mono>scales_*()</mono> Funktionen lassen alle möglichen Längen/Grössen skalieren.</span></li>
+  <li class="m1"><span>Mit <mono>scales_*()</mono> Funktionen lassen sich alle möglichen Längen/Grössen skalieren.</span></li>
   <li class="m2"><span>Klassen von <mono>scales_*()</mono> Funktionen:
   <br><br>
   <ul class="level">

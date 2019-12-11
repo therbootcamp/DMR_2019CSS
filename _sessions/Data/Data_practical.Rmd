@@ -209,7 +209,7 @@ class(groesse)
 length(groesse)
 ```
 
-7. Schaue dir die Spalte `gewicht` an. Du wirst sehen, dass sie einen fehlenden Wert beinhaltet. Kreiere einen Vektor `gewicht` mit den selben Schritten wie zuvor. Spezifiziere den fehlenden Wert dabei als `NA` - ohne Anführungszeichen.
+7. Schaue dir die Spalte `gewicht` an. Du wirst sehen, dass sie einen fehlenden Wert beinhaltet. Kreiere einen Vektor `gewicht` mit denselben Schritten wie zuvor. Spezifiziere den fehlenden Wert dabei als `NA` - ohne Anführungszeichen.
 
 ```{r}
 # Kreiere Vektor gewicht

@@ -159,7 +159,7 @@ mein_plot + geom_smooth()
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Facetting kreiert den &lt;high&gt;selben Plot für Gruppen&lt;/high&gt; definiert durch dritte Variablen.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Facetting kreiert &lt;high&gt;denselben Plot für Gruppen&lt;/high&gt; definiert durch dritte Variablen.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Facet Funktionen:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
@@ -193,7 +193,7 @@ ggplot(data = mpg,
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Facetting kreiert den &lt;high&gt;selben Plot für Gruppen&lt;/high&gt; definiert durch dritte Variablen.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Facetting kreiert &lt;high&gt;denselben Plot für Gruppen&lt;/high&gt; definiert durch dritte Variablen.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Facet Funktionen:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
@@ -209,7 +209,8 @@ ggplot(data = mpg,
 ggplot(data = mpg, 
        mapping = aes(x = displ, 
                      y = hwy)) + 
-  geom_point() + theme_bw()
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)
 ```
 
 ]
@@ -227,12 +228,12 @@ ggplot(data = mpg,
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Facetting kreiert den &lt;high&gt;selben Plot für Gruppen&lt;/high&gt; definiert durch dritte Variablen.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Facetting kreiert &lt;high&gt;denselben Plot für Gruppen&lt;/high&gt; definiert durch dritte Variablen.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Facet Funktionen:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facer_wrap()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facer_grid()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_wrap()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_grid()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -243,7 +244,8 @@ ggplot(data = mpg,
 ggplot(data = mpg, 
        mapping = aes(x = displ, 
                      y = hwy)) + 
-  geom_point() + theme_bw()
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
 ```
 
 ]
@@ -488,7 +490,7 @@ mein_plot +
 
 .pull-left45[
 
-# Weiteere Argumente &lt;font style="font-size:16px"&gt; (unvollständig)&lt;/font&gt;
+# Weitere Argumente &lt;font style="font-size:16px"&gt; (unvollständig)&lt;/font&gt;
 
 &lt;u&gt;&lt;mono&gt;theme()&lt;/mono&gt;&lt;/u&gt;
 
@@ -680,7 +682,7 @@ mein_plot + mein_theme
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;mono&gt;scales_*()&lt;/mono&gt; Funktionen lassen alle möglichen Längen/Grössen skalieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;mono&gt;scales_*()&lt;/mono&gt; Funktionen lassen sich alle möglichen Längen/Grössen skalieren.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Klassen von &lt;mono&gt;scales_*()&lt;/mono&gt; Funktionen:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
@@ -1222,7 +1224,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

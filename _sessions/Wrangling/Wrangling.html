@@ -818,19 +818,17 @@ patienten_ergebnisse %&gt;%
 ```r
 patienten_ergebnisse %&gt;%
   
-  # Patienten mit alter &gt; 30
-  filter(alter &gt; 30)
+  # Patienten mit alter &gt; 40
+  filter(alter &gt; 40)
 ```
 
 ```
-## # A tibble: 5 x 6
+## # A tibble: 3 x 6
 ##      id alter bedingung bed_label    t_1   t_2
 ##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37         1 placebo      123   135
-## 2     2    65         2 medikament   143   140
-## 3     3    57         2 medikament    NA    NA
-## 4     4    34         1 placebo      100   105
-## 5     5    45         2 medikament    NA    NA
+## 1     2    65         2 medikament   143   140
+## 2     3    57         2 medikament    NA    NA
+## 3     5    45         2 medikament    NA    NA
 ```
 
 ]
@@ -857,9 +855,9 @@ patienten_ergebnisse %&gt;%
 
 
 ```r
-# alter grösser 30 &amp; bed_label ist medikament
+# alter grösser 40 &amp; bed_label ist medikament
 patienten_ergebnisse %&gt;%
-  filter(alter &gt; 30,
+  filter(alter &gt; 40,
          bed_label == "medikament")
 ```
 
