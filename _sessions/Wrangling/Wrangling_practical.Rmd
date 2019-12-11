@@ -58,14 +58,13 @@ knitr::include_graphics("")
 
 ## Overview
 
-In diesem Practical wirst du üben Daten mit `dplyr` zu transformieren. 
+In diesem Practical wirst du üben Daten mit `dplyr` zu transformieren und zu organisieren. 
 
 Am Ende des Practicals wirst du wissen wie man:
 
 1. Spalten verändert, kreiert, auswählt.
 2. Fälle auswählt.
 3. Daten verbindet.
-
 
 ## Aufgaben
 
@@ -96,7 +95,7 @@ library(tidyverse)
 
 ### B - Lade den Datensatz
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `appointments` als Objekt `appointments` einzulesen. Denkt an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `appointments` als Objekt `appointments` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F}
 # Lese appointments
@@ -121,7 +120,7 @@ names(XXX)
 names(appointments)
 ```
 
-2. Eine der Spalten hat aktuell den namen `Age`. Verwende `rename()` um den Namen in `alter_jahre` zu ändern um klar zu machen, dass es sich um das Alter in Jahren handelt.   
+2. Eine der Spalten hat aktuell den namen `Age`. Verwende `rename()` um den Namen in `alter_jahre` zu ändern, so dass klar ist, dass es sich um das Alter in Jahren handelt.   
 
 ```{r, echo = TRUE, eval = FALSE}
 # Ändere Age zu alter_jahre
@@ -179,7 +178,7 @@ appointments <- appointments %>%
 
 ### D - Verändere Spalten mit `mutate()`
 
-1. Verwende `mutate()` um eine Spalte zu ergänzen, die das Alter in Monaten enthält, also `alter_jahre * 12` und  nenne die Spalte `alter_monate`.  
+1. Verwende `mutate()` um eine Spalte zu ergänzen, die das Alter in Monaten enthält, also `alter_jahre * 12` und nenne die Spalte `alter_monate`.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Alter in Monaten
@@ -193,7 +192,7 @@ appointments <- appointments %>%
   mutate(alter_monate = alter_jahre * 12)
 ```
 
-2. Verwende `mutate()` um eine Spalte `krankheitsgrad` zu ergänzen, die anzeigt wie krank der Patient ist. Addiere hierzu die Spalten `bluthochdruck`, `diabetes`, `alkoholismus`. Erinnere im Hintergrund: `TRUE = 1` und `FALSE = 0`. 
+2. Verwende `mutate()` um eine Spalte `krankheitsgrad` zu ergänzen, die anzeigt wie viele Erkrankungen der Patient hat. Addiere hierzu die Spalten `bluthochdruck`, `diabetes`, `alkoholismus`. Erinnere, dass gilt: `TRUE = 1` und `FALSE = 0`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Kreiere Krankheitsgrad
@@ -229,7 +228,7 @@ appointments <- appointments %>%
   )
 ```
 
-4. Verwende `mutate()` und `case_when()` um `M` und `F` in der Spalte `geschlecht` in `männlich` respektive `weiblich` zu verändern. Weise hierzu die entstehende Variable direkt wieder der Spalte `geschlecht` zu.
+4. Verwende `mutate()` und `case_when()` um `M` und `F` in der Spalte `geschlecht` in `männlich` und `weiblich` zu verändern. Weise hierzu die entstehende Variable direkt wieder der Spalte `geschlecht` zu.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verändere geschlecht
@@ -246,12 +245,12 @@ appointments <- appointments %>%
 appointments <- appointments %>%
   mutate(geschlecht = case_when(
     geschlecht == "M" ~ "männlich",
-    geschlecht == "F" ~ "weiblich",
+    geschlecht == "F" ~ "weiblich"
     )
   )
 ```
 
-5. Verwende `mutate()` und `case_when()` um `No` und `Yes` in der Spalte `termin_eingehalten` in `0` respektive `1` zu verändern. Kreiere eine neue Spalte mit Namen `termin_eingehalten_01`.  
+5. Verwende `mutate()` und `case_when()` um `No` und `Yes` in der Spalte `termin_eingehalten` in `0` respektive `1` zu verändern. Kreiere hierzu eine neue Spalte mit Namen `termin_eingehalten_01`.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Termin eingehalten Yes = 1, No = 0
@@ -312,7 +311,7 @@ appointments_reduziert <- appointments %>%
 
 2. Printe `appointments_reduziert`. Sind die richtigen Spalten enthalten?
 
-3. Verwende `filter()` um Fälle auszuwählen in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline. 
+3. Verwende `filter()` um Fälle auszuwählen, in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -350,7 +349,7 @@ appointments_reduziert <- appointments %>%
 
 6. Printe `appointments_reduziert$alter_jahre`. Sind noch Jüngere enthalten?
 
-7. Verwende `arrange()` um den `appointments_reduziert` aufsteigend nach Alter zu ordnen. Ergänze die Pipeline. 
+7. Verwende `arrange()` um den `appointments_reduziert` Datensatz aufsteigend nach Alter zu ordnen. Ergänze die Pipeline. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -394,7 +393,7 @@ appointments_reduziert <- appointments %>%
 
 10. Printe `appointments_reduziert` und `appointments_reduziert$alter_jahre`. Ist alles schön sortiert?
 
-11. Verwende `arrange()` und `desc()` um `appointments_reduziert` auch absteigend (descending) nach `krankheitsgrad` zu ordnen. 
+11. Verwende `arrange()` und `desc()` um `appointments_reduziert` ebenfalls, absteigend (descending) nach `krankheitsgrad` zu ordnen. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -418,7 +417,7 @@ appointments_reduziert <- appointments %>%
 
 12. Printe `appointments_reduziert` und `appointments_reduziert$krankheitsgrad`. Ist alles schön sortiert?
 
-13. Ändere die Reihenfolge von `krankheitsgrad` und  `alter_jahre` um primär nach `krankheitsgrad` zu sortieren. 
+13. Ändere die Reihenfolge von `krankheitsgrad` und  `alter_jahre` in der `arrange()` Funktion um primär nach `krankheitsgrad` zu sortieren. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
@@ -468,14 +467,14 @@ appointments_reduziert <- appointments %>%
 
 ### F - Verbinde Datensätze mit `*_join()`
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `weather`, welcher das Wetter in Brasilien enthält, als Objekt `weather` einzulesen. Denkt an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `weather`, welcher das Wetter in Brasilien enthält, als Objekt `weather` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F}
 # Lese weather
 weather <- read_csv('1_Data/weather.csv')
 ```
 
-2. Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?
+2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
@@ -537,7 +536,7 @@ appointments_weather <- appointments %>%
 
 9. Printe `appointments_weather`. Alles in Ordnung?
 
-10. Erstellt im nächsten Schritt der pipeline erneut eine Variable `termin_eingelten_01` wie bereits oben. Ausserdem erstellt eine Variable `niederschlag_01` die anzeigt, ob es Niederschlag gab oder nicht. 
+10. Erstellt im nächsten Schritt der Pipeline erneut eine Variable `termin_eingelten_01` genauso wie ihr das vorher bereits einmal getan habt. Ausserdem erstellt eine Variable `niederschlag_01` die anzeigt, ob es Niederschlag gab oder nicht. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verbinde Datensätze
@@ -594,7 +593,7 @@ mean(appointments_weather$termin_eingehalten_01[appointments_weather$niederschla
 
 ### X - Challenge
 
-1. Versuche alle bisherigen Schritte beginnend beim einlesen bis zum Verbinden der Datensätze in eine einzige Pipeline zu bringen. Das zielt ist es die letzte Version von `appointments_weather` zu erstellen ohne auch nur einmal ein Objekt zu kreieren. 
+1. Versuche alle bisherigen Schritte beginnend beim einlesen bis zum Verbinden der Datensätze in eine einzige Pipeline zu bringen. Das Ziel ist es die letzte Version von `appointments_weather` zu erstellen ohne auch nur einmal ein Objekt zwischendrin zuzuweisen. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # kreire appointments_weather
