@@ -407,13 +407,13 @@ as.character(basel$alter[1:10])
 <highm>logical</highm> Vektoren werden typischerweise durch <high>logische Vergleiche</high> erstellt und benutzt um in Data Frames oder Vektoren bestimmte <high>Fälle auszuwählen</high>. 
 
 ```{r, eval = F}
-# Welche Werte in Geschlecht sind M
-basel$geschlecht == "M"
+# Welche Werte in Geschlecht sind m
+basel$geschlecht == "m"
 ```
 
 ```{r, echo = F}
-# Welche Werte in Geschlecht sind M
-basel$geschlecht[1:10] == "M"
+# Welche Werte in Geschlecht sind m
+basel$geschlecht[1:10] == "m"
 ```
 
 ```{r, eval = F}
