@@ -95,7 +95,7 @@ basel = read_csv('1_Data/basel.csv')
 # `base` Plotting
 
 <ul>
-  <li class="m1"><span>Der <high>traditionell</high>e Ansatz für Plotting.</span></li>
+  <li class="m1"><span>Der <high>traditionelle</high> Ansatz für Plotting.</span></li>
   <li class="m2"><span><high>Separate Funktionen</high> für verschiedene Plots</span></li>
 </ul>
 
@@ -133,7 +133,7 @@ hist(x = basel$alter,
 # `base` Plotting
 
 <ul>
-  <li class="m1"><span>Der <high>traditionell</high>e Ansatz für Plotting.</span></li>
+  <li class="m1"><span>Der <high>traditionelle</high> Ansatz für Plotting.</span></li>
   <li class="m2"><span><high>Separate Funktionen</high> für verschiedene Plots</span></li>
 </ul>
 
@@ -173,7 +173,7 @@ boxplot(formula = groesse ~ geschlecht,
 # `base` Plotting
 
 <ul>
-  <li class="m1"><span>Der <high>traditionell</high>e Ansatz für Plotting.</span></li>
+  <li class="m1"><span>Der <high>traditionelle</high> Ansatz für Plotting.</span></li>
   <li class="m2"><span><high>Separate Funktionen</high> für verschiedene Plots</span></li>
 </ul>
 
@@ -214,7 +214,7 @@ plot(x = baselers$groesse,
 
 <ul>
   <li class="m1"><span>Die <high>Ästhetik</high> ist nicht mehr zeitgemäss.</span></li>
-  <li class="m2"><span>Schönere Plots = sehr <high>viel Code,</high></span></li>
+  <li class="m2"><span>Schönere Plots = sehr <high>viel Code.</high></span></li>
   <li class="m3"><span>Generell sehr <high>unflexibel.</high></high></span></li>
 </ul>
 ]
@@ -276,7 +276,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
 
 ---
 
-# Modulares Graphiken in <mono>ggplot2</mono>
+# Modulare Graphiken in <mono>ggplot2</mono>
 
 .pull-left45[
 
@@ -289,7 +289,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
     <li><span>Was soll Grösse/Farbe representieren?</span></li>
   </ul>
   </span></li>
-  <li class="m3"><span><high>geoms</high>: Objekte im Plots</high></span></li>
+  <li class="m3"><span><high>geoms</high>: Objekte im Plot</high></span></li>
   <li class="m4"><span><high>labs</high>: Annotierung des Plots</high></span></li>
   <li class="m5"><span><high>themes</high>: Ästhetische Gestaltung</high></span></li>
   <li class="m6"><span><high>facets</high>: Auftrennung des Plots </high></span></li>
@@ -333,8 +333,8 @@ goal
   <li class="m2"><span><high>mapping</high>
   <br>
   <ul class="level">
-    <li><span>Hubraum auf die x-Axe</span></li>
-    <li><span>Meilen pro Gallone auf die y-Axe</span></li>
+    <li><span>Hubraum auf die x-Achse</span></li>
+    <li><span>Meilen pro Gallone auf die y-Achse</span></li>
     <li><span>Farbe der Objekte gemäss Autoklasse</span></li>
   </ul>
   </span></li>
@@ -380,7 +380,7 @@ goal
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Alle Plots beginnen mit<highm>ggplot()</highm></span></li>
+  <li class="m1"><span>Alle Plots beginnen mit <highm>ggplot()</highm></span></li>
   <li class="m2"><span>2 zentrale Argumente
   <br><br>
   <ul class="level">
@@ -449,7 +449,7 @@ ggplot(data = mpg,
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy)) + 
-  # Plotte als Punkte
+  # Plotte Daten als Punkte
   geom_point() 
 ```
 

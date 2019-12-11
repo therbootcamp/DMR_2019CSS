@@ -156,7 +156,7 @@ layout: true
 - &lt;span&gt;Spezialfall einer `list`&lt;/span&gt;
 - &lt;span&gt;R's `Tidy`-Format für Daten
 
-&lt;high&gt;`vector`&lt;/high&gt; - R's data container
+&lt;high&gt;`vector`&lt;/high&gt; - R's Daten-Container
 - &lt;span&gt;Primärer Daten-Container&lt;/span&gt;
 - &lt;span&gt;Beinhaltet daten von genau einem Klasse&lt;/span&gt;
 
@@ -423,7 +423,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
