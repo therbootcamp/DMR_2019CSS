@@ -90,7 +90,7 @@ Am Ende des Practicals wirst du wissen wie man:
 mcdonalds <- read_csv('1_Data/mcdonalds.csv')
 ```
 
-2. Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?
+2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
@@ -102,9 +102,9 @@ In diesem Abschnitt wirst du den folgenden Plot zusammenbauen.
 ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   geom_point() +
   geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com") +
+  labs(title = "McDonalds Nährwerte",
+       subtitle = "Jeder Punkt ist ein Menü-Item",
+       caption = "Quelle: Kaggle.com") +
   xlim(0, 1250) +
   theme_minimal()
 ```
@@ -152,7 +152,7 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   geom_smooth()
 ```
 
-5. Oops! Hast du mehre Linien bekommen anstatt einer? Löse das Problem indem du die Farbe innerhalb von `geom_smooth()` auf `black` setzt. 
+5. Oops! Hast du mehre Linien anstatt einer bekommen? Löse das Problem indem du die Farbe innerhalb von `geom_smooth()` auf `black` setzt. 
 
 ```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
 ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
@@ -181,12 +181,12 @@ ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
 ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   geom_point() +
   geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com")
+  labs(title = "McDonalds Nährwerte",
+       subtitle = "Jeder Punkt ist ein Menü-Item",
+       caption = "Quelle: Kaggle.com")
 ```
 
-7. Verwende `xlim()`, eine einfache Version on `scale_x_continuous()`, um die x-Achse auf die Werte `0` und `1250` zu begrenzen. 
+7. Verwende `xlim()`, eine einfache Version von `scale_x_continuous()`, um die x-Achse auf die Werte `0` und `1250` zu begrenzen. 
 
 ```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
 ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
@@ -202,9 +202,9 @@ ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
 ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   geom_point() +
   geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com") +
+  labs(title = "McDonalds Nährwerte",
+       subtitle = "Jeder Punkt ist ein Menü-Item",
+       caption = "Quelle: Kaggle.com") +
   xlim(0, 1250)
 ```
 
@@ -214,9 +214,9 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
 ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
   geom_point() +
   geom_smooth(col = "black") +
-  labs(title = "McDonalds Nutrition",
-       subtitle = "Each point is a menu item",
-       caption = "Source: Kaggle.com") +
+  labs(title = "McDonalds Nährwerte",
+       subtitle = "Jeder Punkt ist ein Menü-Item",
+       caption = "Quelle: Kaggle.com") +
   xlim(0, 1250) +
   theme_minimal()
 ```
@@ -224,7 +224,7 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
 
 ### D - `geom`s
 
-1. Verwende den Code unten um einen Violinen Plot der `Calories` als Funktion der `Category` zu kreieren. Violinenplots zeigeen mit ihrer Dicke die jeweilige relative Häufigkeit der Werte, in diesem der Kalorien. 
+1. Verwende den Code unten um einen Violinen Plot der `Calories` als Funktion der `Category` zu kreieren. Violinenplots zeigen mit ihrer Dicke die jeweilige relative Häufigkeit der Werte, in diesem Fall der Kalorien. 
 
 ```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, 
@@ -253,7 +253,7 @@ ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
 ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
   geom_violin() +
   labs(title = "McDonalds",
-       subtitle = "Calorie distribution by menu category")
+       subtitle = "Kalorienverteilung pro Menü Kategorie")
 ```
 
 3. Ergänze `guides(fill = FALSE)`, so dass keine Legende gezeigt wird. 
@@ -271,7 +271,7 @@ ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
 ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
   geom_violin() +
   labs(title = "McDonalds",
-       subtitle = "Calorie distribution by menu category")
+       subtitle = "Kalorienverteilung pro Menü Kategorie")
 ```
 
 4. Verwende `geom_jitter()` um Punkte über die Violinen zu plotten. Setze in der Funktion `width = 1` und `alpha = .5`.
@@ -281,7 +281,7 @@ ggplot(data = mcdonalds,
        aes(x = Category, y = Calories, fill = Category)) +
   geom_violin() +
   labs(title = "McDonalds",
-       subtitle = "Calorie distribution by menu category") +
+       subtitle = "Kalorienverteilung pro Menü Kategorie") +
   guides(fill = FALSE) +
   geom_jitter(width = .1, alpha = .5)
 ```
@@ -310,7 +310,7 @@ ggplot(mcdonalds, aes(x = Sugars,
   xlim(0, 150) +
   ylim(0, 2000) +
   theme_minimal() +
-  labs(title = "Adding labels to a plot with geom_text()")
+  labs(title = "Ergänze Labels zu einem Plot mit geom_text()")
 ```
 
 1. Beginne damit folgendes Code template entsprechend auszufüllen. 
@@ -330,7 +330,7 @@ ggplot(mcdonalds, aes(x = XX,
 
 3. Wo sind die Labels? Ah, wir haben `ggplot` nicht gesagt welche Spalte die Information beinhaltet, die in den labels stehen soll. Behebe dieses Problem indem du innerhalb der `aes()` Funktion dem Argument `label` die Spalte `Item` zuweist. Jetzt solltest du viele labels sehen!
 
-4. Passe `geom_text()` an indem du `col` auf `black`, `check_overlap` auf `TRUE`, und `hjust` auf `left` setzt.
+4. Passe `geom_text()` an in dem du `col` auf `black`, `check_overlap` auf `TRUE`, und `hjust` auf `left` setzt.
 
 5. Verwende nun das `data` Argument in `geom_text()` und weise ihm nur einen gefilterten Auschnitt des `mcdonalds` Datensatzes zuweist, nämlich `data = mcdonalds %>% filter(Calories > 1100)`. Schau was passiert.
 
@@ -348,7 +348,7 @@ ggplot(mcdonalds, aes(x = Sugars,
   xlim(0, 150) +
   ylim(0, 2000) +
   theme_minimal() +
-  labs(title = "Adding labels to a plot with geom_text()")
+  labs(title = "Ergänze Labels zu einem Plot mit geom_text()")
 ```
 
 6. Probiere ein paar Sachen aus:
@@ -360,7 +360,7 @@ ggplot(mcdonalds, aes(x = Sugars,
 
 ### F - Statistiken
 
-1. Mit der `stat_summary` können auch direkt einfache Statistiken berechnet und geplotted werden. Verwendet den folgenden Code um die `Calories` (y-Achse) gegen `Categories` zu plotte. Annotiert angemessen. 
+1. Mit der `stat_summary` können auch direkt einfache Statistiken berechnet und geplotted werden. Verwende den folgenden Code um die `Calories` (y-Achse) gegen `Categories` zu plotten. Annotiere angemessen. 
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, y = X)) +
@@ -378,11 +378,11 @@ ggplot(mcdonalds, aes(x = Category, y = Calories)) +
        subtitle = "Balken repräsentieren Mittelwwerte")
 ```
 
-2. Probiert ein paar Sachen aus:
+2. Probiere ein paar Sachen aus:
 
-- Verwendet den `"median"` anstatt `"mean"`.
-- Gebt jedem Balken eine andere Farbe. 
-- Ergänzt Punkte über den Balken mit `geom_point()`, `geom_count()`, oder `geom_jitter()`.
+- Verwende den `"median"` anstatt `"mean"`.
+- Gib jedem Balken eine andere Farbe. 
+- Ergänze Punkte über den Balken mit `geom_point()`, `geom_count()`, oder `geom_jitter()`.
 
 ```{r, fig.width = 10, fig.height = 4}
 ggplot(mcdonalds, aes(x = Category, 
@@ -397,7 +397,7 @@ ggplot(mcdonalds, aes(x = Category,
 
 ### X - Challenges
 
-1. Kreiert euren eigenen, neuen Plot mit dem `mcdonalds` Datensatz. Weitere `geom`s und alles weitere findet ihr [**hier**](https://ggplot2.tidyverse.org/reference/) 
+1. Kreiere deinen eigenen, neuen Plot mit dem `mcdonalds` Datensatz. Weitere `geom`s und alles weitere findest du [**hier**](https://ggplot2.tidyverse.org/reference/) 
 
 ## Examples
 
@@ -426,8 +426,7 @@ ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy)) +
        geom_count()   
 
-# Assign class to the color aesthetic and add labels with labs()
-
+# Assigne class zum col Argument und füge labels mit labs() hinzu 
 ggplot(data = mpg, 
   mapping = aes(x = displ, y = hwy, col = class)) +  
   geom_point(size = 3, position = 'jitter') +
@@ -439,7 +438,6 @@ ggplot(data = mpg,
   
 
 # Ergänze eine Kurve für jede Klasse
-
 ggplot(data = mpg, 
        mapping = aes(x = displ, 
                      y = hwy, 
@@ -448,7 +446,6 @@ ggplot(data = mpg,
   geom_smooth(method = "lm")
 
 # Ergänze eine Kurve für alle Klassen zusammen
-
 ggplot(data = mpg, 
        mapping = aes(x = displ, 
                      y = hwy, 
