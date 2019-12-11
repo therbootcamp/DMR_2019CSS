@@ -493,7 +493,7 @@ patienten %>%
 .pull-left4[
 
 <ul>
-  <li class="m4"><span><span><high>Sortieren</high>: Datensatz ordnen.
+  <li class="m4"><span><high>Sortieren</high>: Datensatz ordnen.
   <br><br>
   <ul class="level">
     <li><span><mono>arrange()</mono></span></li>
