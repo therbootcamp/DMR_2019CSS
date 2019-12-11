@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="             The R Bootcamp @ CSS Versicherung    December 2019" />
@@ -85,7 +86,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -159,18 +159,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -224,18 +212,18 @@ $(document).ready(function () {
 </tr>
 <tr class="even">
 <td align="left">1</td>
-<td align="left">Einführung in R<br><a href="_sessions/IntroToR/IntroToR.html">Folien</a>, <a href="_sessions/IntroToR/IntroToR_interactive.R">source</a></td>
+<td align="left">Einführung in R<br><a href="_sessions/IntroToR/IntroToR.html">Folien</a></td>
 <td align="left">Wrangling II <br><a href="_sessions/WranglingII/WranglingII.html">Folien</a>, <a href="_sessions/WranglingII/WranglingII_practical.html">Practical</a></td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="left">Daten <br><a href="_sessions/Data/Data.html">Folien</a>, <a href="_sessions/Data/Data_Practical.html">Practical</a></td>
+<td align="left">Daten <br><a href="_sessions/Data/Data.html">Folien</a>, <a href="_sessions/Data/Data_practical.html">Practical</a></td>
 <td align="left">Plotting<br><a href="_sessions/Plotting/Plotting.html">Folien</a>, <a href="_sessions/Plotting/Plotting_Practical_practical.html">Practical</a></td>
 </tr>
 <tr class="even">
 <td align="left">3</td>
-<td align="left">Wrangling<br><a href="_sessions/Wrangling/Wrangling.html">Folien</a>, <a href="_sessions/Wrangling/Wrangling_Practical.html">Practical</a></td>
-<td align="left">Plotting II<br><a href="_sessions/PlottingII/PlottingII.html">Folien</a>, <a href="_sessions/PlottingII/PlottingII_Practical.html">Practical</a></td>
+<td align="left">Wrangling<br><a href="_sessions/Wrangling/Wrangling.html">Folien</a>, <a href="_sessions/Wrangling/Wrangling_practical.html">Practical</a></td>
+<td align="left">Plotting II<br><a href="_sessions/PlottingII/PlottingII.html">Folien</a>, <a href="_sessions/PlottingII/PlottingII_practical.html">Practical</a></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -282,6 +270,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
