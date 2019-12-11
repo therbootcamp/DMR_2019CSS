@@ -146,7 +146,7 @@ class(XX)
 class(id)
 ```
 
-3. Verwende die `length()` Funktion, um die länge von `id` zu bestimmen. Hat es die Länge 5? Wenn nicht, stelle sicher, dass du den Vektor korrekt definiert hast.
+3. Verwende die `length()` Funktion, um die länge von `id` zu bestimmen. Hat er die Länge 5? Wenn nicht, stelle sicher, dass du den Vektor korrekt definiert hast.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Zeige die Länge des Vektors
@@ -173,7 +173,7 @@ geschlecht <- c("m", "m", "f", "m", "m")
 geschlecht
 ```
 
-5. Verwende wiederum die Funktionen `class()` und `length()`, um zu die Klasse (`character`) und die Länge (5) zu überprüfen? 
+5. Verwende wiederum die Funktionen `class()` und `length()`, um die Klasse (`character`) und die Länge (5) zu überprüfen? 
 
 ```{r}
 # Zeige die Klasse und die Länge von geschlecht
@@ -209,7 +209,7 @@ class(groesse)
 length(groesse)
 ```
 
-7. Schaue dir die Spalte `gewicht` an. Du wirst sehen, dass sie einen fehlenden Wert beinhaltet. Kreiere einen Vektor `gewicht` mit den selben Schritten wie zuvor. Stelle sicher, dass du den fehlenden Wert als `NA` spezifizierst - ohne Anführungszeichen.
+7. Schaue dir die Spalte `gewicht` an. Du wirst sehen, dass sie einen fehlenden Wert beinhaltet. Kreiere einen Vektor `gewicht` mit den selben Schritten wie zuvor. Spezifiziere den fehlenden Wert dabei als `NA` - ohne Anführungszeichen.
 
 ```{r}
 # Kreiere Vektor gewicht
