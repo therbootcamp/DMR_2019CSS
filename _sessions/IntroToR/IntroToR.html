@@ -692,7 +692,7 @@ mean()
 ```
 
 ```
-## Error in mean.default(): Argument "x" fehlt (ohne Standardwert)
+## Error in mean.default(): argument "x" is missing, with no default
 ```
 
 ```r
@@ -747,7 +747,7 @@ mean()
 ```
 
 ```
-## Error in mean.default(): Argument "x" fehlt (ohne Standardwert)
+## Error in mean.default(): argument "x" is missing, with no default
 ```
 
 ```r
@@ -1077,7 +1077,7 @@ mean(c(1, 2, 3, NA), na.rm = "ABCD")
 ```
 
 ```
-## Error in if (na.rm) x &lt;- x[!is.na(x)]: Argument kann nicht als logischer Wert interpretiert werden
+## Error in if (na.rm) x &lt;- x[!is.na(x)]: argument is not interpretable as logical
 ```
 
 ]
@@ -1385,7 +1385,7 @@ lenth(x = 1)
 ```
 
 ```
-## Error in lenth(x = 1): konnte Funktion "lenth" nicht finden
+## Error in lenth(x = 1): could not find function "lenth"
 ```
 
 ]
@@ -1622,24 +1622,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {
