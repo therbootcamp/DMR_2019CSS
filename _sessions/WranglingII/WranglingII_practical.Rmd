@@ -67,7 +67,7 @@ Am Ende des Practicals wirst du wissen wie man:
 
 ### A - Setup
 
-1. Öffne dein `BaselRBootcamp` R project. Es sollte bereits die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle  Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
+1. Öffne dein `TheRBootcamp` R project. Es sollte bereits die Ordner `1_Data` und `2_Code` enthalten. Stelle sicher, dass du alle  Datensätze, welche im `Datensätze` Tab aufgelisted sind, in deinem `1_Data` Ordner hast. 
 
 2. Öffne ein neues R Skript. Schreibe deinen Namen, das Datum und "Wrangling II Practical" als Kommentare an den Anfang des Skripts.
 

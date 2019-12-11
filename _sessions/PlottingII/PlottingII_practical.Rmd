@@ -60,14 +60,14 @@ verbrechen = read_csv('1_Data/verbrechen.csv')
 
 ## Überblick
 
-In diesem Practical wirst du weiter üben mit `ggplot2` publikationsfertige Graphiken zu erstellen. 
+In diesem Practical wirst du weiter üben mit `ggplot2` publikationsfertige Grafiken zu erstellen. 
 
 Am Ende des Practicals wirst du wissen wie man:
 
 1. `facet`s benutzt.
 2. `theme`s anpasst.
 3. `scale`s anpasst.
-4. Bilddateien erstellst.
+4. Bilddateien erstellt.
 5. Multiple Plots zusammenstellt.
 
 ## Aufgaben
@@ -90,7 +90,7 @@ Am Ende des Practicals wirst du wissen wie man:
 
 ### B - Lade den Datensatz
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `krimi` als Objekt `krimi` einzulesen. Denkt an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `krimi` als Objekt `krimi` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F, eval = T, message = F}
 # Lese kriminalitaet.csv
