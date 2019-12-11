@@ -466,14 +466,14 @@ appointments_reduziert <- appointments %>%
 
 ### F - Verbinde Datensätze mit `*_join()`
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `weather`, welcher das Wetter in Brasilien enthält, als Objekt `weather` einzulesen. Denkt an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `weather`, welcher das Wetter in Brasilien enthält, als Objekt `weather` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F}
 # Lese weather
 weather <- read_csv('1_Data/weather.csv')
 ```
 
-2. Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?
+2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
@@ -535,7 +535,7 @@ appointments_weather <- appointments %>%
 
 9. Printe `appointments_weather`. Alles in Ordnung?
 
-10. Erstellt im nächsten Schritt der pipeline erneut eine Variable `termin_eingelten_01` wie bereits oben. Ausserdem erstellt eine Variable `niederschlag_01` die anzeigt, ob es Niederschlag gab oder nicht. 
+10. Erstellt im nächsten Schritt der Pipeline erneut eine Variable `termin_eingelten_01` genauso wie ihr das vorher bereits einmal getan habt. Ausserdem erstellt eine Variable `niederschlag_01` die anzeigt, ob es Niederschlag gab oder nicht. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verbinde Datensätze
@@ -592,7 +592,7 @@ mean(appointments_weather$termin_eingehalten_01[appointments_weather$niederschla
 
 ### X - Challenge
 
-1. Versuche alle bisherigen Schritte beginnend beim einlesen bis zum Verbinden der Datensätze in eine einzige Pipeline zu bringen. Das zielt ist es die letzte Version von `appointments_weather` zu erstellen ohne auch nur einmal ein Objekt zu kreieren. 
+1. Versuche alle bisherigen Schritte beginnend beim einlesen bis zum Verbinden der Datensätze in eine einzige Pipeline zu bringen. Das Ziel ist es die letzte Version von `appointments_weather` zu erstellen ohne auch nur einmal ein Objekt zwischendrin zuzuweisen. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # kreire appointments_weather

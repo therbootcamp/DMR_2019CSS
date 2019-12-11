@@ -421,8 +421,8 @@ appointments_reduziert &lt;- appointments %&gt;%
 <div id="f---verbinde-datensatze-mit-_join" class="section level3">
 <h3>F - Verbinde Datensätze mit <code>*_join()</code></h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>weather</code>, welcher das Wetter in Brasilien enthält, als Objekt <code>weather</code> einzulesen. Denkt an den Trick mit den Anführungszeichen.</p></li>
-<li><p>Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?</p></li>
+<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>weather</code>, welcher das Wetter in Brasilien enthält, als Objekt <code>weather</code> einzulesen. Denke an den Trick mit den Anführungszeichen.</p></li>
+<li><p>Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?</p></li>
 <li><p>Verwende <code>summary()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
 <li><p>Verwendet <code>select()</code> und <code>rename()</code> um die Spalten <code>YYYYMMDD</code> und <code>PRECTOT</code> auszuwählen und sie in <code>termin_tag</code> und <code>niederschlag</code> umzubenennnen. Nennt das resultierende Objekt <code>weather_reduziert</code></p></li>
 </ol>
@@ -450,7 +450,7 @@ appointments_weather &lt;- appointments %&gt;%
   select(XX, XX, XX)</code></pre>
 <ol start="9" style="list-style-type: decimal">
 <li><p>Printe <code>appointments_weather</code>. Alles in Ordnung?</p></li>
-<li><p>Erstellt im nächsten Schritt der pipeline erneut eine Variable <code>termin_eingelten_01</code> wie bereits oben. Ausserdem erstellt eine Variable <code>niederschlag_01</code> die anzeigt, ob es Niederschlag gab oder nicht.</p></li>
+<li><p>Erstellt im nächsten Schritt der Pipeline erneut eine Variable <code>termin_eingelten_01</code> genauso wie ihr das vorher bereits einmal getan habt. Ausserdem erstellt eine Variable <code>niederschlag_01</code> die anzeigt, ob es Niederschlag gab oder nicht.</p></li>
 </ol>
 <pre class="r"><code># Verbinde Datensätze
 appointments_weather &lt;- appointments %&gt;%
@@ -481,7 +481,7 @@ mean(appointments_weather$termin_eingehalten_01[appointments_weather$niederschla
 <div id="x---challenge" class="section level3">
 <h3>X - Challenge</h3>
 <ol style="list-style-type: decimal">
-<li>Versuche alle bisherigen Schritte beginnend beim einlesen bis zum Verbinden der Datensätze in eine einzige Pipeline zu bringen. Das zielt ist es die letzte Version von <code>appointments_weather</code> zu erstellen ohne auch nur einmal ein Objekt zu kreieren.</li>
+<li>Versuche alle bisherigen Schritte beginnend beim einlesen bis zum Verbinden der Datensätze in eine einzige Pipeline zu bringen. Das Ziel ist es die letzte Version von <code>appointments_weather</code> zu erstellen ohne auch nur einmal ein Objekt zwischendrin zuzuweisen.</li>
 </ol>
 <pre class="r"><code># kreire appointments_weather
 read_csv(&quot;XX&quot;) %&gt;%
