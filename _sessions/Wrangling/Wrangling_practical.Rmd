@@ -103,11 +103,11 @@ library(tidyverse)
 appointments <- read_csv('1_Data/appointments.csv')
 ```
 
-2. Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?
+2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
-### C - Change column names with `rename()`
+### C - Verändere Spaltennamen mit `rename()`
 
 1. Verwende `names()` um die Spaltennamen anzuzeigen.  
 
@@ -117,19 +117,20 @@ names(XXX)
 ```
 
 ```{r}
+# Zeige Spaltennamen
 names(appointments)
 ```
 
 2. Eine der Spalten hat aktuell den namen `Age`. Verwende `rename()` um den Namen in `alter_jahre` zu ändern um klar zu machen, dass es sich um das Alter in Jahren handelt.   
 
 ```{r, echo = TRUE, eval = FALSE}
-# Änder Age zu alter_Jahre
+# Ändere Age zu alter_jahre
 appointments <- appointments %>%
   rename(NEU = ALT)
 ```
 
 ```{r}
-# Änder Age zu alter_Jahre
+# Ändere Age zu alter_jahre
 appointments <- appointments %>%
   rename(alter_jahre = Age)
 ```
@@ -271,7 +272,7 @@ appointments <- appointments %>%
     )
   )
 ```
-6. Finde raus mit der bekannten Form `data_frame$spalte1[data_frame$spalte2 == XX]` und der `mean()` Funktion, ob schwerkranke Patienten häufiger den Termin nicht wahrnehmen (verwende `termin_eingehalten_01`).  
+6. Finde mit der bekannten Form `data_frame$spalte1[data_frame$spalte2 == XX]` und der `mean()` Funktion heraus, ob schwerkranke Patienten häufiger den Termin nicht wahrnehmen (verwende `termin_eingehalten_01`).  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Anteil nicht wahrgenommener Termine
@@ -285,7 +286,7 @@ mean(appointments$termin_eingehalten_01[appointments$schwer_krank == "Ja"])
 mean(appointments$termin_eingehalten_01[appointments$schwer_krank != "Ja"])
 ```
 
-7. Vergleiche nun, ob es vielleicht Unterschiede zwischen Männern und Frauen gibt und zwischen Patienten, die mehr oder weniger als 360 Monate alt sind.  
+7. Vergleiche nun, ob es in den wahrgenommenen Terminen vielleicht Unterschiede zwischen Männern und Frauen gibt und ob es Unterschiede zwischen Patienten gibt, die mehr oder weniger als 360 Monate alt sind.  
 
 ```{r}
 # Anteil nicht wahrgenommener Termine
@@ -309,7 +310,7 @@ appointments_reduziert <- appointments %>%
   select(patient, geschlecht, alter_jahre, krankheitsgrad, termin_eingehalten_01)
 ```
 
-2. Printe `appointments_reduziert`. Sind die richten Spalten enthalten?
+2. Printe `appointments_reduziert`. Sind die richtigen Spalten enthalten?
 
 3. Verwende `filter()` um Fälle auszuwählen in denen der Patient weiblich ist. Ergänze hierzu direkt die Pipeline. 
 
@@ -327,7 +328,7 @@ appointments_reduziert <- appointments %>%
   filter(geschlecht == 'weiblich')
 ```
 
-4. Printe `appointments_reduziert$geschlecht`. Noch Männer enthalten?
+4. Printe `appointments_reduziert$geschlecht`. Sind noch Männer enthalten?
 
 5. Ergänze die Pipeline um gleichzeitig nur Patienten auszuwählen, die über 30 Jahre alt sind. 
 
@@ -347,7 +348,7 @@ appointments_reduziert <- appointments %>%
          alter_jahre > 30)
 ```
 
-6. Printe `appointments_reduziert$alter_jahre`. Noch Jüngere enthalten?
+6. Printe `appointments_reduziert$alter_jahre`. Sind noch Jüngere enthalten?
 
 7. Verwende `arrange()` um den `appointments_reduziert` aufsteigend nach Alter zu ordnen. Ergänze die Pipeline. 
 
@@ -369,7 +370,7 @@ appointments_reduziert <- appointments %>%
   arrange(alter_jahre)
 ```
 
-8. Printe `appointments_reduziert` und `appointments_reduziert$alter_jahre`. Alles schön sortiert?
+8. Printe `appointments_reduziert` und `appointments_reduziert$alter_jahre`. Ist alles schön sortiert?
 
 9. Verwende `arrange()` und `desc()` um diesmal `appointments_reduziert` absteigend (descending) nach Alter zu ordnen. 
 
@@ -391,7 +392,7 @@ appointments_reduziert <- appointments %>%
   arrange(desc(alter_jahre))
 ```
 
-10. Printe `appointments_reduziert` und `appointments_reduziert$alter_jahre`. Alles schön sortiert?
+10. Printe `appointments_reduziert` und `appointments_reduziert$alter_jahre`. Ist alles schön sortiert?
 
 11. Verwende `arrange()` und `desc()` um `appointments_reduziert` auch absteigend (descending) nach `krankheitsgrad` zu ordnen. 
 
@@ -415,7 +416,7 @@ appointments_reduziert <- appointments %>%
           desc(krankheitsgrad))
 ```
 
-12. Printe `appointments_reduziert` und `appointments_reduziert$krankheitsgrad`. Alles schön sortiert?
+12. Printe `appointments_reduziert` und `appointments_reduziert$krankheitsgrad`. Ist alles schön sortiert?
 
 13. Ändere die Reihenfolge von `krankheitsgrad` und  `alter_jahre` um primär nach `krankheitsgrad` zu sortieren. 
 
@@ -439,7 +440,7 @@ appointments_reduziert <- appointments %>%
           desc(alter_jahre))
 ```
 
-14. Verwende `slice()` um die ersten zwanzig Fälle in `appointments_reduziert`. Ergänze die Pipeline.
+14. Verwende `slice()` um die ersten zwanzig Fälle in `appointments_reduziert` auszuwählen. Ergänze die Pipeline.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Wähle Fälle aus
