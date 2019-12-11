@@ -67,7 +67,7 @@ Am Ende des Practicals wirst du wissen wie man:
 1. `facet`s benutzt.
 2. `theme`s anpasst.
 3. `scale`s anpasst.
-4. Bilddateien erstellst.
+4. Bilddateien erstellt.
 5. Multiple Plots zusammenstellt.
 
 ## Aufgaben
