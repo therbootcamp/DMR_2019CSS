@@ -239,7 +239,7 @@ XX <- tibble(XX, XX, XX, XX, XX, XX)
 basel <- data.frame(id, alter, geschlecht, groesse, gewicht) 
 ```
 
-2. Printe den data frame. Enthält er alle Vektoren? Welche Ausmasse (Zeilen, Spalten) hat der data frame?
+2. Printe den data frame. Enthält er alle Vektoren? Welche Ausmasse (Anzahl Zeilen, Spalten) hat der data frame?
 
 ```{r}
 # Print basel
@@ -280,7 +280,6 @@ min(basel$alter)
 
 In diesem Abschnitt wirst du den bekannten `diamonds` Datensatz einlesen und bearbeiten. 
 
-
 1. Finde den Filepath zum `diomands.csv` Datensatz. Setze hierzu den Cursor zwischen zwei Anführungszeichen `""` und drücke &#8677; (tab). Speichere den Filepath in einem Objekt namens `diamonds_path`. 
 
 ```{r, eval = F, echo =T}
@@ -293,7 +292,7 @@ diamonds_path <- ""
 diamonds_path <- "1_Data/diamonds.csv"
 ```
 
-2. Jetzt, verwende das Objekt `diamonds_path` in der Funktion `read_csv()`, um den Datensatz einzulesen und als neues Objekt `diamonds` zu speichern. (Der Umweg über das Objekt `diamonds_path` ist natürlich nicht zwingend nötig. Man kann den Filepath auch direkt als Argument einsetzen.)
+2. Jetzt verwende das Objekt `diamonds_path` in der Funktion `read_csv()`, um den Datensatz einzulesen und als neues Objekt `diamonds` zu speichern. (Der Umweg über das Objekt `diamonds_path` ist natürlich nicht zwingend nötig. Man kann den Filepath auch direkt als Argument einsetzen.)
 
 ```{r, eval = F, echo = T}
 # Lese den diamonds Datensatz ein
@@ -305,14 +304,14 @@ diamonds <- read_csv(file = XX)
 diamonds <- read_csv(file = diamonds_path)
 ```
 
-3. Printe den `diamonds` Datensatz. Inspiziere insbesondere die Variablennamen. Etwas stimmt nicht.
+3. Printe den `diamonds` Datensatz. Inspiziere insbesondere die Variablennamen. Etwas stimmt nicht, oder?
 
 ```{r}
 # Print diamonds
 diamonds
 ```
 
-4. Du kannst das Problem lösen, indem du direkt einen `character` Vektor durch das `col_names`-Argument übergibts. Der Vektor soll folgende Namen enthalteh: `karat`, `cut`, `farbe`, `klarheit`, `tiefe`, `tabelle`, `preis`.
+4. Du kannst das Problem lösen, indem du direkt einen `character` Vektor mit Namen dem `col_names`-Argument zuweist. Der Vektor soll folgende Namen enthalten: `karat`, `cut`, `farbe`, `klarheit`, `tiefe`, `tabelle`, `preis`.
 
 ```{r, eval = F, echo = T}
 # lese dimaonds nochmal ein, diesmal mit expliziten Spaltennamen
@@ -326,7 +325,7 @@ diamonds <- read_csv(file = diamonds_path,
                      col_names = c("karat", "cut", "farbe", "klarheit", "tiefe", "tabelle", "preis"))
 ```
 
-5. Re-inspeziere den Datensatz. Sie die Spaltennamen nun korrekt?
+5. Re-inspeziere den Datensatz. Sind die Spaltennamen nun korrekt?
 
 ```{r}
 # print diamonds
@@ -343,7 +342,6 @@ diamonds$karat
 ```
 
 8. Ersetze den falsch formatierten Wert in `karat` indem du unten im Code `XX` durch die Position (Zahl zwischen 10 und 20) des falschen Wertes ersetzt und `YY` mit dem korrekten Wert mit `.` anstatt `,`.  
-
 
 ```{r, eval = F, echo = T}
 # Ersetze den falschen Wert
@@ -381,14 +379,14 @@ write_csv(x = XX, path = "XX/XX.csv")
 write_csv(x = diamonds, "1_Data/diamonds_sauber.csv")
 ```
 
-12. Um sicherzustellen, dass nicht wieder die selben Probleme auftreten, lesen `diamonds_clean.csv` wieder ein und schaue dir die Spaltennamen und die Spaltentypen an. Alles in Ordnung?
+12. Um sicherzustellen, dass nicht wieder die selben Probleme auftreten, lese `diamonds_clean.csv` wieder ein und schaue dir die Spaltennamen und die Spaltentypen an. Alles in Ordnung?
 
 ```{r, eval = FALSE}
 # Lese den sauberen diamonds Datensatz ein
 diamonds_clean <- read_csv(file = "1_Data/diamonds_sauber.csv")
 ```
 
-13. Jetzt wäre der Datensatz fertig für die Analyse. Exploriere ein wenig. Berechne deskriptive Statistiken für die verschiedenen Variablen. Du kannst mehr über die Variablen erfahren über `?diamonds`. (Namen sind aus dem Englischen übersetzt.)
+13. Jetzt wäre der Datensatz fertig für die Analyse. Exploriere ein wenig. Berechne deskriptive Statistiken für die verschiedenen Variablen. Du kannst mehr über die Variablen erfahren mit `?diamonds`. (Namen sind aus dem Englischen übersetzt.)
 
 ```{r}
 # Deskriptive Statistiken
@@ -397,7 +395,6 @@ mean(diamonds$preis)
 table(diamonds$cut)
 table(diamonds$klarheit)
 ```
-
 
 ### E - Logische Vektoren
 
@@ -420,7 +417,7 @@ teuer <- diamonds$preis > 10000
 teuer
 ```
 
-3. Ergänze den Datensatz um die neue Variable `teuer`. Siehe Code.
+3. Ergänze den Datensatz um die neue Variable `teuer`.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Ergänze Vektor
@@ -432,7 +429,7 @@ XX$YY <- ZZ
 diamonds$teuer <- teuer
 ```
 
-4. Verwende die Funktion `table()`, um auszuzählen wie viele Diamanten teuer sind. Benutze hierzu den `$`-Operator.   
+4. Verwende die Funktion `table()`, um auszuzählen wie viele Diamanten teuer sind. Benutze hierzu wiederum den `$`-Operator um die Variable auszuwählen.   
 
 ```{r}
 # Zähle die teuren Diamanten
@@ -440,6 +437,7 @@ table(diamonds$teuer)
 ```
 
 5. Verwende die `mean()` Funktion, um auszuzählen welcher Anteil teuer ist. Erinnere, `mean()` funktioniert auch mit logischen Vektoren. 
+
 ```{r}
 # Anteil teuerer Diamanten
 mean(diamonds$teuer)
@@ -460,7 +458,7 @@ mean(diamonds$karat > 1)
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png")
 ```
 
-In diesem Unterabschnitt liest du den ebenfalls altbekannten `titanic` Datensatz aus einem Excel Format und speicherst die Daten als `.csv`.
+In diesem Unterabschnitt liest du den ebenfalls sehr bekannten `titanic` Datensatz aus einem Excel Format und speicherst die Daten als `.csv`.
 
 1. Verwende die `read_excel()` Funktion, um den Datensatz `titanic.xls` als ein neues Objekt `titanic` einzulesen. 
 
@@ -482,7 +480,7 @@ titanic
 dim(titanic)
 ```
 
-3. Verwende `table()` um auszuzählen wie viele Leute den Unfall der Titanic überlebt haben (Spalte `survived`). 
+3. Verwende `table()` um auszuzählen wie viele Leute das Unglück der Titanic überlebt haben (Spalte `survived`). 
 
 ```{r, eval = F, echo = T}
 # Wie viele haben überlebt?
@@ -494,7 +492,7 @@ table(titanic$XX)
 table(titanic$XX)
 ```
 
-4. Verwende nochmals `table()` um auszuzählen wie viele Leute in jeder der einzlenen Passagierklassen (Spalte `pclass`) den Unfall der Titanic überlebt haben. 
+4. Verwende nochmals `table()` um auszuzählen wie viele Leute in jeder der einzlenen Passagierklassen (Spalte `pclass`) das Unglück der Titanic überlebt haben. 
 
 ```{r, eval = F, echo = T}
 # Wie viele haben pro Passagierklasse überlebt?
@@ -520,7 +518,7 @@ write_csv(x = titanic,
 knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg")
 ```
 
-In diesem Unterabschnitt liest du den `sleep` Datensatz, welcher Daten über das Schlafverhalten der Mitarbeiter der Universität Melbourne enthält, aus einem SPSS format ein und speicherst die Daten als `.csv`.
+In diesem Unterabschnitt liest du den `sleep` Datensatz mit Informationen über das Schlafverhalten der Mitarbeiter der Universität Melbourne enthält aus einem SPSS format ein und speicherst die Daten als `.csv`.
 
 1. Verwende die `read_spss()` Funktion, um den Datensatz `sleep.sav` als ein neues Objekt `sleep` einzulesen. 
 
@@ -565,7 +563,7 @@ write_csv(x = sleep,
 sum(sleep$alchohol > 10, na.rm = TRUE)
 ```
 
-2. Indentifiziere den Index der Person in der Variable mit `which()`. 
+2. Indentifiziere den Index der Person in der Variable `alchohol` mit `which()`. 
 
 ```{r, eval = FALSE, echo = TRUE}
 # Index von alchohol > 10
@@ -714,8 +712,8 @@ library(haven)
 
 | Funktion| Beschreibung|
 |:------|:--------|
-| `mean(x), median(x), sd(x), sum(x)` | Mittelwert,Median, Standardabweichung, Summe|
-| `max(x), min(x)`                    | Maximum, minimum|
+| `mean(x), median(x), sd(x), sum(x)` | Mittelwert, Median, Standardabweichung, Summe|
+| `max(x), min(x)`                    | Maximum, Minimum|
 | `table(x)`                          | Höufigkeitstabelle|
 
 *Zugriff auf Variablen in Data Frames*
@@ -734,7 +732,7 @@ library(haven)
 
 *Lese/Schreibe andere Formate*
 
-| Dateiendung | Dateityp |Lesen | Schreiben |
+| Dateiendung | Dateityp | Lesen | Schreiben |
 |:--------|:-----|:--------------------------|:-----------------------------|
 |`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
 |`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 

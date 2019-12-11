@@ -335,7 +335,7 @@ XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot
 <pre class="r"><code># Kreiere data frame aus den Vektoren
 XX &lt;- tibble(XX, XX, XX, XX, XX, XX) </code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Printe den data frame. Enthält er alle Vektoren? Welche Ausmasse (Zeilen, Spalten) hat der data frame?</p></li>
+<li><p>Printe den data frame. Enthält er alle Vektoren? Welche Ausmasse (Anzahl Zeilen, Spalten) hat der data frame?</p></li>
 <li><p>Verwende die Funktion <code>summary()</code> um deskriptive Statistiken für die Variablen in <code>basel</code> zu erstellen.</p></li>
 <li><p>Verwende den <code>$</code>-Operator, um allein die Variable <code>alter</code> zu printen.</p></li>
 <li><p>Verwende die Funktionen <code>mean()</code>, <code>max()</code>, <code>min()</code>, und <code>median()</code> umd deskriptive Statistiken direkt für die Variable <code>alter</code> zu berechnen</p></li>
@@ -350,19 +350,19 @@ XX &lt;- tibble(XX, XX, XX, XX, XX, XX) </code></pre>
 <pre class="r"><code># Setze den Cursor zwischen &quot;&quot; und drücke tab
 diamonds_path &lt;- &quot;&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Jetzt, verwende das Objekt <code>diamonds_path</code> in der Funktion <code>read_csv()</code>, um den Datensatz einzulesen und als neues Objekt <code>diamonds</code> zu speichern. (Der Umweg über das Objekt <code>diamonds_path</code> ist natürlich nicht zwingend nötig. Man kann den Filepath auch direkt als Argument einsetzen.)</li>
+<li>Jetzt verwende das Objekt <code>diamonds_path</code> in der Funktion <code>read_csv()</code>, um den Datensatz einzulesen und als neues Objekt <code>diamonds</code> zu speichern. (Der Umweg über das Objekt <code>diamonds_path</code> ist natürlich nicht zwingend nötig. Man kann den Filepath auch direkt als Argument einsetzen.)</li>
 </ol>
 <pre class="r"><code># Lese den diamonds Datensatz ein
 diamonds &lt;- read_csv(file = XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Printe den <code>diamonds</code> Datensatz. Inspiziere insbesondere die Variablennamen. Etwas stimmt nicht.</p></li>
-<li><p>Du kannst das Problem lösen, indem du direkt einen <code>character</code> Vektor durch das <code>col_names</code>-Argument übergibts. Der Vektor soll folgende Namen enthalteh: <code>karat</code>, <code>cut</code>, <code>farbe</code>, <code>klarheit</code>, <code>tiefe</code>, <code>tabelle</code>, <code>preis</code>.</p></li>
+<li><p>Printe den <code>diamonds</code> Datensatz. Inspiziere insbesondere die Variablennamen. Etwas stimmt nicht, oder?</p></li>
+<li><p>Du kannst das Problem lösen, indem du direkt einen <code>character</code> Vektor mit Namen dem <code>col_names</code>-Argument zuweist. Der Vektor soll folgende Namen enthalten: <code>karat</code>, <code>cut</code>, <code>farbe</code>, <code>klarheit</code>, <code>tiefe</code>, <code>tabelle</code>, <code>preis</code>.</p></li>
 </ol>
 <pre class="r"><code># lese dimaonds nochmal ein, diesmal mit expliziten Spaltennamen
 diamonds &lt;- read_csv(file = &quot;XX&quot;, 
                      col_names = c(&#39;name_1&#39;,&#39;name_2&#39;,&#39;...&#39;))  </code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Re-inspeziere den Datensatz. Sie die Spaltennamen nun korrekt?</p></li>
+<li><p>Re-inspeziere den Datensatz. Sind die Spaltennamen nun korrekt?</p></li>
 <li><p>Richte nun deine Aufmerksamkeit auf die Klassen der Variablen. Wurden die Klassen aller Variablen richtig interpretiert?</p></li>
 <li><p>Finde heraus was passiert ist. Wähle die <code>karat</code> Variable aus und schaue dir die Werte genau an. Zwischen dem 10. und 20. Eintrag solltest du eine Irregularität erkennen, die dafür verantwortlich ist, dass die Variable als <code>character</code> erkannt wurde.</p></li>
 <li><p>Ersetze den falsch formatierten Wert in <code>karat</code> indem du unten im Code <code>XX</code> durch die Position (Zahl zwischen 10 und 20) des falschen Wertes ersetzt und <code>YY</code> mit dem korrekten Wert mit <code>.</code> anstatt <code>,</code>.</p></li>
@@ -381,8 +381,8 @@ diamonds &lt;- type_convert(diamonds)</code></pre>
 <pre class="r"><code># Schreibe den sauberen diamonds Datensatz 
 write_csv(x = XX, path = &quot;XX/XX.csv&quot;)</code></pre>
 <ol start="12" style="list-style-type: decimal">
-<li><p>Um sicherzustellen, dass nicht wieder die selben Probleme auftreten, lesen <code>diamonds_clean.csv</code> wieder ein und schaue dir die Spaltennamen und die Spaltentypen an. Alles in Ordnung?</p></li>
-<li><p>Jetzt wäre der Datensatz fertig für die Analyse. Exploriere ein wenig. Berechne deskriptive Statistiken für die verschiedenen Variablen. Du kannst mehr über die Variablen erfahren über <code>?diamonds</code>. (Namen sind aus dem Englischen übersetzt.)</p></li>
+<li><p>Um sicherzustellen, dass nicht wieder die selben Probleme auftreten, lese <code>diamonds_clean.csv</code> wieder ein und schaue dir die Spaltennamen und die Spaltentypen an. Alles in Ordnung?</p></li>
+<li><p>Jetzt wäre der Datensatz fertig für die Analyse. Exploriere ein wenig. Berechne deskriptive Statistiken für die verschiedenen Variablen. Du kannst mehr über die Variablen erfahren mit <code>?diamonds</code>. (Namen sind aus dem Englischen übersetzt.)</p></li>
 </ol>
 </div>
 <div id="e---logische-vektoren" class="section level3">
@@ -394,12 +394,12 @@ write_csv(x = XX, path = &quot;XX/XX.csv&quot;)</code></pre>
 ZZ &lt;- diamonds$XX &gt; YY</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe den <code>teuer</code> Vektor. Er sollte nur <code>TRUE</code> und <code>FALSE</code> enthalten. Falls ja, decken sich die ersten Werte in <code>preis</code> mit den Werten in <code>teuer</code>?</p></li>
-<li><p>Ergänze den Datensatz um die neue Variable <code>teuer</code>. Siehe Code.</p></li>
+<li><p>Ergänze den Datensatz um die neue Variable <code>teuer</code>.</p></li>
 </ol>
 <pre class="r"><code># Ergänze Vektor
 XX$YY &lt;- ZZ</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Verwende die Funktion <code>table()</code>, um auszuzählen wie viele Diamanten teuer sind. Benutze hierzu den <code>$</code>-Operator.</p></li>
+<li><p>Verwende die Funktion <code>table()</code>, um auszuzählen wie viele Diamanten teuer sind. Benutze hierzu wiederum den <code>$</code>-Operator um die Variable auszuwählen.</p></li>
 <li><p>Verwende die <code>mean()</code> Funktion, um auszuzählen welcher Anteil teuer ist. Erinnere, <code>mean()</code> funktioniert auch mit logischen Vektoren.</p></li>
 <li><p>Verwende sowohl einen logischen Vergleich, <code>&gt;</code> oder <code>&lt;</code>, als auch die <code>mean()</code> Funktion, um zu bestimmen welcher Anteil Diamanten mehr als 1 Karat besitzt.</p></li>
 </ol>
@@ -409,7 +409,7 @@ XX$YY &lt;- ZZ</code></pre>
 <div id="excel" class="section level4">
 <h4>Excel</h4>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png" width="8%" style="display: block; margin: auto auto auto 0;" /></p>
-<p>In diesem Unterabschnitt liest du den ebenfalls altbekannten <code>titanic</code> Datensatz aus einem Excel Format und speicherst die Daten als <code>.csv</code>.</p>
+<p>In diesem Unterabschnitt liest du den ebenfalls sehr bekannten <code>titanic</code> Datensatz aus einem Excel Format und speicherst die Daten als <code>.csv</code>.</p>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>read_excel()</code> Funktion, um den Datensatz <code>titanic.xls</code> als ein neues Objekt <code>titanic</code> einzulesen.</li>
 </ol>
@@ -417,12 +417,12 @@ XX$YY &lt;- ZZ</code></pre>
 titanic &lt;- read_excel(path = &quot;XX&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Printe <code>titanic</code> und evaluiere die Ausmasse des Datensatzes mit <code>dim()</code>.</p></li>
-<li><p>Verwende <code>table()</code> um auszuzählen wie viele Leute den Unfall der Titanic überlebt haben (Spalte <code>survived</code>).</p></li>
+<li><p>Verwende <code>table()</code> um auszuzählen wie viele Leute das Unglück der Titanic überlebt haben (Spalte <code>survived</code>).</p></li>
 </ol>
 <pre class="r"><code># Wie viele haben überlebt?
 table(titanic$XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Verwende nochmals <code>table()</code> um auszuzählen wie viele Leute in jeder der einzlenen Passagierklassen (Spalte <code>pclass</code>) den Unfall der Titanic überlebt haben.</li>
+<li>Verwende nochmals <code>table()</code> um auszuzählen wie viele Leute in jeder der einzlenen Passagierklassen (Spalte <code>pclass</code>) das Unglück der Titanic überlebt haben.</li>
 </ol>
 <pre class="r"><code># Wie viele haben pro Passagierklasse überlebt?
 table(titanic$XX, titanic$XX)</code></pre>
@@ -433,7 +433,7 @@ table(titanic$XX, titanic$XX)</code></pre>
 <div id="spss" class="section level4">
 <h4>SPSS</h4>
 <p><img src="http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg" width="8%" style="display: block; margin: auto auto auto 0;" /></p>
-<p>In diesem Unterabschnitt liest du den <code>sleep</code> Datensatz, welcher Daten über das Schlafverhalten der Mitarbeiter der Universität Melbourne enthält, aus einem SPSS format ein und speicherst die Daten als <code>.csv</code>.</p>
+<p>In diesem Unterabschnitt liest du den <code>sleep</code> Datensatz mit Informationen über das Schlafverhalten der Mitarbeiter der Universität Melbourne enthält aus einem SPSS format ein und speicherst die Daten als <code>.csv</code>.</p>
 <ol style="list-style-type: decimal">
 <li>Verwende die <code>read_spss()</code> Funktion, um den Datensatz <code>sleep.sav</code> als ein neues Objekt <code>sleep</code> einzulesen.</li>
 </ol>
@@ -449,7 +449,7 @@ table(titanic$XX, titanic$XX)</code></pre>
 <h3>X - Challenges</h3>
 <ol style="list-style-type: decimal">
 <li><p>Verwende <code>sum()</code> und <code>==</code> um auszuzählen wie viele Uni Melbourne Mitarbeiter mehr als 10 Drinks pro Tag zu sich nehmen.</p></li>
-<li><p>Indentifiziere den Index der Person in der Variable mit <code>which()</code>.</p></li>
+<li><p>Indentifiziere den Index der Person in der Variable <code>alchohol</code> mit <code>which()</code>.</p></li>
 </ol>
 <pre class="r"><code># Index von alchohol &gt; 10
 which(sleep$alchohol &gt; 10)</code></pre>
@@ -643,11 +643,11 @@ chickens &lt;- read_spss(&quot;1_Data/chickens.sav&quot;)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><code>mean(x), median(x), sd(x), sum(x)</code></td>
-<td align="left">Mittelwert,Median, Standardabweichung, Summe</td>
+<td align="left">Mittelwert, Median, Standardabweichung, Summe</td>
 </tr>
 <tr class="even">
 <td align="left"><code>max(x), min(x)</code></td>
-<td align="left">Maximum, minimum</td>
+<td align="left">Maximum, Minimum</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>table(x)</code></td>
