@@ -467,7 +467,7 @@ appointments_reduziert <- appointments %>%
 
 ### F - Verbinde Datensätze mit `*_join()`
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `weather`, welcher das Wetter in Brasilien enthält, als Objekt `weather` einzulesen. Denke an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `weather`, welcher Daten über das Wetter in Brasilien enthält, als Objekt `weather` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F}
 # Lese weather
@@ -478,7 +478,7 @@ weather <- read_csv('1_Data/weather.csv')
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
-4. Verwendet `select()` und `rename()` um die Spalten `YYYYMMDD` und `PRECTOT` auszuwählen und sie in `termin_tag` und `niederschlag` umzubenennnen. Nennt das resultierende Objekt `weather_reduziert`
+4. Verwende `select()` und `rename()` um die Spalten `YYYYMMDD` und `PRECTOT` auszuwählen und sie in `termin_tag` und `niederschlag` umzubenennnen. Nenne das resultierende Objekt `weather_reduziert`
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verarbeite weather
@@ -496,9 +496,9 @@ weather_reduziert <- weather %>%
          niederschlag = PRECTOT) 
 ```
 
-5. Printe `weather_reduziert`. Alles wie gewünscht?
+5. Printe `weather_reduziert`. Ist alles wie gewünscht?
 
-6. Verwendet `left_join()` um `weather_reduziert` mit den Spalten `termin_tag` und `termin_eingehalten` in `appointments` zu verbinden. Nennt den gemeinsamen Datensatz `appointments_weather`. 
+6. Verwende `left_join()` um `weather_reduziert` mit den Spalten `termin_tag` und `termin_eingehalten` in `appointments` zu verbinden. Nenne den gemeinsamen Datensatz `appointments_weather`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verbinde Datensätze
@@ -514,9 +514,9 @@ appointments_weather <- appointments %>%
   left_join(weather_reduziert)
 ```
 
-7. Printe `appointments_weather`. Alles in Ordnung?
+7. Printe `appointments_weather`. Ist alles in Ordnung?
 
-8. Verwendet `select()` um nach dem verbinden die Spalten in die folgende Reihenfolge zu bringen: `termin_tag`, `niederschlag`, und `termin_eingehalten`. 
+8. Verwende `select()` um nach dem Verbinden die Spalten in die folgende Reihenfolge zu bringen: `termin_tag`, `niederschlag`, und `termin_eingehalten`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verbinde Datensätze
@@ -534,9 +534,9 @@ appointments_weather <- appointments %>%
   select(termin_tag, niederschlag, termin_eingehalten)
 ```
 
-9. Printe `appointments_weather`. Alles in Ordnung?
+9. Printe `appointments_weather`. Ist alles in Ordnung?
 
-10. Erstellt im nächsten Schritt der Pipeline erneut eine Variable `termin_eingelten_01` genauso wie ihr das vorher bereits einmal getan habt. Ausserdem erstellt eine Variable `niederschlag_01` die anzeigt, ob es Niederschlag gab oder nicht. 
+10. Erstelle im nächsten Schritt der Pipeline erneut eine Variable `termin_eingelten_01` genauso wie du das vorher bereits einmal gemacht hast. Erstelle ausserdem eine Variable `niederschlag_01` die anzeigt, ob es Niederschlag gab oder nicht. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # Verbinde Datensätze
@@ -574,9 +574,9 @@ appointments_weather <- appointments %>%
     )
 ```
 
-11. Printe `appointments_weather`. Alles in Ordnung?
+11. Printe `appointments_weather`. Ist alles in Ordnung?
 
-12. Finde raus nun mit der bekannten Form `data_frame$spalte1[data_frame$spalte2 == XX]` und der `mean()` Funktion heraus, ob Termine bei Regen seltener eingehalten wurden.  
+12. Finde nun mit der bekannten Form `data_frame$spalte1[data_frame$spalte2 == XX]` und der `mean()` Funktion heraus, ob Termine bei Regen seltener eingehalten wurden.  
 
 ```{r, echo = TRUE, eval = FALSE}
 # Anteil nicht wahrgenommener Termine
