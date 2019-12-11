@@ -173,10 +173,10 @@ require(tidyverse)
 - <span>Spezialfall einer `list`</span>
 - <span>R's `Tidy`-Format für Daten
 
-<high>`vector`</high> - R's Daten-Container
+<high>`vector`</high> - R's Daten-Container 
 - <span>Primärer Daten-Container</span>
 - <span>Beinhaltet daten von genau einem Klasse</span>
-
+ 
 ]
 
 .pull-right55[
