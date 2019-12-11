@@ -58,14 +58,13 @@ knitr::include_graphics("")
 
 ## Overview
 
-In diesem Practical wirst du üben Daten mit `dplyr` zu transformieren. 
+In diesem Practical wirst du üben Daten mit `dplyr` zu transformieren und zu organisieren. 
 
 Am Ende des Practicals wirst du wissen wie man:
 
 1. Spalten verändert, kreiert, auswählt.
 2. Fälle auswählt.
 3. Daten verbindet.
-
 
 ## Aufgaben
 
@@ -96,14 +95,14 @@ library(tidyverse)
 
 ### B - Lade den Datensatz
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `appointments` als Objekt `appointments` einzulesen. Denkt an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `appointments` als Objekt `appointments` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F}
 # Lese appointments
 appointments <- read_csv('1_Data/appointments.csv')
 ```
 
-2. Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?
+2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
@@ -245,7 +244,7 @@ appointments <- appointments %>%
 appointments <- appointments %>%
   mutate(geschlecht = case_when(
     geschlecht == "M" ~ "männlich",
-    geschlecht == "F" ~ "weiblich",
+    geschlecht == "F" ~ "weiblich"
     )
   )
 ```

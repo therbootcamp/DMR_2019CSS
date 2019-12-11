@@ -97,7 +97,7 @@ Am Ende des Practicals wirst du wissen wie man:
 verbrechen <- read_csv('1_Data/verbrechen.csv')
 ```
 
-2. Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?
+2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
 
 3. Verwende `summary()` um einen weiteren Überblick über die Daten zu bekommen.
 
