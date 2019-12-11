@@ -55,7 +55,7 @@ require(tidyverse)
 
 ## Überblick
 
-In diesem Practical wirst du üben mit `ggplot2` publikationsfertige Graphiken zu erstellen. 
+In diesem Practical wirst du üben mit `ggplot2` publikationsfertige Grafiken zu erstellen. 
 
 Am Ende des Practicals wirst du wissen wie man:
 
