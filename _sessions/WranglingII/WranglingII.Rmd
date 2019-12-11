@@ -86,65 +86,67 @@ patienten_ergebnisse = patienten %>%
 
 ```
 
-# Inhalte
+# Advanced `dplyr`
 
 .pull-left45[
 
-<font size = 5><high>Organisation, Transformation und Variablenauswahl</high></font>
 
-- Bsp: Alle Variablen, die mit "xyz_" anfangen
-
-<font size = 5><high>Datenformat transformieren</high></font>
-
-- Bsp: Wide &#8594; Long Format
-
-<font size = 5><high>Gruppen erstellen</high></font>
-
-- Bsp: Nach Geschlecht und Bildung gruppieren
-
-<font size = 5><high>Deskriptive Statistiken erstellen</high></font>
-
-- Bsp: Berechnen des mittleren Alters (`mean(alter)`)
+<ul>
+  <li class="m1"><span><high>Transformation & Organisation</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Fehlende Werte ersetzen / entfernen</span></li>
+    <li><span>Ändere alle Variablen, die...</span></li>
+    <li><span>Zeilen zu Spalten oder Spalten zu Zeilen</span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Aggregation</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Nach Variablen gruppieren</span></li>
+    <li><span>Deskriptive Statistiken berechnen</span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
 
 .pull-right45[
-
-<br>
-
 <p align="center">
-<img src="image/data_wrangler.png" height=240px><br>
-<font style="font-size:10px">from <a href="https://www.codeastar.com/data-wrangling/">codeastar</a></font></p>
+<img src="image/wrangling.jpeg"><br>
+<font style="font-size:10px">from <a href="https://DATENsciencebe.com/tag/DATEN-wrangling/">DATENsciencebe.com</a></font>
+</p>
 
 ]
 
 ---
 
-# Organisation, Transformation und Variablenauswahl
+# Transformation & Organisation
 
 .pull-left4[
 
-Organisation:
-
-- `drop_na()`
-- `replace_na()`
-- `pull()`
-
-Transformation:
-
-- `mutate_if()`
-
-Variablenauswahl
-
-- `starts_with()`
-- `contains()`
-- `:`
-
+<ul>
+  <li class="m1"><span><high>Transformation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Organisation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>starts_with(), contains()</mono></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 ```{r}
 patienten_ergebnisse
@@ -155,257 +157,264 @@ patienten_ergebnisse
 
 ---
 
-# Organisation, Transformation und Variablenauswahl
+# `mutate_if()`
 
 .pull-left4[
 
-Organisation:
-
-- <high>drop_na()</high>
-- <high>replace_na()</high>
-- `pull()`
-
-Transformation:
-
-- `mutate_if()`
-
-Variablenauswahl
-
-- `starts_with()`
-- `contains()`
-- `:`
-
+<ul>
+  <li class="m1"><span><high>Transformation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><high><mono>mutate_if()</mono></high></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span>Organisation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>starts_with(), contains(), :</mono></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 ```{r}
 patienten_ergebnisse %>%
+  
+  # Ändere alle numeric in character
+  mutate_if(is.numeric, as.character)
+
+```
+
+]
+
+---
+
+# `replace_na()`
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Transformation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><high><mono>replace_na()</mono></high></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span>Organisation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>starts_with(), contains(), :</mono></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r}
+patienten_ergebnisse %>%
+  
+  # Ändere fehlende Werte in 110
   mutate(t_1 = replace_na(t_1, 110))
 
+```
+
+]
+
+---
+
+# `replace_na()`
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Transformation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><high><mono>drop_na()</mono></high></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span>Organisation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>starts_with(), contains(), :</mono></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r}
 patienten_ergebnisse %>%
+  
+  # Entferne Zeielen mit fehlenden Werten
   drop_na()
-```
 
+```
 
 ]
 
 ---
 
-
-# Organisation, Transformation und Variablenauswahl
-
-.pull-left4[
-
-Organisation:
-
-- `drop_na()`
-- `replace_na()`
-- <high>pull()</high>
-
-Transformation:
-
-- `mutate_if()`
-
-Variablenauswahl
-
-- `starts_with()`
-- `contains()`
-- `:`
-
-
-]
-
-.pull-right55[
-
-```{r}
-patienten_ergebnisse %>%
-  select(alter) %>%
-  pull()
-
-patienten_ergebnisse %>%
-  select(alter) %>%
-   pull() %>%
-  class()
-```
-
-
-]
-
-
----
-
-
-
-# Organisation, Transformation und Variablenauswahl
+# `starts_with()`
 
 .pull-left4[
 
-Organisation:
-
-- `drop_na()`
-- `replace_na()`
-- `pull()`
-
-Transformation:
-
-- <high>mutate_if()</high>
-
-Variablenauswahl
-
-- `starts_with()`
-- `contains()`
-- `:`
-
+<ul>
+  <li class="m1"><span>Transformation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Organisation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><high><mono>starts_with(), contains(), :</mono></high></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 ```{r}
 patienten_ergebnisse %>%
-  mutate_if(is.character, factor)
-
-```
-
-
-]
-
----
-
-
-
-# Organisation, Transformation und Variablenauswahl
-
-.pull-left4[
-
-Organisation:
-
-- `drop_na()`
-- `replace_na()`
-- `pull()`
-
-Transformation:
-
-- `mutate_if()`
-
-Variablenauswahl
-
-- <high>starts_with()</high>
-- `contains()`
-- `:`
-
-
-]
-
-.pull-right55[
-
-```{r}
-patienten_ergebnisse %>%
+  
+  # Wählen spalten aus die mit "t" beginnene
   select(starts_with("t"))
-```
 
+```
 
 ]
 
 ---
 
-
-
-# Organisation, Transformation und Variablenauswahl
+# `contains()`
 
 .pull-left4[
 
-Organisation:
-
-- `drop_na()`
-- `replace_na()`
-- `pull()`
-
-Transformation:
-
-- `mutate_if()`
-
-Variablenauswahl
-
-- `starts_with()`
-- <high>contains()</high>
-- `:`
-
+<ul>
+  <li class="m1"><span>Transformation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Organisation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><high><mono>starts_with(), contains(), :</mono></high></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 ```{r}
 patienten_ergebnisse %>%
+  
+  # Wählen spalten aus "_" beinhalten
   select(contains("_"))
-```
 
+```
 
 ]
 
 ---
 
-
-# Organisation, Transformation und Variablenauswahl
+# `:`
 
 .pull-left4[
 
-Organisation:
-
-- `drop_na()`
-- `replace_na()`
-- `pull()`
-
-Transformation:
-
-- `mutate_if()`
-
-Variablenauswahl
-
-- `starts_with()`
-- `contains()`
-- <high>:</high>
-
+<ul>
+  <li class="m1"><span>Transformation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Organisation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><high><mono>starts_with(), contains(), :</mono></high></span></li>
+    <li><span><mono>pivot_longer(), pivot_wider()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 ```{r}
 patienten_ergebnisse %>%
+  
+  # Spalten von alter bis t_1
   select(alter:t_1)
-```
 
+```
 
 ]
 
 ---
 
-# Long und Wide Format
+# `pivot_*()`
 
 .pull-left4[
-<br>
-Je nach Funktion werden Daten im Wide-Format (breites oder ungestapeltes Format), oder Daten im Long-Format (langes oder gestapeltes Format) benötigt.
 
-Benutze <high>`pivot_longer()`</high> und <high>`pivot_wider()`</high> aus dem `tidyr` Paket um Daten zu transformieren 
-
-<br>
-
-| Funktion | Resultat |
-|:----------|:-------|
-|`pivot_longer()`|<high>Wide &#8594; Long</high> Format|
-|`pivot_wider()`|<high>Long &#8594; Wide</high> Format|
+<ul>
+  <li class="m1"><span>Transformation
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate_if()</mono></span></li>
+    <li><span><mono>replace_na()</mono></span></li>
+    <li><span><mono>drop_na()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Organisation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>starts_with(), contains(), :</mono></span></li>
+    <li><span><high><mono>pivot_longer(), pivot_wider()</mono></high></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 <p align="center">
 <img src="image/tidyr-spread-gather.gif" height=420px><br>
-<font style="font-size:10px">adapted from <a href="https://github.com/gadenbuie/tidyexplain">tidyexplain</a></font></p>
+<font style="font-size:10px">adapted from <a href="https://github.com/gadenbuie/tidyexplain">tidyexplain</a></font>
+</p>
 
 ]
 
@@ -414,93 +423,53 @@ Benutze <high>`pivot_longer()`</high> und <high>`pivot_wider()`</high> aus dem `
 
 # `pivot_longer()`
 
-.pull-left45[
+.pull-left4[
 
-<br>
+```{r, eval = F}
+# wide zu long
+DATEN %>% 
+  pivot_longer(cols = SPALTEN,
+               names_to = NAMEN,
+               values_to = WERTE)
+```
+
+]
+
+.pull-right5[
 
 ```{r}
-# Original Daten (wide)
-studie
-```
-
-]
-
-.pull-right45[
-
-<br>
-
-```{r eval = FALSE}
 # wide zu long
-data %>% 
-  pivot_longer(cols = Spaltenauswahl,
-               names_to = "Gruppe",
-               values_to = "Werte")
-```
+patienten_ergebnisse %>% 
+  filter(bed_label == "placebo")
 
+```
 ]
+
 ---
 
 # `pivot_longer()`
 
-.pull-left45[
+.pull-left4[
 
-<br>
-
-```{r}
-# Original Daten (wide)
-studie
+```{r, eval = F}
+# wide zu long
+DATEN %>% 
+  pivot_longer(cols = SPALTEN,
+               names_to = NAMEN,
+               values_to = WERTE)
 ```
 
 ]
 
-.pull-right45[
-
-<br>
+.pull-right5[
 
 ```{r}
 # wide zu long
-studie %>% 
-  pivot_longer(cols = c("baseline", "t1"),
-               names_to = "zeitpunkt",
-               values_to = "rating")
-
-```
-
-]
----
-
-
-# `pivot_wider()`
-
-.pull-left45[
-
-<br>
-
-```{r echo = FALSE}
-studie_long <- studie %>% 
-  pivot_longer(cols = c("baseline", "t1"),
-               names_to = "zeitpunkt",
-               values_to = "rating")
-
-```
-
-
-```{r}
-# Original Daten (long)
-studie_long
-```
-
-]
-
-.pull-right45[
-
-<br>
-
-```{r eval = FALSE}
-# long zu wide
-data %>% 
-  pivot_wider(names_from = "Gruppe",
-               values_from = "Werte")
+patienten_ergebnisse %>% 
+  filter(bed_label == "placebo") %>%
+  pivot_longer(cols = c("t_1", "t_2"),
+               names_to = "zeit",
+               values_to = "messung")
 ```
 
 ]
@@ -510,29 +479,104 @@ data %>%
 
 # `pivot_wider()`
 
-.pull-left45[
+.pull-left4[
 
-<br>
+```{r, eval = F}
+# wide zu long
+DATEN %>% 
+  pivot_wider(names_from = NAMEN,
+              values_from = WERTE)
+```
+]
+
+.pull-right5[
+
+```{r, echo = FALSE}
+# wide zu long
+patienten_ergebnisse_lang <- patienten_ergebnisse %>% 
+  filter(bed_label == "placebo") %>%
+  pivot_longer(cols = c("t_1", "t_2"),
+               names_to = "zeit",
+               values_to = "messung")
+```
 
 ```{r}
-# Original Daten (long)
-studie_long
+# wide zu long
+patienten_ergebnisse_lang
 ```
 
 ]
 
-.pull-right45[
+---
 
-<br>
+
+# `pivot_wider()`
+
+.pull-left4[
+
+```{r, eval = F}
+# wide zu long
+DATEN %>% 
+  pivot_wider(names_from = NAMEN,
+              values_from = WERTE)
+```
+]
+
+.pull-right5[
+
+```{r, echo = FALSE}
+# wide zu long
+patienten_ergebnisse_lang <- patienten_ergebnisse %>% 
+  filter(bed_label == "placebo") %>%
+  pivot_longer(cols = c("t_1", "t_2"),
+               names_to = "zeit",
+               values_to = "messung")
+```
 
 ```{r}
-# long zu wide
-studie_long %>% 
-  pivot_wider(names_from = "zeitpunkt",
-               values_from = "rating")
+# wide zu long
+patienten_ergebnisse_lang %>%
+    pivot_wider(names_from = "zeit",
+               values_from = "messung")
 ```
 
 ]
+
+---
+
+# Aggregation
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Aggregation</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>summarise()</mono></span></li>
+    <li><span><mono>summarise_if()</mono></span></li>
+    <li><span><mono>group_by(), summarise()</mono></span></li>
+    <li><span><mono>n(), first(), last(), nth()</mono></span></li>
+    <li><span><mono>pull()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r, echo=F}
+options(tibble.width=40, tibble.print_max=5, tibble.print_min=5, tibble.max_extra_cols=10)
+```
+
+```{r}
+basel
+```
+
+
+]
+
+
 
 ---
 
@@ -540,11 +584,11 @@ studie_long %>%
 
 # `summarise()`
 
-.pull-left45[
+.pull-left4[
 
 
 ```{r, echo = TRUE, eval = FALSE}
-data %>%
+DATEN %>%
   summarise(
     NAME = SUMMARY_FUN(A),
     NAME = SUMMARY_FUN(B)
@@ -557,10 +601,10 @@ data %>%
 .pull-right5[
 
 ```{r}
-# Berechne deskriptive Statistiken
 basel %>%
+  
+  # Berechne deskriptive Statistiken
   summarise(
-    N = n(),
     alter_mean = mean(alter),
     groesse_median = median(groesse)
   )
@@ -574,15 +618,14 @@ basel %>%
 
 # `summarise_if()`
 
-.pull-left45[
+.pull-left4[
 
 
 ```{r, echo = TRUE, eval = FALSE}
-data %>%
+DATEN %>%
   summarise_if(
-    classification,
-    SUMMARY_FUN,
-    Arguments
+    BEDINGUNG,
+    SUMMARY_FUN
   )
 ```
 
@@ -592,18 +635,76 @@ data %>%
 .pull-right5[
 
 ```{r}
-# Berechne deskriptive Statistiken
 basel %>%
-  select(1:5) %>%
+  select(alter, groesse, konfession, einkommen)
+```
+
+
+]
+
+---
+
+
+# `summarise_if()`
+
+.pull-left4[
+
+
+```{r, echo = TRUE, eval = FALSE}
+DATEN %>%
   summarise_if(
-    is.numeric,
-    mean,
-    na.rm = TRUE
+    BEDINGUNG,
+    SUMMARY_FUN
   )
 ```
 
 
 ]
+
+.pull-right5[
+
+```{r}
+basel %>%
+  
+  # Berechne deskriptive Statistiken
+  select(alter, groesse, konfession, einkommen) %>%
+  summarise_if(is.numeric, mean)
+```
+
+]
+
+---
+
+
+# `summarise_if()`
+
+.pull-left4[
+
+
+```{r, echo = TRUE, eval = FALSE}
+DATEN %>%
+  summarise_if(
+    BEDINGUNG,
+    SUMMARY_FUN,
+    ARGUMENTE
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+basel %>%
+  
+  # Berechne deskriptive Statistiken
+  select(alter, groesse, konfession, einkommen) %>%
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+```
+
+]
+
 
 ---
 
@@ -618,23 +719,30 @@ basel %>%
 
 # `group_by()`, `summarise()`
 
-.pull-left45[
+.pull-left4[
 
-Benutze `group_by()` zum <high>gruppieren</high> von Daten über eine oder mehrere Variablen
+```{r, eval = F}
+DATEN %>%
+  group_by(GRUPPENVARIABLE) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
 
-Nach dem Gruppieren, benutze `summarise()` zur <high>Berechnung deskriptiver Statistiken</high> über Gruppen von Daten
 
 ]
 
 .pull-right5[
 
 ```{r}
-# Gruppiere über Variable geschlecht
-# Berechne deskriptive Statistiken
 basel %>%
+  
+  # Gruppiere nach geschlecht
   group_by(geschlecht) %>%
+  
+  # Berechne Statistiken
   summarise(
-    N = n(),
     alter_mean = mean(alter),
     groesse_median = median(groesse)
   )
@@ -644,61 +752,38 @@ basel %>%
 
 ---
 
-# `summarise()` Helferfunktionen
-
-.pull-left35[
-
-- <high>n()</high>
-- <high>first()</high>
-- <high>last()</high>
-- <high>nth()</high>
-
-]
-
-.pull-right65[
-
-```{r}
-# Gruppiere über Variable geschlecht
-# Berechne deskriptive Statistiken
-basel %>%
-  group_by(geschlecht) %>%
-  arrange(desc(einkommen)) %>%
-  summarise(
-    N = n(),
-    bildung_first = first(bildung),
-    bildung_last = last(bildung),
-    bildung_150 = nth(bildung, 150)
-  )
-```
-
-]
-
----
-
-# Kombiniere Funktionen
+# `n()`
 
 .pull-left4[
-<br><br>
-Wrangling Funktionen (z.B. `filter()`, `slice()`, `rename()`) mit Gruppierung und Berechnung deskriptiver Statistiken verbinden. 
 
-Benutze dafür die Pipe <high>%>%</high>
+```{r, eval = F}
+DATEN %>%
+  group_by(GRUPPENVARIABLE) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
 
 
 ]
 
-.pull-right55[
+.pull-right5[
+
+```{r, echo=F}
+options(tibble.width=50, tibble.print_max=5, tibble.print_min=5, tibble.max_extra_cols=10)
+```
+
 
 ```{r}
 basel %>%
-  filter(geschlecht == "m" & kinder > 0) %>% 
-  mutate(groesse_m = groesse / 100,
-         bmi = gewicht / groesse_m ^2) %>%
-  group_by(bildung) %>%
+  
+  # Gruppiere nach geschlecht
+  group_by(geschlecht) %>%
+  
+  # Berechne Statistiken
   summarise(
-    N = n(),
-    bmi_mean = mean(bmi, na.rm = TRUE),
-    bmi_max = max(bmi, na.rm = TRUE),
-    bmi_min = min(bmi, na.rm = TRUE)
+    N = n()
   )
 ```
 
@@ -706,6 +791,149 @@ basel %>%
 
 ---
 
+# `first()`
+
+.pull-left4[
+
+```{r, eval = F}
+DATEN %>%
+  group_by(GRUPPENVARIABLE) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+basel %>%
+  
+  # Gruppiere nach geschlecht
+  group_by(geschlecht) %>%
+  
+  # Berechne Statistiken
+  summarise(
+    N = n(),
+    bild_1 = first(bildung)
+  )
+```
+
+]
+
+---
+
+# `last()`
+
+.pull-left4[
+
+```{r, eval = F}
+DATEN %>%
+  group_by(GRUPPENVARIABLE) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+basel %>%
+  
+  # Gruppiere nach geschlecht
+  group_by(geschlecht) %>%
+  
+  # Berechne Statistiken
+  summarise(
+    N = n(),
+    bild_1 = first(bildung),
+    bild_N = last(bildung)
+  )
+```
+
+]
+
+---
+
+# `nth()`
+
+.pull-left4[
+
+```{r, eval = F}
+DATEN %>%
+  group_by(GRUPPENVARIABLE) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+    NAME = SUMMARY_FUN(B)
+  )
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+basel %>%
+  
+  # Gruppiere nach geschlecht
+  group_by(geschlecht) %>%
+  
+  # Berechne Statistiken
+  summarise(
+    N = n(),
+    bild_1 = first(bildung),
+    bild_N = last(bildung),
+    bild_150 = nth(bildung, 150)
+  )
+```
+
+]
+
+---
+
+# `pull()`
+
+.pull-left4[
+
+```{r, eval = F}
+DATEN %>%
+  group_by(GRUPPENVARIABLE) %>%
+  summarise(
+    NAME = SUMMARY_FUN(A),
+  ) %>%
+  pull(NAME)
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+basel %>%
+  
+  # Gruppiere nach geschlecht
+  group_by(geschlecht) %>%
+  
+  # Berechne Statistiken
+  summarise(N = n()) %>%
+  
+  # Extrahiere Vektor
+  pull(N)
+  
+```
+
+]
+
+---
 
 
 class: middle, center
