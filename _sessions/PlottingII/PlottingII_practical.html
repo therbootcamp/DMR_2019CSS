@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -158,18 +158,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -213,13 +201,13 @@ $(document).ready(function () {
 <h1></h1>
 <div id="uberblick" class="section level2">
 <h2>Überblick</h2>
-<p>In diesem Practical wirst du weiter üben mit <code>ggplot2</code> publikationsfertige Graphiken zu erstellen.</p>
+<p>In diesem Practical wirst du weiter üben mit <code>ggplot2</code> publikationsfertige Grafiken zu erstellen.</p>
 <p>Am Ende des Practicals wirst du wissen wie man:</p>
 <ol style="list-style-type: decimal">
 <li><code>facet</code>s benutzt.</li>
 <li><code>theme</code>s anpasst.</li>
 <li><code>scale</code>s anpasst.</li>
-<li>Bilddateien erstellst.</li>
+<li>Bilddateien erstellt.</li>
 <li>Multiple Plots zusammenstellt.</li>
 </ol>
 </div>
@@ -242,16 +230,16 @@ $(document).ready(function () {
 <div id="b---lade-den-datensatz" class="section level3">
 <h3>B - Lade den Datensatz</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>krimi</code> als Objekt <code>krimi</code> einzulesen. Denkt an den Trick mit den Anführungszeichen.</p></li>
-<li><p>Printe den Datensatz an. Wurden alle Variablentypen korrekt identifiziert?</p></li>
+<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>krimi</code> als Objekt <code>krimi</code> einzulesen. Denke an den Trick mit den Anführungszeichen.</p></li>
+<li><p>Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?</p></li>
 <li><p>Verwende <code>summary()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
 </ol>
 </div>
 <div id="c---facets" class="section level3">
 <h3>C - <code>facet</code>s</h3>
-<p>In diesem Abschnitt analysiert ihr den Zusammenhang vom Anteil der Bevölkerung, die mit der Meetro fahren und verschiedenen Verbrechen.</p>
+<p>In diesem Abschnitt analysierst du den Zusammenhang zwischen dem Anteil der Bevölkerung, die mit der Metro fahren, und verschiedenen Verbrechen.</p>
 <ol style="list-style-type: decimal">
-<li>Verwende den folgenden Code um die Beziegung zwischen <code>prozent_metro</code> (x-Achse) und <code>haeufigkeit</code> (y-Achse) zu plotten.</li>
+<li>Verwende den folgenden Code um die Beziehung zwischen <code>prozent_metro</code> (x-Achse) und <code>haeufigkeit</code> (y-Achse) zu plotten.</li>
 </ol>
 <pre class="r"><code>ggplot(XX, aes(x = XX, 
                y = XX)) +
@@ -260,9 +248,9 @@ $(document).ready(function () {
        subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
   theme_minimal()</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Sieht noch nicht informativ aus. Ergänzt <code>scale_x_continuous(trans = 'pseudo_log')</code> und <code>scale_y_continuous(trans = 'pseudo_log')</code> um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen.</p></li>
-<li><p>Besser. Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versucht dies mal indem ihr <code>verbrechen</code> dem <code>col</code> Argument in <code>aes()</code> zuweist.</p></li>
-<li><p>Nicht wirklich informativ, oder? Anstatt mit <code>col</code> versucht nun die verschiedenen Verbrechen mit <code>facet_wrap()</code> zu differenzieren.</p></li>
+<li><p>Sieht noch nicht informativ aus. Ergänze <code>scale_x_continuous(trans = 'pseudo_log')</code> und <code>scale_y_continuous(trans = 'pseudo_log')</code> um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen.</p></li>
+<li><p>Besser. Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versuche dies mal indem du <code>verbrechen</code> dem <code>col</code> Argument in <code>aes()</code> zuweist.</p></li>
+<li><p>Nicht wirklich informativ, oder? Anstatt mit <code>col</code> versuche nun die verschiedenen Verbrechen mit <code>facet_wrap()</code> zu differenzieren.</p></li>
 </ol>
 <pre class="r"><code>ggplot(XX, aes(x = XX, 
                y = XX)) +
@@ -273,7 +261,7 @@ $(document).ready(function () {
   scale_y_continuous(trans = &#39;pseudo_log&#39;) +
   facet_wrap(~ XX)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Es zeichnet sich ab, dass nicht alle Verbrechen gleich mit der Anteil Metro-fahrender zusammenhängen. Der stärkste Zusammenhang scheint zu Autodiebstählen und Raubüberfällen zu bestehen. Kann aber natürlich sein, dass eine dritte Variable diesen Zusammenhang treibt, z.B. der Prozentsatz unter der Armztsgrenze lebender. Verwendet <code>facet_grid()</code> um gleichzeitig nach Verbrechen und <code>prozent_armut</code> kleiner oder grösser 10% zu differenzieren. Wie ihr im Code seht, die logischen Vergleich könnte ihr direkt in die Funktion schreiben.</li>
+<li>Es zeichnet sich ab, dass nicht alle Verbrechen gleich mit dem Anteil Metro-fahrender zusammenhängen. Der stärkste Zusammenhang scheint zu Autodiebstählen und Raubüberfällen zu bestehen. Kann aber natürlich sein, dass eine dritte Variable diesen Zusammenhang treibt, z.B. der Prozentsatz unter der Armutsgrenze lebender Personen. Verwende <code>facet_grid()</code> um gleichzeitig nach Verbrechen und <code>prozent_armut</code> kleiner oder grösser 10% zu differenzieren. Wie du im Code siehst, kannst du den logischen Vergleich direkt in die Funktion schreiben.</li>
 </ol>
 <pre class="r"><code>ggplot(XX, aes(x = XX, 
                y = XX)) +
@@ -284,7 +272,7 @@ $(document).ready(function () {
   scale_y_continuous(trans = &#39;pseudo_log&#39;) +
   facet_grid(XX &gt; 10 ~ XX)</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aus. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiert doch mal <code>bevoelkerung_dichte</code> aus.</li>
+<li>Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aufweisen. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiert doch mal <code>bevoelkerung_dichte</code> aus.</li>
 </ol>
 <pre class="r"><code>ggplot(XX, aes(x = XX, 
                y = XX)) +
@@ -295,14 +283,14 @@ $(document).ready(function () {
   scale_y_continuous(trans = &#39;pseudo_log&#39;) +
   facet_grid(XX &gt; 5000 ~ XX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spielt ein wenig herum. Welche Zusammenhänge könnte ihr noch entdecken?</li>
+<li>Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spiele ein wenig herum. Welche Zusammenhänge kannst du noch entdecken?</li>
 </ol>
 </div>
 <div id="d---themes" class="section level3">
 <h3>D - <code>theme</code>s</h3>
-<p>In diesem Abschnitt passt ihr euren Lieblingsplot aus dem letzten Abschnitt mit der <code>theme()</code> Funktion an.</p>
+<p>In diesem Abschnitt passt du deinen Lieblingsplot aus dem letzten Abschnitt mit der <code>theme()</code> Funktion an.</p>
 <ol style="list-style-type: decimal">
-<li>Zuallererst speichert euren Plot als ein <code>gg</code> Objekt mit name <code>verbrechen_gg</code>.</li>
+<li>Zuallererst speichere deinen Plot als ein <code>gg</code> Objekt mit name <code>verbrechen_gg</code>.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg &lt;- XX</code></pre>
 <ol start="2" style="list-style-type: decimal">
@@ -313,7 +301,7 @@ $(document).ready(function () {
     panel.background = element_rect(fill = XX)
     )</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Als nächstes ändere die Farbe der Haupt- und Nebenlinien zu <code>&quot;grey75&quot;</code> und deren Grössen zu <code>.25</code> und <code>.1</code> respektive. Verwende hierzu die Argumente <code>panel.grid.major</code> und <code>panel.grid.minor</code> und die Helferfunktion <code>element_line()</code>.</li>
+<li>Als nächstes, ändere die Farbe der Haupt- und Nebenlinien zu <code>&quot;grey75&quot;</code> und deren Grössen zu <code>.25</code> und <code>.1</code> respektive. Verwende hierzu die Argumente <code>panel.grid.major</code> und <code>panel.grid.minor</code> und die Helferfunktion <code>element_line()</code>.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + 
   theme(
@@ -322,7 +310,7 @@ $(document).ready(function () {
     panel.grid.minor = element_line(color = XX, size = XX)
     )</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu <code>white</code> mit dem <code>strip.background</code> Argument und der wiederum der <code>element_rect()</code> Helferfunktion.</li>
+<li>Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu <code>white</code> mit dem <code>strip.background</code> Argument und wiederum der <code>element_rect()</code> Helferfunktion.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + 
   theme(
@@ -343,7 +331,7 @@ $(document).ready(function () {
     strip.text = element_text(face = XX, size = XX, hjust = XX)
     )</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>Setze noch die Schriftgrösse der Achsenbeschriftungen auf <code>12</code> und setze jeweils einen Abstand von <code>10</code>. Verwende hierzu die Argumente <code>axis.title.x</code> und <code>axis.title.y</code> und die Helferfunktionen <code>element_text()</code> und <code>margin()</code>. Siehe <code>?margins()</code>.</li>
+<li>Setze noch die Schriftgrösse der Achsenbeschriftungen auf <code>12</code> und setze jeweils einen Abstand von <code>10</code>. Verwende hierzu die Argumente <code>axis.title.x</code> und <code>axis.title.y</code> und die Helferfunktionen <code>element_text()</code> und <code>margin()</code>. Siehe <code>?margin()</code>.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + 
   theme(
@@ -403,7 +391,7 @@ $(document).ready(function () {
 <h3>F - Skalierung</h3>
 <p>In diesem Abschnitt lernst du die Skalierung von Achsen und Objekten anzupassen.</p>
 <ol style="list-style-type: decimal">
-<li>Bevor du anfängst Skalierungen anzupassen, lass uns zwei weitere Elemente von <code>aes()</code> spezifizieren, damit wir mehr zu skalieren habe. Weise im Code unten <code>staat</code> dem Argument <code>col</code> zu und <code>bevoelkerung</code> dem Argument <code>size</code>. Speichere den wiederum als <code>verbrechen_gg</code> und plotte den Plot einmal.</li>
+<li>Bevor du anfängst Skalierungen anzupassen, lass uns zwei weitere Elemente von <code>aes()</code> spezifizieren, damit wir mehr zu skalieren haben. Weise im Code unten <code>staat</code> dem Argument <code>col</code> zu und <code>bevoelkerung</code> dem Argument <code>size</code>. Speichere den Plot wiederum als <code>verbrechen_gg</code> und plotte den Plot einmal.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg &lt;- ggplot(data = verbrechen, 
                         mapping = aes(x = prozent_metro, 
@@ -420,7 +408,7 @@ $(document).ready(function () {
 
 verbrechen_gg</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Als erstes verwende <code>sclale_size()</code> und darin das <code>range</code> argument um die Grösse der Punkte zu verkleinern, um die Überlappung etwas zu veringern. Probiere ein paar Werte für die untere und obere Grenze aus, die jeweils kleiner als <code>10</code> sein sollten, um einen guten Trade-off zwischen Grösse und Überlappung zu finden.</li>
+<li>Als erstes verwende <code>sclale_size()</code> und darin das <code>range</code> argument um die Grösse der Punkte zu verkleinern. Damit kannst du die Überlappung etwas veringern. Probiere ein paar Werte für die untere und obere Grenze aus, die jeweils kleiner als <code>10</code> sein sollten, um einen guten Trade-off zwischen Grösse und Überlappung zu finden.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + scale_size(range = c(XX, XX))</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -430,7 +418,7 @@ verbrechen_gg</code></pre>
   scale_size(range = c(XX, XX)) + 
   scale_color_colorblind()</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Alternativ kann man die Farbskala selbst setzen. Verwende <code>scale_color_manual()</code> und die <code>viridis()</code> Funktion aus dem <code>viridis</code> Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer etablierter, aber etwas schöner Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.</li>
+<li>Alternativ kann man die Farbskala selbst setzen. Verwende <code>scale_color_manual()</code> und die <code>viridis()</code> Funktion aus dem <code>viridis</code> Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer etablierter, etwas schönerer Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + 
   scale_size(range = c(XX, XX)) + 
@@ -442,8 +430,8 @@ verbrechen_gg</code></pre>
 <div id="g---bilddateien" class="section level3">
 <h3>G - Bilddateien</h3>
 <ol style="list-style-type: decimal">
-<li><p>Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Dafür müssen legt zu allererst einen neuen Unterordner in einem Projektordner an mit dem Namen <code>3_Figures</code>, sofern dieser noch nicht existiert.</p></li>
-<li><p>Verwendet nun <code>ggsave</code> um euren letzten <code>verbrechen_gg</code> plot als eine <code>.pdf</code>-Datei unter dem Namen <code>verbrechen.pdf</code> zu speichern. Ihr solltet danach euren Plot in eurem Ordner <code>3_Figures</code> finden. Schaut nach und öffnet die Datei.</p></li>
+<li><p>Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Dafür musst du zuerst einen neuen Unterordner in einem Projektordner mit dem Namen <code>3_Figures</code> anlegen, sofern dieser noch nicht existiert (sollte bereits vorhanden sein).</p></li>
+<li><p>Verwende nun <code>ggsave</code> um deinen letzten <code>verbrechen_gg</code> plot als eine <code>.pdf</code>-Datei unter dem Namen <code>verbrechen.pdf</code> zu speichern. Danach solltest du deinen Plot im Ordner <code>3_Figures</code> finden. Schaue nach und öffne die Datei.</p></li>
 </ol>
 <pre class="r"><code>ggsave(filename = &quot;3_Figures/verbrechen.pdf&quot;, 
        device = &quot;pdf&quot;, 
@@ -452,11 +440,11 @@ verbrechen_gg</code></pre>
        height = 4, 
        units = &quot;in&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Probiert ein paar Sachen aus:</li>
+<li>Probiere ein paar Sachen aus:</li>
 </ol>
 <ul>
-<li>Verändert <code>width</code> und <code>height</code> in der <code>ggsave()</code> Funktion.</li>
-<li>Speichert ein <code>.png</code> anstatt eines <code>.pdf</code> indem ihr <code>filename</code> und <code>device</code> entsprechend verändert.</li>
+<li>Verändere <code>width</code> und <code>height</code> in der <code>ggsave()</code> Funktion.</li>
+<li>Speichere ein <code>.png</code> anstatt eines <code>.pdf</code> indem du <code>filename</code> und <code>device</code> entsprechend anpasst.</li>
 </ul>
 </div>
 <div id="x---challenges-multiple-plots" class="section level3">
@@ -817,6 +805,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
