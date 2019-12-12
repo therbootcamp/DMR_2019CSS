@@ -65,10 +65,9 @@ In diesem Practical wirst du weiter üben mit `ggplot2` publikationsfertige Graf
 Am Ende des Practicals wirst du wissen wie man:
 
 1. `facet`s benutzt.
-2. `theme`s anpasst.
-3. `scale`s anpasst.
-4. Bilddateien erstellt.
-5. Multiple Plots zusammenstellt.
+2. `theme`s und `scale`s anpasst.
+3. Bilddateien erstellt.
+4. Multiple Plots verbindet.
 
 ## Aufgaben
 

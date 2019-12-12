@@ -52,9 +52,9 @@ layout: true
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Kreiere und verändere ein &lt;highm&gt;gg&lt;/highm&gt; Plot-Objekt.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Teile den Plot auf mit &lt;highm&gt;facetting&lt;/highm&gt;&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Nutze &lt;highm&gt;themes&lt;/highm&gt; um einzelne Aspekte des Plots zu formatieren&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Kreiere deine eigenen &lt;highm&gt;themes&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Teile den Plot auf mit &lt;highm&gt;facet&lt;/highm&gt;s&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Nutze &lt;highm&gt;theme&lt;/highm&gt;s um einzelne Aspekte des Plots zu formatieren&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Kreiere deine eigenen &lt;highm&gt;theme&lt;/highm&gt;s.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m5"&gt;&lt;span&gt;Speichere deinen Plot als &lt;highm&gt;.pdf&lt;/highm&gt; oder &lt;highm&gt;.png&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -154,7 +154,7 @@ mein_plot + geom_smooth()
 
 ---
 
-# `facet_wrap()`
+# `facet_*()`
 
 .pull-left45[
 
@@ -264,8 +264,8 @@ ggplot(data = mpg,
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Passte mit den &lt;high&gt;87 Argumenten von &lt;mono&gt;theme()&lt;/mono&gt;&lt;/high&gt; alle ästhetischen Aspekte deines Plots an.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Nutze hierzu drei Klassen von Helferfunktionen:
+  &lt;li class="m1"&gt;&lt;span&gt;Passt mit den &lt;high&gt;87 Argumenten von &lt;mono&gt;theme()&lt;/mono&gt;&lt;/high&gt; alle ästhetischen Aspekte deines Plots an.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Nutze hierzu vier Helferfunktionen:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;&lt;mono&gt;element_rect()&lt;/mono&gt; | für Flächen&lt;/span&gt;&lt;/li&gt;
@@ -677,13 +677,13 @@ mein_plot + mein_theme
 
 ---
 
-# Skalierung
+# `scale_*()`
 
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;mono&gt;scales_*()&lt;/mono&gt; Funktionen lassen sich alle möglichen Längen/Grössen skalieren.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Klassen von &lt;mono&gt;scales_*()&lt;/mono&gt; Funktionen:
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;mono&gt;scale_*()&lt;/mono&gt; Funktionen lassen sich alle möglichen Längen/Grössen skalieren.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Klassen von &lt;mono&gt;scale_*()&lt;/mono&gt; Funktionen:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_xy_*&lt;/mono&gt; | Skaliere Achsen&lt;/span&gt;&lt;/li&gt;
@@ -713,7 +713,7 @@ mein_plot
 
 ---
 
-# Skalierung
+# `scale_x_continuous()`
 
 .pull-left45[
 
@@ -749,7 +749,7 @@ mein_plot +
 
 ---
 
-# Skalierung
+# `scale_x_reverse()`
 
 .pull-left45[
 
@@ -785,7 +785,7 @@ mein_plot +
 
 ---
 
-# Skalierung
+# `scale_color_hue()`
 
 .pull-left45[
 
@@ -821,7 +821,7 @@ mein_plot +
 
 ---
 
-# Skalierung
+# `scale_size()`
 
 .pull-left45[
 
@@ -859,7 +859,7 @@ mein_plot +
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -903,7 +903,7 @@ schoen + unschoen
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -947,7 +947,7 @@ schoen | unschoen + schoen
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -991,7 +991,7 @@ unschoen &lt;- mein_plot + mein_theme
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -1036,7 +1036,7 @@ unschoen &lt;- mein_plot + mein_theme
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -1224,24 +1224,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {

@@ -78,9 +78,9 @@ library(gridExtra)
 
 <ul>
   <li class="m1"><span>Kreiere und verändere ein <highm>gg</highm> Plot-Objekt.</span></li>
-  <li class="m2"><span>Teile den Plot auf mit <highm>facetting</highm></span></li>
-  <li class="m3"><span>Nutze <highm>themes</highm> um einzelne Aspekte des Plots zu formatieren</span></li>
-  <li class="m4"><span>Kreiere deine eigenen <highm>themes</highm>.</span></li>
+  <li class="m2"><span>Teile den Plot auf mit <highm>facet</highm>s</span></li>
+  <li class="m3"><span>Nutze <highm>theme</highm>s um einzelne Aspekte des Plots zu formatieren</span></li>
+  <li class="m4"><span>Kreiere deine eigenen <highm>theme</highm>s.</span></li>
   <li class="m5"><span>Speichere deinen Plot als <highm>.pdf</highm> oder <highm>.png</highm>.</span></li>
 </ul>
 
@@ -164,7 +164,7 @@ mein_plot + geom_smooth()
 
 ---
 
-# `facet_wrap()`
+# `facet_*()`
 
 .pull-left45[
 
@@ -291,8 +291,8 @@ ggplot(data = mpg,
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Passte mit den <high>87 Argumenten von <mono>theme()</mono></high> alle ästhetischen Aspekte deines Plots an.</span></li>
-  <li class="m2"><span>Nutze hierzu drei Klassen von Helferfunktionen:
+  <li class="m1"><span>Passt mit den <high>87 Argumenten von <mono>theme()</mono></high> alle ästhetischen Aspekte deines Plots an.</span></li>
+  <li class="m2"><span>Nutze hierzu vier Helferfunktionen:
   <br><br>
   <ul class="level">
     <li><span><mono>element_rect()</mono> | für Flächen</span></li>
@@ -767,13 +767,13 @@ mein_plot + mein_theme
 
 ---
 
-# Skalierung
+# `scale_*()`
 
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Mit <mono>scales_*()</mono> Funktionen lassen sich alle möglichen Längen/Grössen skalieren.</span></li>
-  <li class="m2"><span>Klassen von <mono>scales_*()</mono> Funktionen:
+  <li class="m1"><span>Mit <mono>scale_*()</mono> Funktionen lassen sich alle möglichen Längen/Grössen skalieren.</span></li>
+  <li class="m2"><span>Klassen von <mono>scale_*()</mono> Funktionen:
   <br><br>
   <ul class="level">
     <li><span><mono>scale_xy_*</mono> | Skaliere Achsen</span></li>
@@ -806,7 +806,7 @@ mein_plot
 
 ---
 
-# Skalierung
+# `scale_x_continuous()`
 
 .pull-left45[
 
@@ -845,7 +845,7 @@ mein_plot +
 
 ---
 
-# Skalierung
+# `scale_x_reverse()`
 
 .pull-left45[
 
@@ -884,7 +884,7 @@ mein_plot +
 
 ---
 
-# Skalierung
+# `scale_color_hue()`
 
 .pull-left45[
 
@@ -923,7 +923,7 @@ mein_plot +
 
 ---
 
-# Skalierung
+# `scale_size()`
 
 .pull-left45[
 
@@ -964,7 +964,7 @@ mein_plot +
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -1012,7 +1012,7 @@ schoen + unschoen
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -1060,7 +1060,7 @@ schoen | unschoen + schoen
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -1108,7 +1108,7 @@ unschoen <- mein_plot + mein_theme
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
@@ -1157,7 +1157,7 @@ unschoen <- mein_plot + mein_theme
 
 ---
 
-# Multiple Panels
+# Multiple Plots
 
 .pull-left45[
 
