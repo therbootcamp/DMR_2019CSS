@@ -243,7 +243,7 @@ bevoelkerung_long &lt;- bevoelkerung %&gt;%
 <ol start="8" style="list-style-type: decimal">
 <li><p>Printe den neu erstellten Datensatz an. Alles wie erwartet?</p></li>
 <li><p>Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spalten an.</p></li>
-<li><p>Jede Jahr-Variable die gleiche Struktur, nämlich <code>st_wbev_XXX</code>. Das bedeutet, dass wir einfach <code>starts_with()</code> Funktion zur Variablenauswahl verwenden können. Benutze <code>pivot_longer()</code> und <code>starts_with()</code> um alle Jahr-Variablen zu transformieren.</p></li>
+<li><p>Jede Jahr-Variable hat die gleiche Struktur, nämlich <code>st_wbev_XXX</code>. Das bedeutet, dass wir einfach <code>starts_with()</code> Funktion zur Variablenauswahl verwenden können. Benutze <code>pivot_longer()</code> und <code>starts_with()</code> um alle Jahr-Variablen zu transformieren.</p></li>
 </ol>
 <pre class="r"><code># Transofmation vom Wide ins Long Format
 bevoelkerung_long &lt;- bevoelkerung %&gt;%

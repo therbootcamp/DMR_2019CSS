@@ -131,7 +131,7 @@ bevoelkerung_long <- bevoelkerung %>%
 names(bevoelkerung)
 ```
 
-10. Jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXX`. Das bedeutet, dass wir einfach `starts_with()` Funktion zur Variablenauswahl verwenden können. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
+10. Jede Jahr-Variable hat die gleiche Struktur, nämlich `st_wbev_XXX`. Das bedeutet, dass wir einfach `starts_with()` Funktion zur Variablenauswahl verwenden können. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
 
 ```{r eval = FALSE, echo = TRUE}
 # Transofmation vom Wide ins Long Format
