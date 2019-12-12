@@ -291,12 +291,12 @@ kc_house
 
 ```{r eval = FALSE, echo = TRUE}
 kc_house %>%
-  summarise(mil_p = mean(XX > XX))
+  summarise(million_prozent = mean(XX > XX))
 ```
 
 ```{r}
 kc_house %>%
-  summarise(mil_p = mean(preis > 1000000))
+  summarise(million_prozent = mean(preis > 1000000))
 ```
 
 6. Berechne die mittlere Anzahl Stockwerke (`stoecke`) und Badezimmer (`badezimmer`) von Villen (`villa`). Verwende erst `filter()` um Villen auszuwählen und danach `summarise()`.
