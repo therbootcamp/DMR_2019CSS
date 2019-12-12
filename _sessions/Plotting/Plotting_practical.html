@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -158,18 +158,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -216,7 +204,7 @@ $(document).ready(function () {
 <p>In diesem Practical wirst du üben mit <code>ggplot2</code> publikationsfertige Grafiken zu erstellen.</p>
 <p>Am Ende des Practicals wirst du wissen wie man:</p>
 <ol style="list-style-type: decimal">
-<li>Ein Plot Schritt-für-Schritt aufbaut.</li>
+<li>Einen Plot Schritt-für-Schritt aufbaut.</li>
 <li>Verschiedene <code>geom</code>s verwendet.</li>
 <li>Farben verändert.</li>
 </ol>
@@ -316,7 +304,7 @@ $(document).ready(function () {
   geom_violin() +
   labs(title = &quot;XX&quot;,
        subtitle = &quot;XX&quot;) + 
-  theme(legend.position=&quot;none&quot;)</code></pre>
+  guides(fill = FALSE)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Verwende <code>geom_jitter()</code> um Punkte über die Violinen zu plotten. Setze in der Funktion <code>width = 1</code> und <code>alpha = .5</code>.</p></li>
 <li><p>Probiere ein paar Sachen aus:</p></li>
@@ -577,6 +565,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
