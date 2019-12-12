@@ -125,7 +125,7 @@ bevoelkerung_long <- bevoelkerung %>%
 
 8. Printe den neu erstellten Datensatz an. Alles wie erwartet?
 
-9. Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spaöten an.
+9. Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spalten an.
 
 ```{r}
 names(bevoelkerung)
