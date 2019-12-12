@@ -224,7 +224,7 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
 
 ### D - `geom`s
 
-1. Verwende den Code unten um einen Violinen-Plot der `Calories` in Abhängigkeit der `Category` zu kreieren. Violinenplots zeigen mit ihrer Dicke die jeweilige relative Häufigkeit der Werte an - in diesem Fall der Kalorien. 
+1. Verwende den Code unten um einen Violinen-Plot der `Calories` (y-Achse) in Abhängigkeit der `Category` (x-Achse) zu kreieren. Violinenplots zeigen mit ihrer Dicke die jeweilige relative Häufigkeit der Werte an - in diesem Fall der Kalorien. Verwende für das Argument `fill` ebenfalls `Category`, um die Violinen entsprechend einzufärben.
 
 ```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, 
