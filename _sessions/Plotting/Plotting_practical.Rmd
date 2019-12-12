@@ -96,7 +96,7 @@ mcdonalds <- read_csv('1_Data/mcdonalds.csv')
 
 ### C - Baue einen Plot
 
-In diesem Abschnitt wirst du den folgenden Plot zusammenbauen. 
+In diesem Abschnitt wirst du den folgenden Plot Schritt-für-Schritt zusammenbauen. 
 
 ```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
 ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
@@ -224,7 +224,7 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
 
 ### D - `geom`s
 
-1. Verwende den Code unten um einen Violinen Plot der `Calories` als Funktion der `Category` zu kreieren. Violinenplots zeigen mit ihrer Dicke die jeweilige relative Häufigkeit der Werte, in diesem Fall der Kalorien. 
+1. Verwende den Code unten um einen Violinen-Plot der `Calories` in Abhängigkeit der `Category` zu kreieren. Violinenplots zeigen mit ihrer Dicke die jeweilige relative Häufigkeit der Werte an - in diesem Fall der Kalorien. 
 
 ```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, 
@@ -266,7 +266,6 @@ ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
   theme(legend.position="none")
 ```
 
-
 ```{r, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
   geom_violin() +
@@ -290,7 +289,7 @@ ggplot(data = mcdonalds,
 
 - Ändere die Werte für `width` oder `alpha` in `geom_jitter()`.
 - Entferne `fill = Category`. 
-- Verwende `geom_boxplot` um stattdessen einen Box-Plot zu plotten.  
+- Verwende `geom_boxplot()` um stattdessen einen Box-Plot zu plotten.  
 
 ### E - `geom_text`
 
@@ -313,7 +312,7 @@ ggplot(mcdonalds, aes(x = Sugars,
   labs(title = "Ergänze Labels zu einem Plot mit geom_text()")
 ```
 
-1. Beginne damit folgendes Code template entsprechend auszufüllen. 
+1. Beginne damit folgendes Code-Template entsprechend auszufüllen. 
 
 ```{r, echo = TRUE, eval = FALSE}
 ggplot(mcdonalds, aes(x = XX, 
@@ -326,13 +325,13 @@ ggplot(mcdonalds, aes(x = XX,
   labs(title = "XX")
 ```
 
-2. Nun ergänze `geom_text()` mit dem Ziel für jeden Punkt das entsprechende `Item` Label anzeigen zu lassen.
+2. Nun ergänze `geom_text()` so dass für jeden Punkt das entsprechende `Item` Label angezeigt wird.
 
-3. Wo sind die Labels? Ah, wir haben `ggplot` nicht gesagt welche Spalte die Information beinhaltet, die in den labels stehen soll. Behebe dieses Problem indem du innerhalb der `aes()` Funktion dem Argument `label` die Spalte `Item` zuweist. Jetzt solltest du viele labels sehen!
+3. Wo sind die Labels? Ah, du hast `ggplot` nicht gesagt welche Spalte die Information beinhaltet, die in den Labels stehen soll. Behebe dieses Problem indem du innerhalb der `aes()` Funktion dem Argument `label` die Spalte `Item` zuweist. Führe den Code nochmal aus. Jetzt solltest du viele labels sehen!
 
 4. Passe `geom_text()` an in dem du `col` auf `black`, `check_overlap` auf `TRUE`, und `hjust` auf `left` setzt.
 
-5. Verwende nun das `data` Argument in `geom_text()` und weise ihm nur einen gefilterten Auschnitt des `mcdonalds` Datensatzes zuweist, nämlich `data = mcdonalds %>% filter(Calories > 1100)`. Schau was passiert.
+5. Verwende nun das `data` Argument in `geom_text()` und weise ihm einen gefilterten Auschnitt des `mcdonalds` Datensatzes zu, nämlich `data = mcdonalds %>% filter(Calories > 1100)`. Schau was passiert.
 
 ```{r, fig.width = 8, fig.height = 4, eval = FALSE}
 ggplot(mcdonalds, aes(x = Sugars, 
@@ -360,7 +359,7 @@ ggplot(mcdonalds, aes(x = Sugars,
 
 ### F - Statistiken
 
-1. Mit der `stat_summary` können auch direkt einfache Statistiken berechnet und geplotted werden. Verwende den folgenden Code um die `Calories` (y-Achse) gegen `Categories` zu plotten. Annotiere angemessen. 
+1. Mit der `stat_summary()` Funktion können auch direkt einfache Statistiken berechnet und geplotted werden. Verwende den folgenden Code um die `Calories` (y-Achse) gegen `Categories` zu plotten. Annotiere angemessen. 
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, y = X)) +

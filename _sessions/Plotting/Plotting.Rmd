@@ -435,12 +435,12 @@ ggplot(data = mpg,
 
 ---
 
-# Den Plot erweitern mit <mono>+</mono>
+# <mono>+</mono>
 
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Der <highm>+</highm> Operator erweitert den Plot um beliebige weitere Plotelemente auf ähnliche Weise wie die Pipe <mono>%>%</mono>.</span></li>
+  <li class="m1"><span>Der <highm>+</highm> Operator erweitert den Plot um beliebige weitere Plotelemente.</span></li>
 </ul>
 
 <br>
@@ -515,8 +515,7 @@ ggplot(data = mpg,
 
 ```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
 ggplot(data = mpg,
-  mapping = aes(x = displ,
-                y = hwy)) + 
+  mapping = aes(x = displ, y = hwy)) + 
   geom_count()
 ```
 
@@ -679,7 +678,7 @@ goal
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Mit <highm>geom_smooth()</highm> können angepasste Kurven ergänzt werden.</span></li>
+  <li class="m1"><span>Mit <highm>geom_smooth()</highm> können Kurven an die Daten angepasst werden.</span></li>
   <li class="m2"><span>Zentrale Argumente:
   <br><br>
   <ul class="level">
@@ -950,8 +949,7 @@ goal
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_gray()
+ggplot(...) + theme_gray()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
@@ -986,8 +984,7 @@ goal + theme_gray()
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_classic()
+ggplot(...) + theme_classic()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
@@ -1022,8 +1019,7 @@ goal + theme_classic()
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_void()
+ggplot(...) + theme_void()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
@@ -1058,8 +1054,7 @@ goal + theme_void()
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_excel()
+ggplot(...) + theme_excel()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
@@ -1094,8 +1089,7 @@ goal + theme_excel()
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_economist()
+ggplot(...) + theme_economist()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
@@ -1130,8 +1124,7 @@ goal + theme_economist()
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_bw()
+ggplot(...) + theme_bw()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}

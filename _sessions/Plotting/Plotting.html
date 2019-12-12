@@ -384,12 +384,12 @@ ggplot(data = mpg,
 
 ---
 
-# Den Plot erweitern mit &lt;mono&gt;+&lt;/mono&gt;
+# &lt;mono&gt;+&lt;/mono&gt;
 
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Der &lt;highm&gt;+&lt;/highm&gt; Operator erweitert den Plot um beliebige weitere Plotelemente auf ähnliche Weise wie die Pipe &lt;mono&gt;%&gt;%&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Der &lt;highm&gt;+&lt;/highm&gt; Operator erweitert den Plot um beliebige weitere Plotelemente.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -458,8 +458,7 @@ ggplot(data = mpg,
 
 ```r
 ggplot(data = mpg,
-  mapping = aes(x = displ,
-                y = hwy)) + 
+  mapping = aes(x = displ, y = hwy)) + 
   geom_count()
 ```
 
@@ -611,7 +610,7 @@ ggplot(data = mpg,
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;geom_smooth()&lt;/highm&gt; können angepasste Kurven ergänzt werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;geom_smooth()&lt;/highm&gt; können Kurven an die Daten angepasst werden.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Zentrale Argumente:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
@@ -841,8 +840,7 @@ ggplot(...) +
 
 
 ```r
-ggplot(...) + 
-  theme_gray()
+ggplot(...) + theme_gray()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" /&gt;
@@ -876,8 +874,7 @@ ggplot(...) +
 
 
 ```r
-ggplot(...) + 
-  theme_classic()
+ggplot(...) + theme_classic()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-42-1.png" style="display: block; margin: auto;" /&gt;
@@ -911,8 +908,7 @@ ggplot(...) +
 
 
 ```r
-ggplot(...) + 
-  theme_void()
+ggplot(...) + theme_void()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
@@ -946,8 +942,7 @@ ggplot(...) +
 
 
 ```r
-ggplot(...) + 
-  theme_excel()
+ggplot(...) + theme_excel()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-46-1.png" style="display: block; margin: auto;" /&gt;
@@ -981,8 +976,7 @@ ggplot(...) +
 
 
 ```r
-ggplot(...) + 
-  theme_economist()
+ggplot(...) + theme_economist()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
@@ -1016,8 +1010,7 @@ ggplot(...) +
 
 
 ```r
-ggplot(...) + 
-  theme_bw()
+ggplot(...) + theme_bw()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" /&gt;
@@ -1109,24 +1102,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 (function() {
