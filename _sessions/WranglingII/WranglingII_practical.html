@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -85,6 +84,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -158,6 +158,18 @@ summary {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
 
@@ -226,160 +238,116 @@ summary {
 <pre class="r"><code># Pakete laden
 library(tidyverse)     </code></pre>
 </div>
-<div id="b---transformation-zwischen-long-und-wide-format" class="section level3">
-<h3>B - Transformation zwischen <em>Long</em> und <em>Wide</em> Format</h3>
+<div id="b---transformation-von-long-zu-wide-format" class="section level3">
+<h3>B - Transformation von <em>Long</em> zu <em>Wide</em> Format</h3>
+<p>In diesem Practical verwenden wir zunächst den <code>bevoelkerung.csv</code> Datensatz. Er enthält die Einwohnerzahlen verschiedener schweizer Städte von 1930 bis 2011. Im <code>Datensätze</code> Tab findest du eine Auflistung und eine kurze Beschreibung der im Datensatz enthaltenen Variablen.</p>
 <ol start="5" style="list-style-type: decimal">
-<li><p>In diesem Practical verwenden wir zunächst den <code>bevoelkerung.csv</code> Datensatz. Er enthält die Einwohnerzahlen verschiedener schweizer Städte von 1930 bis 2011. Im <code>Datensätze</code> Tab findest du eine Auflistung und eine kurze Beschreibung der im Datensatz enthaltenen Variablen. Lese den Datensatz mit der <code>read_csv()</code> Funktion in R ein und speichere ihn unter dem Namen <code>bev</code>.</p></li>
-<li><p>Mache dich mit dem Datensatz vertraut in dem du die ersten paar Zeilen und die Variablennamen anschaust.</p></li>
-<li><p>Im Moment sind die Daten so angeordnet, dass jedes Jahr eine einzelne Spalte hat, also im <em>Wide</em> Format. Diese Anordnung ist praktisch zum Eingeben von Daten und um die Daten als Tabelle anzuschauen. Für viele Anwendungen, wie gewisse statistische Analysen oder Plotting, brauchen wir die Daten aber im <em>Long</em> format. Für diese Transformation verwenden wir <code>pivot_longer()</code>.</p></li>
+<li>Lese den Datensatz mit der <code>read_csv()</code> Funktion in R ein und speichere ihn unter dem Namen <code>bevoelkerung</code>.</li>
 </ol>
-<p>Zur Rekapitulation, <code>pivot_longer()</code> in der einfachsten “Version” braucht drei Argumente: i) den Datensatz, ii) die Spaltennamen als Spezifikation, welche Spalten vom Wide ins Long Format transformiert werden sollen, und iii) den Spaltennamen der neuen Gruppierungsvariable.</p>
-<p>Unter Verwendung nur dieser drei Argumente, transformiere die <code>st_wbev_2011</code> und <code>st_wbev_2001</code> Variablen aus <code>bev</code> vom Wide ins Long Format und speichere das Resultat als neues Objekt <code>bev_long</code> ab.</p>
+<pre class="r"><code>bevoelkerung &lt;- read_csv(file = &quot;1_Data/bevoelkerung.csv&quot;)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Mache dich mit dem Datensatz vertraut in dem du die ersten paar Zeilen (<code>print()</code>) und die Variablennamen (<code>names()</code>) anschaust.</p></li>
+<li><p>Im Moment sind die Daten so angeordnet, dass jedes Jahr eine einzelne Spalte hat, also im <em>Wide</em> Format wir wollen sie aber im <em>Long</em> format, z.B. fürs Plotting. Verwende <code>pivot_longer()</code> um das Format zu wechseln. Verwende <code>&quot;st_wbev_2011&quot;</code> und <code>&quot;st_wbev_2001&quot;</code> für das <code>cols</code> Argument und <code>&quot;jahr&quot;</code> das <code>names_to</code> Argument und speichere das Resultat als neues Objekt <code>bevoelkerung_long</code> ab.</p></li>
+</ol>
 <pre class="r"><code># Transofmation vom Wide ins Long Format
-bev_long &lt;- bev %&gt;%
-  pivot_longer(c(&quot;XXX&quot;, &quot;XXX&quot;), names_to = &quot;jahr&quot;)</code></pre>
+bevoelkerung_long &lt;- bevoelkerung %&gt;%
+  pivot_longer(cols = c(&quot;XX&quot;, &quot;XX&quot;), names_to = &quot;XX&quot;)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li><p>Schaue dir den neu erstellten Datensatz an. Versuche nachzuvollziehen was genau gemacht wurde, welche Variablen sich verändert haben und welche nicht. Frage nach, falls du etwas nicht nachvollziehen kannst.</p></li>
-<li><p>Nun da wir die basics verstehen, wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir dazu erst nochmals die Namen der Variablen an.</p></li>
-<li><p>Wie du siehst, hat jede Jahr-Variable die gleiche Struktur, nämlich <code>st_wbev_XXXX</code>. Dieser Umstand ist hilfreich, da wir dadurch nicht jede Variable explizit auflisten müssen, sondern die <code>starts_with()</code> Funktion zur Variablenauswahl verwenden können. Benutze <code>pivot_longer()</code> und <code>starts_with()</code> um alle Jahr-Variablen zu transformieren.</p></li>
+<li><p>Printe den neu erstellten Datensatz an. Alles wie erwartet?</p></li>
+<li><p>Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spaöten an.</p></li>
+<li><p>Jede Jahr-Variable die gleiche Struktur, nämlich <code>st_wbev_XXX</code>. Das bedeutet, dass wir einfach <code>starts_with()</code> Funktion zur Variablenauswahl verwenden können. Benutze <code>pivot_longer()</code> und <code>starts_with()</code> um alle Jahr-Variablen zu transformieren.</p></li>
 </ol>
 <pre class="r"><code># Transofmation vom Wide ins Long Format
-bev_long &lt;- bev %&gt;%
-  pivot_longer(starts_with(&quot;XXX&quot;), names_to = &quot;jahr&quot;)</code></pre>
+bevoelkerung_long &lt;- bevoelkerung %&gt;%
+  pivot_longer(cols = starts_with(&quot;XX&quot;), names_to = &quot;XX&quot;)</code></pre>
 <ol start="11" style="list-style-type: decimal">
-<li><p>Schaue dir das Resultat an.</p></li>
-<li><p>Die Einwohnerzahl ist im neuen Datensatz in der Spalte <code>value</code> enthalten. Dieser Name wird standardmässig gewählt, gibt aber keine Informationen darüber um was für Werte es sich handelt. Wir können einen eigenen Namen wählen, in dem wir in <code>pivot_longer()</code> zusätzlich das <code>values_to</code> Argument spezifizieren. Wiederhole den Code von Aufgabe 10, und ändere diesen so, dass die Spalte mit den Einwohnerzahlen neu <code>einwohner</code> statt <code>value</code> heisst.</p></li>
-<li><p>Schaue dir das Resultat an. Als letzten Schritt wollen wir noch die Werte der Variable <code>jahr</code> so anpassen, dass wir nur die Jahreszahl ohne Präfix haben. <code>pivot_longer()</code> bietet mit dem <code>names_prefix</code> Argument eine Möglichkeit, Präfixe direkt zu löschen. Dazu spezifizieren wir einfach in Anführungszeichen welcher Teil gelöscht werden soll. Füge zum Code der vorherigen Aufgabe das <code>names_prefix</code> Argument hinzu, sodass die <code>jahr</code> Variable nur noch die Jahreszahl enthält.</p></li>
-<li><p>Nun können wir mit dem neu erstellten Datensatz arbeiten und, zum Beispiel, einen Plot erstellen. Plotting werden wir zu einem späteren Zeitpunkt behandeln, daher unten nur ein kleines Codebeispiel zur Generierung eines Plots. Führe den Code aus und schaue dir die Entwicklung der Einwohnerzahlen an.</p></li>
+<li><p>Printe nochmal <code>bevoelkerung_long</code>.</p></li>
+<li><p>Die Einwohnerzahl ist im neuen Datensatz mi dem Standardwert <code>value</code> benannt. Führe nun nochmal die <code>pivot_longer</code> Funktion aus, verwende nun aber auch noch das <code>values_to</code> Argument um die neue Spalte <code>einwohner</code> zu nennen.</p></li>
 </ol>
-<pre class="r"><code># generiere ein leeres Plot fenster mit den spezifizierten Variablen auf den Achsen
-ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
-                     # gruppiere gemäss der Stadtname variable; nötig um separate 
-                     # Linien pro Stadt zu erhalten
-                     group = Stadtname)) +
-  # füge die Datenpunkte hinzu
-  geom_point(alpha = .6) +
-  # verbinde die Datenpunkte pro Stadt
-  geom_line(alpha = .3) +
-  # sopezifiziere die Achsenbeschriftungen 
-  labs(x = &quot;Jahr&quot;, y = expression(&quot;log&quot;[10]*&quot;(Einwohner)&quot;)) + 
-  scale_x_continuous(breaks = c(1930, 1970, 1980, 1990, 2000, 2001, 2011)) +
-  # spezifiziere Plot layout
-  theme_classic() +
-  theme(axis.text.x = element_text(angle=45, size = 12, hjust = 1),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 14))</code></pre>
+<pre class="r"><code># Transofmation vom Wide ins Long Format
+bevoelkerung_long &lt;- bevoelkerung %&gt;%
+  pivot_longer(cols = starts_with(&quot;XX&quot;), names_to = &quot;XX&quot;, values_to = &quot;XX&quot;)</code></pre>
+<ol start="13" style="list-style-type: decimal">
+<li><p>Schaue dir das Resultat an. Alles in Ordnung?</p></li>
+<li><p>Verwende nun das <code>names_prefix</code> Argument um die Präfixe der Jahreszahlen automatisch zu entfernen.</p></li>
+</ol>
+</div>
+<div id="c---transformation-von-long-zu-wide-format" class="section level3">
+<h3>C - Transformation von <em>Long</em> zu <em>Wide</em> Format</h3>
 <ol start="15" style="list-style-type: decimal">
-<li>Wie bereits geschildert, ist das Long Format für viele Analysen und Visualisierungen besser geeignet. Es gibt jedoch auch Situationen, in denen das Wide Format praktischer ist; zum Beispiel, wenn wir die Veränderung der Einwohnerzahlen zwischen 1930 und 2011 berechnen wollen. Lass uns für diese Übung so tun, als ob wir die Daten nur im Long Format (<code>bev_long</code>) hätten und sie daher zuerst ins Wide Format umwandeln müssten. Dazu verwenden wir <code>pivot_wider()</code> und spezifizieren die Argumente <code>names_from</code>, <code>values_from</code>. Speichere das Ergebnis unter <code>bev_wide</code> ab.</li>
+<li>Lass uns nun so tun, als ob wir die Daten im Long Format (<code>bevoelkerung_long</code>) bekommen hätten und sie ins Wide Format umwandeln müssten. Verwende die <code>pivot_wider()</code> Funktion und den Argumenten <code>names_from</code> und <code>values_from</code> die Spalten <code>jahr</code> und <code>einwohner</code> zu. Speichere das Ergebnis als <code>bevoelkerung_wide</code> ab.</li>
 </ol>
 <pre class="r"><code># Transofmation vom Long ins Wide Format
-bev_wide &lt;- bev_long %&gt;%
-  pivot_wider(names_from = XXX, values_from = XXX)</code></pre>
+bevoelkerung_wide &lt;- bevoelkerung_long %&gt;%
+  pivot_wider(names_from = XX, values_from = XX)</code></pre>
 <ol start="16" style="list-style-type: decimal">
-<li><p>Vergleiche <code>bev_wide</code> mit <code>bev</code>. War die Rücktransformation erfolgreich? Was fehlt?</p></li>
+<li><p>Vergleiche <code>bevoelkerung_wide</code> mit <code>bevoelkerung</code>. War die Rücktransformation erfolgreich? Was fehlt?</p></li>
 <li><p>Um die zuvor entfernten Präfixe wieder bei den Variablennamen hinzuzufügen, kannst du das <code>names_prefix</code> argument in <code>pivot_wider()</code> verwenden. Benutze <code>names_prefix</code> um <code>&quot;st_wbev_&quot;</code> als Präfix hinzuzufügen.</p></li>
-<li><p>Berechne nun die Differenz in den Einwohnerzahlen zwischen 1930 und 2011 für alle Städte und zeige den Mittelwert dieser Variable an. Entferne dabei zuerst die Zahlen für die gesamte Schweiz mit Hilfe der <code>filter()</code> Funktion und dem <code>!=</code> (ungleich Operator). Berechne dann die Differenzen und speichere sie als neue Variable <code>delta</code>. Da die <code>mean()</code> Funktion einen Vektor als Input verlangt, verwenden wir <code>pull()</code> um den Mittelwert der <code>delta</code> Variable zu berechnen.</p></li>
 </ol>
-<pre class="r"><code>bev_wide %&gt;%
-  filter(XXX != &quot;XXX&quot;) %&gt;%
-  mutate(XXX = XXX - XXX) %&gt;%
-  pull(XXX) %&gt;%
-  mean(na.rm = TRUE)</code></pre>
-<ol start="19" style="list-style-type: decimal">
-<li>Die vorherige Aufgabe soll unter anderem verdeutlichen, wie <code>pull()</code> funktioniert. Eine andere Möglichkeit die obige Berechnung anzustellen wäre mit Hilfe der <code>summarise()</code> Funktion. Wiederhole die Berechung, diesmal mit <code>summarise()</code> und vergleiche den Output mit dem der vorherigen Aufgabe</li>
-</ol>
-<pre class="r"><code>bev_wide %&gt;%
-  filter(XXX != &quot;XXX&quot;) %&gt;%
-  mutate(XXX = XXX - XXX) %&gt;%
-  summarise(delta_m = mean(XXX, na.rm = TRUE))</code></pre>
 </div>
-<div id="b---wiederholung-wrangling-i" class="section level3">
-<h3>B - Wiederholung Wrangling I</h3>
+<div id="d---wiederholung-wrangling-i" class="section level3">
+<h3>D - Wiederholung Wrangling I</h3>
+<p>Für den Rest des Practicals verwenden wir den <code>kc_house.csv</code> Datensatz. Er enthält Verkaufspreise von Häusern in King County, Washington. Aufgelistet sind Häuser, welche zwischen Mai 2014 und Mai 2015 verkauft wurden. Nebst den Verkaufspreisen enthält der Datensatz Spezifikationen der Häuser, z.B. die Anzahl Zimmer eines Hauses.</p>
 <ol style="list-style-type: decimal">
-<li><p>Für den Rest des Practicals verwenden wir den <code>kc_house.csv</code> Datensatz. Er enthält Verkaufspreise von Häusern in King County, Washington. Aufgelistet sind Häuser, welche zwischen Mai 2014 und Mai 2015 verkauft wurden. Nebst den Verkaufspreisen enthält der Datensatz Spezifikationen der Häuser, z.B. die Anzahl Zimmer eines Hauses. Lese den Datensatz mit der <code>read_csv()</code> Funktion in R ein und speichere ihn unter dem Namen <code>kc_house</code>.</p></li>
-<li><p>Exploriere den Datensatz um einen Eindruck über dessen Struktur zu erhalten.</p></li>
-<li><p>Schaue dir mit der <code>names()</code> Funktion die Variablennamen an.</p></li>
-<li><p>Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als “rest of the world” sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code>, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).</p></li>
+<li>Lese den Datensatz mit der <code>read_csv()</code> Funktion in R ein und speichere ihn unter dem Namen <code>kc_house</code>.</li>
+</ol>
+<pre class="r"><code>kc_house &lt;- read_csv(file = &quot;1_Data/kc_house.csv&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Printe den Datensatz und verwende <code>summary()</code> und <code>names()</code> um einen Eindruck über dessen Struktur zu erhalten.</p></li>
+<li><p>Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als “rest of the world” sind natürlich es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code>, welche die jeweilige Raumgrösse in Quadratmeter angeben. Ein Quadratfuss entspricht 0.093 Quadratmeter.</p></li>
 </ol>
 <pre class="r"><code>kc_house &lt;- kc_house %&gt;%
-  mutate(XXX = XXX * 0.093,
-         XXX = XXX * 0.093,
-         XXX  = XXX * 0.093)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li><p>Kreiere eine neue Spalte <code>qm_total</code>, welche die Summe aus <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code> darstellt.</p></li>
-<li><p>Füge eine neue Variable <code>villa</code> hinzu, welche den Wert “ja” annimmt, wenn <code>qm_total</code> grösser als 750 ist und “nein”, wenn <code>qm_total</code> kleiner oder gleich 750 ist.</p></li>
+  mutate(XX = XX * 0.093,
+         XX = XX * 0.093,
+         XX  = XX * 0.093)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Kreiere wiederum mit <code>mutate()</code> eine neue Spalte <code>qm_total</code>, welche die Summe aus <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code> darstellt.</p></li>
+<li><p>Füge eine neue Variable <code>villa</code> hinzu (mit <code>mutate()</code>), welche den Wert “ja” annimmt, wenn <code>qm_total</code> grösser als 750 ist und “nein”, wenn <code>qm_total</code> kleiner oder gleich 750 ist.</p></li>
 </ol>
 </div>
-<div id="c---einfache-deskriptive-statistiken" class="section level3">
-<h3>C - Einfache deskriptive Statistiken</h3>
+<div id="e---summarise" class="section level3">
+<h3>E - <code>summarise</code></h3>
 <ol style="list-style-type: decimal">
 <li><p>Unter Verwendung der base-R <code>data$col</code> Notation, berechne den Mittelwert über alle Hauspreise.</p></li>
-<li><p>Wiederhole die vorherige Aufgabe, diesmal unter Verwendung der <code>summarise()</code> Funktion. Worin besteht der Unterschied der Resultate dieser und der vorherigen Aufgabe?</p></li>
-<li><p>Wie hoch ist der <em>Median</em>preis aller Häuser? Benutze dazu die <code>median()</code> Funktion. Worin besteht der Unterschied zwischen dem Mittelwert und dem Median?</p></li>
-<li><p>Wie hoch ist der höchste Verkaufspreis? Tipp: das Maximum eines Vektors findest du mit der <code>max()</code> Funktion.</p></li>
-<li><p>Sortiere mittels der <code>arrange()</code> und der <code>desc()</code> Funktion den Datensatz nach <code>preis</code> in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.</p></li>
-<li><p>Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million USD verkauft wurden? Erinnere: <code>TRUE</code> und <code>FALSE</code> werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit <code>TRUE</code> und <code>FALSE</code> berechnen, erhalten wir den Anteil <code>TRUE</code>s (Beispiel: <code>mean(c(TRUE, TRUE, FALSE, TRUE))</code> ergibt 0.75).</p></li>
+<li><p>Berechne wieder den Mittelwert aber verwende diesmal <code>summarise()</code> Funktion. Worin besteht der Unterschied der Resultate dieser und der vorherigen Aufgabe?</p></li>
 </ol>
 <pre class="r"><code>kc_house %&gt;%
-  summarise(mil_p = mean(XXX &gt; XXX))</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Berechne die mittlere Anzahl Stockwerke (<code>stoecke</code>) und Badezimmer (<code>badezimmer</code>) von Villen (<code>villa</code>).</li>
+  summarise(
+    XX = mean(XX)
+  )</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Wie hoch ist der höchste Verkaufspreis? Verwende die <code>max()</code> Funktion.</p></li>
+<li><p>Sortiere mittels der <code>arrange()</code> und der <code>desc()</code> Funktion den Datensatz nach <code>preis</code> in absteigender Reihenfolge und printe das Resultat. Richtig sortiert?</p></li>
+<li><p>Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million USD verkauft wurden?</p></li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  summarise(mil_p = mean(XX &gt; XX))</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Berechne die mittlere Anzahl Stockwerke (<code>stoecke</code>) und Badezimmer (<code>badezimmer</code>) von Villen (<code>villa</code>). Verwende erst <code>filter()</code> um Villen auszuwählen und danach <code>summarise()</code>.</li>
 </ol>
 </div>
-<div id="d---einfache-gruppierte-deskriptive-statistiken" class="section level3">
-<h3>D - Einfache gruppierte deskriptive Statistiken</h3>
+<div id="f---group_by-und-summarise" class="section level3">
+<h3>F - <code>group_by</code> und <code>summarise</code></h3>
 <ol style="list-style-type: decimal">
-<li>Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu <code>group_by()</code> zur Gruppierung nach Villen (<code>villa</code>) und <code>n()</code> zur Berechnung der jeweiligen Anzahl.</li>
+<li>Verwende <code>group_by()</code> und <code>n()</code> um zu berechnen wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind.</li>
 </ol>
 <pre class="r"><code>kc_house %&gt;%
-  group_by(XXX) %&gt;%
-  summarise(N = XXX)</code></pre>
+  group_by(XX) %&gt;%
+  summarise(N = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Wie hoch ist der mittlere Verkaufspreis von Villen und normalen Häusern (nicht-Villen)?</p></li>
-<li><p>Verwende <code>group_by()</code> und <code>summarise()</code> um die untenstehende Tabelle zu erhalten.</p></li>
-</ol>
-<table>
-<thead>
-<tr class="header">
-<th align="left">villa</th>
-<th align="right">N</th>
-<th align="right">preis_min</th>
-<th align="right">preis_mean</th>
-<th align="right">preis_median</th>
-<th align="right">preis_max</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ja</td>
-<td align="right">751</td>
-<td align="right">404000</td>
-<td align="right">1541915</td>
-<td align="right">1300000</td>
-<td align="right">7700000</td>
-</tr>
-<tr class="even">
-<td align="left">nein</td>
-<td align="right">20862</td>
-<td align="right">75000</td>
-<td align="right">504024</td>
-<td align="right">441000</td>
-<td align="right">3100000</td>
-</tr>
-</tbody>
-</table>
-<ol start="4" style="list-style-type: decimal">
+<li><p>Ergänze nun einen Eintrag in <code>summarise()</code> die den mittlere Verkaufspreis von Villen und normalen Häusern (nicht-Villen) berechnet?</p></li>
+<li><p>Verwende nun <code>group_by()</code> und <code>summarise()</code> um auch noch das Maximum zu bestimmen.</p></li>
 <li><p>Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach <code>baujahr</code> und berechne dann die mittlere Wohnfläche (<code>qm_wohnraum</code>).</p></li>
 <li><p>Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable <code>baujahrzehnt</code>, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die <code>floor()</code> Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.</p></li>
 </ol>
 </div>
-<div id="e---mehrere-gruppen" class="section level3">
-<h3>E - Mehrere Gruppen</h3>
+<div id="g---mehrere-gruppen" class="section level3">
+<h3>G - Mehrere Gruppen</h3>
 <ol style="list-style-type: decimal">
 <li>Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (<code>postleitzahl</code>) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz <code>theodorus</code> zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der <code>%in%</code> Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.</li>
 </ol>
 <pre class="r"><code>theodorus &lt;- kc_house %&gt;%
-  filter(XXX %in% c(XXX, XXX, XXX, XXX))</code></pre>
+  filter(XX %in% c(XX, XX, XX, XX))</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.</li>
 </ol>
@@ -887,23 +855,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
