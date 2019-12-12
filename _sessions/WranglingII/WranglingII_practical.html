@@ -338,7 +338,7 @@ bevoelkerung_wide &lt;- bevoelkerung_long %&gt;%
 <li><p>Ergänze nun einen Eintrag in <code>summarise()</code> die den mittlere Verkaufspreis von Villen und normalen Häusern (nicht-Villen) berechnet?</p></li>
 <li><p>Verwende nun <code>group_by()</code> und <code>summarise()</code> um auch noch das Maximum zu bestimmen.</p></li>
 <li><p>Haben Häuser, welche später gebaut wurden, eine grössere Wohnfläche? Gruppiere zur Beantwortung dieser Frage die Daten nach <code>baujahr</code> und berechne dann die mittlere Wohnfläche (<code>qm_wohnraum</code>).</p></li>
-<li><p>Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable <code>baujahrzehnt</code>, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die <code>floor()</code> Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.</p></li>
+<li><p>Kreiere eine neue Variable <code>baujahrzehnt</code>, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die <code>floor()</code> Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.</p></li>
 </ol>
 </div>
 <div id="g---mehrere-gruppen" class="section level3">
@@ -349,7 +349,7 @@ bevoelkerung_wide &lt;- bevoelkerung_long %&gt;%
 <pre class="r"><code>theodorus &lt;- kc_house %&gt;%
   filter(XX %in% c(XX, XX, XX, XX))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.</li>
+<li>Berechne für Theodorus den mittleren, den den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.</li>
 </ol>
 </div>
 <div id="x---challenges" class="section level3">

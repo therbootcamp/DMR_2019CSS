@@ -355,8 +355,7 @@ kc_house %>%
             wohnraum = mean(qm_wohnraum))
 ```
 
-5. Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable `baujahrzehnt`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.
-
+5. Kreiere eine neue Variable `baujahrzehnt`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.
 
 ```{r}
 kc_house %>%
@@ -380,13 +379,12 @@ theodorus <- kc_house %>%
   filter(postleitzahl %in% c(98001, 98109, 98117, 98199))
 ```
 
-2. Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.
+2. Berechne für Theodorus den mittleren, den den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.
 
 ```{r}
 theodorus %>%
   group_by(postleitzahl, villa) %>%
   summarise(preis_mean = mean(preis),
-            preis_median = median(preis),
             stoecke_min = min(stoecke),
             stoecke_max = max(stoecke),
             N = n())
