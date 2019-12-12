@@ -483,6 +483,11 @@ kc_house %>%
 
 1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`postleitzahl`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
 
+```{r eval = FALSE, echo = TRUE}
+theodorus <- kc_house %>%
+  filter(XXX %in% c(XXX, XXX, XXX, XXX))
+```
+
 ```{r}
 theodorus <- kc_house %>%
   filter(postleitzahl %in% c(98001, 98109, 98117, 98199))

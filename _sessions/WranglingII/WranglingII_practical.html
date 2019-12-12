@@ -376,8 +376,12 @@ bev_wide &lt;- bev_long %&gt;%
 <div id="e---mehrere-gruppen" class="section level3">
 <h3>E - Mehrere Gruppen</h3>
 <ol style="list-style-type: decimal">
-<li><p>Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (<code>postleitzahl</code>) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz <code>theodorus</code> zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der <code>%in%</code> Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.</p></li>
-<li><p>Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.</p></li>
+<li>Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (<code>postleitzahl</code>) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz <code>theodorus</code> zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der <code>%in%</code> Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.</li>
+</ol>
+<pre class="r"><code>theodorus &lt;- kc_house %&gt;%
+  filter(XXX %in% c(XXX, XXX, XXX, XXX))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Berechne für Theodorus den mittleren, den Median-, den Minimum-, den Maximumpreis, sowie die Anzahl Häuser pro Gruppe, separat für die Postleitzahlen und ob es eine Villa ist.</li>
 </ol>
 </div>
 <div id="x---challenges" class="section level3">
