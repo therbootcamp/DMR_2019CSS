@@ -242,7 +242,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
     &lt;li&gt;&lt;span&gt;Was soll auf die Achsen?&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;Was soll Grösse/Farbe representieren?&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Was soll Grösse/Farbe repräsentieren?&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/span&gt;&lt;/li&gt;
   &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;geoms&lt;/high&gt;: Objekte im Plot&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
@@ -399,6 +399,7 @@ ggplot(data = mpg,
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy)) + 
+  
   # Plotte Daten als Punkte
   geom_point() 
 ```
@@ -422,7 +423,7 @@ ggplot(data = mpg,
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom_*()&lt;/highm&gt; Funktionen definieren die geometrischen Objekte mit denen die Daten repräsentirt werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom_*()&lt;/highm&gt; Funktionen definieren die geometrischen Objekte mit denen die Daten repräsentiert werden.&lt;/span&gt;&lt;/li&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Ein paar &lt;mono&gt;geoms&lt;/mono&gt;:
   &lt;br&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
@@ -686,7 +687,7 @@ ggplot(data = mpg,
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom&lt;/highm&gt;s erben ihre Eigenschaften von &lt;mono&gt;mapping&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Vererbte Eigenschaften werden können durch eigene Argumente &lt;high&gt;überschrieben&lt;/high&gt; werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Vererbte Eigenschaften können durch eigene Argumente &lt;high&gt;überschrieben&lt;/high&gt; werden.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -719,7 +720,7 @@ ggplot(data = mpg,
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom&lt;/highm&gt;s erben ihre Eigenschaften von &lt;mono&gt;mapping&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Vererbte Eigenschaften werden können durch eigene Argumente &lt;high&gt;überschrieben&lt;/high&gt; werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Vererbte Eigenschaften können durch eigene Argumente &lt;high&gt;überschrieben&lt;/high&gt; werden.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -1102,7 +1103,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

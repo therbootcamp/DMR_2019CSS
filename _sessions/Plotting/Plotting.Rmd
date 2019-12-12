@@ -286,7 +286,7 @@ Das [`tidyverse`](https://www.tidyverse.org/) ist im Kern eine Sammlung hoch-per
   <br><br>
   <ul class="level">
     <li><span>Was soll auf die Achsen?</span></li>
-    <li><span>Was soll Grösse/Farbe representieren?</span></li>
+    <li><span>Was soll Grösse/Farbe repräsentieren?</span></li>
   </ul>
   </span></li>
   <li class="m3"><span><high>geoms</high>: Objekte im Plot</high></span></li>
@@ -449,6 +449,7 @@ ggplot(data = mpg,
 ggplot(data = mpg,
        mapping = aes(x = displ,
                      y = hwy)) + 
+  
   # Plotte Daten als Punkte
   geom_point() 
 ```
@@ -476,7 +477,7 @@ ggplot(data = mpg,
 .pull-left45[
 
 <ul>
-  <li class="m1"><span><highm>geom_*()</highm> Funktionen definieren die geometrischen Objekte mit denen die Daten repräsentirt werden.</span></li>
+  <li class="m1"><span><highm>geom_*()</highm> Funktionen definieren die geometrischen Objekte mit denen die Daten repräsentiert werden.</span></li>
   <li class="m2"><span>Ein paar <mono>geoms</mono>:
   <br><br>
   <ul class="level">
@@ -764,7 +765,7 @@ ggplot(data = mpg,
 
 <ul>
   <li class="m1"><span><highm>geom</highm>s erben ihre Eigenschaften von <mono>mapping</mono>.</span></li>
-  <li class="m2"><span>Vererbte Eigenschaften werden können durch eigene Argumente <high>überschrieben</high> werden.</span></li>
+  <li class="m2"><span>Vererbte Eigenschaften können durch eigene Argumente <high>überschrieben</high> werden.</span></li>
 </ul>
 
 
@@ -796,7 +797,7 @@ ggplot(data = mpg,
 
 <ul>
   <li class="m1"><span><highm>geom</highm>s erben ihre Eigenschaften von <mono>mapping</mono>.</span></li>
-  <li class="m2"><span>Vererbte Eigenschaften werden können durch eigene Argumente <high>überschrieben</high> werden.</span></li>
+  <li class="m2"><span>Vererbte Eigenschaften können durch eigene Argumente <high>überschrieben</high> werden.</span></li>
 </ul>
 
 
