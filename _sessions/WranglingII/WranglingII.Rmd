@@ -300,7 +300,7 @@ patienten_ergebnisse %>%
 ```{r}
 patienten_ergebnisse %>%
   
-  # Wählen spalten aus die mit "t" beginnene
+  # Wählen spalten aus die mit "t" beginnen
   select(starts_with("t"))
 
 ```

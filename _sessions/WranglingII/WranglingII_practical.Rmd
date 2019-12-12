@@ -135,23 +135,22 @@ bev_long <- bev %>%
 names(bev)
 ```
 
-10. Wie du siehst, hat jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXXX`. Dieser Umstand ist hilfreich, da wir dadurch nicht jede Variable explizit auflisten müssen, sondern die `starts_with()` Funktion verwenden können. Diese wählt alle Variablen aus, welche mit dem spezifizierten character (z.B. "st_wbev") beginnen. Schaue dir für eine Auflistung dieser und ähnlicher Funktione die help page der `starts_with()` Funktion an.
+10. Wie du siehst, hat jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXXX`. Dieser Umstand ist hilfreich, da wir dadurch nicht jede Variable explizit auflisten müssen, sondern die `starts_with()` Funktion zur Variablenauswahl verwenden können. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
 
-```{r}
-?tidyselect::starts_with
+```{r eval = FALSE, echo = TRUE}
+# Transofmation vom Wide ins Long Format
+bev_long <- bev %>%
+  pivot_longer(starts_with("XXX"), names_to = "jahr")
 ```
-
-
-11. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
 
 ```{r}
 bev_long <- bev %>%
   pivot_longer(starts_with("st_"), names_to = "jahr")
 ```
 
-12. Schaue dir das Resultat an.
+11. Schaue dir das Resultat an.
 
-13. Die Einwohnerzahl ist im neuen Datensatz in der Spalte `value` enthalten. Dieser Name wird standardmässig gewählt, gibt aber keine Informationen darüber um was für Werte es sich handelt. Wir können einen eigenen Namen wählen, in dem wir in `pivot_longer()` zusätzlich das `values_to` Argument spezifizieren. Wiederhole den Code von Aufgabe 11, und ändere diesen so, dass die Spalte mit den Einwohnerzahlen neu `einwohner` statt `value` heisst.
+12. Die Einwohnerzahl ist im neuen Datensatz in der Spalte `value` enthalten. Dieser Name wird standardmässig gewählt, gibt aber keine Informationen darüber um was für Werte es sich handelt. Wir können einen eigenen Namen wählen, in dem wir in `pivot_longer()` zusätzlich das `values_to` Argument spezifizieren. Wiederhole den Code von Aufgabe 10, und ändere diesen so, dass die Spalte mit den Einwohnerzahlen neu `einwohner` statt `value` heisst.
 
 ```{r}
 bev_long <- bev %>%
@@ -159,7 +158,7 @@ bev_long <- bev %>%
 ```
 
 
-14. Schaue dir das Resultat an. Als letzten Schritt wollen wir noch die Werte der Variable `jahr` so anpassen, dass wir nur die Jahreszahl ohne Präfix haben. Eine Möglichkeit wäre, das jetzige Resultat zu nehmen, und mit `mutate()` und `case_when()`, die wir im letzten Practical genauer angeschaut haben, die Variable abzuändern. `pivot_longer()` bietet mit dem `names_prefix` Argument eine Möglichkeit, alles in einem Schritt durchzuführen. Dazu spezifizieren wir einfach in Anführungszeichen welcher Teil gelöscht werden soll. Füge zum Code der vorherigen Aufgabe das `names_prefix` Argument hinzu, sodass die `jahr` Variable nur noch die Jahreszahl enthält.
+13. Schaue dir das Resultat an. Als letzten Schritt wollen wir noch die Werte der Variable `jahr` so anpassen, dass wir nur die Jahreszahl ohne Präfix haben. `pivot_longer()` bietet mit dem `names_prefix` Argument eine Möglichkeit, Präfixe direkt zu löschen. Dazu spezifizieren wir einfach in Anführungszeichen welcher Teil gelöscht werden soll. Füge zum Code der vorherigen Aufgabe das `names_prefix` Argument hinzu, sodass die `jahr` Variable nur noch die Jahreszahl enthält.
 
 
 ```{r}
@@ -168,7 +167,7 @@ bev_long <- bev %>%
                names_prefix = "st_wbev_")
 ```
 
-15. Nun können wir mit dem neu erstellten Datensatz arbeiten und, zum Beispiel, einen Plot erstellen. Plotting werden wir zu einem späteren Zeitpunkt behandeln, daher unten nur ein kleines Codebeispiel zur Generierung eines Plots.
+14. Nun können wir mit dem neu erstellten Datensatz arbeiten und, zum Beispiel, einen Plot erstellen. Plotting werden wir zu einem späteren Zeitpunkt behandeln, daher unten nur ein kleines Codebeispiel zur Generierung eines Plots. Führe den Code aus und schaue dir die Entwicklung der Einwohnerzahlen an.
 
 
 ```{r eval = FALSE, echo = TRUE}
@@ -213,7 +212,23 @@ ggplot(bev_long, aes(as.numeric(jahr), log(einwohner, base = 10),
   
 ```
 
-16. Wie bereits geschildert, ist das Long Format für viele Analysen und Visualisierungen besser geeignet. Es gibt jedoch auch Situationen, in denen das Wide Format praktischer ist; zum Beispiel, wenn wir die Veränderung der Einwohnerzahlen zwischen 1930 und 2011 berechnen wollen. Lass uns für diese Übung so tun, als ob wir die Daten nur im Long Format (`bev_long`) hätten und sie daher zuerst ins Wide Format umwandeln müssten. Dazu verwenden wir `pivot_wider()` und spezifizieren die Argumente `names_from`, `values_from` und `names_prefix`. Speichere das Ergebnis unter `bev_wide` ab und vergleiche `bev_wide` mit `bev` um sicherzustellen, dass die Transformation korrekt funktioniert hat.
+15. Wie bereits geschildert, ist das Long Format für viele Analysen und Visualisierungen besser geeignet. Es gibt jedoch auch Situationen, in denen das Wide Format praktischer ist; zum Beispiel, wenn wir die Veränderung der Einwohnerzahlen zwischen 1930 und 2011 berechnen wollen. Lass uns für diese Übung so tun, als ob wir die Daten nur im Long Format (`bev_long`) hätten und sie daher zuerst ins Wide Format umwandeln müssten. Dazu verwenden wir `pivot_wider()` und spezifizieren die Argumente `names_from`, `values_from`. Speichere das Ergebnis unter `bev_wide` ab.
+
+ 
+```{r eval = FALSE, echo = TRUE}
+# Transofmation vom Long ins Wide Format
+bev_wide <- bev_long %>%
+  pivot_wider(names_from = XXX, values_from = XXX)
+```
+
+```{r}
+bev_wide <- bev_long %>%
+  pivot_wider(names_from = jahr, values_from = einwohner)
+```
+
+16. Vergleiche `bev_wide` mit `bev`. War die Rücktransformation erfolgreich? Was fehlt?
+
+17. Um die zuvor entfernten Präfixe wieder bei den Variablennamen hinzuzufügen, kannst du das `names_prefix` argument in `pivot_wider()` verwenden. Benutze `names_prefix` um `"st_wbev_"` als Präfix hinzuzufügen. 
 
 ```{r}
 bev_wide <- bev_long %>%
@@ -221,9 +236,41 @@ bev_wide <- bev_long %>%
               names_prefix = "st_wbev_")
 ```
 
+18. Berechne nun die Differenz in den Einwohnerzahlen zwischen 1930 und 2011 für alle Städte und zeige den Mittelwert dieser Variable an. Entferne dabei zuerst die Zahlen für die gesamte Schweiz mit Hilfe der `filter()` Funktion und dem `!=` (ungleich Operator). Berechne dann die Differenzen und speichere sie als neue Variable `delta`. Da die `mean()` Funktion einen Vektor als Input verlangt, verwenden wir `pull()` um den Mittelwert der `delta` Variable zu berechnen.
+
+```{r eval = FALSE, echo = TRUE}
+bev_wide %>%
+  filter(XXX != "XXX") %>%
+  mutate(XXX = XXX - XXX) %>%
+  pull(XXX) %>%
+  mean(na.rm = TRUE)
+```
+
+```{r}
+bev_wide %>%
+  filter(Stadtname != "Schweiz") %>%
+  mutate(delta = st_wbev_2011 - st_wbev_1930) %>%
+  pull(delta) %>%
+  mean(na.rm = TRUE)
+```
+
+19. Die vorherige Aufgabe soll unter anderem verdeutlichen, wie `pull()` funktioniert. Eine andere Möglichkeit die obige Berechnung anzustellen wäre mit Hilfe der `summarise()` Funktion. Wiederhole die Berechung, diesmal mit `summarise()` und vergleiche den Output mit dem der vorherigen Aufgabe
+
+```{r eval = FALSE, echo = TRUE}
+bev_wide %>%
+  filter(XXX != "XXX") %>%
+  mutate(XXX = XXX - XXX) %>%
+  summarise(delta_m = mean(XXX, na.rm = TRUE))
+```
+
+```{r}
+bev_wide %>%
+  filter(Stadtname != "Schweiz") %>%
+  mutate(delta = st_wbev_2011 - st_wbev_1930) %>%
+  summarise(delta_m = mean(delta, na.rm = TRUE))
+```
 
 ### B - Wiederholung Wrangling I
-
 
 
 1. Für den Rest des Practicals verwenden wir den `kc_house.csv` Datensatz. Er enthält Verkaufspreise von Häusern in King County, Washington. Aufgelistet sind Häuser, welche zwischen Mai 2014 und Mai 2015 verkauft wurden. Nebst den Verkaufspreisen enthält der Datensatz Spezifikationen der Häuser, z.B. die Anzahl Zimmer eines Hauses. Lese den Datensatz mit der `read_csv()` Funktion in R ein und speichere ihn unter dem Namen `kc_house`.
@@ -250,6 +297,12 @@ names(kc_house)
 
 4. Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als "rest of the world" sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen `qm_wohnraum`, `qm_dachstock` und `qm_keller`, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).
 
+```{r eval = FALSE, echo = TRUE}
+kc_house <- kc_house %>%
+  mutate(XXX = XXX * 0.093,
+         XXX = XXX * 0.093,
+         XXX  = XXX * 0.093)
+```
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
@@ -321,7 +374,7 @@ kc_house %>%
   )
 ```
 
-5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
+5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz nach `preis` in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
 
 
 ```{r}
@@ -331,7 +384,12 @@ kc_house <- kc_house %>%
 kc_house
 ```
 
-6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil `TRUE`s (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
+6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million USD verkauft wurden? Erinnere: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil `TRUE`s (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
+
+```{r eval = FALSE, echo = TRUE}
+kc_house %>%
+  summarise(mil_p = mean(XXX > XXX))
+```
 
 ```{r}
 kc_house %>%
@@ -353,6 +411,13 @@ kc_house %>%
 ### D - Einfache gruppierte deskriptive Statistiken 
 
 1. Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`villa`) und `n()` zur Berechnung der jeweiligen Anzahl.
+
+
+```{r eval = FALSE, echo = TRUE}
+kc_house %>%
+  group_by(XXX) %>%
+  summarise(N = XXX)
+```
 
 ```{r}
 kc_house %>%
@@ -400,7 +465,7 @@ kc_house %>%
 kc_house %>%
   group_by(baujahr) %>%
   summarise(N = n(),
-            living = mean(qm_wohnraum))
+            wohnraum = mean(qm_wohnraum))
 ```
 
 5. Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable `baujahrzehnt`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.
@@ -417,6 +482,11 @@ kc_house %>%
 ### E - Mehrere Gruppen
 
 1. Dein Freund Theodorus interessiert sich für Häuser einer bestimmten Gegend, nämlich mit den Postleitzahlen (`postleitzahl`) 98001, 98109, 98117 und 98199. Stelle ihm einen neuen Datensatz `theodorus` zusammen, welcher nur die Häuser dieser Gegend enthält. Tipp: der `%in%` Operator testet ob Elemente des Vektors auf der rechten Seite im Vektor auf der linken Seite enthalten sind.
+
+```{r eval = FALSE, echo = TRUE}
+theodorus <- kc_house %>%
+  filter(XXX %in% c(XXX, XXX, XXX, XXX))
+```
 
 ```{r}
 theodorus <- kc_house %>%

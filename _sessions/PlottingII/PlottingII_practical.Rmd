@@ -47,7 +47,7 @@ library(tidyverse)
 require(viridis)
 require(patchwork)
 
-verbrechen = read_csv('1_Data/verbrechen.csv')
+verbrechen = read_csv('../../1_Data/verbrechen.csv')
 
 ```
 
@@ -94,7 +94,7 @@ Am Ende des Practicals wirst du wissen wie man:
 
 ```{r, echo = F, eval = T, message = F}
 # Lese kriminalitaet.csv
-verbrechen <- read_csv('1_Data/verbrechen.csv')
+verbrechen <- read_csv('../../1_Data/verbrechen.csv')
 ```
 
 2. Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?
@@ -103,9 +103,9 @@ verbrechen <- read_csv('1_Data/verbrechen.csv')
 
 ### C - `facet`s
 
-In diesem Abschnitt analysiert ihr den Zusammenhang vom Anteil der Bevölkerung, die mit der Meetro fahren und verschiedenen Verbrechen. 
+In diesem Abschnitt analysierst du den Zusammenhang zwischen dem Anteil der Bevölkerung, die mit der Metro fahren, und verschiedenen Verbrechen. 
 
-1. Verwende den folgenden Code um die Beziegung zwischen `prozent_metro` (x-Achse) und `haeufigkeit` (y-Achse) zu plotten. 
+1. Verwende den folgenden Code um die Beziehung zwischen `prozent_metro` (x-Achse) und `haeufigkeit` (y-Achse) zu plotten. 
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, 
@@ -125,7 +125,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   theme_minimal()
 ```
 
-2. Sieht noch nicht informativ aus. Ergänzt `scale_x_continuous(trans = 'pseudo_log')` und `scale_y_continuous(trans = 'pseudo_log')` um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen. 
+2. Sieht noch nicht informativ aus. Ergänze `scale_x_continuous(trans = 'pseudo_log')` und `scale_y_continuous(trans = 'pseudo_log')` um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen. 
 
 ```{r}
 ggplot(verbrechen, aes(x = prozent_metro, 
@@ -137,7 +137,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   scale_y_continuous(trans = 'pseudo_log')
 ```
 
-3. Besser. Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versucht dies mal indem ihr `verbrechen` dem `col` Argument in `aes()` zuweist.
+3. Besser. Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versuche dies mal indem du `verbrechen` dem `col` Argument in `aes()` zuweist.
 
 ```{r}
 ggplot(verbrechen, aes(x = prozent_metro, 
@@ -150,7 +150,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   scale_y_continuous(trans = 'pseudo_log')
 ```
 
-4. Nicht wirklich informativ, oder? Anstatt mit `col` versucht nun die verschiedenen Verbrechen mit `facet_wrap()` zu differenzieren.
+4. Nicht wirklich informativ, oder? Anstatt mit `col` versuche nun die verschiedenen Verbrechen mit `facet_wrap()` zu differenzieren.
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, 
@@ -175,7 +175,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   facet_wrap(~verbrechen)
 ```
 
-5. Es zeichnet sich ab, dass nicht alle Verbrechen gleich mit der Anteil Metro-fahrender zusammenhängen. Der stärkste Zusammenhang scheint zu Autodiebstählen und Raubüberfällen zu bestehen. Kann aber natürlich sein, dass eine dritte Variable diesen Zusammenhang treibt, z.B. der Prozentsatz unter der Armztsgrenze lebender. Verwendet `facet_grid()` um gleichzeitig nach Verbrechen und `prozent_armut` kleiner oder grösser 10% zu differenzieren. Wie ihr im Code seht, die logischen Vergleich könnte ihr direkt in die Funktion schreiben.   
+5. Es zeichnet sich ab, dass nicht alle Verbrechen gleich mit dem Anteil Metro-fahrender zusammenhängen. Der stärkste Zusammenhang scheint zu Autodiebstählen und Raubüberfällen zu bestehen. Kann aber natürlich sein, dass eine dritte Variable diesen Zusammenhang treibt, z.B. der Prozentsatz unter der Armutsgrenze lebender Personen. Verwende `facet_grid()` um gleichzeitig nach Verbrechen und `prozent_armut` kleiner oder grösser 10% zu differenzieren. Wie du im Code siehst, kannst du den logischen Vergleich direkt in die Funktion schreiben.   
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, 
@@ -200,7 +200,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   facet_grid(prozent_armut > 10 ~ verbrechen)
 ```
 
-6. Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aus. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiert doch mal `bevoelkerung_dichte` aus.    
+6. Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aufweisen. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiert doch mal `bevoelkerung_dichte` aus.    
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, 
@@ -225,13 +225,13 @@ ggplot(verbrechen, aes(x = prozent_metro,
   facet_grid(bevoelkerung_dichte > 5000 ~ verbrechen)
 ```
 
-7. Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spielt ein wenig herum. Welche Zusammenhänge könnte ihr noch entdecken?      
+7. Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spiele ein wenig herum. Welche Zusammenhänge kannst du noch entdecken?      
 
 ### D - `theme`s
 
-In diesem Abschnitt passt ihr euren Lieblingsplot aus dem letzten Abschnitt mit der `theme()` Funktion an. 
+In diesem Abschnitt passt du deinen Lieblingsplot aus dem letzten Abschnitt mit der `theme()` Funktion an. 
 
-1. Zuallererst speichert euren Plot als ein `gg` Objekt mit name `verbrechen_gg`.
+1. Zuallererst speichere deinen Plot als ein `gg` Objekt mit name `verbrechen_gg`.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg <- XX
@@ -265,7 +265,7 @@ verbrechen_gg +
     )
 ```
 
-3. Als nächstes ändere die Farbe der Haupt- und Nebenlinien zu `"grey75"` und deren Grössen zu `.25` und `.1` respektive. Verwende hierzu die Argumente `panel.grid.major` und `panel.grid.minor` und die Helferfunktion `element_line()`. 
+3. Als nächstes, ändere die Farbe der Haupt- und Nebenlinien zu `"grey75"` und deren Grössen zu `.25` und `.1` respektive. Verwende hierzu die Argumente `panel.grid.major` und `panel.grid.minor` und die Helferfunktion `element_line()`. 
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -285,7 +285,7 @@ verbrechen_gg +
     )
 ```
 
-4. Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu `white` mit dem `strip.background` Argument und der wiederum der `element_rect()` Helferfunktion.
+4. Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu `white` mit dem `strip.background` Argument und wiederum der `element_rect()` Helferfunktion.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -331,7 +331,7 @@ verbrechen_gg +
     )
 ```
 
-6. Setze noch die Schriftgrösse der Achsenbeschriftungen auf `12` und setze jeweils einen Abstand von `10`. Verwende hierzu die Argumente `axis.title.x` und `axis.title.y` und die Helferfunktionen `element_text()` und `margin()`. Siehe `?margins()`.
+6. Setze noch die Schriftgrösse der Achsenbeschriftungen auf `12` und setze jeweils einen Abstand von `10`. Verwende hierzu die Argumente `axis.title.x` und `axis.title.y` und die Helferfunktionen `element_text()` und `margin()`. Siehe `?margin()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -440,7 +440,7 @@ ggplot(verbrechen,
 
 In diesem Abschnitt lernst du die Skalierung von Achsen und Objekten anzupassen.
 
-1. Bevor du anfängst Skalierungen anzupassen, lass uns zwei weitere Elemente von `aes()` spezifizieren, damit wir mehr zu skalieren habe. Weise im Code unten `staat` dem Argument `col` zu und `bevoelkerung` dem Argument `size`. Speichere den wiederum als `verbrechen_gg` und plotte den Plot einmal.
+1. Bevor du anfängst Skalierungen anzupassen, lass uns zwei weitere Elemente von `aes()` spezifizieren, damit wir mehr zu skalieren haben. Weise im Code unten `staat` dem Argument `col` zu und `bevoelkerung` dem Argument `size`. Speichere den Plot wiederum als `verbrechen_gg` und plotte den Plot einmal.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg <- ggplot(data = verbrechen, 
@@ -476,7 +476,7 @@ verbrechen_gg <- ggplot(data = verbrechen,
 verbrechen_gg
 ```
 
-2. Als erstes verwende `sclale_size()` und darin das `range` argument um die Grösse der Punkte zu verkleinern, um die Überlappung etwas zu veringern. Probiere ein paar Werte für die untere und obere Grenze aus, die jeweils kleiner als `10` sein sollten, um einen guten Trade-off zwischen Grösse und Überlappung zu finden.
+2. Als erstes verwende `sclale_size()` und darin das `range` argument um die Grösse der Punkte zu verkleinern. Damit kannst du die Überlappung etwas veringern. Probiere ein paar Werte für die untere und obere Grenze aus, die jeweils kleiner als `10` sein sollten, um einen guten Trade-off zwischen Grösse und Überlappung zu finden.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + scale_size(range = c(XX, XX))
@@ -500,7 +500,7 @@ verbrechen_gg +
   scale_color_colorblind()
 ```
 
-5. Alternativ kann man die Farbskala selbst setzen. Verwende `scale_color_manual()` und die `viridis()` Funktion aus dem `viridis` Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer etablierter, aber etwas schöner Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.   
+5. Alternativ kann man die Farbskala selbst setzen. Verwende `scale_color_manual()` und die `viridis()` Funktion aus dem `viridis` Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer etablierter, etwas schönerer Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.   
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -518,9 +518,9 @@ verbrechen_gg +
 
 ### G - Bilddateien
 
-1. Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Dafür müssen legt zu allererst einen neuen Unterordner in einem Projektordner an mit dem Namen `3_Figures`, sofern dieser noch nicht existiert.
+1. Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Dafür musst du zuerst einen neuen Unterordner in einem Projektordner mit dem Namen `3_Figures` anlegen, sofern dieser noch nicht existiert (sollte bereits vorhanden sein).
 
-2. Verwendet nun `ggsave` um euren letzten `verbrechen_gg` plot als eine `.pdf`-Datei unter dem Namen `verbrechen.pdf` zu speichern. Ihr solltet danach euren Plot in eurem Ordner `3_Figures` finden. Schaut nach und öffnet die Datei. 
+2. Verwende nun `ggsave` um deinen letzten `verbrechen_gg` plot als eine `.pdf`-Datei unter dem Namen `verbrechen.pdf` zu speichern. Danach solltest du deinen Plot im Ordner `3_Figures` finden. Schaue nach und öffne die Datei. 
 
 ```{r, echo = TRUE, eval = FALSE}
 ggsave(filename = "3_Figures/verbrechen.pdf", 
@@ -540,15 +540,15 @@ ggsave(filename = "3_Figures/verbrechen.pdf",
        units = "in")
 ```
 
-5. Probiert ein paar Sachen aus:
+5. Probiere ein paar Sachen aus:
 
-- Verändert `width` und `height` in der `ggsave()` Funktion.
-- Speichert ein `.png` anstatt eines `.pdf` indem ihr `filename` und `device` entsprechend verändert.
+- Verändere `width` und `height` in der `ggsave()` Funktion.
+- Speichere ein `.png` anstatt eines `.pdf` indem du `filename` und `device` entsprechend anpasst.
 
 
 ### X - Challenges: Multiple Plots
 
-In diesem Abschnitt lernst du mit dem `patchwork` Paket multiple Plots zusammenzustellen.  
+In diesem Abschnitt lernst du mit dem `patchwork` Paket multiple Plots zusammenzustellen.
 
 1. Kreiere 3 verschiedene Plots, die jeweils `haeufigkeiten` gegen eine andere Variable im Datensatz plotten. Für eine bessere Übersicht verzichte erstmal auf `facet`s. Nenne die 3 Plots `verbrechen_a`, `verbrechen_b`, und `verbrechen_c`. 
 
