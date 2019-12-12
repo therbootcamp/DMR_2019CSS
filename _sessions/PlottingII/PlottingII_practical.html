@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -158,18 +158,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -241,7 +229,7 @@ $(document).ready(function () {
 <div id="b---lade-den-datensatz" class="section level3">
 <h3>B - Lade den Datensatz</h3>
 <ol style="list-style-type: decimal">
-<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>krimi</code> als Objekt <code>krimi</code> einzulesen. Denke an den Trick mit den Anführungszeichen.</p></li>
+<li><p>Verwende die <code>read_csv()</code> Funktion um den Datensatz <code>verbrechen.csv</code> als Objekt <code>verbrechen</code> einzulesen. Denke an den Trick mit den Anführungszeichen.</p></li>
 <li><p>Printe den Datensatz. Wurden alle Variablentypen korrekt identifiziert?</p></li>
 <li><p>Verwende <code>summary()</code> um einen weiteren Überblick über die Daten zu bekommen.</p></li>
 </ol>
@@ -815,6 +803,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

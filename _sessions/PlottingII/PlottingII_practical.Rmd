@@ -89,7 +89,7 @@ Am Ende des Practicals wirst du wissen wie man:
 
 ### B - Lade den Datensatz
 
-1. Verwende die `read_csv()` Funktion um den Datensatz `krimi` als Objekt `krimi` einzulesen. Denke an den Trick mit den Anführungszeichen. 
+1. Verwende die `read_csv()` Funktion um den Datensatz `verbrechen.csv` als Objekt `verbrechen` einzulesen. Denke an den Trick mit den Anführungszeichen. 
 
 ```{r, echo = F, eval = T, message = F}
 # Lese kriminalitaet.csv
