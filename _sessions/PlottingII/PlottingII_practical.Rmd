@@ -124,7 +124,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   theme_minimal()
 ```
 
-2. Sieht noch nicht informativ aus. Ergänze `scale_x_continuous(trans = 'pseudo_log')` und `scale_y_continuous(trans = 'pseudo_log')` um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen. 
+2. Sieht noch nicht so informativ aus. Ergänze `scale_x_continuous(trans = 'pseudo_log')` und `scale_y_continuous(trans = 'pseudo_log')` um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen. 
 
 ```{r}
 ggplot(verbrechen, aes(x = prozent_metro, 
@@ -136,7 +136,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   scale_y_continuous(trans = 'pseudo_log')
 ```
 
-3. Besser. Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versuche dies mal indem du `verbrechen` dem `col` Argument in `aes()` zuweist.
+3. Besser, oder? Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versuche dies mal über verschiedene Farben indem du `verbrechen` dem `col` Argument in `aes()` zuweist.
 
 ```{r}
 ggplot(verbrechen, aes(x = prozent_metro, 
@@ -149,7 +149,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   scale_y_continuous(trans = 'pseudo_log')
 ```
 
-4. Nicht wirklich informativ, oder? Anstatt mit `col` versuche nun die verschiedenen Verbrechen mit `facet_wrap()` zu differenzieren.
+4. Nicht wirklich informativ, oder? Anstatt mit `col` versuche nun die verschiedenen Verbrechen mit `facet_wrap()` zu differenzieren. Siehe unten.
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, 
@@ -199,7 +199,7 @@ ggplot(verbrechen, aes(x = prozent_metro,
   facet_grid(prozent_armut > 10 ~ verbrechen)
 ```
 
-6. Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aufweisen. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiert doch mal `bevoelkerung_dichte` aus.    
+6. Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aufweisen. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiere doch mal `bevoelkerung_dichte` grösser als `5000` als erste Variable in `facet_grid()` aus.    
 
 ```{r, eval = FALSE, echo = TRUE}
 ggplot(XX, aes(x = XX, 
@@ -224,13 +224,13 @@ ggplot(verbrechen, aes(x = prozent_metro,
   facet_grid(bevoelkerung_dichte > 5000 ~ verbrechen)
 ```
 
-7. Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer auch eine hohe Bevölkerungsdichte bedeutet und diese ist mit der Anzahl von Delikten assoziiert. Spiele ein wenig herum. Welche Zusammenhänge kannst du noch entdecken?      
+7. Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer stark mit einer hohen Bevölkerungsdichte assoziert ist und diese wiederum mit der Anzahl von Delikten. Spiele ein wenig herum. Welche Zusammenhänge kannst du noch entdecken?      
 
 ### D - `theme`s
 
 In diesem Abschnitt passt du deinen Lieblingsplot aus dem letzten Abschnitt mit der `theme()` Funktion an. 
 
-1. Zuallererst speichere deinen Plot als ein `gg` Objekt mit name `verbrechen_gg`.
+1. Zuallererst speichere deinen Plot als ein `gg` Objekt mit Namen `verbrechen_gg`.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg <- XX
@@ -248,7 +248,7 @@ verbrechen_gg <- ggplot(verbrechen,
   facet_grid(bevoelkerung_dichte > 5000 ~ verbrechen)
 ```
 
-2. Lass uns beginnen: Ändere die Farbe des Hintergrunds des Panels zu `white` mit dem `panel.background` in der `theme()` Funktion und der `element_rect()` Helferfunktion.   
+2. Ändere die Farbe des Hintergrunds des Panels zu `white`. Verwende hierzu das `panel.background` in der `theme()` Funktion und die `element_rect()` Helferfunktion.   
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -284,7 +284,7 @@ verbrechen_gg +
     )
 ```
 
-4. Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu `white` mit dem `strip.background` Argument und wiederum der `element_rect()` Helferfunktion.
+4. Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu `white`. Verwende das `strip.background` Argument und wiederum die `element_rect()` Helferfunktion.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -306,7 +306,7 @@ verbrechen_gg +
     )
 ```
 
-5. Nun ändere die Schriftart der Überschriften zu `italic`, setze sie rechtsbündig und die Schriftgrösse auf `12`. Verwende hierzu das `strip.text` Argument und die `element_text()` Helferfunktion. Siehe `?element_text()`.
+5. Nun ändere die Schriftart der Überschriften zu `italic` mit dem `face` Argument, setze den Text rechtsbündig (`hjust = 1`) und die Schriftgrösse (`size`) auf `12`. Verwende hierzu das `strip.text` Argument und die genannten Argumente in `element_text()`. Siehe `?element_text()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -413,7 +413,7 @@ mein_theme <- theme(
     )
 ```
 
-2. Jetzt kriere einen neuen Plot mit anderen Variablen als zuvor und ergänze `mein_theme`. 
+2. Jetzt kriere einen neuen Plot mit anderen Variablen als zuvor und ergänze `mein_theme` (Ohne Klammern). 
 
 ```{r, echo = TRUE, eval = FALSE}
 ggplot(verbrechen, 
@@ -433,7 +433,7 @@ ggplot(verbrechen,
   mein_theme
 ```
 
-3. Wenn dir `theme` nicht gefällt, geh zur 1. Aufgabe und nimmm Änderungen vor. Siehe `?theme`. Probiere zum Beispiel mal die Argumente `axis.ticks` und `strip.placement` aus.
+3. Wenn dir `mein_theme` nicht gefällt, geh zur 1. Aufgabe und nimmm Änderungen vor. Siehe `?theme`. Probiere zum Beispiel mal die Argumente `axis.ticks` und `strip.placement` aus.
 
 ### F - Skalierung
 
@@ -499,7 +499,7 @@ verbrechen_gg +
   scale_color_colorblind()
 ```
 
-5. Alternativ kann man die Farbskala selbst setzen. Verwende `scale_color_manual()` und die `viridis()` Funktion aus dem `viridis` Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer etablierter, etwas schönerer Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.   
+5. Alternativ kann man die Farbskala selbst setzen. Verwende `scale_color_manual()` und die `viridis()` Funktion aus dem `viridis` Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer, etablierter und etwas schönerer Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.   
 
 ```{r, echo = TRUE, eval = FALSE}
 verbrechen_gg + 
@@ -513,13 +513,11 @@ verbrechen_gg +
   scale_color_manual(values = viridis(7))
 ```
 
-6. Ok, sieht ganz ordentlich aus. Wobei man kann natürlich immer noch was verbessern. Go explore!
+6. Ok, sieht ganz ordentlich aus, oder? Kann man aber bestimmt noch verbessern. Go explore!
 
 ### G - Bilddateien
 
-1. Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Dafür musst du zuerst einen neuen Unterordner in einem Projektordner mit dem Namen `3_Figures` anlegen, sofern dieser noch nicht existiert (sollte bereits vorhanden sein).
-
-2. Verwende nun `ggsave` um deinen letzten `verbrechen_gg` plot als eine `.pdf`-Datei unter dem Namen `verbrechen.pdf` zu speichern. Danach solltest du deinen Plot im Ordner `3_Figures` finden. Schaue nach und öffne die Datei. 
+1. Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Verwende nun `ggsave` um deinen letzten `verbrechen_gg` plot als eine `.pdf`-Datei unter dem Namen `verbrechen.pdf` zu speichern. Danach solltest du deinen Plot im Ordner `3_Figures` finden. Schaue nach und öffne die Datei. 
 
 ```{r, echo = TRUE, eval = FALSE}
 ggsave(filename = "3_Figures/verbrechen.pdf", 
@@ -539,7 +537,7 @@ ggsave(filename = "3_Figures/verbrechen.pdf",
        units = "in")
 ```
 
-5. Probiere ein paar Sachen aus:
+2. Probiere ein paar Sachen aus:
 
 - Verändere `width` und `height` in der `ggsave()` Funktion.
 - Speichere ein `.png` anstatt eines `.pdf` indem du `filename` und `device` entsprechend anpasst.
