@@ -76,7 +76,7 @@ Nach zwei Tagen kennt ihr nun die Grundlagen von R und des Tidyverse!
 
 .pull-right4[
 
-<img src="../Welcome/image/schedule.png" height="580" align="center">
+<img src="image/schedule.png" height="580" align="center">
 ]
 
 ---
