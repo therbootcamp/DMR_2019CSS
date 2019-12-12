@@ -297,6 +297,12 @@ names(kc_house)
 
 4. Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als "rest of the world" sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen `qm_wohnraum`, `qm_dachstock` und `qm_keller`, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).
 
+```{r eval = FALSE, echo = TRUE}
+kc_house <- kc_house %>%
+  mutate(XXX = XXX * 0.093,
+         XXX = XXX * 0.093,
+         XXX  = XXX * 0.093)
+```
 
 ```{r, eval = TRUE}
 kc_house <- kc_house %>%
@@ -368,7 +374,7 @@ kc_house %>%
   )
 ```
 
-5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
+5. Sortiere mittels der `arrange()` und der `desc()` Funktion den Datensatz nach `preis` in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.
 
 
 ```{r}
@@ -378,7 +384,12 @@ kc_house <- kc_house %>%
 kc_house
 ```
 
-6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil `TRUE`s (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
+6. Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million USD verkauft wurden? Erinnere: `TRUE` und `FALSE` werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit `TRUE` und `FALSE` berechnen, erhalten wir den Anteil `TRUE`s (Beispiel: `mean(c(TRUE, TRUE, FALSE, TRUE))` ergibt 0.75).
+
+```{r eval = FALSE, echo = TRUE}
+kc_house %>%
+  summarise(mil_p = mean(XXX > XXX))
+```
 
 ```{r}
 kc_house %>%
@@ -400,6 +411,13 @@ kc_house %>%
 ### D - Einfache gruppierte deskriptive Statistiken 
 
 1. Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu `group_by()` zur Gruppierung nach Villen (`villa`) und `n()` zur Berechnung der jeweiligen Anzahl.
+
+
+```{r eval = FALSE, echo = TRUE}
+kc_house %>%
+  group_by(XXX) %>%
+  summarise(N = XXX)
+```
 
 ```{r}
 kc_house %>%
@@ -447,7 +465,7 @@ kc_house %>%
 kc_house %>%
   group_by(baujahr) %>%
   summarise(N = n(),
-            living = mean(qm_wohnraum))
+            wohnraum = mean(qm_wohnraum))
 ```
 
 5. Diese Tabelle hat recht viele Zeilen und ist daher etwas unübersichtlich. Kreiere eine neue Variable `baujahrzehnt`, welche angibt, in welchem Jahrzehnt ein Haus gebaut wurde und erstelle dann die Tabelle der letzten Aufgabe Gruppiert nach dieser neuen Variable. Tipp: die `floor()` Funktion rundet eine Zahl auf die nächst kleinere ganze Zahl ab.

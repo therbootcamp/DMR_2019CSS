@@ -300,6 +300,12 @@ bev_wide &lt;- bev_long %&gt;%
 <li><p>Exploriere den Datensatz um einen Eindruck über dessen Struktur zu erhalten.</p></li>
 <li><p>Schaue dir mit der <code>names()</code> Funktion die Variablennamen an.</p></li>
 <li><p>Da es sich um einen US Datensatz handelt, sind die Flächenangaben in Quadratfuss angegeben. Wir als “rest of the world” sind es eher gewohnt in Quadratmeter zu denken. Kreiere dazu drei neue Variablen <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code>, welche die jeweilige Raumgrösse in Quadratmeter angeben (Tipp: ein Quadratfuss entspricht 0.093 Quadratmeter).</p></li>
+</ol>
+<pre class="r"><code>kc_house &lt;- kc_house %&gt;%
+  mutate(XXX = XXX * 0.093,
+         XXX = XXX * 0.093,
+         XXX  = XXX * 0.093)</code></pre>
+<ol start="5" style="list-style-type: decimal">
 <li><p>Kreiere eine neue Spalte <code>qm_total</code>, welche die Summe aus <code>qm_wohnraum</code>, <code>qm_dachstock</code> und <code>qm_keller</code> darstellt.</p></li>
 <li><p>Füge eine neue Variable <code>villa</code> hinzu, welche den Wert “ja” annimmt, wenn <code>qm_total</code> grösser als 750 ist und “nein”, wenn <code>qm_total</code> kleiner oder gleich 750 ist.</p></li>
 </ol>
@@ -311,15 +317,24 @@ bev_wide &lt;- bev_long %&gt;%
 <li><p>Wiederhole die vorherige Aufgabe, diesmal unter Verwendung der <code>summarise()</code> Funktion. Worin besteht der Unterschied der Resultate dieser und der vorherigen Aufgabe?</p></li>
 <li><p>Wie hoch ist der <em>Median</em>preis aller Häuser? Benutze dazu die <code>median()</code> Funktion. Worin besteht der Unterschied zwischen dem Mittelwert und dem Median?</p></li>
 <li><p>Wie hoch ist der höchste Verkaufspreis? Tipp: das Maximum eines Vektors findest du mit der <code>max()</code> Funktion.</p></li>
-<li><p>Sortiere mittels der <code>arrange()</code> und der <code>desc()</code> Funktion den Datensatz in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.</p></li>
-<li><p>Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million verkauft wurden? Tipp: <code>TRUE</code> und <code>FALSE</code> werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit <code>TRUE</code> und <code>FALSE</code> berechnen, erhalten wir den Anteil <code>TRUE</code>s (Beispiel: <code>mean(c(TRUE, TRUE, FALSE, TRUE))</code> ergibt 0.75).</p></li>
-<li><p>Berechne die mittlere Anzahl Stockwerke (<code>stoecke</code>) und Badezimmer (<code>badezimmer</code>) von Villen (<code>villa</code>).</p></li>
+<li><p>Sortiere mittels der <code>arrange()</code> und der <code>desc()</code> Funktion den Datensatz nach <code>preis</code> in absteigender Reihenfolge und printe das Resultat. Du kannst kontrollieren ob es geklappt hat, in dem du überprüfst ob der höchste Verkaufspreis, den du in der letzten Aufgabe herausgefunden hast, zuoberst erscheint.</p></li>
+<li><p>Wie gross ist der Anteil an Häuser, welche für mehr als 1 Million USD verkauft wurden? Erinnere: <code>TRUE</code> und <code>FALSE</code> werden von R als 1 respektive 0 interpretiert. Wenn wir daher den Mittelwert eines Vektors mit <code>TRUE</code> und <code>FALSE</code> berechnen, erhalten wir den Anteil <code>TRUE</code>s (Beispiel: <code>mean(c(TRUE, TRUE, FALSE, TRUE))</code> ergibt 0.75).</p></li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  summarise(mil_p = mean(XXX &gt; XXX))</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Berechne die mittlere Anzahl Stockwerke (<code>stoecke</code>) und Badezimmer (<code>badezimmer</code>) von Villen (<code>villa</code>).</li>
 </ol>
 </div>
 <div id="d---einfache-gruppierte-deskriptive-statistiken" class="section level3">
 <h3>D - Einfache gruppierte deskriptive Statistiken</h3>
 <ol style="list-style-type: decimal">
-<li><p>Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu <code>group_by()</code> zur Gruppierung nach Villen (<code>villa</code>) und <code>n()</code> zur Berechnung der jeweiligen Anzahl.</p></li>
+<li>Erstelle eine Tabelle, welche dir anzeigt wie viele Villen und wie viele normale Häuser (nicht-Villen) im Datensatz vorhanden sind. Benutze hierzu <code>group_by()</code> zur Gruppierung nach Villen (<code>villa</code>) und <code>n()</code> zur Berechnung der jeweiligen Anzahl.</li>
+</ol>
+<pre class="r"><code>kc_house %&gt;%
+  group_by(XXX) %&gt;%
+  summarise(N = XXX)</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li><p>Wie hoch ist der mittlere Verkaufspreis von Villen und normalen Häusern (nicht-Villen)?</p></li>
 <li><p>Verwende <code>group_by()</code> und <code>summarise()</code> um die untenstehende Tabelle zu erhalten.</p></li>
 </ol>
