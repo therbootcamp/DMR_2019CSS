@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -157,18 +157,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -254,8 +242,8 @@ bevoelkerung_long &lt;- bevoelkerung %&gt;%
   pivot_longer(cols = c(&quot;XX&quot;, &quot;XX&quot;), names_to = &quot;XX&quot;)</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li><p>Printe den neu erstellten Datensatz an. Alles wie erwartet?</p></li>
-<li><p>Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spaöten an.</p></li>
-<li><p>Jede Jahr-Variable die gleiche Struktur, nämlich <code>st_wbev_XXX</code>. Das bedeutet, dass wir einfach <code>starts_with()</code> Funktion zur Variablenauswahl verwenden können. Benutze <code>pivot_longer()</code> und <code>starts_with()</code> um alle Jahr-Variablen zu transformieren.</p></li>
+<li><p>Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spalten an.</p></li>
+<li><p>Jede Jahr-Variable hat die gleiche Struktur, nämlich <code>st_wbev_XXX</code>. Das bedeutet, dass wir einfach <code>starts_with()</code> Funktion zur Variablenauswahl verwenden können. Benutze <code>pivot_longer()</code> und <code>starts_with()</code> um alle Jahr-Variablen zu transformieren.</p></li>
 </ol>
 <pre class="r"><code># Transofmation vom Wide ins Long Format
 bevoelkerung_long &lt;- bevoelkerung %&gt;%
@@ -855,6 +843,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

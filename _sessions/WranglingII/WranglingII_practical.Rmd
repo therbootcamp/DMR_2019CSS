@@ -125,13 +125,13 @@ bevoelkerung_long <- bevoelkerung %>%
 
 8. Printe den neu erstellten Datensatz an. Alles wie erwartet?
 
-9. Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spaöten an.
+9. Nun wollen wir nicht nur die Jahre 2001 und 2011, sondern alle im Datensatz vorhandenen Jahre ins Long Format bringen. Schaue dir nochmals die Namen der Spalten an.
 
 ```{r}
 names(bevoelkerung)
 ```
 
-10. Jede Jahr-Variable die gleiche Struktur, nämlich `st_wbev_XXX`. Das bedeutet, dass wir einfach `starts_with()` Funktion zur Variablenauswahl verwenden können. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
+10. Jede Jahr-Variable hat die gleiche Struktur, nämlich `st_wbev_XXX`. Das bedeutet, dass wir einfach `starts_with()` Funktion zur Variablenauswahl verwenden können. Benutze `pivot_longer()` und `starts_with()` um alle Jahr-Variablen zu transformieren.
 
 ```{r eval = FALSE, echo = TRUE}
 # Transofmation vom Wide ins Long Format
