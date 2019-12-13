@@ -11,8 +11,9 @@ htmls = c(
   'IntroToR/IntroToR.html',
   'Data/Data.html',
   'Wrangling/Wrangling.html',
-  'Analysing/Analysing.html',
+  'WranglingII/WranglingII.html',
   'Plotting/Plotting.html',
+  'PlottingII/PlottingII.html',
   'NextSteps/NextSteps.html'
 )
 
@@ -29,11 +30,12 @@ for(i in 1:length(htmls)){
   webshot::webshot(paste0(from_path, htmls[i]),
                    paste0(to_path, pdfs[i]),
                    vheight = 900 * .8,
-                   vwidth = 1600 * .8)
+                   vwidth = 1600 * .8,
+                   delay = 1)
 }
 
 # zip files
-zip(paste0(to_path, 'R4DS_2019Feb_pdfs.zip'),
+zip(paste0(to_path, 'EDA_2019CSS_pdfs.zip'),
     c(paste0(to_path, pdfs), paste0(to_path, 'README.rtf'))
     )
 
