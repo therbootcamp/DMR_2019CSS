@@ -36,8 +36,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
                       warning = FALSE, 
                       message = FALSE)
 
@@ -229,14 +229,14 @@ ggplot(mcdonalds, aes(x = Calories, y = SaturatedFat, col = Category)) +
 ```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, 
        aes(x = XX, y = XX, fill = XX)) +
-  geom_violin() +
+  geom_violin()
 ```
 
 
 ```{r, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, 
        aes(x = Category, y = Calories, fill = Category)) +
-  geom_violin() +
+  geom_violin()
 
 ```
 

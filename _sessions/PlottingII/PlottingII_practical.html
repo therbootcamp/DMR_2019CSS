@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -85,6 +84,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -157,6 +157,18 @@ summary {
   display: none;
 }
 </style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
 
 <!-- code folding -->
 
@@ -246,10 +258,38 @@ summary {
   labs(title = &quot;Verbrechen&quot;,
        subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
   theme_minimal()</code></pre>
+<pre class="r"><code>ggplot(verbrechen, aes(x = prozent_metro, 
+                       y = haeufigkeit)) +
+  geom_point(alpha = .3) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Sieht noch nicht so informativ aus. Ergänze <code>scale_x_continuous(trans = 'pseudo_log')</code> und <code>scale_y_continuous(trans = 'pseudo_log')</code> um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen.</p></li>
-<li><p>Besser, oder? Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versuche dies mal über verschiedene Farben indem du <code>verbrechen</code> dem <code>col</code> Argument in <code>aes()</code> zuweist.</p></li>
-<li><p>Nicht wirklich informativ, oder? Anstatt mit <code>col</code> versuche nun die verschiedenen Verbrechen mit <code>facet_wrap()</code> zu differenzieren. Siehe unten.</p></li>
+<li>Sieht noch nicht so informativ aus. Ergänze <code>scale_x_continuous(trans = 'pseudo_log')</code> und <code>scale_y_continuous(trans = 'pseudo_log')</code> um die y und x-Achse zu stauchen. Später noch mehr zu Skalierungen.</li>
+</ol>
+<pre class="r"><code>ggplot(verbrechen, aes(x = prozent_metro, 
+                       y = haeufigkeit)) +
+  geom_point(alpha = .3) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;)</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Besser, oder? Jetzt zeichnet sich ein schwach positiver Zusammenhang ab. Könnte das anders aussehen, wenn man die verschiedenen Klassen von Verbrechen differenziert? Versuche dies mal über verschiedene Farben indem du <code>verbrechen</code> dem <code>col</code> Argument in <code>aes()</code> zuweist.</li>
+</ol>
+<pre class="r"><code>ggplot(verbrechen, aes(x = prozent_metro, 
+                       y = haeufigkeit,
+                       col = verbrechen)) +
+  geom_point(alpha = .3) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;)</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Nicht wirklich informativ, oder? Anstatt mit <code>col</code> versuche nun die verschiedenen Verbrechen mit <code>facet_wrap()</code> zu differenzieren. Siehe unten.</li>
 </ol>
 <pre class="r"><code>ggplot(XX, aes(x = XX, 
                y = XX)) +
@@ -259,6 +299,15 @@ summary {
   scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
   scale_y_continuous(trans = &#39;pseudo_log&#39;) +
   facet_wrap(~ XX)</code></pre>
+<pre class="r"><code>ggplot(verbrechen, aes(x = prozent_metro, 
+                       y = haeufigkeit)) +
+  geom_point(alpha = .2) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;) +
+  facet_wrap(~verbrechen)</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li>Es zeichnet sich ab, dass nicht alle Verbrechen gleich mit dem Anteil Metro-fahrender zusammenhängen. Der stärkste Zusammenhang scheint zu Autodiebstählen und Raubüberfällen zu bestehen. Kann aber natürlich sein, dass eine dritte Variable diesen Zusammenhang treibt, z.B. der Prozentsatz unter der Armutsgrenze lebender Personen. Verwende <code>facet_grid()</code> um gleichzeitig nach Verbrechen und <code>prozent_armut</code> kleiner oder grösser 10% zu differenzieren. Wie du im Code siehst, kannst du den logischen Vergleich direkt in die Funktion schreiben.</li>
 </ol>
@@ -270,6 +319,15 @@ summary {
   scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
   scale_y_continuous(trans = &#39;pseudo_log&#39;) +
   facet_grid(XX &gt; 10 ~ XX)</code></pre>
+<pre class="r"><code>ggplot(verbrechen, aes(x = prozent_metro, 
+                       y = haeufigkeit)) +
+  geom_point(alpha = .2) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;) + 
+  facet_grid(prozent_armut &gt; 10 ~ verbrechen)</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Relativ eindeutig: Die Anzahl Metro-fahrender ist nur mit Verbrechen assoziiert, wenn die Bezirke eine hohe Armut aufweisen. Gleichzeitig gibt es praktisch keine Differenzierung mehr: Alle Verbrechen sind mit der Anzahl Metro-fahrender assoziert. Seltsam, oder? Vielleicht haben wir noch nicht die richtige Drittvariable. Probiere doch mal <code>bevoelkerung_dichte</code> grösser als <code>5000</code> als erste Variable in <code>facet_grid()</code> aus.</li>
 </ol>
@@ -281,6 +339,15 @@ summary {
   scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
   scale_y_continuous(trans = &#39;pseudo_log&#39;) +
   facet_grid(XX &gt; 5000 ~ XX)</code></pre>
+<pre class="r"><code>ggplot(verbrechen, aes(x = prozent_metro, 
+                       y = haeufigkeit)) +
+  geom_point(alpha = .2) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;) + 
+  facet_grid(bevoelkerung_dichte &gt; 5000 ~ verbrechen)</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Der Zusammenhang ist verschwunden. Wir haben von Beginn an übersehen, dass viele Metro-fahrer stark mit einer hohen Bevölkerungsdichte assoziert ist und diese wiederum mit der Anzahl von Delikten. Spiele ein wenig herum. Welche Zusammenhänge kannst du noch entdecken?</li>
 </ol>
@@ -292,6 +359,15 @@ summary {
 <li>Zuallererst speichere deinen Plot als ein <code>gg</code> Objekt mit Namen <code>verbrechen_gg</code>.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg &lt;- XX</code></pre>
+<pre class="r"><code>verbrechen_gg &lt;- ggplot(verbrechen, 
+                        aes(x = prozent_metro, 
+                            y = haeufigkeit)) +
+  geom_point(alpha = .2) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;) + 
+  facet_grid(bevoelkerung_dichte &gt; 5000 ~ verbrechen)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Ändere die Farbe des Hintergrunds des Panels zu <code>white</code>. Verwende hierzu das <code>panel.background</code> in der <code>theme()</code> Funktion und die <code>element_rect()</code> Helferfunktion.</li>
 </ol>
@@ -299,6 +375,11 @@ summary {
   theme(
     panel.background = element_rect(fill = XX)
     )</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  theme(
+    panel.background = element_rect(fill = &#39;white&#39;)
+    )</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Als nächstes, ändere die Farbe der Haupt- und Nebenlinien zu <code>&quot;grey75&quot;</code> und deren Grössen zu <code>.25</code> und <code>.1</code> respektive. Verwende hierzu die Argumente <code>panel.grid.major</code> und <code>panel.grid.minor</code> und die Helferfunktion <code>element_line()</code>.</li>
 </ol>
@@ -308,6 +389,13 @@ summary {
     panel.grid.major = element_line(color = XX, size = XX),
     panel.grid.minor = element_line(color = XX, size = XX)
     )</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  theme(
+    panel.background = element_rect(fill = &#39;white&#39;),
+    panel.grid.major = element_line(color = &#39;grey75&#39;, size = .25),
+    panel.grid.minor = element_line(color = &#39;grey75&#39;, size = .1)
+    )</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Ändere nun die Farbe des Hintergunds der Panel-Überschriften zu <code>white</code>. Verwende das <code>strip.background</code> Argument und wiederum die <code>element_rect()</code> Helferfunktion.</li>
 </ol>
@@ -318,6 +406,14 @@ summary {
     panel.grid.minor = element_line(color = XX, size = XX),
     strip.background = element_rect(fill = XX),
     )</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  theme(
+    panel.background = element_rect(fill = &#39;white&#39;),
+    panel.grid.major = element_line(color = &#39;grey75&#39;, size = .25),
+    panel.grid.minor = element_line(color = &#39;grey75&#39;, size = .1),
+    strip.background = element_rect(fill = &#39;white&#39;)
+    )</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li>Nun ändere die Schriftart der Überschriften zu <code>italic</code> mit dem <code>face</code> Argument, setze den Text rechtsbündig (<code>hjust = 1</code>) und die Schriftgrösse (<code>size</code>) auf <code>12</code>. Verwende hierzu das <code>strip.text</code> Argument und die genannten Argumente in <code>element_text()</code>. Siehe <code>?element_text()</code>.</li>
 </ol>
@@ -329,6 +425,15 @@ summary {
     strip.background = element_rect(fill = XX),
     strip.text = element_text(face = XX, size = XX, hjust = XX)
     )</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  theme(
+    panel.background = element_rect(fill = &#39;white&#39;),
+    panel.grid.major = element_line(color = &#39;grey75&#39;, size = .25),
+    panel.grid.minor = element_line(color = &#39;grey75&#39;, size = .1),
+    strip.background = element_rect(fill = &#39;white&#39;),
+    strip.text = element_text(face = &#39;italic&#39;, size = 12, hjust = 1)
+    )</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-22-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Setze noch die Schriftgrösse der Achsenbeschriftungen auf <code>12</code> und setze jeweils einen Abstand von <code>10</code>. Verwende hierzu die Argumente <code>axis.title.x</code> und <code>axis.title.y</code> und die Helferfunktionen <code>element_text()</code> und <code>margin()</code>. Siehe <code>?margin()</code>.</li>
 </ol>
@@ -342,6 +447,17 @@ summary {
     axis.title.x = element_text(size = XX, margin = margin(t = XX)),
     axis.title.y = element_text(size = XX, margin = margin(r = XX)),
     )</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  theme(
+    panel.background = element_rect(fill = &#39;white&#39;),
+    panel.grid.major = element_line(color = &#39;grey75&#39;, size = .25),
+    panel.grid.minor = element_line(color = &#39;grey75&#39;, size = .1),
+    strip.background = element_rect(fill = &#39;white&#39;),
+    strip.text = element_text(face = &#39;italic&#39;, size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10))
+    )</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-24-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Abschliessend erhöhe den Abstand zwischen den Panels auf <code>1.1</code> in der Einheit <code>&quot;lines&quot;</code> mittels des <code>panel.spacing</code> Argument und der <code>unit()</code> Funktion.</li>
 </ol>
@@ -356,6 +472,18 @@ summary {
     axis.title.y = element_text(size = XX, margin = margin(r = XX)),
     panel.spacing = unit(XX, units = XX)
     )</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  theme(
+    panel.background = element_rect(fill = &#39;white&#39;),
+    panel.grid.major = element_line(color = &#39;grey75&#39;, size = .25),
+    panel.grid.minor = element_line(color = &#39;grey75&#39;, size = .1),
+    strip.background = element_rect(fill = &#39;white&#39;),
+    strip.text = element_text(face = &#39;italic&#39;, size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    panel.spacing = unit(1.1, units = &quot;lines&quot;)
+    )</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="e---mein-theme-objekt" class="section level3">
 <h3>E - Mein <code>theme()</code> Objekt</h3>
@@ -367,6 +495,16 @@ summary {
   XX = XX,
   ...
   )</code></pre>
+<pre class="r"><code>mein_theme &lt;- theme(
+    panel.background = element_rect(fill = &#39;white&#39;),
+    panel.grid.major = element_line(color = &#39;grey75&#39;, size = .25),
+    panel.grid.minor = element_line(color = &#39;grey75&#39;, size = .1),
+    strip.background = element_rect(fill = &#39;white&#39;),
+    strip.text = element_text(face = &#39;italic&#39;, size = 12, hjust = 1),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(r = 10)),
+    panel.spacing = unit(1.1, units = &quot;lines&quot;)
+    )</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Jetzt kriere einen neuen Plot mit anderen Variablen als zuvor und ergänze <code>mein_theme</code> (Ohne Klammern).</li>
 </ol>
@@ -406,22 +544,47 @@ summary {
   mein_theme
 
 verbrechen_gg</code></pre>
+<pre class="r"><code>verbrechen_gg &lt;- ggplot(data = verbrechen, 
+                        mapping = aes(x = prozent_metro, 
+                                     y = haeufigkeit,
+                                     col = staat,
+                                     size = bevoelkerung)) +
+  geom_point(alpha = .5) +
+  labs(title = &quot;Verbrechen&quot;,
+       subtitle = &quot;Haeufigkeit und Nutzung öffentlicher Verkehrsmittel&quot;) +
+  scale_x_continuous(trans = &#39;pseudo_log&#39;) + 
+  scale_y_continuous(trans = &#39;pseudo_log&#39;) + 
+  facet_wrap(~ verbrechen) +
+  mein_theme
+
+verbrechen_gg</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-32-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Als erstes verwende <code>sclale_size()</code> und darin das <code>range</code> argument um die Grösse der Punkte zu verkleinern. Damit kannst du die Überlappung etwas veringern. Probiere ein paar Werte für die untere und obere Grenze aus, die jeweils kleiner als <code>10</code> sein sollten, um einen guten Trade-off zwischen Grösse und Überlappung zu finden.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + scale_size(range = c(XX, XX))</code></pre>
+<pre class="r"><code>verbrechen_gg + scale_size(range = c(.5, 3))</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-34-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Nun ändere die Farben mit <code>scale_color_colorblind()</code> (spezifische Version von <code>scale_color_gradient()</code>), so dass die Farben auch per Helligkeit voneinandeer abgrenzbar sind.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + 
   scale_size(range = c(XX, XX)) + 
   scale_color_colorblind()</code></pre>
+<pre class="r"><code>verbrechen_gg + 
+  scale_size(range = c(.5, 3)) + 
+  scale_color_colorblind()</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-36-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li>Alternativ kann man die Farbskala selbst setzen. Verwende <code>scale_color_manual()</code> und die <code>viridis()</code> Funktion aus dem <code>viridis</code> Paket (nicht vergessen zu laden) um die Farben manuell anzupassen. Viridis ist ein anderer, etablierter und etwas schönerer Farbsatz, der ebenfalls Helligkeitsunterschiede berücksichtigt.</li>
 </ol>
 <pre class="r"><code>verbrechen_gg + 
   scale_size(range = c(XX, XX)) + 
   scale_color_manual(values = viridis(7))</code></pre>
+<pre class="r"><code>verbrechen_gg +
+  scale_size(range = c(.5, 3)) + 
+  scale_color_manual(values = viridis(7))</code></pre>
+<p><img src="PlottingII_practical_files/figure-html/unnamed-chunk-38-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Ok, sieht ganz ordentlich aus, oder? Kann man aber bestimmt noch verbessern. Go explore!</li>
 </ol>
@@ -431,6 +594,12 @@ verbrechen_gg</code></pre>
 <ol style="list-style-type: decimal">
 <li>Es ist an der Zeit euren Plot als eine Bilddatei zu speichern. Verwende nun <code>ggsave</code> um deinen letzten <code>verbrechen_gg</code> plot als eine <code>.pdf</code>-Datei unter dem Namen <code>verbrechen.pdf</code> zu speichern. Danach solltest du deinen Plot im Ordner <code>3_Figures</code> finden. Schaue nach und öffne die Datei.</li>
 </ol>
+<pre class="r"><code>ggsave(filename = &quot;3_Figures/verbrechen.pdf&quot;, 
+       device = &quot;pdf&quot;, 
+       plot = mcdonalds_gg,
+       width = 4, 
+       height = 4, 
+       units = &quot;in&quot;)</code></pre>
 <pre class="r"><code>ggsave(filename = &quot;3_Figures/verbrechen.pdf&quot;, 
        device = &quot;pdf&quot;, 
        plot = mcdonalds_gg,
@@ -803,23 +972,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
