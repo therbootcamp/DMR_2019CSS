@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="             The R Bootcamp @ CSS Versicherung    December 2019" />
@@ -85,7 +86,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -159,18 +159,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -201,7 +189,7 @@ $(document).ready(function () {
 <h5><a href="https://raw.githubusercontent.com/therbootcamp/EDA_2019CSS/master/1_Data/TheRBootcamp_EDA_2019CSS_data.zip">Data sets</a></h5>
 </div>
 <div id="pdfs" class="section level5">
-<h5><a href="https://github.com/therbootcamp/R4DS_2019Feb/raw/master/_sessions/_pdf/EDA_2019CSS_pdfs.zip">PDFs</a></h5>
+<h5><a href="https://github.com/therbootcamp/EDA_2019CSS/raw/master/_sessions/_pdf/EDA_2019CSS_pdfs.zip">PDFs</a></h5>
 <!--- <font style="font-size:12px">(made available later)</font>--->
 <p><br></p>
 </div>
@@ -281,6 +269,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
